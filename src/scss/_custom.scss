@@ -1,0 +1,57 @@
+// Here you can add other styles
+
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+
+// TODO darle al media query
+.productos--search{
+    padding: 2% 2%;
+}
+
+.custom--links{
+    color: azure;
+    font-size: small;
+    font-family: 'Hammersmith One', sans-serif;
+}
+
+.custom--links:hover{
+    color: cadetblue;
+    font-size: small;
+    font-family: 'Hammersmith One', sans-serif;
+}
+
+.custom--links:active{
+    color: cornflowerblue;
+    font-size: small;
+    font-family: 'Hammersmith One', sans-serif;
+}
+
+.div--button{
+    color: azure;
+    cursor: pointer;
+}
+
+.c-avatar{
+    margin-left: 25%;
+    padding: 7vh;
+}
+
+.header-profile-text{
+    text-align: justify;
+    padding: 1vh;
+}
+
+.items--color{
+    color: black;
+}
+
+.items--brand--text{
+    color: rgb(75, 75, 75);
+}
+
+.text--productos--title{
+    font-size: small;
+    font-family: 'Hammersmith One', sans-serif;
+}
+

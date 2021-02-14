@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="138"
+   height="35"
+   viewBox="0 0 36.512499 9.2604169"
+   version="1.1"
+   id="svg1044"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
+   sodipodi:docname="logo_completo.svg">
+  <defs
+     id="defs1038" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="134.84237"
+     inkscape:cy="0.80383415"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata1041">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Capa 2">
+    <rect
+       style="fill:#800080;stroke-width:0.264583"
+       id="rect1057"
+       width="92.742523"
+       height="31.003265"
+       x="62.140163"
+       y="28.464205" />
+  </g>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.5083px;line-height:1.25;font-family:sans-serif;fill:#4875db;fill-opacity:1;stroke:none;stroke-width:0.147544"
+       x="18.706739"
+       y="6.013669"
+       id="text1052"
+       transform="scale(0.9110534,1.0976305)"><tspan
+         sodipodi:role="line"
+         id="tspan1050"
+         x="18.706739"
+         y="6.013669"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.5083px;font-family:'Montserrat Alternates';-inkscape-font-specification:'Montserrat Alternates Bold';fill:#4875db;fill-opacity:1;stroke-width:0.147544">intecsa</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.5083px;line-height:1.25;font-family:sans-serif;fill:#4875db;fill-opacity:1;stroke:none;stroke-width:0.147544"
+       x="0.79253757"
+       y="5.9147887"
+       id="text1052-5"
+       transform="scale(0.9110534,1.0976305)"><tspan
+         sodipodi:role="line"
+         id="tspan1050-8"
+         x="0.79253757"
+         y="5.9147887"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.5083px;font-family:'Montserrat Alternates';-inkscape-font-specification:'Montserrat Alternates Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.147544">Grupo</tspan></text>
+  </g>
+</svg>
