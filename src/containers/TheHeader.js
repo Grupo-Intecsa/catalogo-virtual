@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { CButton, CForm, CImg, CInput } from '@coreui/react'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -23,8 +24,9 @@ const TheHeader = () => {
             <Fragment>
             
             <div className="col-12 productos--search d-flex justify-content-center bg-linkedin m-0">
-
+            <Link to="/">
             <CImg src="img/logo/icoGIT_withe.svg" className="img-fluid"/>
+            </Link>
             <CForm className="col-8 col-sm-8 d-flex">
             <div className="input-group mb-3">
               <CInput type="text" className="form-control" placeholder="Buscar productos, marcas y más" aria-label="buscar productos" aria-describedby="basiaddon2" />

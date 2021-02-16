@@ -51,7 +51,16 @@
 }
 
 .text--productos--title{
-    font-size: small;
+    color: rgba(59, 59, 59, 0.671);
+    font-size: large;
     font-family: 'Hammersmith One', sans-serif;
+}
+
+.img--product--small{
+    display: flex;
+    height: fit-content;
+    height: 15vh;
+    width: auto;
+    
 }
 

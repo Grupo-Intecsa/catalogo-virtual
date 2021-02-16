@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { CCard, CCardHeader, CButton, CCollapse, CCardBody, CImg } from '@coreui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  } from '@fortawesome/free-solid-svg-icons'
 
+const Card = ({ props }) =>{
 
-const Card = () =>{
+    const { title, tags, amount, price, ml, amazon, img, content, marca, modelo, ficha, accesorios } = props
 
-    const [accordion, setAccordion] = useState(0)
-    console.log(accordion)
+    const [ accordion, setAccordion ] = useState(0)    
+    const fichasContent = [
+        { slug: 'ficha', content: ficha },
+        { slug: 'accesorios', content: accesorios }
+    ]
+    const [ navFichas, setNavFichas ] = useState('ficha')
 
+        const handledProductos = (e) => {   
+            let slug = e.target.value
+            setNavFichas(slug)
+        }
+
+    const valueMemo =  useMemo(() => {
+        const value = fichasContent.filter(item => item.slug === navFichas)[0]?.content
+        
+        return value
+    }, [navFichas])
+    
     return(
-        <CCard className="mb-1">
+        <CCard>
         <CCardHeader id="headingTwo">
             <CButton 
             block 
@@ -18,30 +32,58 @@ const Card = () =>{
             className="text-left m-0 p-0 d-flex align-items-center justify-content-center" 
             onClick={() => setAccordion(accordion === 0 ? 1 : 0 )}
             >
-            <div className="col-6 text-body">
+            <div className="col-6 text-body d-flex flex-column">
                 <span className="text--productos--title">
-                    Audífonos Gamer Onikuma K5 negro
+                    {title}
                 </span>
+                <span className="text-value-xl">
+                    {`$${price}`}
+                </span>
+                <small className="text-danger">
+                    {`Piezas disponibles: ${amount}`}
+                </small>
             </div>
-            <div className="col-6">
-                <CImg src="https://http2.mlstatic.com/D_Q_NP_731024-MLA43701246671_102020-AB.webp" alt="foto de audífonos" className="img-fluid" />
+            <div className="col-4">
+                <CImg src={img} alt={tags} className="img-fluid" style={{ 'max-width': '80%' }} />
             </div>
             </CButton>
         </CCardHeader>
         <CCollapse show={accordion === 1}>
             <CCardBody>
+            <hr />
+            <span className="text-body" style={{ 'fontSize': 'large' }}>Compralo ahora en:</span>
+            <div className="mt-4 d-flex justify-content-around">
+                { amazon === null ? null :  <CImg target="google.com" className="col-4 div--button" src='img/logo/amazon-2.svg' onClick={() => window.location.href=amazon} />}
+                { ml === null ? null : <CImg className="col-4 div--button" src='img/logo/mercado-libre-logo.svg' onClick={() => window.location.href=ml} />}
+            </div>
+            <hr />
+            <span>{content}</span>
+            <div className="d-flex align-content-center mt-3">
+            <table className="tab-content table-responsive-lg table-outline">
+                <tbody>
+                    <tr className="table-selected">
+                        <th scope="row">Marca</th>
+                        <td>{marca}</td>
+                    </tr>
+                    <tr className="ml-3">
+                        <th scope="row">Modelo</th>
+                        <td>{modelo}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <hr />
+            <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <li className="nav-item">
+            <CButton className={navFichas === 'ficha' ? 'nav-link active btn-ghost-info' : 'nav-link active' } value="ficha" onClick={handledProductos}>Ficha técnica</CButton>
+            </li>
+            <li className="nav-item">
+            <CButton className={navFichas === 'accesorios' ? 'nav-link active btn-ghost-info' : 'nav-link active' } value="accesorios" onClick={handledProductos}>Accesorios</CButton>
+            </li>
+            </ul>
             <div>
-            2. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-            cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-            nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-            beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven''t heard of them accusamus labore sustainable VHS.
+            <p className="ml-1">{ valueMemo }</p>
             </div>
-            <div className="mt-4   d-flex justify-content-around">
-                <CImg className="col-4" src="img/logo/amazon-2.svg"/>
-                <CImg className="col-4" src="img/logo/mercado-libre-logo.svg"/>
-            </div>
-
             </CCardBody>
         </CCollapse>
         </CCard>
