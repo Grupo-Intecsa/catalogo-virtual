@@ -25,7 +25,7 @@ const Card = ({ props }) =>{
                     {title}
                 </h1>
                 <div className="mt-1">
-                <button onClick={() => alert('Contactanos al telefono')} type="button" className="btn btn-pill btn-primary mr-2 mt-3" style={{ "color" : "black"}}><FontAwesomeIcon className="mr-1" icon={faEnvelopeOpen} style={{ "color" : "white"}} />Contactanos</button>
+                <button onClick={() => alert('Contactanos al telefono')} type="button" className="btn btn-pill mr-2 mt-3 btn-info" style={{ "color" : "white"}}><FontAwesomeIcon className="mr-1" icon={faEnvelopeOpen} style={{ "color" : "white"}} />Contactanos</button>
                 <button type="button" className="btn btn-pill btn-warning mr-2 mt-3 disabled" ><FontAwesomeIcon className="mr-1" icon={faShoppingCart} style={{ "color" : "black"}}/></button>
                 
                 </div>
@@ -58,7 +58,7 @@ const Card = ({ props }) =>{
             {/* nav vertical */}
             <div className="d-flex justify-content-lg-around">
                 <button type="button" className="btn btn-danger mr-2" ><FontAwesomeIcon className="mr-1" icon={faFilePdf} style={{ "color" : "white"}}/>Descarga la Ficha técnica </button>
-                <button type="button" className="btn btn-info mr-2" ><FontAwesomeIcon className="mr-1" icon={faEye} style={{ "color" : "white"}}/>Galería</button>
+                <button type="button" className="btn btn-success mr-2" ><FontAwesomeIcon className="mr-1" icon={faEye} style={{ "color" : "white"}}/>Galería</button>
             </div>
             </CCardBody>
         </CCollapse>

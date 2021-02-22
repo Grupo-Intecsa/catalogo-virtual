@@ -2,6 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+html{
+    overflow-x: hidden;
+}
 
 // TODO darle al media query
 .productos--search{
@@ -110,4 +113,40 @@
 
 .icoSVG{
     width: 40vmin;
+}
+
+#Navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 3%;
+}
+
+#Navigation > section {
+    display: flex;
+    
+}
+
+.form--header{
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+}
+
+@media (max-width: 550px){
+    .form--header{
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+    }
+}
+
+@media (max-width: 750px){
+    .form--header{
+        display: flex;
+        flex-direction: row;
+        width: 180px;
+    }
 }

@@ -25,27 +25,25 @@ const TheHeader = () => {
   return (
             <Fragment>
             
-            <div className="col-12 productos--search d-flex justify-content-center bg-linkedin m-0">
-            <Link to="/">
-            <CImg src={cosa} className="iconSVG" height="40px"/>
-            </Link>
-            
-            <div className="col-12 col-sm-8 d-flex">
-            <CForm className="col-12">
-            <div className="input-group mb-3">
-              <CInput type="text" className="form-control" placeholder="Buscar productos, marcas y más" aria-label="buscar productos" aria-describedby="basiaddon2" />
-              <div className="input-group-append">
-                <CButton type="submit" className="input-group-text"><FontAwesomeIcon icon={faSearch}/></CButton>
-              </div>
-            </div>
-            {/* <CInput className="col-12 col-sm-10 custom--heigt" placeholder="Buscar productos, marcas y"></CInput> */}
-            </CForm>
-            </div>
+            <nav id="Navigation" className="bg-linkedin col-12">
+                <section>
+                  <Link to="/">
+                    <CImg src={cosa} className="iconSVG" height="60px"/>
+                  </Link>
+                </section>
+                <section>
+                <CForm className="form--header">
+                    <CInput type="text" className="col-10" placeholder="Buscar productos, marcas y más"/>
+                    <CButton type="submit" className="btn btn-danger"><FontAwesomeIcon icon={faSearch}/></CButton>
+                  </CForm>
+                </section>
+                <section>
+                  <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
+                  <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
+                </section>
+            </nav>
 
-            <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
-            <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
           
-            </div>
             {/* TODO boosgtrap para hacer lista un menu * aun sin funcion/}
             {/* <div className="bg-linkedin d-flex justify-content-center">
             

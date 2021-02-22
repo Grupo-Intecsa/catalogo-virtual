@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { CFooter } from '@coreui/react'
+
 
 const TheFooter = () => {
   return (
