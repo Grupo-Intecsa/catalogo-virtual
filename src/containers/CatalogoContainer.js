@@ -8,10 +8,14 @@ import {
 import Card from '../views/ProductosCards/Card'
 import Categories from '../views/ProductosCards/Categories'
 
+
+
 // TODO hacer modal una vez que se hace link en la tienda virtual
 // TODO crear el paginador de busqueda
 // TODO implementar la API
-
+// TODO crear en el sider el bloque de identifiacion de la tienda.
+// TODO copiar el footer de mercado libre
+// TODO implemetar la API de mercado libre para la creacion de elementos
 
 const dataTest = [
     {
@@ -100,7 +104,7 @@ const dataTest = [
 const CatalogoContainer  = () => {
     
     return(
-    <CContainer fluid>
+    <CContainer>
         <CRow className="d-flex mt-5 justify-content-arround justify-content-center mb-4">
             <CCol className="col-sm-3">
                 <Categories />

@@ -1,7 +1,6 @@
 // Here you can add other styles
 
-@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 
 // TODO darle al media query
@@ -12,19 +11,19 @@
 .custom--links{
     color: azure;
     font-size: small;
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .custom--links:hover{
     color: cadetblue;
     font-size: small;
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .custom--links:active{
     color: cornflowerblue;
     font-size: small;
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .div--button{
@@ -51,10 +50,14 @@
 }
 
 .text--productos--title{
-    color: rgba(59, 59, 59, 0.671);
+    color: rgba(0, 0, 0, 0.671);
     font-size: large;
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    
 }
+
 
 .img--product--small{
     display: flex;
@@ -64,3 +67,47 @@
     
 }
 
+.card--container{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.footer--map{
+    display: grid;
+    color: rgb(255, 255, 255);
+    // grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1px;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    background-blend-mode: screen;
+    padding-bottom: 1rem;
+}
+
+.footer-footer{
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    color: gray;
+}
+
+.item-grid-map{
+    padding: 2rem;
+    // width: 100%;
+    justify-items: center;
+}
+
+.item-direccion{
+    justify-items: end;
+    // width: 100%;
+    padding: 2rem;
+    margin-left: 4rem;
+}
+
+.item-grid-disclaimer{
+    padding: 0 2rem 0 2rem;
+    justify-items: center;
+}
+
+
+.icoSVG{
+    width: 40vmin;
+}

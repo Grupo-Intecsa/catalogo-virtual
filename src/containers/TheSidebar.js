@@ -36,12 +36,7 @@ const TheSidebar = () => {
       onMinimizeChange={toogleView}
     >
       <CSidebarBrand className="d-md-down-none bg-gradient-dark" to="/">
-        <CIcon
-          className="c-sidebar-brand-full"
-          name="logo-negative"
-          
-          src="img/logo/logo_completo.svg"
-        />
+          <h2>Grupo Intecsa</h2>
         <CIcon
           className="c-sidebar-brand-minimized"
           name="sygnet"
@@ -80,6 +75,7 @@ const TheSidebar = () => {
         />
       </CSidebarNav>
       {/* <CSidebarMinimizer className="c-d-md-down-none"/> */}
+
     </CSidebar>
   )
 }

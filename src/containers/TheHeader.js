@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
+import cosa from '../assets/icons/path2.png'
+
 
 const TheHeader = () => {
   const dispatch = useDispatch()
@@ -25,20 +27,24 @@ const TheHeader = () => {
             
             <div className="col-12 productos--search d-flex justify-content-center bg-linkedin m-0">
             <Link to="/">
-            <CImg src="img/logo/icoGIT_withe.svg" className="img-fluid"/>
+            <CImg src={cosa} className="iconSVG" height="40px"/>
             </Link>
-            <CForm className="col-8 col-sm-8 d-flex">
+            
+            <div className="col-12 col-sm-8 d-flex">
+            <CForm className="col-12">
             <div className="input-group mb-3">
               <CInput type="text" className="form-control" placeholder="Buscar productos, marcas y más" aria-label="buscar productos" aria-describedby="basiaddon2" />
               <div className="input-group-append">
-                <CButton type="submit" className="input-group-text" id="basiaddon2"><FontAwesomeIcon icon={faSearch}/></CButton>
+                <CButton type="submit" className="input-group-text"><FontAwesomeIcon icon={faSearch}/></CButton>
               </div>
             </div>
             {/* <CInput className="col-12 col-sm-10 custom--heigt" placeholder="Buscar productos, marcas y"></CInput> */}
             </CForm>
+            </div>
+
             <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
             <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
-
+          
             </div>
             {/* TODO boosgtrap para hacer lista un menu * aun sin funcion/}
             {/* <div className="bg-linkedin d-flex justify-content-center">
