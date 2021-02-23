@@ -61,7 +61,6 @@ html{
     
 }
 
-
 .img--product--small{
     display: flex;
     height: fit-content;
@@ -121,7 +120,13 @@ html{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    padding: 3%;
+    padding: 1rem 1rem;
+}
+
+@media (min-width: 950px){
+    #Navigation{
+        padding: 1rem 5rem;
+    }
 }
 
 #Navigation > section {
@@ -132,21 +137,51 @@ html{
 .form--header{
     display: flex;
     flex-direction: row;
-    width: 700px;
+    width: 200px;
+    border-radius: 4px;
 }
 
-@media (max-width: 550px){
+@media (min-width: 550px){
     .form--header{
-        display: flex;
-        flex-direction: row;
-        width: 200px;
+        width: 300px;
     }
 }
 
-@media (max-width: 750px){
+@media (min-width: 750px){
     .form--header{
-        display: flex;
-        flex-direction: row;
-        width: 180px;
+        width: 500px;
     }
+}
+
+@media (min-width: 950px){
+    .form--header{
+        width: 700px;
+    }
+}
+
+.input-form-header{
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    
+    
+
+    input{
+        padding: 0 1rem 0 1rem;
+        font-size: 1rem;
+        border: none;
+        width: 100%;
+        
+    }
+    input:focus{
+        outline: none;
+    }
+
+}
+
+.btn-search{
+    padding-right: 1rem;
+    color: rgba(34, 33, 33, 0.527);
+    text-rendering: auto;
+    line-height: 2em;
+
 }
