@@ -28,7 +28,7 @@ const Categories = () => {
             <CRow className="d-flex flex-column d-sm-down-none">
                 {/* nombre del productos buscado */}
                 <CCol>
-                    <h2>Audifonos</h2>
+                    <h2>ABB</h2>
                 </CCol>
                 <CCol className="mt-5 mb-5">
 

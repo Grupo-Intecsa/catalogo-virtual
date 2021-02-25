@@ -1,16 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
     CCol,
     CContainer, 
     CRow,
+    // CCarousel,
+    // CCarouselInner,
+    // CCarouselItem,
+    // CCarouselCaption,
+    // CCarouselControl,
+    // CCarouselIndicators,
+    // CCard
+
 } from '@coreui/react'
+
+
 
 import Card from '../views/ProductosCards/Card'
 import Categories from '../views/ProductosCards/Categories'
+
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../context/CatalogoXstate'
 
-
+// import slide from '../assets/unisec.PNG'
 
 // TODO hacer modal una vez que se hace link en la tienda virtual
 // TODO crear el paginador de busqueda
@@ -21,22 +32,20 @@ import { CatalogoXstate } from '../context/CatalogoXstate'
 
 
 
-const CatalogoContainer  = ({ match }) => {
+const CatalogoContainer  = () => {
 
-    console.log(match)
+    const [ activeIndex ] = useState(0)
 
     const [ state, send ] = useMachine(CatalogoXstate)
-
     useEffect(() => {
         send('ALL_PRODUCTOS')
     },[send])
 
     const { all_products } = state.context
-
-    console.log(all_products, state)
     
     return(
     <CContainer>
+
         <CRow className="d-flex mt-5 justify-content-arround justify-content-center mb-4">
             <CCol className="col-sm-3">
                 <Categories />
