@@ -1,15 +1,40 @@
 import React, { useState } from 'react'
 import { CCard, CCardHeader, CButton, CCollapse, CCardBody, CImg } from '@coreui/react'
+import whataspp from '../../assets/icons/whatsapp.svg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelopeOpen, faShoppingCart, faFilePdf, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ props }) =>{
 
-    const { title, tags, ml, amazon, img, content } = props
+    
+    
+    const { title, tags, ml, amazon, desc, urlfoto, urldata  } = props
+    
+    console.log(props, 'tarjetas, tarjetas ====>>>', ml.slice(3) )
 
-    const [ accordion, setAccordion ] = useState(0)    
+
+    const [ accordion, setAccordion ] = useState(0)
+    const [ toggle, setToggle ] = useState(false)
+
+    const toggleAccord = () => {
+        setAccordion(accordion === 0 ? 1 : 0 )
+        setToggle(false)
+    }
+
+    const toggleDesc = () =>  {
+        if(!toggle){
+            setToggle(true)
+        }else if (toggle){
+            setToggle(false)
+        }
+    }
+
+    const phone = "5215546371510"
+
+    const whatsappMessage = `https://api.whatsapp.com/send/?phone=${phone}&text=Me gustaria tener inforamción del producto: ${title}`
         
+
     return(
         <CCard className="card--container">
         <CCardHeader id="headingTwo">
@@ -17,15 +42,19 @@ const Card = ({ props }) =>{
             block 
             color="link" 
             className="text-left m-0 p-0 d-flex align-items-center justify-content-center" 
-            onClick={() => setAccordion(accordion === 0 ? 1 : 0 )}
+            onClick={toggleAccord}
             >
             {/* <div className="col-6 text-body d-flex flex-column"> */}
             <div className="card-display-grid">
-                <h1 className="text--productos--title">
+                <p className="text--productos--title">
                     {title}
-                </h1>
+                </p>
                 <div className="mt-1">
-                <button onClick={() => alert('Contactanos al telefono')} type="button" className="btn btn-pill mr-2 mt-3 btn-info" style={{ "color" : "white"}}><FontAwesomeIcon className="mr-1" icon={faEnvelopeOpen} style={{ "color" : "white"}} />Contactanos</button>
+                <a href={whatsappMessage} target="blanc">
+                    <button type="button" className="btn btn-pill mr-2 mt-3 bg--whass">
+                    <img src={whataspp} alt="contacto de whatsapp" />
+                </button>
+                </a>
                 <button type="button" className="btn btn-pill btn-warning mr-2 mt-3 disabled" ><FontAwesomeIcon className="mr-1" icon={faShoppingCart} style={{ "color" : "black"}}/></button>
                 
                 </div>
@@ -37,28 +66,49 @@ const Card = ({ props }) =>{
                 </small> */}
             </div>
             <div className="col-4">
-                <CImg src={img} alt={tags} className="img-fluid" style={{ 'max-width': '80%' }} />
+                <CImg src={urlfoto[0]} alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} />
             </div>
             </CButton>
         </CCardHeader>
         <CCollapse show={accordion === 1}>
             <CCardBody>
             <hr />
-            <h3 className="text-body" style={{ 'fontSize': 'large' }}>Compralo ahora en:</h3>
-            <div className="mt-4 d-flex justify-content-around">
-                { amazon === null ? null :  <CImg target="google.com" className="col-4 div--button" src='img/logo/amazon-2.svg' onClick={() => window.location.href=amazon} />}
-                { ml === null ? null : <CImg className="col-4 div--button" src='img/logo/mercado-libre-logo.svg' onClick={() => window.location.href=ml} />}
+            <div className="text-body text-center" style={{ 'fontSize': 'large' }}>Compralo ahora en:</div>
+            <div className="mt-4">
+                { amazon ? null :  <CImg target="google.com" className="col-6 div--button" src='img/logo/amazon-2.svg' onClick={() => window.location.href=amazon} />}
+                { !ml ? 
+                    null :
+                    <a className=" d-flex justify-content-center" href={`https://articulo.mercadolibre.com.mx/MLM-${ml.split("MLM")[1]}`} target="blanc">
+                    <CImg className="col-6 div--button" src='img/logo/mercado-libre-logo.svg'/>
+                    </a>
+                }
             </div>
             <hr />
+    
+            <div className="btn-descrip" onClick={toggleDesc}>
+                <div>Descripción:</div>
+                <FontAwesomeIcon icon={faChevronCircleDown} />
+            </div>
+            </CCardBody>
+            </CCollapse>
+        <CCollapse show={toggle}>
+            <CCardBody>
             <div>
-            <h3>Descripción</h3>
-            <span className="p2">{content}</span>
+            <span className="p2">{desc}</span>
             </div>
             <hr />
             {/* nav vertical */}
-            <div className="d-flex justify-content-lg-around">
-                <button type="button" className="btn btn-danger mr-2" ><FontAwesomeIcon className="mr-1" icon={faFilePdf} style={{ "color" : "white"}}/>Descarga la Ficha técnica </button>
-                <button type="button" className="btn btn-success mr-2" ><FontAwesomeIcon className="mr-1" icon={faEye} style={{ "color" : "white"}}/>Galería</button>
+            <div className="d-flex justify-content-center">
+
+                <a href={urldata} download={title} >
+                <button type="button" className="btn btn-outline-danger mr-2" >
+                <FontAwesomeIcon className="mr-1" icon={faFilePdf}/>
+                    Descarga la Ficha técnica
+                </button>
+                </a>
+
+                <button type="button" className="btn mr-2 btn-outline-dark" ><FontAwesomeIcon className="mr-1" icon={faEye}/>
+                Galería</button>
             </div>
             </CCardBody>
         </CCollapse>

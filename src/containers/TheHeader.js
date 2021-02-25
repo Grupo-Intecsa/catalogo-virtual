@@ -28,7 +28,7 @@ const TheHeader = () => {
             <nav id="Navigation" className="bg-linkedin col-12">
                 <section>
                   <Link to="/">
-                    <CImg src={cosa} className="iconSVG" height="60px"/>
+                    <CImg src={cosa} className="iconSVG" height="45px"/>
                   </Link>
                 </section>
                 <section>
