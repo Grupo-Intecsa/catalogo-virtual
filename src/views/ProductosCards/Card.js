@@ -100,7 +100,7 @@ const Card = ({ props }) =>{
             {/* nav vertical */}
             <div className="d-flex justify-content-center">
 
-                <a href={urldata} download={title} >
+                <a href={urldata} download={true} >
                 <button type="button" className="btn btn-outline-danger mr-2" >
                 <FontAwesomeIcon className="mr-1" icon={faFilePdf}/>
                     Descarga la Ficha técnica
