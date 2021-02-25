@@ -50,7 +50,7 @@ const Card = ({ props }) =>{
                     {title}
                 </p>
                 <div className="mt-1">
-                <a href={whatsappMessage} target="blanc">
+                <a href={whatsappMessage} target="_blank" rel="external">
                     <button type="button" className="btn btn-pill mr-2 mt-3 bg--whass">
                     <img src={whataspp} alt="contacto de whatsapp" />
                 </button>
