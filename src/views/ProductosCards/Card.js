@@ -22,7 +22,7 @@ import {
 import whataspp from '../../assets/icons/whatsapp.svg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ props }) =>{
 
@@ -51,7 +51,7 @@ const Card = ({ props }) =>{
     }
 
     const phone = "5215546371510"
-    const whatsappMessage = `https://api.whatsapp.com/send/?phone=${phone}&text=Me gustaria tener inforamción del producto: ${title}`
+    const whatsappMessage = `https://api.whatsapp.com/send/?phone=${phone}&text=Me gustaria tener información del producto: ${title}`
         
 
     return(
@@ -97,7 +97,7 @@ const Card = ({ props }) =>{
             {/* <hr /> */}
             <div className="text-body text-center buy--now"><span>Disponible en:</span></div>
             <div className="mt-4">
-                { amazon ? null 
+                { !amazon ? null 
                 : <CImg 
                     target="google.com" 
                     className="col-6 div--button" 
@@ -174,7 +174,7 @@ const Card = ({ props }) =>{
                 </CCarouselInner>
                         
                             <CCarouselControl direction="prev"><FontAwesomeIcon icon={faArrowCircleLeft} size="3x" /></CCarouselControl>
-                            <CCarouselControl direction="next"><FontAwesomeIcon icon={faArrowAltCircleRight} size="3x" /></CCarouselControl>
+                            <CCarouselControl direction="next"><FontAwesomeIcon icon={faArrowCircleRight} size="3x" /></CCarouselControl>
                         
             </CCarousel>
         </CModalBody>

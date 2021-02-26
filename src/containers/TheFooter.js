@@ -17,7 +17,7 @@ const TheFooter = () => {
 
       <div className="d-flex justify-content-center">
         <div className="footer--hidden" onClick={toggle}>
-            <span>Más información y Contacto</span>
+            <span>Contactanos</span>
             <FontAwesomeIcon icon={faChevronCircleDown} />    
         </div>
         
@@ -25,7 +25,8 @@ const TheFooter = () => {
       
 
     { hidden && (  
-    
+      <Fragment>
+        
       <div className="footer--map">
         <div className="item-grid-map">
         <h5>INFORMACIÓN DE CONTACTO</h5>
@@ -61,12 +62,24 @@ const TheFooter = () => {
 
         </div>
 
-    </div>)
+
+    </div>
+              <div className="footer-footer">
+              <a 
+                href="https://coreui.io"
+                target="_blank"
+                rel="noopener noreferrer">
+                    <span>Grupo Intecsa es una marca Registrada</span>
+                    <span className="ml-1">
+                      &copy; by cchavezMX
+                    </span>
+              </a>
+              
+          </div>
+    </Fragment>
+    )
     }
-      <div className="footer-footer">
-          <a href="https://coreui.io" target="_blank" rel="noopener noreferrer">CoreUI</a>
-          <span className="ml-1">&copy; Carlos Chavez React Template cchavezmx@outlook.com</span>
-      </div>
+
       </div>
     </Fragment>
   )

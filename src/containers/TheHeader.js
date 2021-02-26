@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { CButton, CForm, CImg, CInput } from '@coreui/react'
+import { CButton, CImg } from '@coreui/react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
