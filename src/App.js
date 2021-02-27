@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
 
+// Context
+import { CatalogoProvider } from './context/catalogoContext'
+
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -10,6 +13,7 @@ const loading = (
 
 // Containers
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
+
 
 // Pages
 // const Login = React.lazy(() => import('./views/pages/login/Login'));
@@ -21,6 +25,7 @@ class App extends Component {
 
   render() {
     return (
+      <CatalogoProvider>
       <Router>
           <React.Suspense fallback={loading}>
             <Switch>
@@ -32,6 +37,7 @@ class App extends Component {
             </Switch>
           </React.Suspense>
       </Router>
+      </CatalogoProvider>
     );
   }
 }

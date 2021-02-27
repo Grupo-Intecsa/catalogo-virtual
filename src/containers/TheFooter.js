@@ -69,9 +69,9 @@ const TheFooter = () => {
                 href="https://coreui.io"
                 target="_blank"
                 rel="noopener noreferrer">
-                    <span>Grupo Intecsa es una marca Registrada</span>
+                    <span className="text-dark">Grupo Intecsa es una marca Registrada</span>
                     <span className="ml-1">
-                      &copy; by cchavezMX
+                      &copy; <span className="text-info">by cchavezMX</span>
                     </span>
               </a>
               

@@ -9,7 +9,8 @@ export const CatalogoXstate = Machine({
     id: "catalgo",
     initial: "idle",
     context: {
-        all_products: []
+        all_products: [],
+        sample: []
     },
     states: {
         idle: {},
@@ -24,9 +25,21 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        sample: {
+            invoke: {
+                src: CatalogoController.getSample,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        sample: (cxt, evt) => evt.data
+                    })
+                }
+            }
+        },
         success: {}
     },
     on: {
-        ALL_PRODUCTOS: 'all_products'
+        ALL_PRODUCTOS: 'all_products',
+        SAMPLE: 'sample'
     }
 })

@@ -87,8 +87,7 @@ html{
 .footer-footer{
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.911);
-    color: gray;
+    color: rgb(36, 36, 36);
 }
 
 .item-grid-map{
@@ -182,7 +181,6 @@ html{
     display: flex;
     background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
     color: white;
-    font-weight: 700;
     height: 3vh;
     width: 30vh;
     justify-content: center;
@@ -244,4 +242,62 @@ html{
 
 .bg--hover--more:hover{
     color: white;
+}
+
+.bg--random--products{
+    color: rgb(73, 73, 73);
+    font-weight: 400;
+    font-size: x-large;
+}
+
+// seccion de label de categorias
+.nolink{
+    width: 100%;
+    height: 100%;
+    color: rgb(63, 63, 63);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 00;
+}
+.nolink:hover{
+    text-decoration: none;
+    color: white;
+}
+
+
+.dropdown-static{
+    margin: 0%;
+    background-color: rgb(42, 30, 210);
+}
+
+.menu--categorias--container{
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    height: max-content;
+    padding: 1rem;
+    border-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+}
+
+.menu--categorias--container:hover{
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+        
+}
+
+.class-activos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    font-weight: 300;
+
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    border-radius: 100%;
+
+    height: 3rem;
+    width: 3rem;
+
+
 }

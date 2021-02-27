@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react'
 import { 
     CCard,
     CCardHeader,
-    CButton,
     CCollapse,
     CCardBody,
     CImg,
@@ -10,13 +9,10 @@ import {
     CModalHeader,
     CModalBody,
     CModalTitle,
-    CModalFooter,
     CCarousel,
     CCarouselInner,
     CCarouselItem,
     CCarouselControl,
-    CCol,
-
 
     } from '@coreui/react'
 import whataspp from '../../assets/icons/whatsapp.svg'
@@ -27,17 +23,14 @@ import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLef
 const Card = ({ props }) =>{
 
     const [ modal, setModal ] = useState(false)
-
-    const { title, tags, ml, amazon, desc, urlfoto, urldata  } = props
+    const { title, tags, ml, amazon, desc, urlfoto, urldata } = props
     
-    console.log(props, 'tarjetas, tarjetas ====>>>', ml.slice(3) )
-
     const handledDownliadBtn = () => window.location.href=urldata[0]
-
     const [ accordion, setAccordion ] = useState(0)
     const [ toggle, setToggle ] = useState(false)
 
     const toggleAccord = () => {
+
         setAccordion(accordion === 0 ? 1 : 0 )
         setToggle(false)
     }
@@ -57,7 +50,7 @@ const Card = ({ props }) =>{
     return(
         <Fragment>
 
-        <CCard className="card--container">
+        <CCard className="card--container" id="#Card">
         <CCardHeader id="headingTwo">
             <div 
             block={true}
