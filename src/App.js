@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, HashRouter, Switch } from 'react-router-dom';
 import './scss/style.scss';
 
 // Context
@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <CatalogoProvider>
-      <Router>
+      <HashRouter>
           <React.Suspense fallback={loading}>
             <Switch>
               {/* <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
@@ -36,7 +36,7 @@ class App extends Component {
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>
-      </Router>
+      </HashRouter>
       </CatalogoProvider>
     );
   }
