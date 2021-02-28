@@ -11,7 +11,7 @@ const Cmenu = ({ props }) => {
                 return(
                     <div>
                         <div className="menu--categorias--container">
-                            <CLink className="nolink d-flex justify-content-between">{item.title}<p>({Math.floor(Math.random()*( 10 + 1 ))})</p></CLink>
+                            <CLink to={`/product/${item._id}`} className="nolink d-flex justify-content-between">{item.title}<p>{item.count}</p></CLink>
                         </div>            
                     </div>
                 )}

@@ -11,7 +11,7 @@ El sitio fue desarrolado con CoreUi
 
 * Añadir Capa de usuario
 * Añadir formulario para creaciòn de elementos en base de datos con soporte de webp para optimizaicon de imagenes
-* Añadir CatBot para canalizar ayuda en sitio 
+* Añadir ChatBot para canalizar ayuda en sitio 
 * Añadir Soporte para Twilio y mandar notificacion a varios numeros de whatsAPP
 * Añadir Pedidos
 * implementar la API de Mercado Libre

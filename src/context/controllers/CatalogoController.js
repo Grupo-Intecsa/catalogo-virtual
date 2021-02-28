@@ -21,7 +21,7 @@ export default {
     getLables: async() => {
 
         let response = await api.get("/labels")
-        .then(res => res.data.message)
+        .then(res => res.data.message.response)
 
         console.log(response, 'label')
 
@@ -35,7 +35,7 @@ export default {
     getBrands: async() => {
 
         let response = await api.get("/brands")
-        .then(res => res.data.message)
+        .then(res => res.data.message.response)
 
         console.log(response, 'brand')
 
