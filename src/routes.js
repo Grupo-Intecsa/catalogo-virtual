@@ -9,7 +9,7 @@ const CatalogoProduct = React.lazy(() => import('./views/CatalogoProduct/Catalog
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', exact: false, name: 'Dashboard', componente: Dashboard },
-  { path: '/product/categorias/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
+  { path: '/product/categorias/6034c3e949c0b8191c0bc2e2', exact: false, name: 'Productos', componente: CatalogoProduct },
 
 ];
 
