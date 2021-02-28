@@ -21,5 +21,9 @@ El sitio fue desarrolado con CoreUi
 * TODO hacer modal una vez que se hace link en la tienda virtual
 * TODO crear el paginador de busqueda
 * TODO crear en el sider el bloque de identifiacion de la tienda.
+* TODO verificar los unidades de medida del navbar ya que no se visualizan bien el edge para celular
+* TODO ir hasta arriba de la página cuando carga un elemento nuevo
+* TODO agregar query te texto
+* TODO mejorar el Dropdown button de categorias. 
 
 

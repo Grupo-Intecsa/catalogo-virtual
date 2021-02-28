@@ -16,6 +16,7 @@ import {
 
     } from '@coreui/react'
 import whataspp from '../../assets/icons/whatsapp.svg'
+import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
@@ -104,7 +105,7 @@ const Card = ({ props }) =>{
                         href={`https://articulo.mercadolibre.com.mx/MLM-${ml.split("MLM")[1]}`}
                         target="_blank" 
                         rel="noreferrer">
-                    <CImg className="col-6 div--button" src='img/logo/mercado-libre-logo.svg'/>
+                    <CImg className="col-6 div--button" src={mercadoLogo}/>
                     </a>
                 }
             </div>

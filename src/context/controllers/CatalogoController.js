@@ -23,8 +23,6 @@ export default {
         let response = await api.get("/labels")
         .then(res => res.data.message.response)
 
-        console.log(response, 'label')
-
         if(!response){
             throw new Error('error on fetch data')
         }
@@ -36,8 +34,6 @@ export default {
 
         let response = await api.get("/brands")
         .then(res => res.data.message.response)
-
-        console.log(response, 'brand')
 
         if(!response){
             throw new Error('error on fetch data')
@@ -54,5 +50,22 @@ export default {
 
         }
         return response
+    },
+    getBrandById: async(ctx, evt) => {
+        const { id } = evt
+        
+        let response = await api.get(`/brands/${id}`)
+            .then( res => res.data.message )
+
+            return response
+    },
+    getLabelsById: async(ctx, evt) => {
+        const { id } = evt
+        
+        let response = await api.get(`/labels/${id}`)
+            .then( res => res.data.message )
+
+            return response
+
     }
 }

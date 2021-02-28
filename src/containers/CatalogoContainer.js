@@ -1,66 +1,60 @@
-import React, { useEffect } from 'react'
+import React, { Suspense } from 'react'
 import { 
     CCol,
     CContainer, 
     CRow,
-    // CCarousel,
-    // CCarouselInner,
-    // CCarouselItem,
-    // CCarouselCaption,
-    // CCarouselControl,
-    // CCarouselIndicators,
-    // CCard
-
-
 } from '@coreui/react'
+
+import { Switch, Redirect, Route } from 'react-router-dom'
+
+// rutas de la aplicacion
+import routes from '../routes'
+
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-import Card from '../views/ProductosCards/Card'
 import Categories from '../views/ProductosCards/Categories'
 
-import { useMachine } from '@xstate/react'
-import { CatalogoXstate } from '../context/CatalogoXstate'
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+const loading = <Spin indicator={antIcon} />
 
 
 const CatalogoContainer  = () => {
-
-    const [ state, send ] = useMachine(CatalogoXstate)
-
-    useEffect(() => {
-        send('SAMPLE')
-    },[send])
-
-    const { sample } = state.context
-    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
-
+    
 
     return(
-    <CContainer>
+    <CContainer className="d-flex align-content-center">
         
-        <CRow className="d-flex mt-5 justify-content-arround justify-content-center mb-4">
-            <CCol className="col-sm-3">
+        <CRow className="center--content-nav">
+            <CCol className="col-12 col-md-4">
                 <Categories />
             </CCol>
-            <CCol className="col-12 col-md-8 col-lg-6">
-                {state.matches('sample') && (
-                    <div className="d-flex">
-                        <h2 className="mr-3">Cargando productos...</h2>{" "}
-                        <Spin indicator={antIcon} />
-                    </div>
-                ) }
-                
-                {state.matches('success') && (
-                    <div>
-                    <div><p className="bg--random--products">{`Descubre más de ${sample.count} productos`}</p></div>
-                    {sample?.prod.map(item => <Card key={ item._id } props={item} />)}
-                    </div>
-                )
+            <CRow className="col-12 col-md-8">
+                <Suspense fallback={loading}>
+                    <Switch>
+                        {
+                            routes
+                            .map((route, index) => {
+                                return route.componente && (
+                                        <Route 
+                                        key={index}
+                                            path={route.path}
+                                            exact={route.exact}
+                                            name={route.name}
+                                            render={(props) => (
+                                                
+                                                <route.componente { ...props }/>
                     
-                }
-                
-            </CCol>
+                                                )}
+                                                />
+                                    )
+                                })
+                            }
+                        <Redirect from="/" to="/dashboard" />
+                    </Switch>
+                </Suspense>
+            </CRow>
         </CRow>
     </CContainer>
         

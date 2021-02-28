@@ -36,10 +36,34 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        getBrandById: {
+            invoke: {
+                src: CatalogoController.getBrandById,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, evt) => evt.data
+                    })
+                }
+            }
+        },
+        getLabelsById:{
+            invoke: {
+                src: CatalogoController.getLabelsById,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, evt) => evt.data
+                    })
+                }
+            }
+        },
         success: {}
     },
     on: {
         ALL_PRODUCTOS: 'all_products',
-        SAMPLE: 'sample'
+        SAMPLE: 'sample',
+        GET_BRAND_ID: 'getBrandById',
+        GET_LABEL_ID: 'getLabelsById'
     }
 })
