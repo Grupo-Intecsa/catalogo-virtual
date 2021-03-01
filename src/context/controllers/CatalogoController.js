@@ -74,8 +74,6 @@ export default {
         let response = await api.get(`/catalog/search/?text=${id}`)
             .then( res => res.data.message  )
 
-            console.log(response)
-
             return response
     }
 }

@@ -40,7 +40,7 @@ const Dashboard = ({ match }) => {
                     <div>
                     <div><p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p></div>
                         <div className="center--content">
-                            {sample?.prod.map(item => <Card key={ item._id } props={item} />)}
+                            {sample?.prod.map(item => <Card key={ item._id } props={item} badge={true} />)}
                         </div>
                     </div>
                 )

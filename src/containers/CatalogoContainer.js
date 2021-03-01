@@ -30,7 +30,7 @@ const CatalogoContainer  = () => {
             <CCol className="col-12 col-md-4">
                 <Categories />
             </CCol>
-            <CRow className="col-12 col-md-8">
+            <CRow className="col-12 col-md-8 d-flex">
                 <Suspense fallback={loading}>
                     <Switch>
                         {

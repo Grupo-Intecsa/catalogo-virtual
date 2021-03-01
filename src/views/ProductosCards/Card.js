@@ -21,7 +21,7 @@ import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
-const Card = ({ props }) =>{
+const Card = ({ props, badge }) =>{
 
     const [ modal, setModal ] = useState(false)
     const { title, tags, ml, amazon, desc, urlfoto, urldata } = props
@@ -52,7 +52,9 @@ const Card = ({ props }) =>{
         <Fragment>
 
         <CCard className="card--container" id="#Card">
+
         <CCardHeader id="headingTwo">
+            { badge && (<span className="badge--new">Nuevo</span>)}
             <div 
             block={true}
             color="link" 

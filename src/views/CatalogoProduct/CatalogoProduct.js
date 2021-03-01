@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
     CCard,
     CCol, 
@@ -17,19 +17,30 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 const CatalogoProduct = ({ match }) => {
 
+    const [ currentState, setCurrentState ] = useState('idle')
+
     const { params } = match
     const [ state, send ] = useMachine(CatalogoXstate)
 
     const { queryBrand } = state.context
 
+    
     useEffect(() => {
 
+        
+
         if(params.slug === "marcas"){
+            setCurrentState("getBrandById")
             send("GET_BRAND_ID", { id: params.id, slug: params.slug })
+
         }else if(params.slug === 'categorias'){
+            setCurrentState("getLabelsById")
             send("GET_LABEL_ID", { id: params.id, slug: params.slug })
+
         }else if(params.slug === 'text'){
+            setCurrentState("getByText")
             send("GET_TEXT_QUERY", { id: params.id, slug: params.slug })
+
         }
 
     },[params.id])
@@ -37,24 +48,22 @@ const CatalogoProduct = ({ match }) => {
 
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
-    console.log(state)
-
     return(
 
     <CRow>
 
-        <CCol className="mt-5 productos--height">
-        { state.matches('init') && (
+        <CCol>
+        { state.matches(`${currentState}`) && (
             <div className="content--no--data">
-            <h2 className="mr-3">Cargando productos...</h2>{" "}
+            <h2>Cargando productos...</h2>{" "}
             <Spin indicator={antIcon} />
         </div>
         )}
         { state.matches('success') && queryBrand.length === 0 && (
-            <div className="d-flex justify-content-center">
+            <div>
                 <CCard>
                     <CCardBody>
-                            <span className="bg--random--products">No hay publicaciones que coincidan con tu búsqueda.</span>
+                            <span className="bg--random--products">No hay productos que coincidan con tu búsqueda.</span>
                                     <ul className="mt-2">
                                         <li>Revisa la ortografía de la palabra.</li>
                                         <li>Utiliza palabras más genéricas o menos palabras.</li>
@@ -67,7 +76,6 @@ const CatalogoProduct = ({ match }) => {
 
         {state.matches('success') && (
                     <div>
-                        {console.log(typeof queryBrand)}
                         <div className="center--content">
                         { Array.isArray(queryBrand) 
                             ? queryBrand.map(item => <Card key={ item._id } props={item} />) 
