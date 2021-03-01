@@ -344,3 +344,15 @@ html{
     width: 90vh;
 }
 
+.banner--git{
+    width: 100vh;
+    height: 25vh;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);  
+}
+
+
+.column-banner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

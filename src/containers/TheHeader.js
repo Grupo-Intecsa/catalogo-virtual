@@ -9,7 +9,9 @@ import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 import cosa from '../assets/icons/path2.png'
 
 
-const TheHeader = () => {
+const TheHeader = ({ busqueda }) => {
+
+  
 
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
@@ -29,7 +31,9 @@ const TheHeader = () => {
   const history = useHistory()
 
   const handleSubmit = () => {
+
     history.push(`/product/text/${queryText}`)
+    busqueda({ query: queryText })
     setQueryText("")
 
   }

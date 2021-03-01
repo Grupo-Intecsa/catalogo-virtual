@@ -20,15 +20,16 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 const loading = <Spin indicator={antIcon} />
 
 
-const CatalogoContainer  = () => {
-    
+const CatalogoContainer  = (busqueda) => {
+
+
 
     return(
     <CContainer className="d-flex align-content-center">
         
         <CRow className="center--content-nav">
             <CCol className="col-12 col-md-4">
-                <Categories />
+                <Categories busqueda={busqueda} />
             </CCol>
             <CRow className="col-12 col-md-8 d-flex">
                 <Suspense fallback={loading}>

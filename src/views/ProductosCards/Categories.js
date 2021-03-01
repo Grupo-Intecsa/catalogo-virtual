@@ -17,7 +17,9 @@ import Cmenu from '../Cmenu/Cmenu'
 // Context
 import { useCatalogoState, useCatalogoDispatch } from '../../context/catalogoContext'
 
-const Categories = () => {
+const Categories = ({ busqueda }) => {
+
+    console.log(busqueda)
 
     const dispatch = useCatalogoDispatch()
     const state = useCatalogoState()
@@ -56,7 +58,11 @@ const Categories = () => {
             <CRow className="d-flex flex-column d-sm-down-none">
                 {/* nombre del productos buscado */}
                 
-                    <h1 className="mt-5">Bienvenido</h1>
+                    {busqueda?.busqueda?.query 
+                        ? <h3 style={{ "font-family": "'Roboto', sans-serif" }} >Resultados de tu busqueda</h3>
+                        : <h1 style={{ "font-family": "'Roboto', sans-serif" }} >Bienvenido</h1>
+                        }
+                    <h4 style={{ "font-family": "'Roboto', sans-serif", "color": "black" }}>{busqueda?.busqueda?.query}</h4>
                                 
                 <CCol className="mt-5 mb-5 col-8">
                 {/* menu de categorias */}
