@@ -69,7 +69,7 @@ html{
 }
 
 .card--container{
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    // box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     padding: 0;
     width: 100%;
 }
@@ -79,8 +79,6 @@ html{
         width: 70%;
     }
 }
-
-
 
 .footer--map{
     display: grid;
@@ -124,12 +122,14 @@ html{
 }
 
 #Navigation{
+    position: sticky;
     display: flex;
+    margin-bottom: 2rem;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 
@@ -269,6 +269,11 @@ html{
 
 
 // seccion de label de categorias
+.categorias{
+    width: fit-content;
+    padding: 0;
+}
+
 .nolink{
     width: 100%;
     height: 100%;
@@ -293,18 +298,16 @@ html{
     display: flex;
     align-items: center;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    height: max-content;
     padding: 1rem;
     border-bottom: 1rem;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     cursor: pointer;
-    width: 300px;
+    width: 200px;
 }
 
+
 .menu--categorias--container:hover{
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-    width: 300px;
-        
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);        
 }
 
 .class-activos{
@@ -332,7 +335,6 @@ html{
 
 }
 
-
 .center--content-nav{
 
     display: flex;
@@ -343,5 +345,4 @@ html{
     height: 90vh;
     width: 90vh;
 }
-
 

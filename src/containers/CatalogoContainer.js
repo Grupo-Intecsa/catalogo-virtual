@@ -43,9 +43,7 @@ const CatalogoContainer  = () => {
                                             exact={route.exact}
                                             name={route.name}
                                             render={(props) => (
-                                                
                                                 <route.componente { ...props }/>
-                    
                                                 )}
                                                 />
                                     )

@@ -10,7 +10,8 @@ export const CatalogoXstate = Machine({
     initial: "idle",
     context: {
         all_products: [],
-        sample: []
+        sample: [],
+        queryBrand: []
     },
     states: {
         idle: {},
@@ -58,12 +59,25 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        getByText:{
+            invoke: {
+                src: CatalogoController.getByText,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, evt) => evt.data
+                    })
+                }
+            }
+        },
+
         success: {}
     },
     on: {
         ALL_PRODUCTOS: 'all_products',
         SAMPLE: 'sample',
         GET_BRAND_ID: 'getBrandById',
-        GET_LABEL_ID: 'getLabelsById'
+        GET_LABEL_ID: 'getLabelsById',
+        GET_TEXT_QUERY: 'getByText'
     }
 })

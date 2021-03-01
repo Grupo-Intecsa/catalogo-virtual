@@ -10,6 +10,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', exact: false, name: 'Dashboard', componente: Dashboard },
   { path: '/product/:slug/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
+  { path: '/product/:slug/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
 
 ];
 

@@ -7,6 +7,7 @@ import {
     CDropdownItem,
     CDropdownMenu,
     CDropdownToggle,
+    CContainer,
     } from '@coreui/react'
 
 // componentes
@@ -28,10 +29,10 @@ const Categories = () => {
     },[dispatch])
 
     return(
-        <section>
+        <CContainer className="categorias">
             {/* menu para celular */}
             <CRow className="d-md-none ml-3 d-flex wrapper">            
-            <CDropdown className="m-1 btn btn-warning">
+            <CDropdown className="m-1 p-3" style={{ "background-image": "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)" }}>
                 <CDropdownToggle>
                     Catagorias
                 </CDropdownToggle>
@@ -40,7 +41,7 @@ const Categories = () => {
                 </CDropdownMenu>
             </CDropdown>
 
-            <CDropdown className="m-1 btn btn-warning">
+            <CDropdown className="m-1 p-3" style={{ "background-image": "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)" }}>
                 <CDropdownToggle>
                     Marcas
                 </CDropdownToggle>
@@ -57,7 +58,7 @@ const Categories = () => {
                 
                     <h1 className="mt-5">Bienvenido</h1>
                                 
-                <CCol className="mt-5 mb-5">
+                <CCol className="mt-5 mb-5 col-8">
                 {/* menu de categorias */}
                 <Cmenu props={{...brands, cardname: "Marcas" }} />
 
@@ -67,7 +68,7 @@ const Categories = () => {
                 </CCol>
             </CRow>
             
-        </section>
+        </CContainer>
     )
 }
 

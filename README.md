@@ -25,5 +25,7 @@ El sitio fue desarrolado con CoreUi
 * TODO ir hasta arriba de la página cuando carga un elemento nuevo
 * TODO agregar query te texto
 * TODO mejorar el Dropdown button de categorias. 
+* TODO Crear seccion de categorias y marcas
+* TODO Añadir seccion de filtros en las busquedas 
 
 
