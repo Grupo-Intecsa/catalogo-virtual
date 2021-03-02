@@ -25,8 +25,6 @@ const Card = ({ props, badge }) =>{
 
     const [ modal, setModal ] = useState(false)
     const { title, tags, ml, amazon, desc, urlfoto, urldata } = props
-
-    console.log(urldata, title)
     
     const handledDownliadBtn = () => window.location.href=urldata[0]
     const [ accordion, setAccordion ] = useState(0)
