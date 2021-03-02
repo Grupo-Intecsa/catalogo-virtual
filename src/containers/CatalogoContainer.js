@@ -15,17 +15,13 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 import Categories from '../views/ProductosCards/Categories'
 
-
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 const loading = <Spin indicator={antIcon} />
 
-
 const CatalogoContainer  = (busqueda) => {
-
-
-
+    
     return(
-    <CContainer className="d-flex align-content-center">
+    <CContainer className="c--layout">
         
         <CRow className="center--content-nav">
             <CCol className="col-12 col-md-4">

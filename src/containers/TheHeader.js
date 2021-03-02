@@ -41,7 +41,7 @@ const TheHeader = ({ busqueda }) => {
   return (
             <Fragment>
             
-            <nav id="Navigation" className="bg-linkedin col-12">
+            <nav id="Navigation" className="bg-linkedin">
                 <section>
                   <Link to="/">
                     <CImg src={cosa} className="iconSVG" height="45px"/>
