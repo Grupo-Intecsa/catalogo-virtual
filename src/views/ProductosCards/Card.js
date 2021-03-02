@@ -25,6 +25,8 @@ const Card = ({ props, badge }) =>{
 
     const [ modal, setModal ] = useState(false)
     const { title, tags, ml, amazon, desc, urlfoto, urldata } = props
+
+    console.log(urldata, title)
     
     const handledDownliadBtn = () => window.location.href=urldata[0]
     const [ accordion, setAccordion ] = useState(0)
@@ -129,12 +131,15 @@ const Card = ({ props, badge }) =>{
             <div className="d-flex justify-content-center">
 
                 
-                <button 
+        {urldata[0] !== null && 
+            (<button 
+                    type="submit"
                     onClick={handledDownliadBtn}
                     className="btn btn-outline-danger mr-2" >
                     <FontAwesomeIcon className="mr-1" icon={faFilePdf}/>
                         Descarga la Ficha técnica
-                </button>
+            </button>)
+        }
                 
 
                 <button 

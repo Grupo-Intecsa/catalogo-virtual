@@ -19,8 +19,6 @@ import { useCatalogoState, useCatalogoDispatch } from '../../context/catalogoCon
 
 const Categories = ({ busqueda }) => {
 
-    console.log(busqueda)
-
     const dispatch = useCatalogoDispatch()
     const state = useCatalogoState()
 
