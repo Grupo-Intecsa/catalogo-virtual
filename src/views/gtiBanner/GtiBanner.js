@@ -1,7 +1,7 @@
 import React from 'react'
 import { CContainer } from '@coreui/react'
 
-import promo from "../../assets/unisec_promo.png"
+import promo from "../../assets/unisec_promo.webp"
 
 const GtiBanner = () => {
     return(

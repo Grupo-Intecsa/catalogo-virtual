@@ -4,7 +4,7 @@ import React from 'react';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const CatalogoProduct = React.lazy(() => import('./views/CatalogoProduct/CatalogoProduct'))
-const UploadForm = React.lazy(() => import('./views/UploadForm/UploadFrom'))
+const UploadForm = React.lazy(() => import('./lab/UploadForm/UploadFrom'))
 
 
 const routes = [

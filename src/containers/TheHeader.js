@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
 
-import cosa from '../assets/icons/path2.png'
+import cosa from '../assets/icons/path2.webp'
 
 
 const TheHeader = ({ busqueda }) => {
