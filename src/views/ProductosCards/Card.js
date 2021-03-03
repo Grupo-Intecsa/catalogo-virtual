@@ -21,6 +21,7 @@ import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
+
 const Card = ({ props, badge }) =>{
 
     const [ modal, setModal ] = useState(false)
@@ -83,7 +84,7 @@ const Card = ({ props, badge }) =>{
                 </small> */}
             </div>
             <div className="col-4">
-                <CImg src={urlfoto[0]} alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} />
+                <img loading="lazy" src={urlfoto[0]}  alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} />
             </div>
             </div>
 
@@ -94,20 +95,22 @@ const Card = ({ props, badge }) =>{
             <div className="text-body text-center buy--now"><span>Disponible en:</span></div>
             <div className="mt-4">
                 { !amazon ? null 
-                : <CImg 
+                : <img
+                    alt="amazon brand"
+                    loading="lazy"
                     target="google.com" 
                     className="col-6 div--button" 
                     src='img/logo/amazon-2.svg' 
                     onClick={() => window.location.href=amazon} />}
                     
-                { !ml ? 
+                { ml === null ? 
                     null :
                     <a 
                         className="d-flex justify-content-center" 
                         href={`https://articulo.mercadolibre.com.mx/MLM-${ml.split("MLM")[1]}`}
                         target="_blank" 
                         rel="noreferrer">
-                    <CImg className="col-6 div--button" src={mercadoLogo}/>
+                    <img loading="lazy" alt="mercado libre Brand" className="col-6 div--button" src={mercadoLogo}/>
                     </a>
                 }
             </div>
@@ -129,7 +132,7 @@ const Card = ({ props, badge }) =>{
             <div className="d-flex justify-content-center">
 
                 
-        {urldata[0] !== null && 
+        {urldata !== null && 
             (<button 
                     type="submit"
                     onClick={handledDownliadBtn}
@@ -166,7 +169,7 @@ const Card = ({ props, badge }) =>{
                 <CCarouselInner>
                         { urlfoto.map(img => (
                         <CCarouselItem>
-                            <img className="d-block w-100" src={img} alt="slide 1"/>
+                            <img className="d-block w-100" src={img} alt="slide 1" loading="lazy"/>
                         </CCarouselItem>
                         ))}
                     
