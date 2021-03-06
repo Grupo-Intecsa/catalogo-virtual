@@ -7,10 +7,11 @@ import {
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-import Card from '../ProductosCards/Card'
-
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
+
+const Card = React.lazy(() =>  import('../ProductosCards/Card'))
+
 
 const Dashboard = ({ match }) => {
 

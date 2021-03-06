@@ -83,7 +83,7 @@ html{
 .card--container{
     // box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     padding: 0;
-    width: 100%;
+    width: 100%;;
 }
 
 @media (min-width: 550px){
@@ -364,9 +364,55 @@ html{
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
 
-
 .column-banner{
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.double-spinner {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    border: 5px solid rgba(150, 150, 150, 0.2);
+    border-radius: 50%;
+    border-top-color: rgb(6, 101, 179);
+    animation: rotate 1s 0s infinite linear normal;
+    }
+
+.double-spinner::after {
+    content: '';
+    height: 40%;
+    width: 40%;
+    display: block;
+    margin: 10px auto;
+    border: inherit;
+    border-radius: inherit;
+    border-top-color: inherit;
+    animation: rotate .5s 0s infinite linear reverse;
+}
+
+@keyframes rotate {
+    0%   { transform: rotate(0);      }
+    100% { transform: rotate(360deg); }
+    }
+
+.ribbon-new{
+    --d:6px;  /* folded part */
+    --c:blue; /* color */
+    --f:16px; /* ribbon font-size */
+    position: relative;
+    display: flex;
+    justify-content: flex-end; 
+    top: -10px;
+}
+
+.ribbon-new::before{
+    content: attr(ribbon-new);
+    background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    border-radius: 10px;
+    padding: 0.8em;
+    color: rgb(228, 228, 228);
 }

@@ -27,8 +27,6 @@ const CatalogoProduct = ({ match }) => {
     
     useEffect(() => {
 
-        
-
         if(params.slug === "marcas"){
             setCurrentState("getBrandById")
             send("GET_BRAND_ID", { id: params.id, slug: params.slug })

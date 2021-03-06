@@ -4,7 +4,7 @@ import {
     CCardHeader,
     CCollapse,
     CCardBody,
-    CImg,
+    // CImg,
     CModal,
     CModalHeader,
     CModalBody,
@@ -21,12 +21,13 @@ import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
-
 const Card = ({ props, badge }) =>{
 
     const [ modal, setModal ] = useState(false)
     const { title, tags, ml, amazon, desc, urlfoto, urldata } = props
     
+    const [ imgOnload, setImgeOnload ] = useState(true)
+
     const handledDownliadBtn = () => window.location.href=urldata[0]
     const [ accordion, setAccordion ] = useState(0)
     const [ toggle, setToggle ] = useState(false)
@@ -51,11 +52,9 @@ const Card = ({ props, badge }) =>{
 
     return(
         <Fragment>
-
         <CCard className="card--container" id="#Card">
-
-        <CCardHeader id="headingTwo">
-            { badge && (<span className="badge--new">Nuevo</span>)}
+            { badge && (<div className="ribbon-new" ribbon-new="Nuevo" />)}
+        <CCardHeader id="headingTwo" className="flex-column">
             <div 
             block={true}
             color="link" 
@@ -84,7 +83,8 @@ const Card = ({ props, badge }) =>{
                 </small> */}
             </div>
             <div className="col-4">
-                <img loading="lazy" src={urlfoto[0]}  alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} />
+                    <div className={ imgOnload ? "double-spinner" : "hiden" }></div> 
+                    <img onLoad={() => setImgeOnload(false)} src={urlfoto[0]}  alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} /> 
             </div>
             </div>
 

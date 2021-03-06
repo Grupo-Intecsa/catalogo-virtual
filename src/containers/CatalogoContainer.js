@@ -15,7 +15,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 import Categories from '../views/ProductosCards/Categories'
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+const antIcon = <LoadingOutlined style={{ 'fontSize': 24 }} spin />
 const loading = <Spin indicator={antIcon} />
 
 const CatalogoContainer  = (busqueda) => {

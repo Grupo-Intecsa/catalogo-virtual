@@ -1,0 +1,96 @@
+import { CContainer } from '@coreui/react'
+import React, { useEffect } from 'react'
+
+import { useMachine } from '@xstate/react'
+import { MachineProductForm } from '../../context/UpdateFormXstate'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArchive } from '@fortawesome/free-solid-svg-icons'
+
+
+const Step1 = React.lazy(() => import('./steps/Step1'))
+const Step2 = React.lazy(() => import('./steps/Step2'))
+const Step3 = React.lazy(() => import('./steps/Step3'))
+const Step4 = React.lazy(() => import('./steps/Step4'))
+const Final = React.lazy(() => import('./steps/Final'))
+
+
+const UploadForm =  () => {
+
+    const [ state, send, service ] = useMachine(MachineProductForm)
+
+    // useEffect(() => {
+    //     const sub = service.subscribe((state) => {
+    //         console.log(state)
+    //     })
+    //     return () => sub.unsubscribe()
+    // },[state])
+
+    const { init, step1, step2, step3, step4, final, productData } = state.context
+    // No se podran abrir las secciones si no estan termiandas 
+    
+    return(
+    <CContainer className="d-flex flex-column mt-5" id="UploadForm">
+
+    { init && (
+        <>
+            <h4 className="bg-info p-3">Formulario de alta de productos</h4>
+            <p>El Lorem Ipsum fue concebido como un texto de relleno, formateado de una cierta manera para permitir la presentación de elementos gráficos en documentos, sin necesidad de una copia formal. El uso de Lorem Ipsum permite a los diseñadores reunir los diseños y la forma del contenido antes de que el contenido se haya creado, dando al diseño y al proceso de producción más libertad.</p>
+            <div className="mb-3 d-flex flex-center justify-content-around mt-3">
+                <button className="nuevo--producto" onClick={() => send('GO_STEP1')} >Nuevo</button>
+                {" "}
+                <button className="update--producto">Actualizar</button>
+            </div>
+        </>
+    )}
+        
+        { step1 &&
+    
+        <div>
+            <div className="bg-info mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
+            <Step1 send={send} />
+        </div>
+        }
+
+    
+        {step2 &&
+        <div>
+            <div className="bg-info mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
+            <Step2 send={send} />
+        </div>
+        }
+
+    
+        {step3 &&
+        <div>
+            <div className="bg-info mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
+            <Step3 send={send} />
+        </div>
+            
+        }
+
+    
+        {step4 &&
+        <div>
+            <div className="bg-info mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
+            <Step4 send={send} />
+        </div>
+        }        
+
+        {final &&
+        <div>
+            <div className="bg-success mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
+            <Final send={send} />
+        </div>
+        }        
+
+        {JSON.stringify(productData)}
+
+    </CContainer>
+
+    )
+}
+
+
+
+export default UploadForm

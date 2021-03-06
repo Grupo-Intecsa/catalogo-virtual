@@ -4,7 +4,7 @@ import React from 'react';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const CatalogoProduct = React.lazy(() => import('./views/CatalogoProduct/CatalogoProduct'))
-// const UploadForm = React.lazy(() => import('./lab/UploadForm/UploadFrom'))
+const ProductoForm = React.lazy(() => import('./components/uploadForm/ProductoForm'))
 
 
 const routes = [
@@ -12,7 +12,7 @@ const routes = [
   { path: '/dashboard', exact: false, name: 'Dashboard', componente: Dashboard },
   { path: '/product/:slug/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
   { path: '/product/:slug/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
-  // { path: '/admin/upload/', exact: true, name: 'Upload Form', componente: UploadForm },
+  // { path: '/admin/upload/', exact: true, name: 'Upload Form', componente: ProductoForm },
 
 ];
 
