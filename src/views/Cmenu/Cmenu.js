@@ -5,7 +5,8 @@ const Cmenu = ({ props }) => {
 
     return(
         <Fragment>
-            
+
+            <div><p className="bg--random--products mt-3">{props.cardname}</p></div>
             {Object.values(props).slice(0, Object.values(props).length - 1 ).map(item => {
                 return(    
                     
