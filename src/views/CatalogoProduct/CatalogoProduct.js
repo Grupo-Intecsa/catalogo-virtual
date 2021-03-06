@@ -30,14 +30,17 @@ const CatalogoProduct = ({ match }) => {
         if(params.slug === "marcas"){
             setCurrentState("getBrandById")
             send("GET_BRAND_ID", { id: params.id, slug: params.slug })
+            
 
         }else if(params.slug === 'categorias'){
             setCurrentState("getLabelsById")
             send("GET_LABEL_ID", { id: params.id, slug: params.slug })
+            
 
         }else if(params.slug === 'text'){
             setCurrentState("getByText")
             send("GET_TEXT_QUERY", { id: params.id, slug: params.slug })
+            
 
         }
 
