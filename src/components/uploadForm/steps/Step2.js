@@ -15,6 +15,24 @@ const Step2 = (props) => {
             <section>
             <legend>Datos del Producto</legend>
             <div id="form--container">
+                <label htmlFor="title">Nombre del producto</label>
+                        <input 
+                            type="text"
+                            id="title" 
+                            name="title" 
+                            ref={register} 
+                            placeholder="Nombre corto del producto"
+                        />
+                        <small>*Dato Requerido</small>
+
+                <label htmlFor="coduniversal">Codigo EAN</label>
+                <input 
+                    type="text" 
+                    id="coduniversal" 
+                    name="coduniversal" 
+                    ref={register}
+                    placeholder="Codigo de Barras"
+                />
                 <label htmlFor="sku">SKU</label>
                 <input type="sku" id="sku" name="sku" ref={register} />
 

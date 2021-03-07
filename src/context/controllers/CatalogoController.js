@@ -26,8 +26,8 @@ export default {
         if(!response){
             throw new Error('error on fetch data')
         }
-
-        return response
+        
+        return response.filter(item => item.count > 0)
 
     },
     getBrands: async() => {
@@ -39,7 +39,7 @@ export default {
             throw new Error('error on fetch data')
         }
 
-        return response
+        return response.filter(item => item.count > 0)
     },
     getSample: async() => {
         let response = await api.get("/catalog/sample")

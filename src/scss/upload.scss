@@ -1,6 +1,6 @@
 
 #UploadForm{
-    height: 100%;
+    height: 100vh;
     
 }
 
@@ -26,6 +26,9 @@
         border: none;
         font-size: 1.3em;
         padding: 0.3em;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding-left: 1rem;
+        
     }
 
     input:focus{

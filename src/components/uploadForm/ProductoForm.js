@@ -19,12 +19,12 @@ const UploadForm =  () => {
 
     const [ state, send, service ] = useMachine(MachineProductForm)
 
-    // useEffect(() => {
-    //     const sub = service.subscribe((state) => {
-    //         console.log(state)
-    //     })
-    //     return () => sub.unsubscribe()
-    // },[state])
+    useEffect(() => {
+        const sub = service.subscribe((state) => {
+            console.log(state)
+        })
+        return () => sub.unsubscribe()
+    },[state])
 
     const { init, step1, step2, step3, step4, final, productData } = state.context
     // No se podran abrir las secciones si no estan termiandas 
@@ -35,7 +35,11 @@ const UploadForm =  () => {
     { init && (
         <>
             <h4 className="bg-info p-3">Formulario de alta de productos</h4>
-            <p>El Lorem Ipsum fue concebido como un texto de relleno, formateado de una cierta manera para permitir la presentación de elementos gráficos en documentos, sin necesidad de una copia formal. El uso de Lorem Ipsum permite a los diseñadores reunir los diseños y la forma del contenido antes de que el contenido se haya creado, dando al diseño y al proceso de producción más libertad.</p>
+            <p>
+                Es necesario antes de continuar, tengas los datos de código del producto de AdminPaq o Comercial,
+                las fotograficas deben ser en formato webp ya que una vez iniciado el formulario y te falta un dato, 
+                no se podrá guardar el avance.
+            </p>
             <div className="mb-3 d-flex flex-center justify-content-around mt-3">
                 <button className="nuevo--producto" onClick={() => send('GO_STEP1')} >Nuevo</button>
                 {" "}

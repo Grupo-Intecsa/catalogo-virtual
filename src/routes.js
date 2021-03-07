@@ -12,7 +12,7 @@ const routes = [
   { path: '/dashboard', exact: false, name: 'Dashboard', componente: Dashboard },
   { path: '/product/:slug/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
   { path: '/product/:slug/:id', exact: false, name: 'Productos', componente: CatalogoProduct },
-  // { path: '/admin/upload/', exact: true, name: 'Upload Form', componente: ProductoForm },
+  // { path: '/admin/upload/', exact: true, name: 'Upload Form', componente: ProductoForm }
 
 ];
 
