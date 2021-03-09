@@ -20,9 +20,18 @@ const CatalogoProduct = ({ match }) => {
     const [ currentState, setCurrentState ] = useState('idle')
 
     const { params } = match
+
+    
     const [ state, send ] = useMachine(CatalogoXstate)
 
     const { queryBrand } = state.context
+
+    // useEffect(() => {
+    //     const sub = service.subscribe((state) => {
+    //         console.log(state)
+    //     })
+    //     return () => sub.unsubscribe()
+    // })
 
     
     useEffect(() => {
@@ -39,9 +48,11 @@ const CatalogoProduct = ({ match }) => {
 
         }else if(params.slug === 'text'){
             setCurrentState("getByText")
-            send("GET_TEXT_QUERY", { id: params.id, slug: params.slug })
-            
+            send("GET_TEXT_QUERY", { id: params.id, slug: params.slug })          
 
+        }else if(params.slug === 'familias'){
+            setCurrentState("getFamilia")
+            send("GET_FAMILIA", { slug: params.slug })
         }
 
     },[params.id])
@@ -86,7 +97,18 @@ const CatalogoProduct = ({ match }) => {
                     </div>
                 )
                     
-                }
+        }
+        {
+            state.matches('reject') && (
+                <div className="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    <strong>Tenemos un problema!</strong><hr/>
+                        Incluye más letras en el campo de búsqueda.
+                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            )
+        }
         </CCol>
 
     </CRow>

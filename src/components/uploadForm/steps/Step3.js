@@ -8,13 +8,23 @@ const Step3 = (props) => {
     const { register, handleSubmit } = useForm()
     
     const onSubmit = (data) => {
-        props.send('GO_STEP3', { data })
+        
+        props.send('GO_STEP4', { data })
     }
 
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Paso 3</h1>
-            <section>
+            <p>El caso de contar con el link de la publicación de Amazon o Mercado Libre, favor de copiar el link completo</p>
+            
+            <strong>Para los links de Mercado Libre</strong>
+            <strong><p>Es importante solo poner el número de la publicación, sin el guión</p></strong>
+
+            <strong>Ejemplo:</strong>
+            <p>https://articulo.mercadolibre.com.mx/<strong>MLM-580973346</strong>-caja-ip55-220x170x80-ko-abb-1sl0826a00-_JM</p>
+            Pega el link así: <strong>MLM580973346</strong>
+
+            <section className="mt-3">
             <legend>ecommerce-link</legend>
             <div id="form--container">
 

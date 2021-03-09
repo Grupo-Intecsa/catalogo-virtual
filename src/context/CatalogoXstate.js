@@ -1,9 +1,6 @@
 import { Machine, assign } from 'xstate'
 
-
 import CatalogoController from './controllers/CatalogoController'
-
-
 
 export const CatalogoXstate = Machine({
     id: "catalgo",
@@ -70,14 +67,34 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
-
-        success: {}
+        getFamilia: {
+            invoke: {
+                src: CatalogoController.getFamilia,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, evt) => evt.data
+                    })
+                }
+            }
+        },
+        success: {},
+        reject: {},
     },
     on: {
         ALL_PRODUCTOS: 'all_products',
         SAMPLE: 'sample',
         GET_BRAND_ID: 'getBrandById',
         GET_LABEL_ID: 'getLabelsById',
-        GET_TEXT_QUERY: 'getByText'
+        GET_TEXT_QUERY: [
+            {
+                target: 'getByText',
+                cond: (_, event ) => event.id.split("").length > 2
+            },
+            {
+                target: 'reject'
+            }
+        ],
+        GET_FAMILIA: 'getFamilia'
     }
 })

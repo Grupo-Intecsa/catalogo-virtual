@@ -7,6 +7,8 @@ const Final = (props) => {
       props.send('RESET')
   }
 
+  console.log(props)
+
   return(
     <Fragment>
         <Result
@@ -14,12 +16,16 @@ const Final = (props) => {
           title="Producto guardado con éxito"
           subTitle="El producto id fue añadido a la base de datos"
           extra={[
-            <Button type="primary" key="console">
+            <div>
+      
+            <Button type="primary" key="console" onClick={() => props.history.push("/")}>
               Dashboard
-            </Button>,
+            </Button>
+            
             <Button key="buy" onClick={handledReset}>
               Agregar Otro
-            </Button>,
+            </Button>
+            </div>
           ]}
         />,
     </Fragment>

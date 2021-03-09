@@ -1,19 +1,16 @@
-const { MODES } = require('enzyme/build/EnzymeAdapter')
-
 require('dotenv').config()
-
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyDBkzL4ZKXR_upyvUb3LP0KDQ_cg-FAX0M",
-    authDomain: "catalogo-photos.firebaseapp.com",
-    projectId: "catalogo-photos",
-    storageBucket: "catalogo-photos.appspot.com",
-    messagingSenderId: "702183035832",
-    appId: "1:702183035832:web:9470b5c55df9298fe0b54d"
+    apiKey: "AIzaSyDLb4H7GLabe8yPZTRgdkTX3-9h52Aanas",
+    authDomain: "itacatalgo.firebaseapp.com",
+    projectId: "itacatalgo",
+    storageBucket: "itacatalgo.appspot.com",
+    messagingSenderId: "543664139030",
+    appId: "1:543664139030:web:86a26fa7848090bc69fe37",
+    measurementId: "G-RT7RXVS2ZJ"
     
 }
-
 
 module.exports = { firebaseConfig }
 

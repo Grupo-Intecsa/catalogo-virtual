@@ -56,4 +56,4 @@ const CatalogoContainer  = (busqueda) => {
     )
 }
 
-export default CatalogoContainer
+export default React.memo(CatalogoContainer)

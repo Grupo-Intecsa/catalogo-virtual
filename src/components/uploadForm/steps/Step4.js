@@ -1,10 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { withRouter } from 'react-router-dom'
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
+
 import ProgressBar from '../ProgressBar'
 
+
 const Step4 = (props) => {
+
+    const [isDone, setIsDone] = useState(false)
+
+    const [ urlDone, setUrlDone ] = useState(null)
+    const [ arrrUrl, setArrUrl ] = useState([])
+
+    useEffect(() => {
+        setArrUrl(arrrUrl => [...arrrUrl, urlDone ])
+    },[urlDone])
 
     const [ error, setError ] = useState()
     const [ file, setFile ] = useState()
@@ -12,16 +26,11 @@ const Step4 = (props) => {
     const typesAllow = ['image/webp']
     const handledInput = ( e ) => {
 
-        // como es un imput de varios recibiremos un objecto
-
         let files = Object.values(e.target.files)
         let arrayImg = []
 
-        console.log(files, arrayImg)
-
         if(files){
-            files.map(( file ) => {
-                
+            files.map(( file ) => {           
                 // revisamos si es del tipo permitido 
                 
                 if(typesAllow.includes(file.type)){
@@ -37,47 +46,50 @@ const Step4 = (props) => {
 
     }
 
-    const { handleSubmit } = useForm()
+    const { handleSubmit, register } = useForm()
     
-    const onSubmit = (data) => {
-        props.send("GO_FINAL", { data })
+    const onSubmit = () => {
+        const item = {
+            urlfoto: arrrUrl.slice(1, arrrUrl.length)
+        }
+        // vaciamos los elementos para la siguiete vuleta
+        props.send("GO_FINAL", { data: item })
+        setUrlDone(null)
+        setArrUrl([])
     }
 
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Paso 5</h1>
+            <h1>Paso 4</h1>
+            <p>Por el momento solo puedes subir images webp, da <strong>Clic en la nube</strong></p>
             <section>
                 <legend>Imagenes y PDF</legend>
             <div id="form--container">
-                <fieldset>
-                    {/* cambiar el handheInput por el boton */}
-                        <label for="imagen-input">Imagenes</label>
-                        <input id="imagen-input" multiple={true} type="file" onChange={handledInput} />
-                        <div className="form-control-file">
-                            
-                            {file && file.map(file => <div className>{ file.name }</div>)}
-                            {file && file.map(file => <ProgressBar file={ file } setFile={ setFile }/>)}
-                            {error}
-                        </div>
-                    </fieldset>
-                <fieldset>
+                    
+                <fieldset className="input-file-container">
                 {/* cambiar el handheInput por el boton */}
-                    <label for="pdf-input">PDF</label>
-                    <input id="pdf-input" multiple={false} type="file" onChange={handledInput} />
-                    <div className="form-control-file">
+                <fieldset className="d-flex align-content-center justify-content-center">
+                {!isDone &&(
+                    <label htmlFor="pdf-input">
+                    <FontAwesomeIcon size="7x" icon={faCloudDownloadAlt} className="label-nubecita"/>
+                    </label>
+                    )}
+                <input id="pdf-input" multiple={true} type="file" onChange={handledInput} className="hide" name="urlfoto" ref={register} />
+                <div className="form-control-file">
                         
-                        {file && file.map(file => <div className>{ file.name }</div>)}
-                        {file && file.map(file => <ProgressBar file={ file } setFile={ setFile }/>)}
+                        {file && file.map(file => <small>{ file.name }</small>)}
+                        {file && file.map(file => <ProgressBar file={ file } setFile={ setFile } setIsDone={setIsDone} setUrlDone={setUrlDone} />)}
+                        {error && <div>{error}</div>}
                         
-                        {error}
                     </div>
-                
+                    
                 </fieldset>
+                    </fieldset>
             </div>
             </section>
 
             <section className="mt-2 mb-2 d-flex justify-content-end">
-                <button className="btn btn-outline-danger mr-2" type="submit">Siguiente</button>
+                {isDone && <button className="btn btn-outline-danger mr-2" type="submit">Siguiente</button>}
             </section>
         </form>
     )

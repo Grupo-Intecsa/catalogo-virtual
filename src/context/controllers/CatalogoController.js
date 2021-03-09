@@ -75,5 +75,12 @@ export default {
             .then( res => res.data.message  )
 
             return response
+    },
+    getFamilia: async() => {    
+                
+        let response = await api.get('/familia')
+            .then( res => res.data.productos )
+
+            return response
     }
 }

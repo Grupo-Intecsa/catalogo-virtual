@@ -11,8 +11,6 @@ import cosa from '../assets/icons/path2.webp'
 
 const TheHeader = ({ busqueda }) => {
 
-  
-
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
 

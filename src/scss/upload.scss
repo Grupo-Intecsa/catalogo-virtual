@@ -1,6 +1,6 @@
 
 #UploadForm{
-    height: 100vh;
+    height: 100%;
     
 }
 
@@ -36,6 +36,28 @@
     }
     input::before{
         background-color: royalblue;
+    }
+
+    textarea{
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding: 1em;
+    }
+    textarea:focus{
+        outline: none;
+    }
+
+    select{
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding: 1em;
+    }
+    select:focus{
+        outline: none;
+    }
+    option{
+        border: none;
+        font-size: 1em;
     }
 
 }
@@ -78,4 +100,34 @@
 .update--producto:hover{
     background-image: linear-gradient(45deg, #ee9ca7 0%, #ffdde1 100%);
     color: white;
+}
+
+.input-file-container {
+    background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
+    background-blend-mode: normal,color-burn;
+    display: flex;
+    flex-direction: column;
+    border: rgb(31, 81, 156) 1px dotted;
+    border-radius: 10px;
+    padding: 0.8em;
+    
+}
+
+.input-file-container:hover{
+    border: rgb(255, 255, 255) 1px dotted;
+}
+
+.pdf-input{
+    display: flex;
+    justify-content: center;
+}
+
+.label-nubecita{
+    color: rgb(43, 116, 226);
+    
+}
+
+.img-previw{
+    height: 80px;
+    width: 80px;
 }

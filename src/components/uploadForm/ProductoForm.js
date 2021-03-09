@@ -1,5 +1,5 @@
 import { CContainer } from '@coreui/react'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { useMachine } from '@xstate/react'
 import { MachineProductForm } from '../../context/UpdateFormXstate'
@@ -15,18 +15,19 @@ const Step4 = React.lazy(() => import('./steps/Step4'))
 const Final = React.lazy(() => import('./steps/Final'))
 
 
-const UploadForm =  () => {
+const UploadForm =  (props) => {
 
-    const [ state, send, service ] = useMachine(MachineProductForm)
+    const [ state, send ] = useMachine(MachineProductForm)
+    
+    //  Para poder ver el el estado del servicio es necesario 
+    // useEffect(() => {
+    //     const sub = service.subscribe((state) => {
+    //         console.log(state)
+    //     })
+    //     return () => sub.unsubscribe()
+    // },[state])
 
-    useEffect(() => {
-        const sub = service.subscribe((state) => {
-            console.log(state)
-        })
-        return () => sub.unsubscribe()
-    },[state])
-
-    const { init, step1, step2, step3, step4, final, productData } = state.context
+    const { init, step1, step2, step3, step4, final, productData, labelsAndBrands } = state.context
     // No se podran abrir las secciones si no estan termiandas 
     
     return(
@@ -52,7 +53,7 @@ const UploadForm =  () => {
     
         <div>
             <div className="bg-info mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
-            <Step1 send={send} />
+            <Step1 send={send} state={state} />
         </div>
         }
 
@@ -60,7 +61,7 @@ const UploadForm =  () => {
         {step2 &&
         <div>
             <div className="bg-info mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
-            <Step2 send={send} />
+            <Step2 send={send} labelsAndBrands={labelsAndBrands} />
         </div>
         }
 
@@ -84,11 +85,10 @@ const UploadForm =  () => {
         {final &&
         <div>
             <div className="bg-success mb-2 text-left text-white p-2"><FontAwesomeIcon icon={faArchive} /></div>
-            <Final send={send} />
+            <Final send={send} {...props} />
+            
         </div>
         }        
-
-        {JSON.stringify(productData)}
 
     </CContainer>
 

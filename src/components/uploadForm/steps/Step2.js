@@ -1,13 +1,44 @@
+
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { withRouter } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 const Step2 = (props) => {
 
-    const { register, handleSubmit } = useForm()    
+    const step2Schema = yup.object().shape({
+        title: yup.string().required(),
+        coduniversal: yup.string().optional(),
+        sku: yup.string().optional(),
+        brand: yup.string().required(),
+        label: yup.string().required(),
+        desc: yup.string().required(),
+        familia: yup.string().optional(),
+        capacidad: yup.string().optional()
+    })
+
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(step2Schema)
+    })    
+
     const onSubmit = (data) => {
-        props.send('GO_STEP3', { data })
+        
+        const { title, coduniversal, sku, label, brand, desc } = data
+
+        const datosOtros = {
+            title,
+            coduniversal,
+            sku,
+            desc,
+            brand: [{ "brand_id": brand }],
+            label: [{ "label_id": label }]
+        }
+
+        props.send('GO_STEP3', { data: datosOtros })
     }
+
+    const { brands, labels } = props.labelsAndBrands
 
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -15,6 +46,8 @@ const Step2 = (props) => {
             <section>
             <legend>Datos del Producto</legend>
             <div id="form--container">
+            
+                                
                 <label htmlFor="title">Nombre del producto</label>
                         <input 
                             type="text"
@@ -24,6 +57,11 @@ const Step2 = (props) => {
                             placeholder="Nombre corto del producto"
                         />
                         <small>*Dato Requerido</small>
+                        {errors.title?.message &&
+                        <div class="alert alert-danger" role="alert">
+                            Campo Requerido
+                        </div>
+                        }
 
                 <label htmlFor="coduniversal">Codigo EAN</label>
                 <input 
@@ -33,17 +71,83 @@ const Step2 = (props) => {
                     ref={register}
                     placeholder="Codigo de Barras"
                 />
+
                 <label htmlFor="sku">SKU</label>
-                <input type="sku" id="sku" name="sku" ref={register} />
+                <input 
+                    type="sku" 
+                    id="sku" 
+                    name="sku" 
+                    ref={register} 
+                    placeholder="SKU del producto"
+
+                />
+
+                <label htmlFor="familia">Familia</label>
+                <input 
+                    type="familia" 
+                    id="familia" 
+                    name="familia" 
+                    ref={register} 
+                    placeholder="Nombre de la familia"
+
+                />
+
+                <label htmlFor="capacidad">Capacidad, tamaño o tipo</label>
+                <input 
+                    type="capacidad" 
+                    id="capacidad" 
+                    name="capacidad" 
+                    ref={register} 
+                    placeholder="Amperes, medida o material"
+
+                />
 
                 <label htmlFor="brand">Marca</label>
-                <input type="text" id="brand" name="brand" ref={register} />
-
+                <select id="brand" name="brand" ref={register}>
+                <option></option>
+                    {Object.values(brands.response).map(item => 
+                            <option key={`${item._id}`} value={item._id}>{item.title}</option>
+                        )}
+                </select>
+                <small className="mt-2">*Dato Requerido</small>
+                {errors.brand?.message &&
+                        <div class="alert alert-danger" role="alert">
+                            Campo Requerido
+                        </div>
+                }
+                
+                
                 <label htmlFor="label">Categoria</label>
-                <input type="text" id="label" name="label" ref={register} />
+                <select id="label" name="label" ref={register}>
+                    <option></option>
+                    {Object.values(labels.response).map(item => 
+                            <option key={`${item._id}`} value={item._id}>{item.title}</option>
+                        )}
+                </select>
+                <small className="mt-2">*Dato Requerido</small>
+                {errors.label?.message &&
+                        <div class="alert alert-danger" role="alert">
+                            Campo Requerido
+                        </div>
+                        }
 
                 <label htmlFor="desc">Descripción Larga</label>
-                <input type="text" id="desc" name="desc" ref={register} />
+                <textarea 
+                    type="text" 
+                    id="desc" 
+                    name="desc" 
+                    ref={register} 
+                    rows="6"
+                    cols="50"
+                    placeholder="Este campo también se incluye en el indexado de la búsqueda, puedes incluir palabras que puedan ayudar al cliente"
+                />
+                <small className="mt-2">*Dato Requerido</small>
+                {errors.desc?.message &&
+                        <div class="alert alert-danger" role="alert">
+                            Campo Requerido
+                        </div>
+                        }
+                
             </div>
             </section>
             <section className="mt-2 mb-2 d-flex justify-content-end">
