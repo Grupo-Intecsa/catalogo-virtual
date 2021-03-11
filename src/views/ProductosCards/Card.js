@@ -17,6 +17,7 @@ import {
     } from '@coreui/react'
 import whataspp from '../../assets/icons/whatsapp.svg'
 import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
+import contactoLogo from '../../assets/icons/contacto.png'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
@@ -24,7 +25,7 @@ import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLef
 const Card = ({ props, badge }) =>{
 
     const [ modal, setModal ] = useState(false)
-    const { title, tags, ml, amazon, desc, urlfoto, urldata } = props
+    const { title, tags, ml, amazon, desc, urlfoto, urldata, model } = props
     
     const [ imgOnload, setImgeOnload ] = useState(true)
 
@@ -69,22 +70,20 @@ const Card = ({ props, badge }) =>{
                 <div className="mt-1">
                 <a href={whatsappMessage} target="_blank" rel="noreferrer">
                     <div className="btn btn-pill mr-2 mt-3 bg--whass">
-                    <img src={whataspp} alt="contacto de whatsapp" />
+                    <img src={whataspp} alt="contacto de whatsapp" loading="lazy" />
                 </div>
                 </a>
                 <button type="button" className="btn btn-pill btn-warning mr-2 mt-3 disabled" ><FontAwesomeIcon className="mr-1" icon={faShoppingCart} style={{ "color" : "black"}}/></button>
                 
                 </div>
-                {/* <span className="text-value-xl">
-                    {`$${price}`}
-                </span>
-                <small className="text-danger">
-                    {`Piezas disponibles: ${amount}`}
-                </small> */}
+                <div className="w-100 mt-3"></div>
+                <span className="text-black-50">Código: <strong>{model}</strong></span>
+                
+                
             </div>
             <div className="col-4">
                     <div className={ imgOnload ? "double-spinner" : "hiden" }></div> 
-                    <img onLoad={() => setImgeOnload(false)} src={urlfoto[0]}  alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} /> 
+                    <img onLoad={() => setImgeOnload(false)} src={urlfoto[0]}  alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} loading="lazy" /> 
             </div>
             </div>
 
@@ -92,7 +91,13 @@ const Card = ({ props, badge }) =>{
         <CCollapse show={accordion === 1}>
             <CCardBody className="bg--hover">
             {/* <hr /> */}
-            <div className="text-body text-center buy--now"><span>Disponible en:</span></div>
+            {
+                !ml 
+                ? <div className="text-body text-center buy--now"><span>Para más información:</span></div>
+                : <div className="text-body text-center buy--now"><span>Disponible en:</span></div>
+                
+            }
+
             <div className="mt-4">
                 { !amazon ? null 
                 : <img
@@ -103,8 +108,11 @@ const Card = ({ props, badge }) =>{
                     src='img/logo/amazon-2.svg' 
                     onClick={() => window.location.href=amazon} />}
                     
-                { ml === null ? 
-                    null :
+                { ml === null 
+                    ? <img loading="lazy" src={contactoLogo} className="img-fluid rounded-sm" alt="logo de contacto" />
+                    
+                    :
+                    (
                     <a 
                         className="d-flex justify-content-center" 
                         href={`https://articulo.mercadolibre.com.mx/MLM-${ml.split("MLM")[1]}`}
@@ -112,6 +120,7 @@ const Card = ({ props, badge }) =>{
                         rel="noreferrer">
                     <img loading="lazy" alt="mercado libre Brand" className="col-6 div--button" src={mercadoLogo}/>
                     </a>
+                    )
                 }
             </div>
             <hr />
@@ -132,7 +141,7 @@ const Card = ({ props, badge }) =>{
             <div className="d-flex justify-content-center">
 
                 
-        {urldata !== null && 
+        {urldata !== "" && 
             (<button 
                     type="submit"
                     onClick={handledDownliadBtn}
@@ -180,13 +189,6 @@ const Card = ({ props, badge }) =>{
                         
             </CCarousel>
         </CModalBody>
-        {/* <CModalFooter>
-            <CButton color="primary">Do Something</CButton>{' '}
-            <CButton 
-            color="secondary" 
-            onClick={() => setModal(false)}
-            >Cancel</CButton>
-        </CModalFooter> */}
         </CModal>
 
     </Fragment>

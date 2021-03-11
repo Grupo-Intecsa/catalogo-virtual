@@ -16,7 +16,6 @@ const Card = React.lazy(() =>  import('../ProductosCards/Card'))
 const Dashboard = ({ match }) => {
 
     const { isExact } = match
-
     const [ state, send ] = useMachine(CatalogoXstate)
 
     useEffect(() => {
@@ -28,7 +27,6 @@ const Dashboard = ({ match }) => {
 
     return(
     <CRow>
-
             <CCol>
                 {state.matches('sample') && isExact && (
                     <div className="content--no--data">

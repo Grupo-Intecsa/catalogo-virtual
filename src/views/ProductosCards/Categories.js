@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { 
     CCol,
@@ -16,8 +16,16 @@ import Cmenu from '../Cmenu/Cmenu'
 
 // Context
 import { useCatalogoState, useCatalogoDispatch } from '../../context/catalogoContext'
+import { useMemo } from 'react'
 
-const Categories = ({ busqueda }) => {
+const Categories = (props) => {
+
+    const { location } = props.busqueda
+
+    const busquedaText = useMemo(() => {
+        let nameSearch = location.pathname.split("/")
+        return nameSearch.slice(nameSearch.length - 2, nameSearch.length)
+    },[location])
 
     const dispatch = useCatalogoDispatch()
     const state = useCatalogoState()
@@ -40,7 +48,7 @@ const Categories = ({ busqueda }) => {
                     {labels.map(item => <CDropdownItem to={`/product/categorias/${item._id}`}>{item.title}</CDropdownItem> )}
                 </CDropdownMenu>
             </CDropdown>
-
+            
             <CDropdown className="m-1 p-3" style={{ "background-image": "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)" }}>
                 <CDropdownToggle>
                     Marcas
@@ -51,17 +59,44 @@ const Categories = ({ busqueda }) => {
             </CDropdown>
             
             </CRow>
-
-
+        
             <CRow className="d-flex flex-column d-sm-down-none">
                 {/* nombre del productos buscado */}
-                
-                    {busqueda?.busqueda?.query 
-                        ? <h3 style={{ "font-family": "'Roboto', sans-serif" }} >Resultados de tu busqueda</h3>
-                        : <h1 style={{ "font-family": "'Roboto', sans-serif" }} >Bienvenido</h1>
-                        }
-                    <h4 style={{ "font-family": "'Roboto', sans-serif", "color": "black" }}>{busqueda?.busqueda?.query}</h4>
+                    
+                    {busquedaText[1].toString() === 'dashboard'
+                        ? <h1 style={{ "font-family": "'Roboto', sans-serif" }} >Bienvenido</h1>
+                        : (
+                            <span className="breadcrumb--custom">
                                 
+                                {
+                                    busquedaText[0].toString() === 'marcas' && (
+                                        <span>
+                                            <small style={{ "font-family": "'Roboto', sans-serif" }}>BUSCA POR: </small>
+                                            <h4>Marcas</h4>
+                                        </span>
+                                        )
+                                }
+                                {
+                                    busquedaText[0].toString() === 'categorias' && (
+                                        <span>
+                                            <small style={{ "font-family": "'Roboto', sans-serif" }}>BUSCA POR: </small>
+                                            <h4>Categorías</h4>
+                                        </span>
+                                        )
+                                }
+                                {   
+                                
+                                    busquedaText[0].toString() === 'text' && (
+                                    <span>
+                                        <small style={{ "font-family": "'Roboto', sans-serif" }}>Resultados de tu busqueda</small>
+                                        <h4>{busquedaText[1]}</h4>
+                                    </span>
+                                    )
+                                }
+                            </span>
+                            )
+                        }
+        
                 <CCol className="mt-5 mb-5 col-8">
                 {/* menu de categorias */}
                 <Cmenu props={{...brands, cardname: "Marcas" }} />

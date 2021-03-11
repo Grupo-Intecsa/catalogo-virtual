@@ -7,13 +7,11 @@ import { MachineProductForm } from '../../context/UpdateFormXstate'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArchive } from '@fortawesome/free-solid-svg-icons'
 
-
 const Step1 = React.lazy(() => import('./steps/Step1'))
 const Step2 = React.lazy(() => import('./steps/Step2'))
 const Step3 = React.lazy(() => import('./steps/Step3'))
 const Step4 = React.lazy(() => import('./steps/Step4'))
 const Final = React.lazy(() => import('./steps/Final'))
-
 
 const UploadForm =  (props) => {
 
@@ -35,6 +33,7 @@ const UploadForm =  (props) => {
 
     { init && (
         <>
+            <span className="p-2 bg-success text-center text-white mb-2">Último producto agregado: <strog>{productData?.step2?.model}</strog></span>
             <h4 className="bg-info p-3">Formulario de alta de productos</h4>
             <p>
                 Es necesario antes de continuar, tengas los datos de código del producto de AdminPaq o Comercial,

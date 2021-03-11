@@ -5,7 +5,12 @@ import { withRouter } from 'react-router-dom'
 
 const Step3 = (props) => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            ml: null,
+            amazon: null,
+        }
+    })
     
     const onSubmit = (data) => {
         

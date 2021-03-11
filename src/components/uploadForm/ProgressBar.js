@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CProgress } from '@coreui/react'
 
 import useStorage from '../../FirebaseHook/useStorage'
 
 
-const ProgressBar = ({ file, setIsDone, setUrlDone }) => {
+const ProgressBar = ({ file, setUrlDone }) => {
 
     const { progress, url } = useStorage(file)
 
-    useEffect(() => {        
-    if(progress === 100){
-        setIsDone(true)
-    }
-    },[progress])
+    // useEffect(() => {        
+    // if(progress === 100){
+    //     setIsDone(true)
+    // }
+    // },[progress])
 
     return(
         <div>

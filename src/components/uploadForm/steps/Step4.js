@@ -2,16 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { withRouter } from 'react-router-dom'
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
 
 import ProgressBar from '../ProgressBar'
 
-
 const Step4 = (props) => {
-
-    const [isDone, setIsDone] = useState(false)
 
     const [ urlDone, setUrlDone ] = useState(null)
     const [ arrrUrl, setArrUrl ] = useState([])
@@ -23,7 +19,7 @@ const Step4 = (props) => {
     const [ error, setError ] = useState()
     const [ file, setFile ] = useState()
 
-    const typesAllow = ['image/webp']
+    const typesAllow = ['image/webp', 'image/png']
     const handledInput = ( e ) => {
 
         let files = Object.values(e.target.files)
@@ -46,16 +42,54 @@ const Step4 = (props) => {
 
     }
 
-    const { handleSubmit, register } = useForm()
-    
-    const onSubmit = () => {
-        const item = {
-            urlfoto: arrrUrl.slice(1, arrrUrl.length)
+    const { handleSubmit, register } = useForm({
+        defaultValues: {
+            urlfoto: undefined,
+            fotoPaste: undefined,
         }
-        // vaciamos los elementos para la siguiete vuleta
-        props.send("GO_FINAL", { data: item })
-        setUrlDone(null)
-        setArrUrl([])
+    }
+    )
+    
+    const onSubmit = (e) => {
+
+        
+        if(e.urlfoto.length === 0 && !e.fotoPaste ){
+            setError('Debes agregar alguna foto, para continuar')
+
+        }else if(e.urlfoto.length > 0 && e.fotoPaste ){
+            
+            let urls = Object.assign(arrrUrl.slice(1, arrrUrl.length), e.fotoPaste.split(" "))
+            const item = {
+                urlfoto: urls
+            }
+            
+            // vaciamos los elementos para la siguiete vuleta
+            props.send("GO_FINAL", { data: item })
+            setUrlDone(null)
+            setArrUrl([])
+
+        }else if(e.urlfoto.length === 0){
+            
+            let item = {
+                urlfoto: e.fotoPaste.split(" ")
+            }
+            // vaciamos los elementos para la siguiete vuleta
+            props.send("GO_FINAL", { data: item })
+            setUrlDone(null)
+            setArrUrl([])
+
+        }else if(!e.fotoPaste){
+            
+            let item = {
+                urlfoto: arrrUrl.slice(1, arrrUrl.length)
+            }
+            
+            // vaciamos los elementos para la siguiete vuleta
+            props.send("GO_FINAL", { data: item })
+            setUrlDone(null)
+            setArrUrl([])
+        }
+
     }
 
     return(
@@ -69,27 +103,30 @@ const Step4 = (props) => {
                 <fieldset className="input-file-container">
                 {/* cambiar el handheInput por el boton */}
                 <fieldset className="d-flex align-content-center justify-content-center">
-                {!isDone &&(
-                    <label htmlFor="pdf-input">
-                    <FontAwesomeIcon size="7x" icon={faCloudDownloadAlt} className="label-nubecita"/>
-                    </label>
-                    )}
-                <input id="pdf-input" multiple={true} type="file" onChange={handledInput} className="hide" name="urlfoto" ref={register} />
-                <div className="form-control-file">
-                        
-                        {file && file.map(file => <small>{ file.name }</small>)}
-                        {file && file.map(file => <ProgressBar file={ file } setFile={ setFile } setIsDone={setIsDone} setUrlDone={setUrlDone} />)}
-                        {error && <div>{error}</div>}
-                        
-                    </div>
                     
+                <label htmlFor="pdf-input">
+                    <FontAwesomeIcon size="7x" icon={faCloudDownloadAlt} className="label-nubecita"/>
+                </label>
+        
+                <input id="pdf-input" multiple={true} type="file" onChange={handledInput} className="invisible" name="urlfoto" ref={register} />
+                <div className="form-control-file">
+                    
+                        {file && file.map(file => <ProgressBar file={ file } setFile={ setFile } setUrlDone={setUrlDone} />)}                        
+                    </div>
                 </fieldset>
-                    </fieldset>
-            </div>
+                </fieldset>
+                <hr />
+                
+                    <label htmlFor="fotoPaste"><strong>Si tienes el link de la foto, pegalo aquí</strong></label>
+                    <textarea rows="4" cols="50" placeholder="Seprar cada link ejemplo: http://ejemplo/Mi_imagen.png http://ejemplo/Mi_imagen_01.png" name="fotoPaste" id="fotoPaste" ref={register}></textarea>
+                
+            </div>  
+                    <hr />
+                    {error && <div className="bg-danger p-2 text-center">{error}</div>}
             </section>
 
             <section className="mt-2 mb-2 d-flex justify-content-end">
-                {isDone && <button className="btn btn-outline-danger mr-2" type="submit">Siguiente</button>}
+                <button className="btn btn-outline-danger mr-2" type="submit">Siguiente</button>
             </section>
         </form>
     )

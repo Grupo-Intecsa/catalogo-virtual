@@ -8,7 +8,6 @@ import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
 import cosa from '../assets/icons/path2.webp'
 
-
 const TheHeader = ({ busqueda }) => {
 
   const dispatch = useDispatch()
@@ -39,7 +38,7 @@ const TheHeader = ({ busqueda }) => {
   return (
             <Fragment>
             
-            <nav id="Navigation" className="bg-linkedin">
+            <nav id="Navigation" className="c-header fixed-top px-3 bg-facebook">
                 <section>
                   <Link to="/">
                     <CImg src={cosa} className="iconSVG" height="45px"/>
