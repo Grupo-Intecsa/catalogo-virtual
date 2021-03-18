@@ -36,7 +36,7 @@ const TheSidebar = () => {
       onMinimizeChange={toogleView}
     >
       <CSidebarBrand className="d-md-down-none bg-gradient-dark" to="/">
-          <h2>Grupo Intecsa</h2>
+          <h2 className="font-weight-bold text-white">Grupo Intecsa</h2>
         <CIcon
           className="c-sidebar-brand-minimized"
           name="sygnet"

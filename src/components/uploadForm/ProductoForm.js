@@ -33,17 +33,16 @@ const UploadForm =  (props) => {
 
     { init && (
         <>
-            <span className="p-2 bg-success text-center text-white mb-2">Último producto agregado: <strog>{productData?.step2?.model}</strog></span>
+            <span className="p-2 bg-success text-center text-white mb-2">Último producto agregado: <span className="font-weight-bold">{productData?.step2?.model}</span></span>
             <h4 className="bg-info p-3">Formulario de alta de productos</h4>
             <p>
                 Es necesario antes de continuar, tengas los datos de código del producto de AdminPaq o Comercial,
                 las fotograficas deben ser en formato webp ya que una vez iniciado el formulario y te falta un dato, 
                 no se podrá guardar el avance.
             </p>
-            <div className="mb-3 d-flex flex-center justify-content-around mt-3">
-                <button className="nuevo--producto" onClick={() => send('GO_STEP1')} >Nuevo</button>
-                {" "}
-                <button className="update--producto">Actualizar</button>
+            <div className="mb-3 d-flex flex-center justify-content-center mt-3">
+                <button className="btn btn-facebook p-3 mr-3" onClick={() => send('GO_STEP1')} >Nuevo</button>
+                <button className="btn btn-warning">Actualizar</button>
             </div>
         </>
     )}

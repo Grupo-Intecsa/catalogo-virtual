@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { Redirect } from 'react-router'
+import { UserState, UserDispatch } from '../../context/userContext'
 
 const Login = () => {
+
+  const { state, service } = UserState()
+  const dispatch = UserDispatch()
+
+  console.log(state, service)
+
+  useEffect(() => {
+    const sub = service.subscribe((state) => console.log(state) )
+    return () => sub.unsubscribe()
+  },[state]) 
 
   const { register, handleSubmit } = useForm()
 
   const onLoginSubmit = (data) => {
-      alert(JSON.stringify(data))
+      dispatch('LOGIN', { data })
   }
 
   return (
@@ -17,8 +29,13 @@ const Login = () => {
 
               <h3>Iniciar sesión</h3>
               <span className="text-welcome">Bienvendio a Grupo Intecsa</span>
-              <hr className="card-accent-primary" />
 
+              {state.matches('error') ? <div className="bg-danger w-75 text-center rounded"><p className="mt-2 font-weight-bold">Error en el usuario o contraseña</p></div> : null }
+              {state.matches('validate') ? <Redirect to="/admin"/> : null }
+              {state.matches('success') ? <Redirect to="/admin"/> : null }
+
+              <hr className="card-accent-primary" />
+              
               <form onSubmit={handleSubmit(onLoginSubmit)}>
 
                 <section className="control-input">
@@ -36,8 +53,9 @@ const Login = () => {
                   <button className="btn btn-success login">Continuar</button>
                 </section>
               </form>
-              <smal className="mt-5">¿Se te olvido tu contraseña?</smal>
+              <span className="mt-5 font-weight-bold">¿Se te olvido tu contraseña?</span>
             </section>
+            
 
       </div>
 

@@ -91,44 +91,6 @@ html{
     }
 }
 
-.footer--map{
-    display: grid;
-    color: rgb(61, 61, 61);
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 1px;
-    padding-bottom: 1rem;
-}
-
-.footer-footer{
-    display: flex;
-    justify-content: center;
-    color: rgb(36, 36, 36);
-    background: #C9CCD3;
-    background-image: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
-    background-blend-mode: lighten;
-}
-
-.item-grid-map{
-    width: 100%;
-    height: 40vh;
-    padding-bottom: 1rem;
-    justify-items: center;
-}
-
-.item-direccion{
-    justify-items: end;
-    padding: 1em;
-}
-
-.item-grid-disclaimer{
-    padding: 0 2rem 0 2rem;
-    justify-items: center;
-}
-
-
-.icoSVG{
-    width: 40vmin;
-}
 
 #Navigation{
     position: sticky;
@@ -357,18 +319,23 @@ html{
 }
 
 .banner--git{
-    width: 100%;
-    height: 25vh;
     background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);  
-    border-radius: 4px;
-    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
 
-.column-banner{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.banner--git--2{
+    background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+    
 }
+
+.banner--git--3{
+    background-image: linear-gradient( 90.5deg,  rgba(255,207,139,0.50) 1.1%, rgba(255,207,139,1) 81.3% );
+}
+
+.img--banner{
+    padding: 1em;
+    height: 15em;
+}
+
 
 .double-spinner {
     display: flex;

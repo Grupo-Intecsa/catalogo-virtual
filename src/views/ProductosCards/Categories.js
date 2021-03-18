@@ -102,7 +102,7 @@ const Categories = (props) => {
                 <Cmenu props={{...brands, cardname: "Marcas" }} />
 
                 {/* Labels */}
-                <Cmenu props={{...labels, cardname: "Categorias" }} />
+                {/* <Cmenu props={{...labels, cardname: "Categorias" }} /> */}
 
                 </CCol>
             </CRow>
