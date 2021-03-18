@@ -4,7 +4,7 @@ import {
     CCardHeader,
     CCollapse,
     CCardBody,
-    // CImg,
+    CImg,
     CModal,
     CModalHeader,
     CModalBody,
@@ -15,183 +15,87 @@ import {
     CCarouselControl,
 
     } from '@coreui/react'
+
 import whataspp from '../../assets/icons/whatsapp.svg'
 import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
 import contactoLogo from '../../assets/icons/contacto.png'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
+
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faShoppingCart, faFilePdf, faEye, faChevronCircleDown, faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
+
+const ModalDetalle = ({ isModal, toogle, data }) => {
+
+    const { title, tags, ml, amazon, desc, urlfoto, urldata, model } = data
+
+
+    return (
+
+        <CModal show={isModal} className="modal-dialog-centered" >
+        <div className="modal--productos">
+            <div className="modal-carousel">
+                {/* carouse */}
+                <img src={urlfoto[0]} className="img-fluid" alt={title} />
+            </div>
+            <div className="modal-datos">
+                <h1>{title}</h1>
+                <span>{model}</span>
+                <button>Contacto</button>
+                <div>
+                    {/* donde comprar */}
+                    <img src={mercadoLogo} className="img-fluid" alt={title} />
+                </div>
+            </div>
+        </div>
+        </CModal>
+    )
+}
 
 const Card = ({ props, badge }) =>{
 
-    const [ modal, setModal ] = useState(false)
+    const [ isModal, setIsModal ] = useState(false)
     const { title, tags, ml, amazon, desc, urlfoto, urldata, model } = props
     
     const [ imgOnload, setImgeOnload ] = useState(true)
 
-    const handledDownliadBtn = () => window.location.href=urldata[0]
-    const [ accordion, setAccordion ] = useState(0)
-    const [ toggle, setToggle ] = useState(false)
-
-    const toggleAccord = () => {
-
-        setAccordion(accordion === 0 ? 1 : 0 )
-        setToggle(false)
-    }
-
-    const toggleDesc = () =>  {
-        if(!toggle){
-            setToggle(true)
-        }else if (toggle){
-            setToggle(false)
-        }
-    }
+    const toogle = () => setIsModal(!isModal)
 
     const phone = "5215546371510"
     const whatsappMessage = `https://api.whatsapp.com/send/?phone=${phone}&text=Me gustaria tener información del producto: ${title}`
         
 
     return(
-        <Fragment>
-        <CCard className="card--container" id="#Card">
-            { badge && (<div className="ribbon-new" ribbon-new="Nuevo" />)}
-        <CCardHeader id="headingTwo" className="flex-column">
-            <div 
-            block={true}
-            color="link" 
-            className="text-left m-0 p-0 d-flex div--button align-items-center justify-content-center" 
-            onClick={toggleAccord}
-            >
-            {/* <div className="col-6 text-body d-flex flex-column"> */}
-            <div className="card-display-grid">
-                <p className="text--productos--title">
-                    {title}
-                </p>
-                <div className="mt-1">
-                <a href={whatsappMessage} target="_blank" rel="noreferrer">
-                    <div className="btn btn-pill mr-2 mt-3 bg--whass">
-                    <img src={whataspp} alt="contacto de whatsapp" loading="lazy" />
-                </div>
-                </a>
-                <button type="button" className="btn btn-pill btn-warning mr-2 mt-3 disabled" ><FontAwesomeIcon className="mr-1" icon={faShoppingCart} style={{ "color" : "black"}}/></button>
-                
-                </div>
-                <div className="w-100 mt-3"></div>
-                <span className="text-black-50">Código: <strong>{model}</strong></span>
-                
-                
+        <div>
+        <div className="neibor-card">
+            <div className="img-neibor-card">
+                <div className={ imgOnload ? "double-spinner" : "hiden" }></div> 
+                <img onLoad={() => setImgeOnload(false)} src={urlfoto[0]}  alt={tags} className="neibor-card-img" loading="lazy" />
             </div>
-            <div className="col-4">
-                    <div className={ imgOnload ? "double-spinner" : "hiden" }></div> 
-                    <img onLoad={() => setImgeOnload(false)} src={urlfoto[0]}  alt={tags} className="img-fluid" style={{ 'maxWidth': '100%' }} loading="lazy" /> 
-            </div>
-            </div>
+            <div className="title-neibor-card">
+                <div className="datos-card-neibor">
+                    <h1 className="texto-title-neibor">{title}</h1>
 
-        </CCardHeader>
-        <CCollapse show={accordion === 1}>
-            <CCardBody className="bg--hover">
-            {/* <hr /> */}
-            {
-                !ml 
-                ? <div className="text-body text-center buy--now"><span>Para más información:</span></div>
-                : <div className="text-body text-center buy--now"><span>Disponible en:</span></div>
+                    <span className="font-weight-bold mt-2 font-xl">
+                        Disponible
+                    </span>
+                    
+                    <span className="mt-2 text-black-50">
+                        Código: <p className="font-weight-bold mb-4">{model}</p>
+                    </span>
+                </div>
                 
-            }
-
-            <div className="mt-4">
-                { !amazon ? null 
-                : <img
-                    alt="amazon brand"
-                    loading="lazy"
-                    target="google.com" 
-                    className="col-6 div--button" 
-                    src='img/logo/amazon-2.svg' 
-                    onClick={() => window.location.href=amazon} />}
-                    
-                { ml === null 
-                    ? <img loading="lazy" src={contactoLogo} className="img-fluid rounded-sm" alt="logo de contacto" />
-                    
-                    :
-                    (
-                    <a 
-                        className="d-flex justify-content-center" 
-                        href={`https://articulo.mercadolibre.com.mx/MLM-${ml.split("MLM")[1]}`}
-                        target="_blank" 
-                        rel="noreferrer">
-                    <img loading="lazy" alt="mercado libre Brand" className="col-6 div--button" src={mercadoLogo}/>
+                <div className="contenido-neibor-card">
+                    <button className="btn btn-nebor font-weight-bold" onClick={() => toogle()} >Ver detalle</button>
+                    <a href={whatsappMessage} target="_blank" rel="noreferrer"  className="btn btn-nebor-contacto font-weight-bold">
+                        Contactar <img src={whataspp} alt="logo whatsapp" className="ml-1"/>
                     </a>
-                    )
-                }
+                </div>
             </div>
-            <hr />
-    
-            <div className="btn-descrip bg--hover--more" onClick={toggleDesc}>
-                <div>Descripción:</div>
-                <FontAwesomeIcon icon={faChevronCircleDown} />
-            </div>
-            </CCardBody>
-            </CCollapse>
-        <CCollapse show={toggle}>
-            <CCardBody>
-            <div>
-            <span className="p2">{desc}</span>
-            </div>
-            <hr />
-            {/* nav vertical */}
-            <div className="d-flex justify-content-center">
 
-                
-        {urldata !== "" && 
-            (<button 
-                    type="submit"
-                    onClick={handledDownliadBtn}
-                    className="btn btn-outline-danger mr-2" >
-                    <FontAwesomeIcon className="mr-1" icon={faFilePdf}/>
-                        Descarga la Ficha técnica
-            </button>)
-        }
-                
-
-                <button 
-                    onClick={() => setModal(true)}
-                    type="button" 
-                    className="btn mr-2 btn-outline-dark" >
-                    <FontAwesomeIcon className="mr-1" icon={faEye}/>
-                        Galería
-                </button>
-            </div>
-            </CCardBody>
-        </CCollapse>
-        </CCard>
-
-
-        {/* // MODAL */}
-        <CModal 
-        show={modal} 
-        onClose={setModal}
-        >
-        <CModalHeader closeButton>
-            <CModalTitle></CModalTitle>
-        </CModalHeader>
-        <CModalBody>
-            <CCarousel>
-                <CCarouselInner>
-                        { urlfoto.map(img => (
-                        <CCarouselItem>
-                            <img className="d-block w-100" src={img} alt="slide 1" loading="lazy"/>
-                        </CCarouselItem>
-                        ))}
-                    
-                </CCarouselInner>
-                        
-                            <CCarouselControl direction="prev"><FontAwesomeIcon icon={faArrowCircleLeft} size="3x" /></CCarouselControl>
-                            <CCarouselControl direction="next"><FontAwesomeIcon icon={faArrowCircleRight} size="3x" /></CCarouselControl>
-                        
-            </CCarousel>
-        </CModalBody>
-        </CModal>
-
-    </Fragment>
+        </div>
+        
+        {/* <ModalDetalle isModal={isModal} toogle={toogle} data={props} /> */}
+        </div>
     )
 }
 

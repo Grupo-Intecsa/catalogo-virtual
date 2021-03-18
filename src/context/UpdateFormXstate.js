@@ -51,7 +51,7 @@ const buscadorGuard = (_, event) => {
 const sendData = async(ctx) => {
     
     const { step2, step3, step4, final } = ctx.productData
-    const data = Object.assign(step2, step3, step4, final )
+    const data = Object.assign({}, step2, step3, step4, final )
 
     const query = await api.post(`/catalog/create/`, data )
     .then(res => res.data.message)

@@ -8,7 +8,12 @@ import {
 
 
 // import Csv2Json from '../lab/Csv2Json'
-import GtiBanner from '../views/gtiBanner/GtiBanner'
+// import GtiBanner from '../views/gtiBanner/GtiBanner'
+const  EmblaCarousel  = React.lazy(() => import('../components/EmblaCarousel/EmblaCarousel'))
+const  EmblaCategorias  = React.lazy(() => import('../components/EmblaCarousel/EmblaCatergorias'))
+
+const SLIDE_COUNT = 5
+const slides = Array.from(Array(SLIDE_COUNT).keys())
 
 const TheLayout = (props) => {
 
@@ -27,9 +32,10 @@ const TheLayout = (props) => {
       <div className="c-wrapper">
         <TheHeader busqueda={setBusqueda} />
         <div className="c-body">
-          <GtiBanner />
+          <EmblaCarousel  slides={slides} />
           <CatalogoContainer {...props} busqueda={busqueda} />
         </div>
+        <EmblaCategorias />
         <TheFooter/>
       </div>
     </div>

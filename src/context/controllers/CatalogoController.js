@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
+import decode from 'jwt-decode'
 
 const api = axios.create({
     baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
@@ -82,5 +83,34 @@ export default {
             .then( res => res.data.productos )
 
             return response
+    },
+    login: async(ctx, event) => {
+
+        console.log('READY FOR THIS SHIT', event.data)
+
+        let response = await api.post('/user/login/', event.data)
+        .then(res => res)
+
+        console.log(response.status)
+        
+        if(response.status === 200){
+            localStorage.setItem('tokenUserSite', response.data.login.token)
+        }
+        // TODO guardar el token en el localhost
+
+        return response
+
+    },
+    auth: async() => {
+
+        console.log('I DONT FEEL PROTECTED')
+
+        const token = localStorage.getItem('tokenUserSite')
+                
+        const res = await api.get(`/user/${decode(token).id}`, {
+            headers: { Authorization: `Bearer ${token}`}
+        })
+        
+        return res
     }
 }

@@ -4,6 +4,7 @@ import './scss/style.scss';
 
 // Context
 import { CatalogoProvider } from './context/catalogoContext'
+import { UserContextProvider } from './context/userContext'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -13,7 +14,7 @@ const loading = (
 
 // Containers
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
-
+const Validate = React.lazy(() => import('./views/admin/AdminLayout'))
 
 
 // Pages
@@ -26,18 +27,23 @@ class App extends Component {
 
   render() {
     return (
+      <UserContextProvider>
       <CatalogoProvider>
       <HashRouter>
           <React.Suspense fallback={loading}>
+
             <Switch>
 
-              <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
+              <Route exact path="/login" name="Login" render={props => <Login {...props}/>} />
+              <Route exact path="/admin" name="Panel de Control" render={props => <Validate {...props}/>} />
+
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
               
             </Switch>
           </React.Suspense>
       </HashRouter>
       </CatalogoProvider>
+      </UserContextProvider>
     );
   }
 }

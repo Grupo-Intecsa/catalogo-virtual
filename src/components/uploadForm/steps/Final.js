@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react'
 import { Result, Button } from 'antd';
+import { useHistory } from 'react-router-dom'
 
 const Final = (props) => {
+
+  const history = useHistory()
 
   const handledReset = () => {
       props.send('RESET')
   }
 
-  console.log(props)
+  
 
   return(
     <Fragment>
@@ -18,7 +21,7 @@ const Final = (props) => {
           extra={[
             <div>
       
-            <Button type="primary" key="console" onClick={() => props.history.push("/")}>
+            <Button type="primary" key="console" onClick={() => history.push("/")}>
               Dashboard
             </Button>
             
