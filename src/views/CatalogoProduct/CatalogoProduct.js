@@ -21,12 +21,12 @@ const CatalogoProduct = ({ match }) => {
 
     const { params } = match
     
-    const [ state, send, service ] = useMachine(CatalogoXstate)
+    const [ state, send ] = useMachine(CatalogoXstate)
 
-    useEffect(() => {
-        const sub = service.subscribe((state) => console.log(state))
-        return () => sub.unsubscribe()
-    },[state, service])
+    // useEffect(() => {
+    //     const sub = service.subscribe((state) => console.log(state))
+    //     return () => sub.unsubscribe()
+    // },[state, service])
 
     const { queryBrand } = state.context
 

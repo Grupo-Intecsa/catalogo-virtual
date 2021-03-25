@@ -6,7 +6,7 @@ const EmblaModal = ({ urlfoto }) => {
 
   const [ emblaRef ] = useEmblaCarousel({ loop: true })
 
-  const slide = useMemo(() => { return urlfoto },[])
+  const slide = useMemo(() => { return urlfoto },[urlfoto])
     
   return (
     <div>

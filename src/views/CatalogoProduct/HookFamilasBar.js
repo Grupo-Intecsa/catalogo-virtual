@@ -105,7 +105,7 @@ const HookFamilasBar = ({ id }) => {
   
   const familia = useMemo(() => {
     return Object.values(familias).filter(fam => fam.id === id)
-  },[])
+  },[id])
   
   return(
     <div>
