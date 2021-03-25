@@ -12,8 +12,8 @@ import { CatalogoXstate } from '../../context/CatalogoXstate'
 
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import HookProduct from './HookProduct'
 
+const HookProduct = React.lazy(() => import('./HookProduct')) 
 
 const CatalogoProduct = ({ match }) => {
 
