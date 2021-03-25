@@ -6,9 +6,12 @@ export const CatalogoXstate = Machine({
     id: "catalgo",
     initial: "idle",
     context: {
+        id: undefined,
+        error: undefined,
         all_products: [],
         sample: [],
-        queryBrand: []
+        queryBrand: [],
+        familia: []
     },
     states: {
         idle: {},
@@ -36,7 +39,7 @@ export const CatalogoXstate = Machine({
         },
         getBrandById: {
             invoke: {
-                src: CatalogoController.getBrandById,
+                src: CatalogoController.findByBrandIdCatalogo,
                 onDone: {
                     target: 'success',
                     actions: assign({
@@ -64,37 +67,73 @@ export const CatalogoXstate = Machine({
                     actions: assign({
                         queryBrand: (_, evt) => evt.data
                     })
-                }
-            }
-        },
-        getFamilia: {
-            invoke: {
-                src: CatalogoController.getFamilia,
-                onDone: {
-                    target: 'success',
+                },
+                onError: {
+                    target: 'error',
                     actions: assign({
-                        queryBrand: (_, evt) => evt.data
+                        error: (_, event) => event.data
                     })
                 }
             }
         },
+        getFamiliaByBrandId: {
+            invoke: {
+                src: CatalogoController.getFamiliaByBrandId,
+                onDone: {
+                    actions: assign({
+                        familia: (_, evt) => evt.data
+                    })
+                },
+                onError: {
+                    target: 'error',
+                    actions: assign({
+                        error: (_, event) => event.data
+                    })
+                }
+            }
+        },
+        getFamiliaByTitleId: {
+            invoke: {
+                src: CatalogoController.getFamiliaByTitleId,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, event ) => event.data
+                    })
+                },
+                onError: {
+                    target: 'error',
+                    actions: assign({
+                        error: (_, event) => event.data
+                    })
+                }
+            }
+        },
+        error: {},
         success: {},
         reject: {},
     },
     on: {
         ALL_PRODUCTOS: 'all_products',
         SAMPLE: 'sample',
-        GET_BRAND_ID: 'getBrandById',
-        GET_LABEL_ID: 'getLabelsById',
+        GET_BRAND_ID: {
+            target: 'getBrandById',
+            actions: (ctx, event) => ctx.id = event.id
+        },
+        GET_FAMILA_BY_ID: "getFamiliaByBrandId",
+        GET_FAMILA_BY_TITLE: "getFamiliaByTitleId",
         GET_TEXT_QUERY: [
             {
                 target: 'getByText',
-                cond: (_, event ) => event.id.split("").length > 2
+                cond: (_, event ) => {
+                    
+                    return event.id.split("").length > 2
+                }
             },
             {
                 target: 'reject'
             }
-        ],
-        GET_FAMILIA: 'getFamilia'
+        ]
+
     }
 })

@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { CButton, CImg } from '@coreui/react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, Redirect, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
-
 
 import cosa from '../assets/icons/path2.webp'
 
 const TheHeader = ({ busqueda }) => {
 
+  const location = useLocation()
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
 
@@ -24,23 +24,28 @@ const TheHeader = ({ busqueda }) => {
   }
 
   const [ queryText, setQueryText ] = useState(undefined)
+  const [ search, setSearch ] = useState(false)
 
-  const history = useHistory()
+  useEffect(() => {
 
-  const handleSubmit = () => {
-
-    history.push(`/product/text/${queryText}`)
-    busqueda({ query: queryText })
-    setQueryText("")
-
+    if( location.pathname !== '/dashboard'){
+      setSearch(false)
+    }
+  },[location.pathname])
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()        
+    setSearch(true)
+    document.body.scrollTop = 10
+    
   }
 
   return (
-            <Fragment>
+        <Fragment>
             
             <nav id="Navigation" className="c-header fixed-top px-3 bg-facebook">
                 <section>
-                  <Link to="/">
+                  <Link to="/" onClick={() => document.body.scrollTop = 0}>
                     <CImg src={cosa} className="iconSVG" height="45px"/>
                   </Link>
                 </section>
@@ -48,7 +53,7 @@ const TheHeader = ({ busqueda }) => {
 
                 <div className="input-form-header">
                 <form className="form--header" onSubmit={handleSubmit} >
-                    <input name="query" type="text" placeholder="Buscar productos, marcas y más"  value={queryText} onChange={(e) => setQueryText(e.target.value)} />
+                    <input type="text" placeholder="Buscar productos, marcas y más"  value={queryText} onChange={(e) => setQueryText(e.target.value)} />
                     <CButton type="submit" className="btn btn-search"><FontAwesomeIcon icon={faSearch}/></CButton>
                   </form>
                 </div>
@@ -57,8 +62,14 @@ const TheHeader = ({ busqueda }) => {
                   <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
                   <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
                 </section>
-
             </nav>
+              <div className="bg-facebook d-flex justify-content-center align-items-center d-sm-down-none border-0">
+                <a href="https://forms.monday.com/forms/embed/608067760034e1ac1f86e10392668e8b?r=use1" title="Ponte en contacto con nostros para una cotizacion especializada" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">Contacto</span></a>
+                <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>
+                <a href="/#" title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." rel="nofollow" className="mr-2" ><span className="texto-navbar">Cotizador de servicios</span></a>
+              </div>
+            
+            { search && <Redirect to={`/product/text/${queryText}`} />}
         </Fragment>
   )
 }

@@ -1,32 +1,49 @@
-.neibor-card{
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-  border-radius: 10px;
-  padding: 0.3rem;
-  margin-right: 1rem;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 10px;
+
+.center--content{
+  
   display: flex;
+  // display: grid;
+  // grid-template-columns: repeat(2, 1fr);
+  // width: 100%;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  justify-content: space-around;
+  width: 100%;
 }
 
-@media (min-width: 40em){
-  .neibor-card{
-    display: flex;
-    flex-direction: row;
-    width: 70vh;
-  }
-}
+.neibor-card{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-column-gap: 1rem;
 
-.title-neibor-card{
+  width: 40rem;
+
   padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+
+}
+
+.card__bg__familia{
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.card__bg{
+  background-color: white;
 }
 
 .img-neibor-card{
-  border-radius: 10px;
-  padding: 1em;
+  padding: 1rem;
+  grid-column: span 1;
+  
+}
+
+.title-neibor-card{
+  
+  padding: 1rem;
+  grid-column: 2/4;
+
 }
 
 .contenido-neibor-card{
@@ -36,14 +53,73 @@
 }
 
 .neibor-card-img{
-  height: 250px;
-  width: auto;
+  height: auto;
+  width: 15em;
+}
+
+@media (max-width: 50em){
+  .neibor-card{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25em;
+
+  }
+  .img-neibor-card{
+    
+    padding: 1rem;
+    grid-column: span 1;
+    
+  }
+  
+  .title-neibor-card{
+    
+    padding: 1rem;
+    grid-column: span 1;
+  
+  }
+  
+  .contenido-neibor-card{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .neibor-card-img{
+    
+    height: auto;
+    width: 10em;
+  } 
 }
 
 
 .texto-title-neibor{
   font-family: 'Roboto', sans-serif;
   font-size: large;
+  text-transform: uppercase;
+  text-transform: none;
+  
+}
+
+.texto-navbar{ 
+  color: white;
+  font-size: medium;
+  font-weight: 100;
+}
+
+.texto-navbar:hover{
+  background-color: rgba(255, 255, 255, 0.205);
+  border-radius: 30px;
+  padding: 1rem;
+}
+
+.border_bootom{
+  border: none;
+  border-style: solid;
+  border-bottom: black;
 }
 
 .datos-card-neibor{
@@ -51,11 +127,11 @@
   flex-direction: column;
 }
 
-
 .btn-nebor{
   background-color: rgb(0, 0, 0);
   color: white;
-  padding: 1em 1.8em;
+  height: 43px;
+  width: 140px;
   margin-bottom: 10px;
   margin-right: 10px;
   border: none;
@@ -65,7 +141,10 @@
 .btn-nebor-contacto{
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  padding: 1em 2em;
+  height: 43px;
+  width: 140px;
+  padding: 0.5rem 0.8rem;
+  font-weight: 600;
   margin-bottom: 10px;
   margin-right: 10px;
   border: none;
@@ -78,3 +157,66 @@
   border: 1px solid white;
 }
 
+
+.familia-item{
+  text-decoration: none;
+  background-color: rgb(252, 252, 252);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  margin: 3px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+
+  img{
+
+    width: 5rem;
+    object-fit: scale-down;
+
+  }
+
+  p{
+
+    padding-bottom: 1rem;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: large;
+  }
+  
+  
+}
+
+@media (max-width: 50em){
+  .familia-item{
+    
+    img{
+      width: 5rem;
+      object-fit: scale-down;
+    }
+    P{
+      font-size: small;
+    }
+  
+  }
+
+}
+
+.familia-item:hover{
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+}
+
+.ventana__familia{
+  width: 20rem;
+  height: 10vh;
+  overflow-y: scroll;
+
+  li{
+    padding: 0.3rem;
+  }
+  
+}
+
+
+// estilos de modal
