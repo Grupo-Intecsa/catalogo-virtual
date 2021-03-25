@@ -1,15 +1,14 @@
 
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useEmblaCarousel } from 'embla-carousel/react'
-import { useMemo } from 'react/cjs/react.development'
 import { Link } from 'react-router-dom'
-
 
 const HookFamilasBar = ({ id }) => {
 
   const [ emblaRef ] = useEmblaCarousel({ loop: true })
   
   const familia = useMemo(() => {
+
     const familias = {
       ABB: {
         slug: 'ABB',
@@ -104,7 +103,6 @@ const HookFamilasBar = ({ id }) => {
       }
     
     }
-
     return Object.values(familias).filter(fam => fam.id === id)
   },[id])
   
