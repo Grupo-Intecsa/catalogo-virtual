@@ -2,8 +2,10 @@
 import axios from 'axios'
 import decode from 'jwt-decode'
 
+
 const api = axios.create({
     baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
+    // baseURL: 'http://localhost:3000/api/v1'
 })
 
 export default {
@@ -52,28 +54,51 @@ export default {
         }
         return response
     },
-    getBrandById: async(ctx, evt) => {
-        const { id } = evt
-        
-        let response = await api.get(`/brands/${id}`)
+    findByBrandIdCatalogo: async(ctx, evt) => {
+
+        const { id, page } = evt
+
+        let response = await api.get(`/brands/catalogo/${id}/?limit=10&offset=${ ( 10 * page ) - 10 }`)
             .then( res => res.data.message )
 
+
             return response
+    },
+    getFamiliaByTitleId: async(ctx, evt) => {
+
+        const { id, page } = evt
+
+        let response = await api.get(`/familia?id=${id}&limit=10&offset=${ (10 * page ) - 10 }`)
+        .then( res => res.data.message)
+
+        return response
+    },
+    getFamiliaByBrandId: async(ctx, event) => {
+
+        let response = await api.get(`/brand/familia/etiqueta/${event.id}`)
+            .then(res => res.data.message)
+            .catch(err => console.log(err))
+
+            return response
+
     },
     getLabelsById: async(ctx, evt) => {
         const { id } = evt
         
-        let response = await api.get(`/labels/${id}`)
+        let response = await api.get(`/labels/catalogo/${id}/?limit=11&offset=1`)
             .then( res => res.data.message )
 
             return response
 
     },
     getByText: async(_, evt) => {
-        const { id } = evt
+        const { id, page } = evt
         
-        let response = await api.get(`/catalog/search/?text=${id}`)
+        // let response = await api.get(`/catalog/search/?text=${id}`)
+        let response = await api.get(`/catalog/search?text=${id}&limit=5&offset=${ ( 5 * page ) - 5 }`)
             .then( res => res.data.message  )
+
+            if(response.status === 404 ) throw new Error('No hay informacion para tu busqueda')
 
             return response
     },
@@ -84,14 +109,11 @@ export default {
 
             return response
     },
+    // funciones para el loggin
     login: async(ctx, event) => {
-
-        console.log('READY FOR THIS SHIT', event.data)
 
         let response = await api.post('/user/login/', event.data)
         .then(res => res)
-
-        console.log(response.status)
         
         if(response.status === 200){
             localStorage.setItem('tokenUserSite', response.data.login.token)
@@ -102,8 +124,6 @@ export default {
 
     },
     auth: async() => {
-
-        console.log('I DONT FEEL PROTECTED')
 
         const token = localStorage.getItem('tokenUserSite')
                 

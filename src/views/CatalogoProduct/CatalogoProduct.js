@@ -6,13 +6,13 @@ import {
     CCardBody
 } from '@coreui/react'
 
-import Card from '../ProductosCards/Card'
 
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import HookProduct from './HookProduct'
 
 
 const CatalogoProduct = ({ match }) => {
@@ -20,25 +20,21 @@ const CatalogoProduct = ({ match }) => {
     const [ currentState, setCurrentState ] = useState('idle')
 
     const { params } = match
-
     
-    const [ state, send ] = useMachine(CatalogoXstate)
+    const [ state, send, service ] = useMachine(CatalogoXstate)
+
+    useEffect(() => {
+        const sub = service.subscribe((state) => console.log(state))
+        return () => sub.unsubscribe()
+    },[state, service])
 
     const { queryBrand } = state.context
 
-    // useEffect(() => {
-    //     const sub = service.subscribe((state) => {
-    //         console.log(state)
-    //     })
-    //     return () => sub.unsubscribe()
-    // })
-
-    
     useEffect(() => {
-
+        // Ok
         if(params.slug === "marcas"){
             setCurrentState("getBrandById")
-            send("GET_BRAND_ID", { id: params.id, slug: params.slug })
+            send("GET_BRAND_ID", { id: params.id, slug: params.slug, page: 1 })
             
 
         }else if(params.slug === 'categorias'){
@@ -48,11 +44,12 @@ const CatalogoProduct = ({ match }) => {
 
         }else if(params.slug === 'text'){
             setCurrentState("getByText")
-            send("GET_TEXT_QUERY", { id: params.id, slug: params.slug })          
+            send("GET_TEXT_QUERY", { id: params.id, slug: params.slug, page: 1 })          
+
 
         }else if(params.slug === 'familias'){
             setCurrentState("getFamilia")
-            send("GET_FAMILIA", { slug: params.slug })
+            send("GET_FAMILA_BY_TITLE", { id: params.id, slug: params.slug, page: 1 })
         }
 
     },[params.id])
@@ -84,19 +81,25 @@ const CatalogoProduct = ({ match }) => {
                     </CCardBody>
                 </CCard>
             </div>
-        ) }
+        )}
 
-        {state.matches('success') && (
-                    <div>
-                        <div className="center--content">
-                        { Array.isArray(queryBrand) 
-                            ? queryBrand.map(item => <Card key={ item._id } props={item} />) 
-                            : Object.values(queryBrand).map(item => <Card key={ item._id } props={item} />)
-                        }
-                        </div>
-                    </div>
-                )
-                    
+        { state.matches('error') && (
+            <div className="mt-5">
+                <CCard>
+                    <CCardBody>
+                            <span className="bg--random--products">No hay productos que coincidan con tu búsqueda.</span>
+                                    <ul className="mt-2">
+                                        <li>Revisa la ortografía de la palabra.</li>
+                                        <li>Utiliza palabras más genéricas o menos palabras.</li>
+                                        <li>Navega por las categorías para encontrar un producto similar</li>
+                                    </ul>
+                    </CCardBody>
+                </CCard>
+            </div>
+        )}
+
+        {
+            state.matches('success') && <HookProduct query={ queryBrand } />                    
         }
         {
             state.matches('reject') && (
@@ -110,7 +113,6 @@ const CatalogoProduct = ({ match }) => {
             )
         }
         </CCol>
-
     </CRow>
     )
 }

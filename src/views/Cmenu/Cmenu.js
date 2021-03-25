@@ -5,19 +5,25 @@ const Cmenu = ({ props }) => {
 
     return(
         <Fragment>
-
-            <div><p className="bg--random--products mt-3">{props.cardname}</p></div>
-            {Object.values(props).slice(0, Object.values(props).length - 1 ).map(item => {
+            <div className="menuTop">
+            {Object.values(props).slice(0, Object.values(props).length - 1 ).map((item, index) => {
                 return(    
-                    
+                <div>    
                     <CLink 
+                        key={index}
                         onClick={() => document.body.scrollTop = 0 }
                         to={`/product/${(props.cardname).toLowerCase()}/${item._id}`} 
                         className="nolink d-flex justify-content-between menu--categorias--container">
-                            {item.title}<p>{item.count}</p>
+                        <p>
+                            {item.title}
+                            <br />
+                            {item.count}
+                        </p>
                     </CLink>
+                </div>
                 )}
             )}
+            </div>
 
         </Fragment>
     )

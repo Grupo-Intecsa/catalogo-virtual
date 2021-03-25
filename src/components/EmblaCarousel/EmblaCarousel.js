@@ -25,6 +25,7 @@ const EmblaCarousel = ({ slides }) => {
     setNextBtnEnabled(embla.canScrollNext());
   }, [embla, setSelectedIndex]);
 
+
   useEffect(() => {
     if (!embla) return;
     onSelect();
@@ -37,7 +38,7 @@ const EmblaCarousel = ({ slides }) => {
       <div className="embla">
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
-            {slides.map((index) => (
+            {slides.map(index => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner">
                   <div>

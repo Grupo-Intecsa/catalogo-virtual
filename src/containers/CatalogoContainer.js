@@ -2,7 +2,6 @@ import React, { Suspense } from 'react'
 import { 
     CCol,
     CContainer, 
-    CRow,
 } from '@coreui/react'
 
 import { Switch, Redirect, Route } from 'react-router-dom'
@@ -13,21 +12,15 @@ import routes from '../routes'
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-import Categories from '../views/ProductosCards/Categories'
-
 const antIcon = <LoadingOutlined style={{ 'fontSize': 24 }} spin />
 const loading = <Spin indicator={antIcon} />
 
-const CatalogoContainer  = (busqueda) => {
+const CatalogoContainer  = () => {
     
     return(
-    <CContainer className="c--layout">
+    <CContainer>        
         
-        <CRow className="center--content-nav">
-            <CCol className="col-12 col-md-4">
-                <Categories busqueda={busqueda} />
-            </CCol>
-            <CRow className="col-12 col-md-8 d-flex">
+            <CCol className="d-flex justify-content-center">
                 <Suspense fallback={loading}>
                     <Switch>
                         {
@@ -49,8 +42,8 @@ const CatalogoContainer  = (busqueda) => {
                         <Redirect from="/" to="/dashboard" />
                     </Switch>
                 </Suspense>
-            </CRow>
-        </CRow>
+            </CCol>
+        
     </CContainer>
         
     )

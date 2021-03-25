@@ -4,7 +4,7 @@ import { CModal } from '@coreui/react'
 import { useState } from 'react'
 
 import logo from '../assets/icons/git_logo.svg'
-import contacto from '../assets/social/gmail.svg'
+import contacto from '../assets/social/contact.svg'
 import mapa from '../assets/social/maps.svg'
 
 import face from '../assets/social/facebook.svg'
@@ -26,7 +26,6 @@ const MapaModal = ({ toggole, isMap }) => {
   )
 }
 
-
 const TheFooter = () => {
 
   const [ isMap, setIsMap ] = useState(false)
@@ -37,7 +36,7 @@ const TheFooter = () => {
     <Fragment>
         <div className="footer-main">
 
-        <div>
+        <div className="w-25 d-flex justify-content-center align-items-center">
           <img src={logo} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-logo" />
         </div>
           <div className="footer-header">
@@ -72,22 +71,11 @@ const TheFooter = () => {
                 </div>
             </div>
             <hr></hr>
-            <div className="footer_secction">
-              {/* SECCIONES */}
-              <h5 className="ms-4">Categorías</h5>
-              <ul>
-                <li>ABB</li>
-                <li>Onka</li>
-                <li>Canalización</li>
-              </ul>
-              </div>
             
-            
-          </div>
-          <div >
+            <div >
               {/* redes sociales */}
               <h5 className="mb-3 text-center">Síguenos en:</h5>
-              <div className="footer_secction">
+              <div className="footer_secction d-flex justify-content-center">
                 <ul>
                   <li>
                   <img src={face} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-redes" />
@@ -100,6 +88,10 @@ const TheFooter = () => {
             
               {/* logos de redes sociales */}
             </div>
+            
+            
+          </div>
+      
         </div>
         <div className="footer-licencia">
           <p className="text-center font-weight-bold">2021 - Grupo Intecsa</p>
