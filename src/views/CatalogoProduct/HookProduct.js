@@ -4,10 +4,12 @@ import {
   CPagination
   } from '@coreui/react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
-import { useParams } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 
 const Card = React.lazy(() => import('../ProductosCards/Card'))
 const HookFamilasBar = React.lazy(() => import('./HookFamilasBar'))
@@ -16,16 +18,19 @@ const HookFamilasBar = React.lazy(() => import('./HookFamilasBar'))
 // TODO crear paginador en todas las rutas
 
 const HookProduct = ({ query }) => {
-  
 
+  const history = useHistory()
+
+  
   const params = useParams()
   const { slug, id }  = params
   const [ state, send ] = useMachine(CatalogoXstate)
     
+  const viewTop = document.getElementById('topHookProducto')
 
   const [ queryData, setQueryData ] = useState(query)
 
-  const [ memoria, seMemoria ] = useState({
+  const [ memoria, setMemoria ] = useState({
     limit: Object.entries(queryData?.response).length,
     count: Number(Object.values(queryData.info).map((total) => total ).toString())
   })
@@ -56,17 +61,29 @@ const HookProduct = ({ query }) => {
     }
   },[state.value])
 
-
+    
   return(
-    <div>
+    <div id="topHookProducto">
       
       <div>
-        <HookFamilasBar  id={ id }/>
+          <HookFamilasBar  id={ id } />
       </div>
+
+      <div className="d-flex justify-content-center">
+      <div className="title--bar--product">
       
+        <button className="btn btn-ghost-info d-flex align-items-center p-2" onClick={() => history.goBack()}>
+                  <FontAwesomeIcon icon={faCaretLeft} size="3x"></FontAwesomeIcon>
+                  <span className="font-weight-bold ml-1">Regresar</span>
+              </button>
+        <h4>Página: {currentPage}</h4>
+        <span className="sm--hide">{`Encontrados: ${limit}`}</span>
+
+      </div>
+      </div>
+
       <div className="center--content">
-      <h4 className="text-center mt-5">Pagína: {currentPage}</h4>
-      <span className="d-flex flex-row text-center"><p className="pr-3">Productos encontrados:</p>{limit}</span>
+        
       { Array.isArray(queryData) 
           ? queryData.response.map(item => <Card key={ item._id } props={item} />) 
           : Object.values(queryData.response).map(item => <Card key={ item._id } props={item} />)
@@ -86,7 +103,7 @@ const HookProduct = ({ query }) => {
           activePage={currentPage}
           pages={pages}
           onActivePageChange={setCurrentPage}
-          onClick={() => document.body.scrollTop = 0}
+          onClick={() => viewTop.scrollIntoView()}
       />
     
     )

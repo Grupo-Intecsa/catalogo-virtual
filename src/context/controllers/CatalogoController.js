@@ -77,7 +77,7 @@ export default {
 
         let response = await api.get(`/brand/familia/etiqueta/${event.id}`)
             .then(res => res.data.message)
-            .catch(err => console.log(err))
+            .catch(err => err)
 
             return response
 
@@ -132,5 +132,31 @@ export default {
         })
         
         return res
+    },
+    getCatalogoById: async(ctx, evt) => { 
+
+        const { id } = ctx
+
+        const res = await api.get(`/catalog/detalle/product/${id}`)
+        .then(res => res.data.message)
+        
+        return res
+    },
+    getFamiliaById: async(ctx, evt) => { 
+
+        const { id } = ctx
+
+        const res = await api.get(`/familia/detalle/product/${id}`)
+        .then(res => res.data.message)
+
+        return res
+    },
+    getProductsByParentId: async(ctx, event) => {
+        const id = event.data
+
+        const res = await api.get(`/label/familia/parent/${id}`)
+        .then(res => res.data.message)
+
+        return res 
     }
 }

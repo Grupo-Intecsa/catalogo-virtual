@@ -10,15 +10,13 @@ import {
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Spin, Space } from 'antd';
 
 const HookProduct = React.lazy(() => import('./HookProduct')) 
 
 const CatalogoProduct = ({ match }) => {
 
     const [ currentState, setCurrentState ] = useState('idle')
-
     const { params } = match
     
     const [ state, send ] = useMachine(CatalogoXstate)
@@ -48,14 +46,12 @@ const CatalogoProduct = ({ match }) => {
 
 
         }else if(params.slug === 'familias'){
-            setCurrentState("getFamilia")
+            setCurrentState("getFamiliaByTitleId")
             send("GET_FAMILA_BY_TITLE", { id: params.id, slug: params.slug, page: 1 })
         }
 
     },[params.id])
 
-
-    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
     return(
 
@@ -64,9 +60,11 @@ const CatalogoProduct = ({ match }) => {
         <CCol>
         { state.matches(`${currentState}`) && (
             <div className="content--no--data">
-            <h2>Cargando productos...</h2>{" "}
-            <Spin indicator={antIcon} />
-        </div>
+                <h2>Cargando productos...</h2>{" "}
+                <Space size="large">
+                    <Spin size="large" />
+                </Space>
+            </div>
         )}
         { state.matches('success') && queryBrand.length === 0 && (
             <div>
@@ -98,7 +96,8 @@ const CatalogoProduct = ({ match }) => {
             </div>
         )}
 
-        {
+        {   
+            
             state.matches('success') && <HookProduct query={ queryBrand } />                    
         }
         {

@@ -5,7 +5,7 @@ import { Link, Redirect, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
-import cosa from '../assets/icons/path2.webp'
+import logo from '../assets/icons/path2.webp'
 
 const TheHeader = ({ busqueda }) => {
 
@@ -43,10 +43,10 @@ const TheHeader = ({ busqueda }) => {
   return (
         <Fragment>
             
-            <nav id="Navigation" className="c-header fixed-top px-3 bg-facebook">
+            <nav id="Navigation" className="c-header px-3 bg-facebook">
                 <section>
                   <Link to="/" onClick={() => document.body.scrollTop = 0}>
-                    <CImg src={cosa} className="iconSVG" height="45px"/>
+                    <CImg src={logo} className="iconSVG" height="45px"/>
                   </Link>
                 </section>
                 <section>
@@ -63,7 +63,7 @@ const TheHeader = ({ busqueda }) => {
                   <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
                 </section>
             </nav>
-              <div className="bg-facebook d-flex justify-content-center align-items-center d-sm-down-none border-0">
+              <div className="bg-facebook d-flex justify-content-center align-items-center">
                 <a href="https://forms.monday.com/forms/embed/608067760034e1ac1f86e10392668e8b?r=use1" title="Ponte en contacto con nostros para una cotizacion especializada" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">Contacto</span></a>
                 <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>
                 <a href="/#" title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." rel="nofollow" className="mr-2" ><span className="texto-navbar">Cotizador de servicios</span></a>

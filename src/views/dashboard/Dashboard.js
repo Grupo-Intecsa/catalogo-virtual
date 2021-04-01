@@ -4,14 +4,12 @@ import {
     CRow,
 } from '@coreui/react'
 
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 
-const Card = React.lazy(() =>  import('../ProductosCards/Card'))
+import { Spin, Space } from 'antd';
 
+const Card = React.lazy(() =>  import('../ProductosCards/Card'))
 
 const Dashboard = ({ match }) => {
 
@@ -23,15 +21,16 @@ const Dashboard = ({ match }) => {
     },[send])
 
     const { sample } = state.context
-    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
-
+    
     return(
     <CRow>
             <CCol>
                 {state.matches('sample') && isExact && (
                     <div className="content--no--data">
                         <h2 className="mr-3">Cargando productos...</h2>{" "}
-                        <Spin indicator={antIcon} />
+                        <Space size="large">
+                            <Spin size="large" />
+                        </Space>
                     </div>
                 ) }
                 

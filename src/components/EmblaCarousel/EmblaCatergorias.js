@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 // import { useMachine } from '@xstate/react'
 // import { CatalogoMachine } from '../../context/catalogoContext'
 import { useEmblaCarousel } from 'embla-carousel/react'
@@ -472,14 +472,13 @@ export default function EmblaCategorias(){
 
     const catData = categorias.filter(item => item.count > 0)
 
-    const [ emblaRef ] = useEmblaCarousel({ loop: true })
-    // const [ state, send, service ] = useMachine(CatalogoMachine)
-
-  // useEffect(() => {
-  //   send('GET_LABELS')
-  // },[])
-
-  // const { labels } = state.context
+    const [ emblaRef, embla ] = useEmblaCarousel({ loop: true })
+    
+    useEffect(() => {
+        if(embla && embla.slideNodes().length !== catData.length){
+            embla.reInit()
+        }
+    },[embla, catData])
 
 return(
 <Fragment>

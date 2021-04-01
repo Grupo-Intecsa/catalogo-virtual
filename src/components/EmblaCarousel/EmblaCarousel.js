@@ -33,6 +33,12 @@ const EmblaCarousel = ({ slides }) => {
     embla.on("select", onSelect);
   }, [embla, setScrollSnaps, onSelect]);
 
+  useEffect(() => {
+    if(embla && embla.slideNodes().length !== slides.length){
+      return embla.reInit()
+    }
+  },[embla, slides])
+
   return (
     <>
       <div className="embla">

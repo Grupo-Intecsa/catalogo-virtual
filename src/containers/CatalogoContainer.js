@@ -9,16 +9,16 @@ import { Switch, Redirect, Route } from 'react-router-dom'
 // rutas de la aplicacion
 import routes from '../routes'
 
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-
-const antIcon = <LoadingOutlined style={{ 'fontSize': 24 }} spin />
-const loading = <Spin indicator={antIcon} />
+    const loading = (
+    <div className="pt-3 text-center">
+        <div className="sk-spinner sk-spinner-pulse"></div>
+    </div>
+    )
 
 const CatalogoContainer  = () => {
     
     return(
-    <CContainer>        
+    <CContainer id="topMenuCard">        
         
             <CCol className="d-flex justify-content-center">
                 <Suspense fallback={loading}>

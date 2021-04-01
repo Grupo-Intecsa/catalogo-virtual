@@ -1,14 +1,22 @@
 
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useEmblaCarousel } from 'embla-carousel/react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+
 
 const HookFamilasBar = ({ id }) => {
-
-  const [ emblaRef ] = useEmblaCarousel({ loop: true })
   
-  const familia = useMemo(() => {
 
+  const history = useHistory()
+  
+  const { location } = history
+
+  const [ emblaRef, embla ] = useEmblaCarousel({ loop: true })
+  
+  const [ brandFilter ] = useState(location.state?.brand || id)
+
+  const familia = useMemo(() => {
+    
     const familias = {
       ABB: {
         slug: 'ABB',
@@ -24,43 +32,43 @@ const HookFamilasBar = ({ id }) => {
             slug: 'mini202',
             title: 'MINI 202',
             img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/mini202.webp?alt=media&token=96895432-a860-4780-8d96-6c7332394b35',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "6064eeb67758a80015f2b508"
           },
           {
             slug: 'mini203',
             title: 'MINI 203',
             img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/mini203.webp?alt=media&token=75a003bc-868b-4d4b-a986-99094080e27f',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "60656beacb8bf40015ebc36f"
           },
           {
             slug: 'mini204',
             title: 'MINI 204',
             img: 'https://cdn.productimages.abb.com/9PAA00000041009_720x540.png',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "60657e5722386e00157627d7"
           },
           {
             slug: 'mini201na',
             title: 'MINI 201 + NA',
             img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/familias2012cds.webp?alt=media&token=2701e989-94e8-4c9c-a208-1f9021a1e635',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "606575af3d6ee90015278b9c"
           },
           {
             slug: 'mini203na',
             title: 'MINI 203 + NA',
             img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/mini203.webp?alt=media&token=75a003bc-868b-4d4b-a986-99094080e27f',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "60657fcb22386e00157627da"
           },
           {
             slug: 'xt1c3p',
             title: 'XT1C 3p',
             img: 'https://cdn.productimages.abb.com/9IBA248846_720x540.png',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "6065818a22386e00157627dd"
           },
           {
             slug: 'xt1c4p',
             title: 'XT1C 4p',
             img: 'https://cdn.productimages.abb.com/9IBA248846_720x540.png',
-            id: "605c40dbdb74f65918cf2ddd"
+            id: "606582d522386e00157627e0"
           },
           
         ]
@@ -103,8 +111,17 @@ const HookFamilasBar = ({ id }) => {
       }
     
     }
-    return Object.values(familias).filter(fam => fam.id === id)
+    const currentFamilia = Object.values(familias).filter(fam => fam.id === brandFilter)
+
+    return currentFamilia
   },[id])
+
+  useEffect(() => {
+      if(embla && embla.slideNodes().length !== familia.length){
+        return embla.reInit()
+      }
+  },[embla, familia ])
+  
   
   return(
     <div>
@@ -116,14 +133,17 @@ const HookFamilasBar = ({ id }) => {
       {
         
         familia.map(fam => fam.familias.map(item => {
-          return(
-            <div className="btn familia-item embla__slide__familias">
-              <Link to={`/product/familias/${item.id}`}>
+
+        return(
+          <div className="btn familia-item embla__slide__familias">
+            <Link to={{ pathname: `/product/familias/${item.id}`, state: { brand: brandFilter }}}>
+              
                 <div>
                   <img src={item.img} alt={item.title} key={item.slug} />
                   <div className="texto-title-neibor text-black-50"><p>{item.title}</p></div>
                 </div>
-              </Link>
+    
+            </Link>
             </div>
           )
         }))

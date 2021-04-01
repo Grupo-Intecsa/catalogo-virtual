@@ -27,6 +27,7 @@ class App extends Component {
 
   render() {
     return (
+      
       <UserContextProvider>
       <CatalogoProvider>
       <HashRouter>
@@ -44,6 +45,7 @@ class App extends Component {
       </HashRouter>
       </CatalogoProvider>
       </UserContextProvider>
+      
     );
   }
 }

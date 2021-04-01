@@ -11,7 +11,8 @@ export const CatalogoXstate = Machine({
         all_products: [],
         sample: [],
         queryBrand: [],
-        familia: []
+        familia: [],
+        productsOfParent: []
     },
     states: {
         idle: {},
@@ -109,6 +110,57 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        getCatalogoById: {
+            invoke: {
+                src: CatalogoController.getCatalogoById,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, event) => event.data
+                    })
+                },
+                onError: {
+                    target: 'getFamiliaById',
+                    actions: assign({
+                        queryBrand: (_, event) => event.data
+                    })
+                }
+            }
+        },
+        getFamiliaById: {
+            invoke: {
+                src: CatalogoController.getFamiliaById,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (_, event) => event.data
+                    })
+                },
+                onError: {
+                    target: 'error',
+                    actions: assign({
+                        queryBrand: (_, event) => event.data
+                    })
+                }
+            }
+        },
+        getProductsByParentId: {
+            invoke: {
+                src: CatalogoController.getProductsByParentId,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        productsOfParent: (ctx, event) => event.data
+                    })
+                },
+                onError: {
+                    target: 'error',
+                    actions: assign({
+                        error: (ctx, event) => event.data
+                    })
+                }
+            }
+        },
         error: {},
         success: {},
         reject: {},
@@ -133,7 +185,13 @@ export const CatalogoXstate = Machine({
             {
                 target: 'reject'
             }
-        ]
+        ],
+        GET_CATALOGO_BY_ID: {
+            target: "getCatalogoById",
+            actions: (ctx, event) => ctx.id = event.data
+        },
+        GET_PRODUCTS_BY_PARENT_ID: "getProductsByParentId"
+        
 
     }
 })

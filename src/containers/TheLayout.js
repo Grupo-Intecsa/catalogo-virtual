@@ -10,7 +10,7 @@ import {
 // import Csv2Json from '../lab/Csv2Json'
 // import GtiBanner from '../views/gtiBanner/GtiBanner'
 const  EmblaCarousel  = React.lazy(() => import('../components/EmblaCarousel/EmblaCarousel'))
-const  EmblaCategorias  = React.lazy(() => import('../components/EmblaCarousel/EmblaCatergorias'))
+// const  EmblaCategorias  = React.lazy(() => import('../components/EmblaCarousel/EmblaCatergorias'))
 const  Categories = React.lazy(() => import('../views/ProductosCards/Categories'))
 
 
@@ -38,8 +38,9 @@ const TheLayout = (props) => {
             <Categories busqueda={props} />
           </div>
         <div>
+          
           <CatalogoContainer {...props} busqueda={busqueda} />
-          <EmblaCategorias />
+          {/* <EmblaCategorias /> */}
           <TheFooter/>
         </div>
       </div>

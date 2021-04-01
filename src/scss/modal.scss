@@ -1,18 +1,67 @@
 .modal--productos{
-  
+  width: 100%;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 0 0 20px 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 0rem;
 }
 
+.modal-ca{
+  width: 100%;
+  padding: 1rem;
+  grid-column: span 1;
+}
 
+.modal-cb{
+  width: 100%;
+  grid-column: span 1/3;
+  grid-row: span 1;
+  padding: 1rem;
+}
 
-@media (max-width: 50rem){
+.modal-cc{
+  width: 100%;
+  grid-column: span 2/4;
+}
+
+.modal-cd{
+  width: 100%;
+  grid-column: span 1/2;
+  grid-row: span 2/4;
+  padding: 1rem;
+  
+}
+
+.modal--img{
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 65rem){
   .modal--productos{
     display: flex;
     flex-direction: column;
+    width: 350px;
         
   }
+  .modal--img{
+    width: 200px;
+    height: auto;
+  }
+}
+
+.modal--title-product{
+  display: inline-flex;
+  border-radius: 10px 10px 0 0;
+  margin: 10px 0;
+  width: 100%;
+  height: 4rem;
+  padding: 1rem;
+  background-color: rgb(255, 255, 255);
+
 }
 
 .modal-carousel{
@@ -31,11 +80,20 @@
     
     padding: 1rem;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: large;
+    font-size: x-large;
+    width: 90%;
     justify-content: right;
     text-transform: uppercase;
   }
   
+}
+
+@media (max-width: 65rem){
+  .modal-datos{
+    h2{
+      font-size: large;
+    }
+  }
 }
 
 .supermodal{
@@ -60,11 +118,41 @@
 
 }
 
+.leermas{
+  display: none;
+}
+
 .modal-desc{
+  width: 90%;
   padding: 0.8rem;
   color: #212529;
   font-size: small;
+  text-align: justify;
 }
+
+
+@media (max-width: 65rem){
+  .desc-module{
+    width: 100%;
+    margin: 0 0 1em 0;
+    overflow: hidden;
+  }
+
+  .line-clamp{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .leermas{
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+    color: rgb(170, 170, 170)
+  }
+
+}
+
 
 .modal-botonera{
   display: flex;
@@ -135,3 +223,56 @@
   padding-left: 1rem;
 }
 
+.hookCardModal{
+
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  label{
+    font-weight: bold;
+    font-size: large;
+  }
+
+  select {
+
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    height: 3rem;
+    font-size: large;
+    border: none;
+    padding: 0 1rem 0 1rem;
+    font-family: 'Roboto', sans-serif;
+
+  }
+
+  select:focus{
+    border: none;
+  }
+  
+
+}
+
+.titulos__modal__hook{
+  
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+  p{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    font-size: medium;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  span{
+    padding: 0.3rem;
+    font-size: large;
+    
+  }
+
+}
