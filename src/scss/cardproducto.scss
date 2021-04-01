@@ -118,6 +118,12 @@
   padding: 1rem;
 }
 
+@media (max-width: 50rem){
+  .texto-navbar{
+    font-size: small;
+  }
+}
+
 .border_bootom{
   border: none;
   border-style: solid;

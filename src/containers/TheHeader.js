@@ -64,7 +64,7 @@ const TheHeader = ({ busqueda }) => {
                 </section>
             </nav>
               <div className="bg-facebook d-flex justify-content-center align-items-center">
-                <a href="https://forms.monday.com/forms/embed/608067760034e1ac1f86e10392668e8b?r=use1" title="Ponte en contacto con nostros para una cotizacion especializada" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">Contacto</span></a>
+                <a href="https://forms.monday.com/forms/embed/608067760034e1ac1f86e10392668e8b?r=use1" title="Ponte en contacto con nosotros para una cotizacion especializada" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">Contacto</span></a>
                 <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>
                 <a href="/#" title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." rel="nofollow" className="mr-2" ><span className="texto-navbar">Cotizador de servicios</span></a>
               </div>
