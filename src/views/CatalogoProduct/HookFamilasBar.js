@@ -78,9 +78,10 @@ const HookFamilasBar = ({ id }) => {
         id: '603eef9df2aaf100158dc3a6',
         familias: [
           {
-            slug: 'baseniveliadorpos',
-            title: 'Base Niveladora POS',
-            img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/02AU143607I0039_03.webp?alt=media&token=aafb754f-ced4-4d58-a734-c520a26700e4'
+            slug: 'cajaregistro',
+            title: 'Caja Registro',
+            img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/02AU143607I0039_03.webp?alt=media&token=aafb754f-ced4-4d58-a734-c520a26700e4',
+            id: "6065e1c0d36fed00157fc69b"
           },
           {
             slug: 'registrosydcutos',
