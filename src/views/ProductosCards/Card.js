@@ -39,10 +39,13 @@ const Card = ({ props }) =>{
                 </div>
                 
                 <div className="contenido-neibor-card">
-                    <Link to={`/detalle/${_id}/${linkName}`} onClick={() => topView.scrollIntoView()}>
-                    <button className="btn btn-nebor font-weight-bold">Ver detalle</button>
-                    </Link>
 
+                        <Link to={`/detalle/${_id}/${linkName}`} onClick={() => topView.scrollIntoView()}>
+                            <button className="btn btn-nebor font-weight-bold">
+                                Ver detalle
+                            </button>
+                        </Link>
+                    
                     <a href={whatsappMessage} target="_blank" rel="noreferrer"  className="btn btn-nebor-contacto">
                         Cotizar <img src={whataspp} alt="logo whatsapp" style={{ "width": "20px"}} className="ml-1"/>
                     </a>

@@ -29,21 +29,19 @@ class App extends Component {
     return (
       
       <UserContextProvider>
-      <CatalogoProvider>
-      <HashRouter>
-          <React.Suspense fallback={loading}>
+        <CatalogoProvider>
 
-            <Switch>
+        <HashRouter>
+            <React.Suspense fallback={loading}>
+              <Switch>
+                  <Route exact path="/login" name="Login" render={(props) => <Login {...props}/>} />
+                  <Route exact path="/admin" name="Panel de Control" render={(props) => <Validate {...props}/>} />
+                  <Route path="/" name="Home" render={(props) => <TheLayout {...props}/>} />
+              </Switch>
+            </React.Suspense>
+        </HashRouter>
 
-              <Route exact path="/login" name="Login" render={props => <Login {...props}/>} />
-              <Route exact path="/admin" name="Panel de Control" render={props => <Validate {...props}/>} />
-
-              <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
-              
-            </Switch>
-          </React.Suspense>
-      </HashRouter>
-      </CatalogoProvider>
+        </CatalogoProvider>
       </UserContextProvider>
       
     );
