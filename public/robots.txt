@@ -1,0 +1,4 @@
+
+Sitemap: https://itamx.com/sitemap.xml
+http://www.google.com/ping?sitemap=https://itamx.com/sitemap.xml
+
