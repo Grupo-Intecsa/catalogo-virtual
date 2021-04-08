@@ -128,7 +128,7 @@ const FormContact = ({ visible, contactoToggle, title }) => {
             <label htmlFor="coment">Comentario</label>          
             <textarea rows={4} cols={4} id="coment" ref={register} name="coment" defaultValue={title} />
 
-            <p>¿Tienes un proyecto?, adunta una lista o datos de tu proyecto</p>
+            <p>¿Tienes un proyecto?, adjunta una lista o datos de tu proyecto</p>
             <input type="file" id="document" name="document" ref={register} hidden onChange={handleFileUpload} />
             <label htmlFor="document"><span><FontAwesomeIcon icon={faPaperclip} size="2x" /></span></label>
             { fileUpload && fileUpload.map(file => <UploadForm file={file} setUrlValid={setUrlValid} className="mb-2" />)}
