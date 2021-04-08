@@ -13,6 +13,8 @@ import EmblaModal from '../../components/EmblaCarousel/EmblaModal'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 import { useMachine } from '@xstate/react'
 
+import FormContact from 'views/FormContact'
+
 // ESTE SE PUEDE EJECUTAR CON USECONTEXT
 
 const mlVerify = ( item ) => {
@@ -108,7 +110,7 @@ const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
                         value={0}
                         defaultValue={0}
                         selected
-                        >Selecciona el amperaje</option>
+                        >Selecciona la capacidad</option>
                     {Object.values(productsOfParent).map(item => <option value={item._id}>{item.capacidad}</option>)}
                 </select> 
                 </>)   
@@ -122,11 +124,11 @@ const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
 const HookCardProduct = ({ data }) => {
     
     const { title, ml, desc, urlfoto, urldata, model, isKit, compatible, familia, _id } = data
+    
+    const [ cotizar, setCotizar ] = useState(false)
+    const contactoToggle = () => setCotizar(!cotizar)
 
     const [ leermas, setLeermas ] = useState(false)
-
-    const phone = "5215546371510"
-    const whatsappMessage = `https://api.whatsapp.com/send/?phone=${phone}&text=Me gustaria tener información del producto: ${title}`
 
     const history = useHistory()
 
@@ -189,9 +191,10 @@ const HookCardProduct = ({ data }) => {
             <div  className="modal-cc">
                 {/* contacto ecomerce */}
                 <div className="modal-botonera">
-                    <a href={whatsappMessage} target="_blank" rel="noreferrer" className="btn btn-modal-contacto">
-                            Cotizar <img src={whataspp} alt="logo whatsapp" style={{ "width": "20px"}} className="ml-1"/>
-                    </a>
+                <button className="btn btn-modal-contacto" onClick={contactoToggle}>
+                        Cotizar <img src={whataspp} alt="logo whatsapp" style={{ "width": "20px"}} className="ml-1"/>
+                    </button>
+                    <FormContact visible={cotizar} contactoToggle={contactoToggle} title={title} />
                 </div>
                 <div className="modal-aviso">
                     {/* donde comprar */}

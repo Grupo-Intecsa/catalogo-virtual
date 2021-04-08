@@ -108,7 +108,7 @@ const Step4 = (props) => {
                     <FontAwesomeIcon size="7x" icon={faCloudDownloadAlt} className="label-nubecita"/>
                 </label>
         
-                <input id="pdf-input" multiple={true} type="file" onChange={handledInput} className="invisible" name="urlfoto" ref={register} />
+                <input id="pdf-input" multiple={true} type="file" onChange={handledInput} hidden aria-hidden="true" name="urlfoto" ref={register} />
                 <div className="form-control-file">
                     
                         {file && file.map(file => <ProgressBar file={ file } setFile={ setFile } setUrlDone={setUrlDone} />)}                        

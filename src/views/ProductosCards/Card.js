@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+
+import FormContact from 'views/FormContact'
 
 import whataspp from '../../assets/icons/whatsapp.svg'
 
@@ -9,10 +11,10 @@ const loading = (
 
 const Card = ({ props }) =>{
 
-    const { title, tags, urlfoto, model, isKit, _id } = props
+    const [ cotizar, setCotizar ] = useState(false)
+    const contactoToggle = () => setCotizar(!cotizar)
 
-    const phone = "5215546371510"
-    const whatsappMessage = `https://api.whatsapp.com/send/?phone=${phone}&text=Me gustaria tener información del producto: ${title}`
+    const { title, tags, urlfoto, model, isKit, _id } = props
 
     const linkName = title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
     const topView = document.getElementById('topMenuCard')
@@ -46,9 +48,10 @@ const Card = ({ props }) =>{
                             </button>
                         </Link>
                     
-                    <a href={whatsappMessage} target="_blank" rel="noreferrer"  className="btn btn-nebor-contacto">
+                    <button className="btn btn-nebor-contacto" onClick={contactoToggle}>
                         Cotizar <img src={whataspp} alt="logo whatsapp" style={{ "width": "20px"}} className="ml-1"/>
-                    </a>
+                    </button>
+                    <FormContact visible={cotizar} contactoToggle={contactoToggle} title={title} />
                 </div>
             </div>
         </div>

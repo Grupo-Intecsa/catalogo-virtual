@@ -158,5 +158,15 @@ export default {
         .then(res => res.data.message)
 
         return res 
-    }
+    },
+    sendToMonday: async(ctx, event) => {
+        
+        console.log('RECONOCER', event.data)
+        
+        const res = await api.post(`/monday/create`, event.data)
+        .catch(res => res)
+
+        if(res.status === 200) return res
+    },
+    
 }

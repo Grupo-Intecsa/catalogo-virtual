@@ -5,7 +5,7 @@ import {
 } from '@coreui/react'
 
 import { useMachine } from '@xstate/react'
-import { CatalogoXstate } from '../../context/CatalogoXstate'
+import { CatalogoXstate } from 'context/CatalogoXstate'
 
 import { Spin, Space } from 'antd';
 

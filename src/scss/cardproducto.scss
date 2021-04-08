@@ -216,12 +216,15 @@
 }
 
 .ventana__familia{
+  border: 2px solid #3a3a3a;
+  border-radius: 4px;
   width: 20rem;
   height: 10vh;
   overflow-y: scroll;
 
   li{
     padding: 0.3rem;
+    list-style: none;
   }
   
 }
@@ -288,5 +291,168 @@
   }
 }
 
+// FOMULARIO DE CONTACTO COTIZACION WHATSAPP
+
+.form--contacto{
+
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  box-sizing: border-box;
+
+  label{
+    box-sizing: border-box;
+    border: 0;
+    padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    color: #1c1e21;
+
+  }
+
+  input{
+    height: 3rem;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: large;
+    padding-left: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    // border: none;
+    border: 1px solid #3a3a3a;
+    // background-color: #E8F0FE ;
+    color: #1c1e21;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  }
+
+  input:hover,
+  input:focus,
+  input:active,
+  input:placeholder-shown{
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    border: 1px solid #a1c4fd;
+    
+  }
+
+  textarea{
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: large;
+    padding: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 0.3rem solid transparent;
+    // border: none;
+    border: 1px solid #3a3a3a;
+    // background-color: #E8F0FE ;
+    color: #1c1e21;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  }
+
+  select{
+    height: 3rem;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: large;
+    padding-left: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 0.3rem solid transparent;
+    // border: none;
+    border: 1px solid #3a3a3a;
+    // background-color: #E8F0FE ;
+    color: #1c1e21;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+
+
+  }
+
+  select:hover,
+  select:focus,
+  select:active{
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #a1c4fd;
+    
+  }
+
+  @media (max-width: 550px){
+    input{
+      font-size: small;
+      height: 2rem;
+      width: 100%;
+    }
+
+    textarea{
+      overflow-y: scroll;
+      font-size: small;
+      height: 5rem;
+      width: 100%;
+      
+    }
+    
+    label{
+      width: 100%;
+      font-weight: bold;
+      font-size: small;
+    }
+
+    select{
+      font-size: small;
+      height: 2rem;
+      width: 100%;
+    }
+
+    option{
+      font-size: small;
+    }
+
+    select:hover,
+    select:focus,
+    select:active{
+      font-size: small;
+      border: 1px solid #a1c4fd;
+      
+    }
+  
+
+  }
+
+  button{
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    width: 12rem;
+    padding: 0.86rem;
+    color: #1c1e21;
+    border: 1px solid slategrey;
+    background-color: white;
+    
+  }
+
+  button:hover,
+  button:focus{
+    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    color: rgb(255, 255, 255);
+  }
+
+  @media (max-width: 550px){
+    button{
+      width: 12rem;
+      padding: 0.3rem;
+    }
+  }
+
+}
+.form--contacto .form--submit{
+  
+  display: flex;
+  justify-content: center;
+}
 
 // estilos de modal

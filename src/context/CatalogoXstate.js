@@ -161,6 +161,18 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        sendToMonday: {
+            invoke: {
+                src: CatalogoController.sendToMonday,
+                onDone:{
+                    target: 'success',
+                },
+                onError: {
+                    target: 'error'
+                }
+            }
+        },
+        
         error: {},
         success: {},
         reject: {},
@@ -190,7 +202,8 @@ export const CatalogoXstate = Machine({
             target: "getCatalogoById",
             actions: (ctx, event) => ctx.id = event.data
         },
-        GET_PRODUCTS_BY_PARENT_ID: "getProductsByParentId"
+        GET_PRODUCTS_BY_PARENT_ID: "getProductsByParentId",
+        SEND_TO_MONDAY: "sendToMonday",
         
 
     }
