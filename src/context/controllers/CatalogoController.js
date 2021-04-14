@@ -1,11 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 import decode from 'jwt-decode'
+import _ from 'lodash'
 
 
 const api = axios.create({
-    baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
-    // baseURL: 'http://localhost:3000/api/v1'
+    // baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
+    baseURL: 'http://localhost:3000/api/v1'
 })
 
 export default {
@@ -45,7 +46,8 @@ export default {
         return response.filter(item => item.count > 0)
     },
     getSample: async() => {
-        let response = await api.get("/catalog/sample")
+
+        let response = await api.get(`/catalog/sample/?limit=10&offset=0`)
         .then(res => res.data.message )
         
         if(!response){
@@ -54,13 +56,28 @@ export default {
         }
         return response
     },
+    infiniteScroll: async(ctx, event) => {
+        const { sample, countPage, infiniteData } = ctx
+
+        console.log( countPage, 'nadie me juzga!')
+        const page = countPage
+        
+        let response = await api.get(`/catalog/sample/?limit=10&offset=${ (10 * page )}`)
+        .then(res => res.data.message )
+
+        if(Object.values(infiniteData) > 0){
+            return infiniteData.concat(response)
+        }
+
+        return response
+    },
+
     findByBrandIdCatalogo: async(ctx, evt) => {
 
         const { id, page } = evt
 
         let response = await api.get(`/brands/catalogo/${id}/?limit=10&offset=${ ( 10 * page ) - 10 }`)
             .then( res => res.data.message )
-
 
             return response
     },
@@ -160,9 +177,7 @@ export default {
         return res 
     },
     sendToMonday: async(ctx, event) => {
-        
-        console.log('RECONOCER', event.data)
-        
+    
         const res = await api.post(`/monday/create`, event.data)
         .catch(res => res)
 

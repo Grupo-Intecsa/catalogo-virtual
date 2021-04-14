@@ -3,23 +3,19 @@ import { Link } from 'react-router-dom'
 
 import FormContact from 'views/FormContact'
 
-import whataspp from '../../assets/icons/whatsapp.svg'
+import whataspp from 'assets/icons/whatsapp.svg'
 
-const loading = (
-    <span className="double-spinner"></span>
-)
+const PureCard = ({props}) => {
 
-const Card = ({ props }) =>{
+  const [ cotizar, setCotizar ] = useState(false)
+  const contactoToggle = () => setCotizar(!cotizar)
 
-    const [ cotizar, setCotizar ] = useState(false)
-    const contactoToggle = () => setCotizar(!cotizar)
+  const { title, tags, urlfoto, model, isKit, _id } = props
+  
+  const linkName = title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
+  const topView = document.getElementById('topMenuCard')
 
-    const { title, tags, urlfoto, model, isKit, _id } = props
-
-    const linkName = title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
-    const topView = document.getElementById('topMenuCard')
-
-    return(
+  return(
     <div  className={ isKit ? "neibor-card card__bg__familia" : "neibor-card card__bg" }>
         <div>
         <div className="img-neibor-card">
@@ -57,7 +53,7 @@ const Card = ({ props }) =>{
         </div>
     
     </div>
-    )
+  )
 }
 
-export default Card
+export default PureCard

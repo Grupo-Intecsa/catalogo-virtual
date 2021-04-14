@@ -1,5 +1,5 @@
-import { Machine, assign } from 'xstate'
 
+import { Machine, assign } from 'xstate'
 import CatalogoController from './controllers/CatalogoController'
 
 export const CatalogoXstate = Machine({
@@ -12,7 +12,9 @@ export const CatalogoXstate = Machine({
         sample: [],
         queryBrand: [],
         familia: [],
-        productsOfParent: []
+        productsOfParent: [],
+        infiniteData: [],
+        countPage: 0
     },
     states: {
         idle: {},
@@ -172,9 +174,30 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
-        
+        infiniteData: {
+            invoke: {
+                src: CatalogoController.infiniteScroll,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        infiniteData: (ctx, event) => event.data
+                    })
+                }
+            }  
+        },
         error: {},
-        success: {},
+        success: {
+            on: {
+                MORE_DATA: {
+                    target: 'infiniteData',
+                    actions: [
+                        assign({ countPage: (context) => context.countPage + 1 })
+                        
+                    ]
+                }
+                
+            }
+        },
         reject: {},
     },
     on: {

@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { 
     CCol, 
     CRow,
 } from '@coreui/react'
 
+
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
+import useNearScreen from 'hooks/useNearScreen'
 
 import { Spin, Space } from 'antd';
 
@@ -15,12 +17,32 @@ const Dashboard = ({ match }) => {
 
     const { isExact } = match
     const [ state, send ] = useMachine(CatalogoXstate)
+    const [ loading, setLoading ] =  useState(true)
+
+    const { sample, infiniteData } = state.context
+
+    const observerRef = useRef()
+    const { isNearScreen } = useNearScreen({ externalRef: loading ? null : observerRef })
+
+    useEffect(() => {
+    if(isNearScreen === true ){
+        console.log(isNearScreen)
+        send('MORE_DATA')
+    }
+    },[isNearScreen])
+    
 
     useEffect(() => {
         send('SAMPLE')
     },[send])
 
-    const { sample } = state.context
+
+    useEffect(() => {
+        if(state.matches("success")){
+        setLoading(false)
+        }
+        return () => setLoading(true)
+    },[state.value])
     
     return(
     <CRow>
@@ -34,18 +56,32 @@ const Dashboard = ({ match }) => {
                     </div>
                 ) }
                 
-                {state.matches('success') && (
+                { Object.values(sample).length > 0 && (
+                <>
                     <div>
-                    <div><p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p></div>
-                        <div className="center--content">
-                            {sample?.prod.map(item => <Card key={ item._id } props={item} badge={true} />)}
+                        <div>
+                            <p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p>
                         </div>
+                        <div className="center--content">
+                            {sample?.prod.map(item => <Card key={ item._id } props={item} badge={true} />)}  
+                        </div> 
                     </div>
-                )
-                    
-                }
-                
+
+                    <div className="center--content">
+                        {Object.values(infiniteData).length > 0 && infiniteData.prod.map(item => {
+                            return(
+                                <Card props={item} />
+                            )
+                        })}
+                    </div>
+
+                    <div id="chivato" ref={observerRef}></div>
+                    { JSON.stringify(state.value) }
+                </>  
+                )}
+
             </CCol>
+            
         </CRow>
     )
 }
