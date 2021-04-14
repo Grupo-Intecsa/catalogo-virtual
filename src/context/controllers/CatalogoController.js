@@ -1,12 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 import decode from 'jwt-decode'
-import _ from 'lodash'
-
 
 const api = axios.create({
-    // baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
-    baseURL: 'http://localhost:3000/api/v1'
+    baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
+    // baseURL: 'http://localhost:3000/api/v1'
 })
 
 export default {
