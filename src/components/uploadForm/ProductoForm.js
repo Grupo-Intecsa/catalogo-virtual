@@ -33,7 +33,7 @@ const UploadForm =  (props) => {
 
     { init && (
         <>
-            <span className="p-2 bg-success text-center text-white mb-2">Último producto agregado: <span className="font-weight-bold">{productData?.step2?.model}</span></span>
+            {/* <span className="p-2 bg-success text-center text-white mb-2">Último producto agregado: <span className="font-weight-bold">{productData?.step2?.model}</span></span> */}
             <h4 className="bg-info p-3">Formulario de alta de productos</h4>
             <p>
                 Es necesario antes de continuar, tengas los datos de código del producto de AdminPaq o Comercial,
@@ -41,8 +41,7 @@ const UploadForm =  (props) => {
                 no se podrá guardar el avance.
             </p>
             <div className="mb-3 d-flex flex-center justify-content-center mt-3">
-                <button className="btn btn-facebook p-3 mr-3" onClick={() => send('GO_STEP1')} >Nuevo</button>
-                <button className="btn btn-warning">Actualizar</button>
+                <button className="btn btn-modal-capacidad p-3 mr-3" onClick={() => send('GO_STEP1')} >Nuevo</button>
             </div>
         </>
     )}

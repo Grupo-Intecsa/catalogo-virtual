@@ -1,4 +1,3 @@
-
 import { Machine, assign } from 'xstate'
 import CatalogoController from './controllers/CatalogoController'
 
@@ -11,6 +10,8 @@ export const CatalogoXstate = Machine({
         all_products: [],
         sample: [],
         queryBrand: [],
+        modelUpdate: undefined,
+        update: undefined,
         familia: [],
         productsOfParent: [],
         infiniteData: [],
@@ -185,6 +186,40 @@ export const CatalogoXstate = Machine({
                 }
             }  
         },
+        getProductByModel:{
+            invoke: {
+                src: CatalogoController.getProductByModel,
+                onDone: {
+                    target: 'success',
+                    actions: assign({
+                        queryBrand: (ctx, event) => event.data
+                    })
+                },
+                onError: {
+                    target: "error",
+                    actions: assign({
+                        error: (ctx, event) => event.data
+                    })
+                }
+            }
+        },
+        updateByModel: {
+            invoke: {
+                src: CatalogoController.updateByModel,
+                onDone: {
+                    target: "idle",
+                    actions: assign({
+                        update: (ctx, event) => ctx.update = true
+                    })
+                },
+                onError: {
+                    target: "error",
+                    actions: assign({
+                        error: (ctx, event) => event.data
+                    })
+                }
+            }
+        },
         error: {},
         success: {
             on: {
@@ -194,7 +229,8 @@ export const CatalogoXstate = Machine({
                         assign({ countPage: (context) => context.countPage + 1 })
                         
                     ]
-                }
+                },
+                UPDATE: 'updateByModel',
                 
             }
         },
@@ -227,6 +263,19 @@ export const CatalogoXstate = Machine({
         },
         GET_PRODUCTS_BY_PARENT_ID: "getProductsByParentId",
         SEND_TO_MONDAY: "sendToMonday",
+        GET_PRODUCT_BY_MODEL: {
+            target: "getProductByModel",
+            actions: (ctx, event) => ctx.modelUpdate = event.model,
+            cond: (_, event) => event.model.length > 0
+        },
+        RESET: {
+            target: 'idle',
+            actions: (ctx) => {
+                ctx.modelUpdate = ""
+                ctx.update = undefined
+            }
+        }
+        
         
 
     }

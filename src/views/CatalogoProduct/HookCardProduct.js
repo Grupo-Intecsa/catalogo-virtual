@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 import whataspp from '../../assets/icons/whatsapp.svg'
-import mercadoLogo from '../../assets/icons/mercado-libre-logo.svg'
+import mercadoLogo from 'assets/icons/mercado-libre-logo.svg'
 
 import { Modal } from 'antd';
 import EmblaModal from '../../components/EmblaCarousel/EmblaModal'
@@ -245,11 +245,18 @@ const HookCardProduct = ({ data }) => {
                     
 
                 { isKit &&
-                    <button  className="btn btn-facebook" onClick={toogleModalCap}>
-                            Buscar Capacidad
+                    <button  className="btn btn-modal-capacidad" onClick={toogleModalCap}>
+                            Capacidad
                     </button>
                 }
                 </div>
+                <hr/>
+                {
+                    isKit && (
+                        <p><span className="font-weight-bold">Este producto cuenta con diferentes capacidad o medidas que puedes comprar a través de Mercado Libre</span><br/> Selecciona la capacidad que necesitas y verifica si lo tenemos en existencia en Mercado Libre o puedes cotizarlo directo con el botón de cotizar</p>
+                    )
+
+                }
             </div>
 
         </div>

@@ -62,7 +62,7 @@ const HookFamilasBar = ({ id }) => {
             slug: 'xt1c3p',
             title: 'XT1C 3p',
             img: 'https://cdn.productimages.abb.com/9IBA248846_720x540.png',
-            id: "6065818a22386e00157627dd"
+            id: "606c2d537904ff0015f12cb4"
           },
           {
             slug: 'xt1c4p',

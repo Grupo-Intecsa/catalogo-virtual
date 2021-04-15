@@ -1,5 +1,5 @@
 .admin--layout{
-  background-color: #E4E6EB;
+  background-color: #18191A;
   height: 100vh;
   overflow-y: scroll;
   width: 100%;
@@ -66,6 +66,9 @@
   background-blend-mode: screen;
   transition: color 0.15s ease, border-color 0.15s ease;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  color: #000;
+  font-weight: 600;
+  
 
 }
 
@@ -80,8 +83,9 @@
 
 
 .admin--tool{
-  background-color: rgba(255, 255, 255, 0.726);
+  background-color: rgba(255, 255, 255, 0.959);
   border-radius: 4px;
+  height: 100%;
   margin: 2rem 0.8rem 5rem 0.8rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;

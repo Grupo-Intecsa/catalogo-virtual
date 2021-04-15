@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import {  
   CDropdown,
@@ -10,11 +10,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
-import { UserState, UserDispatch  } from '../../context/userContext'
+import { UserState, UserDispatch } from 'context/userContext'
 import { Redirect } from 'react-router'
 
+import AdminToggle from './AdminToggle'
+
 const MenuTareas = React.lazy(() => import('./content'))
-const ProductoFrom = React.lazy(() => import('../../components/uploadForm/ProductoForm'))
+const ProductoFrom = React.lazy(() => import('components/uploadForm/ProductoForm'))
+const UpdateProducts  = React.lazy(() => import('components/uploadForm/UpdateProducts'))
 
 
 const Public = () => {
@@ -26,6 +29,10 @@ const AdminLayout = (props) => {
   const { state } = UserState()
   const dispatch = UserDispatch()
 
+  const nuevoRef = useRef()
+  const updateRef = useRef()
+
+  const { name, _id } = state.context?.user?.data
   // useEffect(() =>{
   //   const sub = service.subscribe((state) => console.log(state))
   //   return () => sub.unsubscribe()
@@ -42,7 +49,7 @@ const AdminLayout = (props) => {
         <FontAwesomeIcon size="4x" style={{ "color": "whitesmoke" }} icon={faUserCircle} />
         </CDropdownToggle>
         <CDropdownMenu>
-          <CDropdownItem header>{state.context?.user?.data?.name}</CDropdownItem>
+          <CDropdownItem header>{name}</CDropdownItem>
           <CDropdownItem divider /> 
           <CDropdownItem onClick={() => dispatch('LOGOUT')}>Salir</CDropdownItem>
         </CDropdownMenu>
@@ -53,12 +60,21 @@ const AdminLayout = (props) => {
       {/* AdminNavbar */}
       <div className="grid-menu-content">
         {/* aqui va el menu de admin */}
-        <MenuTareas />
+        <MenuTareas nuevoRef={nuevoRef} updateRef={updateRef}  />
       </div>
       <div className="admin--tool">
-      {/* por ahora aqui se renderea el menu */}
       
-      <ProductoFrom {...props} />       
+      {/* por ahora aqui se renderea el menu */}
+      {/* componente de formulario de productos */}
+
+      <AdminToggle ref={nuevoRef} modulname={"Añadir Producto"} >
+        <ProductoFrom {...props} />       
+      </AdminToggle>
+      
+      <AdminToggle ref={updateRef} modulname={"Actualizar Producto"} >
+        <UpdateProducts {...props} userId={_id} />       
+      </AdminToggle>
+
       {state.matches('error') ? <Redirect to="/login" /> : null }
       </div>
     </div>

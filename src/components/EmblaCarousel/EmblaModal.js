@@ -1,36 +1,35 @@
-import React, { useMemo, useEffect } from 'react'
-import { useEmblaCarousel } from 'embla-carousel/react'
+import React, { useState } from 'react'
+
+
 
 
 const EmblaModal = ({ urlfoto }) => {
 
-  const [ emblaRef, embla ] = useEmblaCarousel({ loop: true })
-  const slide = useMemo(() => { return urlfoto },[urlfoto])
+  const [ foto, setFoto ] = useState(urlfoto[0])
 
-  useEffect(() => {
-    if(embla && embla.slideNodes().length !== slide.length){
-      embla.reInit()
-    }
-  },[embla, slide])
-    
+
+  const handledFoto = ({ currentImg = null } = {}) => {
+      setFoto(currentImg)
+  }
+
+
   return (
-    <div>
-      <div className="embla__modal" ref={emblaRef}>
-      <div className="embla__container__modal"> 
-      
-      {
-        
-        slide.map((item, index) => {
+    <div className="modal--img--slide">
+
+      <div className="modal--slide">
+        {urlfoto.map(img => {
           return(
-            <div className="embla__slide__modal">
-                <img src={item} alt="foto detalle de producto" key={ index + item } loading="lazy" className="modal--img" />
+            <div onClick={() => handledFoto({ currentImg: img })} className="modal-btn-img">
+            <img src={img} alt="imagen de producto" className="slide--menu--foto" />
             </div>
           )
-        })
-      }
+        })}
       </div>
-      
-    </div>    
+
+      <div className="modal--big--img">
+        <img src={foto} alt="imagen zoom del producto"/>
+      </div>
+
     </div>
     
   );

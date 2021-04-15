@@ -68,6 +68,7 @@ const Dashboard = ({ match }) => {
                     </div>
 
                     <div className="center--content">
+                        {Object.values(infiniteData).length === 0 && <span>Cargando más...</span>}
                         {Object.values(infiniteData).length > 0 && infiniteData.prod.map(item => {
                             return(
                                 <Card props={item} />

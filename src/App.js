@@ -16,7 +16,6 @@ const loading = (
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 const Validate = React.lazy(() => import('./views/admin/AdminLayout'))
 
-
 // Pages
 const Login = React.lazy(() => import('./views/Login/Login'));
 // const Register = React.lazy(() => import('./views/pages/register/Register'));

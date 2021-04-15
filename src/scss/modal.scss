@@ -192,10 +192,31 @@
 }
 
 .btn-modal-pdf:hover{
-  color: beige;
+  color: rgb(194,3,3);
   text-decoration: none;
-  background-color: rgb(190, 87, 87);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(194,3,3);
 }
+
+.btn-modal-capacidad{
+  width: 10rem;
+  margin-right: 10px;
+  height: 3rem;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #39f;
+  text-decoration: none;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif; 
+}
+
+.btn-modal-capacidad:hover{
+  color: #39f;
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #39f;
+}
+
 
 .modal-aviso{
   display: flex;

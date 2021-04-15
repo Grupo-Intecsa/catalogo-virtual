@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import FormContact from 'views/FormContact'
-
 import whataspp from '../../assets/icons/whatsapp.svg'
 
-const loading = (
-    <span className="double-spinner"></span>
-)
+// const loading = (
+//     <span className="double-spinner"></span>
+// )
 
 const Card = ({ props }) =>{
 

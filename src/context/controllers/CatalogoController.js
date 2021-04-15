@@ -57,7 +57,7 @@ export default {
     infiniteScroll: async(ctx, event) => {
         const { sample, countPage, infiniteData } = ctx
 
-        console.log( countPage, 'nadie me juzga!')
+        
         const page = countPage
         
         let response = await api.get(`/catalog/sample/?limit=10&offset=${ (10 * page )}`)
@@ -180,6 +180,23 @@ export default {
         .catch(res => res)
 
         if(res.status === 200) return res
+    },
+    getProductByModel: async(ctx, event) => {
+
+        const res = await api.get(`/catalog/product/${ctx.modelUpdate}`)
+        .then(res => res.data.message)
+
+        return res
+    },
+    updateByModel: async(ctx, event) => {
+
+        const update = await api.patch(`/catalog/product/${ctx.modelUpdate}`, event.body)
+        .then(res => res.data.message.n)
+
+        if(await update === 1 ){
+            return true
+        }
+
     },
     
 }
