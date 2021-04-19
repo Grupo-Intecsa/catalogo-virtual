@@ -38,6 +38,11 @@ if(Array.isArray(item)){
 }
 }
 
+const monyIntlRef = (precio) => {
+    const number = new Intl.NumberFormat('en-MX', { style:"currency", currency: "MXN"}).format(precio)
+    return number
+}
+
 const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
 
     const history = useHistory()
@@ -123,7 +128,7 @@ const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
 
 const HookCardProduct = ({ data }) => {
     
-    const { title, ml, desc, urlfoto, urldata, model, isKit, compatible, familia, _id } = data
+    const { title, ml, desc, urlfoto, urldata, model, isKit, compatible, familia, _id, precio } = data
     
     const [ cotizar, setCotizar ] = useState(false)
     const contactoToggle = () => setCotizar(!cotizar)
@@ -166,9 +171,11 @@ const HookCardProduct = ({ data }) => {
             
                 {/* modelo y disponibilidad */}
                     <div className="modal--dispose">
-                        {/* <span className="font-weight-bold mt-2 font-xl dispose-item text-center">
-                            Disponible
-                        </span> */}
+                        { precio >  0 && 
+                            <span className="mt-2 text-black-50">
+                            Precio: <p className="precioCard">{`${monyIntlRef(precio)}`}</p>
+                            </span>
+                        }
                         
                         <span className="mt-2 text-black-50">
                             Código: <p className="font-weight-bold mb-4 text-uppercase">{model}</p>
