@@ -93,7 +93,7 @@ const HookFamilasBar = ({ id }) => {
             slug: 'cajaregistro',
             title: 'Registros y Ductos',
             img: "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/03PG050507S0037_01.webp?alt=media&token=f4afa4d2-4fc8-4dcc-b341-284137a38743",
-            id: "604730d09c44aa299ce4d225"
+            id: "607e7e773b31f00015fa4199"
           },
           {
             slug: 'kitcajapos',
