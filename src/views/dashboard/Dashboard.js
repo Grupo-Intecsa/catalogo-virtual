@@ -8,7 +8,6 @@ import {
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 import useNearScreen from 'hooks/useNearScreen'
-import { useLocation } from 'react-router-dom'
 
 import { Spin, Space } from 'antd';
 import debounce from 'just-debounce-it'
@@ -17,13 +16,13 @@ const Card = React.lazy(() =>  import('../ProductosCards/Card'))
 
 const Dashboard = ({ match }) => {
 
-    const location = useLocation()
-
     const { isExact } = match
     const [ state, send ] = useMachine(CatalogoXstate)
     const [ loading, setLoading ] =  useState(true)
 
-    const { sample, infiniteData, countPage, infiniteCount } = state.context
+    const { sample, infiniteData, infiniteCount } = state.context
+
+    const topDashBoard = document.getElementById("topDashBoard")
 
     const observerRef = useRef()
     const { isNearScreen } = useNearScreen({ externalRef: loading ? null : observerRef, once: false })
@@ -40,15 +39,7 @@ const Dashboard = ({ match }) => {
     
 
     useEffect(() => {
-
         send('SAMPLE')
-        
-        if(location.state && location.state.from === "@return/dashboard"){
-            send('RESET')
-            send('SAMPLE')
-
-        }
-
     },[send])
 
 
@@ -59,7 +50,7 @@ const Dashboard = ({ match }) => {
     },[state.value])
     
     return(
-    <CRow>
+    <CRow id="topDashBoard">
             <CCol>
                 {state.matches('sample') && isExact && (
                     <div className="content--no--data">
@@ -73,9 +64,9 @@ const Dashboard = ({ match }) => {
                 { Object.values(sample).length > 0 && (
                 <>
                     <div>
-                        {JSON.stringify(countPage)}
+                        {/* {JSON.stringify(countPage)}
                         {JSON.stringify(infiniteCount)}
-                        {JSON.stringify(state.value)}
+                        {JSON.stringify(state.value)} */}
                         <div>
                             <p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p>
                         </div>
@@ -96,7 +87,7 @@ const Dashboard = ({ match }) => {
                     <div id="chivato" ref={observerRef}>
                         <div className="d-flex justify-content-center">
                             {infiniteCount && infiniteCount.message 
-                                ? <span className="text-black-50 font-weight-bold">No hay más datos que mostar</span> 
+                                ? <div className="text-black-50 font-weight-bold font-2xl" onClick={() => topDashBoard.scrollIntoView()}>¡Subir!</div> 
                                 : <div className="bouncingLoader" />}
                         </div>
                     </div>

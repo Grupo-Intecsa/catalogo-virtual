@@ -248,7 +248,15 @@ export const CatalogoXstate = Machine({
     },
     on: {
         ALL_PRODUCTOS: 'all_products',
-        SAMPLE: 'sample',
+        SAMPLE: {
+            target: 'sample',
+            actions: (ctx) => {
+                ctx.modelUpdate = ""
+                ctx.update = undefined
+                ctx.infiniteCount = {}
+                
+            }
+        },
         GET_BRAND_ID: {
             target: 'getBrandById',
             actions: (ctx, event) => ctx.id = event.id
@@ -283,7 +291,7 @@ export const CatalogoXstate = Machine({
             actions: (ctx) => {
                 ctx.modelUpdate = ""
                 ctx.update = undefined
-                ctx.infiniteCount = {}
+                ctx.infiniteCount.message = {}
                 console.log('el ula ula')
             }
         }

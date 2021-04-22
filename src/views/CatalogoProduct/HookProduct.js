@@ -20,7 +20,7 @@ const HookFamilasBar = React.lazy(() => import('./HookFamilasBar'))
 const HookProduct = ({ query }) => {
 
   const history = useHistory()
-  const location = useLocation()
+  // const location = useLocation()
   
   const params = useParams()
   const { slug, id }  = params

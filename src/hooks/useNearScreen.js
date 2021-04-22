@@ -14,7 +14,6 @@ const useNearScreen = ({ distance = "100px", externalRef, once = true } = {} ) =
       const el = entries[0]
       
       if(el.isIntersecting){
-        console.log("hola isNeerScreen")
         setNearScreen(true)
         once && observer.disconnect()
 
