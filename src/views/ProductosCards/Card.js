@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import FormContact from 'views/FormContact'
 import whataspp from '../../assets/icons/whatsapp.svg'
@@ -10,6 +10,8 @@ import whataspp from '../../assets/icons/whatsapp.svg'
 
 const Card = ({ props }) =>{
 
+    const location = useLocation()
+    
     const [ cotizar, setCotizar ] = useState(false)
     const contactoToggle = () => setCotizar(!cotizar)
 
@@ -41,7 +43,12 @@ const Card = ({ props }) =>{
                 
                 <div className="contenido-neibor-card">
 
-                        <Link to={`/detalle/${_id}/${linkName}`} onClick={() => topView.scrollIntoView()}>
+                        <Link to={{
+                            pathname: `/detalle/${_id}/${linkName}`,
+                            state: { from: location.pathname }
+                        }} 
+                        onClick={() => topView.scrollIntoView()}
+                            >
                             <button className="btn btn-nebor font-weight-bold">
                                 Ver detalle
                             </button>

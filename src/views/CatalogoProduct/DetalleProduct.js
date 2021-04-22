@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
@@ -7,10 +8,13 @@ import { Spin, Space } from 'antd';
 
 import HookCardProduct from './HookCardProduct'
 
+
 const DetalleProduct = (props) => {
 
     const { match } = props
-
+    const location = useLocation()
+    const viewTop = document.getElementById("DetalleProduct")
+    
     const [ state, send ] = useMachine(CatalogoXstate)
     const { queryBrand } = state.context
     const { slug } = match.params
@@ -19,11 +23,18 @@ const DetalleProduct = (props) => {
       send('GET_CATALOGO_BY_ID', { data: slug })
     },[slug])
 
+    useEffect(() => {
+      console.log(location)
+      if(location.state === "@send/hookcard"){
+        viewTop.scrollIntoView()
+      }
+      
+    },[location, viewTop])
 
     return (
     <Fragment>
 
-      <div>
+      <div id="DetalleProduct">
         { state.matches('getCatalogoById') && (
           <Space size="large">
             <Spin size="large" />

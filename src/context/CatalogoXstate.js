@@ -1,4 +1,4 @@
-import { Machine, assign } from 'xstate'
+import { Machine, assign, actions } from 'xstate'
 import CatalogoController from './controllers/CatalogoController'
 
 export const CatalogoXstate = Machine({
@@ -14,11 +14,19 @@ export const CatalogoXstate = Machine({
         update: undefined,
         familia: [],
         productsOfParent: [],
-        infiniteData: [],
+        infiniteData: {},
+        infiniteCount: {},
         countPage: 0
     },
     states: {
-        idle: {},
+        idle: {
+            'entry': {
+                actions: [
+                    () => console.log('perro de la z')
+                ]
+            }
+            
+        },        
         all_products: {
             invoke: {
                 src: CatalogoController.allProductos,
@@ -225,10 +233,12 @@ export const CatalogoXstate = Machine({
             on: {
                 MORE_DATA: {
                     target: 'infiniteData',
+                    cond: (ctx) => !ctx.infiniteCount.message,
                     actions: [
                         assign({ countPage: (context) => context.countPage + 1 })
                         
                     ]
+
                 },
                 UPDATE: 'updateByModel',
                 
@@ -273,6 +283,8 @@ export const CatalogoXstate = Machine({
             actions: (ctx) => {
                 ctx.modelUpdate = ""
                 ctx.update = undefined
+                ctx.infiniteCount = {}
+                console.log('el ula ula')
             }
         }
         

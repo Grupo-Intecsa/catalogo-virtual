@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useMemo, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
@@ -70,6 +70,7 @@ const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
     
     const handledOkButtom = () => {
         
+
         if(productSelected === undefined){
             return setErrorSelect({ error: "Debe seleccionar un valor para continuar" })
         }
@@ -79,6 +80,7 @@ const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
 
         return history.replace({ 
                 pathname: `/detalle/${id}/${'detalle'}`,
+                state: '@send/hookcard'
             })
     }
 

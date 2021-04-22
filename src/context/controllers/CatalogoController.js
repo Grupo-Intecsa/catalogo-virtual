@@ -55,19 +55,29 @@ export default {
         return response
     },
     infiniteScroll: async(ctx, event) => {
-        const { sample, countPage, infiniteData } = ctx
+        const { countPage, infiniteData, infiniteCount } = ctx
 
-        
         const page = countPage
+        const { prod } = infiniteData
         
         let response = await api.get(`/catalog/sample/?limit=10&offset=${ (10 * page )}`)
         .then(res => res.data.message )
 
-        if(Object.values(infiniteData) > 0){
-            return infiniteData.concat(response)
-        }
+        if(response.infiniteCount === Object.values(infiniteData).length + 10 ){
+            infiniteCount.message = "Limite de datos"
+            return infiniteData
 
-        return response
+        }else if(countPage === 0 && Object.values(infiniteData).length === 0 ){
+            infiniteCount.message = {}
+            return response.prod
+
+        }else if(Object.values(infiniteData).length > 0){
+            const next = infiniteData.concat(response.prod)
+            return next
+
+        }else if(!Array.isArray(prod)){
+            return response.prod
+        }
     },
 
     findByBrandIdCatalogo: async(ctx, evt) => {

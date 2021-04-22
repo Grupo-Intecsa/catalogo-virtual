@@ -59,6 +59,12 @@ const Categories = (props) => {
                     </div>
                 </Link>
 
+                <Link to={"/product/marcas/607f029a21558b264c6a1422"}>
+                    <div className="btn butom-rounded-cate">
+                        <span>ITA</span>
+                    </div>
+                </Link>
+
                 
             </CRow>
         

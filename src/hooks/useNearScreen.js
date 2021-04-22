@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 
-const useNearScreen = ({ distance = "100px", externalRef } = {} ) => {
+const useNearScreen = ({ distance = "100px", externalRef, once = true } = {} ) => {
 
   const [ isNearScreen, setNearScreen ] = useState(false)
   const formRef = useRef()
@@ -14,10 +14,16 @@ const useNearScreen = ({ distance = "100px", externalRef } = {} ) => {
       const el = entries[0]
       
       if(el.isIntersecting){
+        console.log("hola isNeerScreen")
         setNearScreen(true)
+        once && observer.disconnect()
+
+      } else {
+        !once && setNearScreen(false)
       }
     }
 
+    // polify
     Promise.resolve(
       typeof IntersectionObserver !== undefined
         ? IntersectionObserver
@@ -26,7 +32,6 @@ const useNearScreen = ({ distance = "100px", externalRef } = {} ) => {
         observer = new IntersectionObserver(onChange, {
         rootMargin: distance
       })
-      
       if(element) observer.observe(element)
     })
 

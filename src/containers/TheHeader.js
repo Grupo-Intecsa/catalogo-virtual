@@ -7,7 +7,13 @@ import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
 import logo from '../assets/icons/path2.webp'
 
+import FormContact from 'views/FormContact'
+
+
 const TheHeader = ({ busqueda }) => {
+
+  const [ visible, setVisible ] = useState(false)
+  const visibleToggle = () => setVisible(!visible)
 
   const location = useLocation()
   const dispatch = useDispatch()
@@ -44,11 +50,12 @@ const TheHeader = ({ busqueda }) => {
         <Fragment>
             
             <nav id="Navigation" className="c-header px-3 bg-facebook">
+
                 <section>
-                  <Link to="/" onClick={() => document.body.scrollTop = 0}>
-                    <CImg src={logo} className="iconSVG" height="45px"/>
-                  </Link>
+                  <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
+                  <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
                 </section>
+
                 <section>
 
                 <div className="input-form-header">
@@ -58,13 +65,17 @@ const TheHeader = ({ busqueda }) => {
                   </form>
                 </div>
                 </section>
+                
                 <section>
-                  <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
-                  <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
+                  <Link to="/" onClick={() => document.body.scrollTop = 0}>
+                    <CImg src={logo} className="iconSVG" height="45px"/>
+                  </Link>
                 </section>
+                
             </nav>
               <div className="bg-facebook d-flex justify-content-center align-items-center">
-                <a href="https://forms.monday.com/forms/embed/608067760034e1ac1f86e10392668e8b?r=use1" title="Ponte en contacto con nosotros para una cotizacion especializada" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">Contacto</span></a>
+                <button onClick={visibleToggle} title="Ponte en contacto con nosotros para una cotizacion especializada" className="mr-2 btn-noStyle"  ><span className="texto-navbar">Contacto</span></button>
+                <FormContact visible={visible} contactoToggle={visibleToggle} placeholder={"Déjanos tus datos para poder iniciar WhatsApp"} />
 
                 <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>
                 

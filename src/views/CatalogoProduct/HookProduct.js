@@ -9,7 +9,7 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
-import { useParams, useHistory } from 'react-router'
+import { useParams, useHistory, useLocation } from 'react-router'
 
 const Card = React.lazy(() => import('../ProductosCards/Card'))
 const HookFamilasBar = React.lazy(() => import('./HookFamilasBar'))
@@ -20,6 +20,7 @@ const HookFamilasBar = React.lazy(() => import('./HookFamilasBar'))
 const HookProduct = ({ query }) => {
 
   const history = useHistory()
+  const location = useLocation()
   
   const params = useParams()
   const { slug, id }  = params
@@ -71,7 +72,7 @@ const HookProduct = ({ query }) => {
       <div className="d-flex justify-content-center">
       <div className="title--bar--product">
       
-        <button className="btn btn-ghost-info d-flex align-items-center p-2" onClick={() => history.goBack()}>
+        <button className="btn btn-ghost-info d-flex align-items-center p-2" onClick={() => history.replace({ pathname: "/dashboard", state: "@return/dashboard" })}>
                   <FontAwesomeIcon icon={faCaretLeft} size="3x"></FontAwesomeIcon>
                   <span className="font-weight-bold ml-1">Regresar</span>
               </button>

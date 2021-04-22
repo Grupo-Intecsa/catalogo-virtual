@@ -25,7 +25,7 @@ const UploadForm = ({ file, setUrlValid }) => {
 
 }
 
-const FormContact = ({ visible, contactoToggle, title }) => {
+const FormContact = ({ visible, contactoToggle, title, placeholder }) => {
 
     
     const [ state, send ] = useMachine(CatalogoXstate)
@@ -126,7 +126,7 @@ const FormContact = ({ visible, contactoToggle, title }) => {
             <input id="email" name="email" type="email" ref={register} required={true} />  
 
             <label htmlFor="coment">Comentario</label>          
-            <textarea rows={4} cols={4} id="coment" ref={register} name="coment" defaultValue={title} />
+            <textarea rows={4} cols={4} id="coment" ref={register} name="coment" defaultValue={title} placeholder={placeholder} />
 
             <p>¿Tienes un proyecto?, adjunta una lista o datos de tu proyecto</p>
             <input type="file" id="document" name="document" ref={register} hidden onChange={handleFileUpload} />
