@@ -4,6 +4,7 @@ import { CButton, CImg } from '@coreui/react'
 import { Link, Redirect, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
+import TheCanvasCart from './TheCanvasCart'
 
 import logo from '../assets/icons/path2.webp'
 
@@ -68,18 +69,20 @@ const TheHeader = ({ busqueda }) => {
                 
                 <section>
                   <Link to="/" onClick={() => document.body.scrollTop = 0}>
-                    <CImg src={logo} className="iconSVG" height="45px"/>
+                    <img src={logo} className="iconSVG d-none d-sm-block" alt="logo Empresa grupo intecsa" />
                   </Link>
+                  <TheCanvasCart />
                 </section>
                 
             </nav>
               <div className="bg-facebook d-flex justify-content-center align-items-center">
+                <Link to={{ pathname: "/" }} className="mr-2 d-block d-sm-none" ><span className="texto-navbar">Inicio</span></Link>
                 <button onClick={visibleToggle} title="Ponte en contacto con nosotros para una cotizacion especializada" className="mr-2 btn-noStyle"  ><span className="texto-navbar">Contacto</span></button>
                 <FormContact visible={visible} contactoToggle={visibleToggle} placeholder={"Déjanos tus datos para poder iniciar WhatsApp"} />
 
                 <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>
                 
-                <a href="/#" title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." rel="nofollow" className="mr-2" ><span className="texto-navbar">Cotizador de servicios</span></a>
+                <a href="/#" title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." rel="nofollow" className="mr-2" ><span className="texto-navbar">Categorías</span></a>
               </div>
             
             { search && <Redirect to={`/product/text/${queryText}`} />}

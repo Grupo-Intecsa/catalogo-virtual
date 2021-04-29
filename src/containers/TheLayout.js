@@ -3,7 +3,7 @@ import {
   CatalogoContainer,
   TheSidebar,
   TheFooter,
-  TheHeader
+  TheHeader,
 } from './index'
 
 
@@ -28,7 +28,7 @@ const TheLayout = (props) => {
   })
 
   return (
-    <div className="c-app c-default-layout">
+    <div className="c-app c-default-layout jaimito">
       <TheSidebar/>
       {/* <Csv2Json /> */}
       <div className="c-wrapper">

@@ -19,7 +19,6 @@ const CatalogoContainer  = () => {
     
     return(
     <CContainer id="topMenuCard">        
-        
             <CCol className="d-flex justify-content-center">
                 <Suspense fallback={loading}>
                     <Switch>

@@ -4,6 +4,7 @@ import './scss/style.scss';
 
 // Context
 import { CatalogoProvider } from './context/catalogoContext'
+import { TiendaProvider } from 'context/TiendaContext'
 import { UserContextProvider } from './context/userContext'
 
 const loading = (
@@ -28,6 +29,7 @@ class App extends Component {
     return (
       
       <UserContextProvider>
+        <TiendaProvider>
         <CatalogoProvider>
 
         <HashRouter>
@@ -41,6 +43,7 @@ class App extends Component {
         </HashRouter>
 
         </CatalogoProvider>
+        </TiendaProvider>
       </UserContextProvider>
       
     );

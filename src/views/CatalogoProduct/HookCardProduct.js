@@ -1,21 +1,21 @@
-import React, { Fragment, useEffect, useMemo, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import React, { Fragment, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCaretLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 import whataspp from '../../assets/icons/whatsapp.svg'
 import mercadoLogo from 'assets/icons/mercado-libre-logo.svg'
 
-import { Modal } from 'antd';
+
 import EmblaModal from '../../components/EmblaCarousel/EmblaModal'
+import ModalCapacidades from './ModalCapacidades'
 
-import { CatalogoXstate } from '../../context/CatalogoXstate'
-import { useMachine } from '@xstate/react'
-
+// formulario de contacto
 import FormContact from 'views/FormContact'
 
 // ESTE SE PUEDE EJECUTAR CON USECONTEXT
+import { useTiendaDispatch } from 'context/TiendaContext'
 
 const mlVerify = ( item ) => {
 // verificamos si es un array y esta vacio
@@ -43,97 +43,26 @@ const monyIntlRef = (precio) => {
     return number
 }
 
-const ModalCapacidades = ({ isSelect, toogleModalCap, id }) => {
-
-    const history = useHistory()
-
-    const [ state, send ] = useMachine(CatalogoXstate)
-    const [ selectValue, setSelectValue ] = useState("")
-    const [ errorSelect, setErrorSelect ] = useState({})
-    const { productsOfParent } = state.context
-
-    useEffect(() => {
-        send('GET_PRODUCTS_BY_PARENT_ID', { data: id })
-    },[id])
-
-    const productSelected = useMemo(() => {
-        
-        let select
-        if(state.matches('success')){
-            select = Object.values(productsOfParent).filter(item => item._id === selectValue ).map(value => {
-                return { id: value._id, model: value.model, title: value.title }
-            })
-        }
-        return select 
-
-    },[selectValue])
-    
-    const handledOkButtom = () => {
-        
-
-        if(productSelected === undefined){
-            return setErrorSelect({ error: "Debe seleccionar un valor para continuar" })
-        }
-
-        const id = productSelected?.map(({ id,...restOfData }) => id ).join("")
-        // const title = productSelected?.map(({ title }) => title).join("")
-
-        return history.replace({ 
-                pathname: `/detalle/${id}/${'detalle'}`,
-                state: '@send/hookcard'
-            })
-    }
-
-    return (
-        <Modal
-            okText="Ir"
-            wrapClassName="supermodal" 
-            title="Selecciona la capacidad que necesitas" 
-            visible={isSelect} 
-            onCancel={toogleModalCap} width={500}
-            onOk={handledOkButtom}
-            
-            >
-            
-            <div className="hookCardModal">
-
-            {errorSelect?.error && <span className="bg-danger p-2 text-center mb-1">{errorSelect.error}</span>}
-
-            {
-            state.matches('success') && (
-                <>
-                
-                {productSelected?.map(({ model, title, id }) => {
-                    return(
-                        <div key={id} className="titulos__modal__hook">
-                            <p>Nombre del Producto:</p><span>{title}</span>
-                            <p>Modelo del Producto:</p><span>{model}</span>
-                        </div>
-                    )
-                })}
-
-                <select className="form-select form-select-lg mb-3" value={selectValue} onChange={(e) => setSelectValue(e.target.value)} >
-                    <option 
-                        value={0}
-                        defaultValue={0}
-                        selected
-                        >Selecciona la capacidad</option>
-                    {Object.values(productsOfParent).map(item => <option value={item._id}>{item.capacidad}</option>)}
-                </select> 
-                </>)   
-            }
-            </div>
-        </Modal>
-    )
-}
-
-
 const HookCardProduct = ({ data }) => {
     
     const { title, ml, desc, urlfoto, urldata, model, isKit, compatible, familia, _id, precio } = data
     
     const [ cotizar, setCotizar ] = useState(false)
     const contactoToggle = () => setCotizar(!cotizar)
+
+    const [ cantidadCompra, setCantidadCompra ] = useState(1)
+    const handledCantCompra = (e) => {
+        setCantidadCompra(e.target.value)
+    }
+
+    const dispatch = useTiendaDispatch()
+    
+    const hookSenderItemCart = ({ data, cantidad } = {}) => {
+
+        const payload = { ...data, cantidad: cantidad.cantidadCompra }
+        dispatch("ADD_ITEM", { payload, id: payload._id })     
+    }
+    
 
     const [ leermas, setLeermas ] = useState(false)
 
@@ -204,20 +133,32 @@ const HookCardProduct = ({ data }) => {
                         Cotizar <img src={whataspp} alt="logo whatsapp" style={{ "width": "20px"}} className="ml-1"/>
                     </button>
                     <FormContact visible={cotizar} contactoToggle={contactoToggle} title={title} />
+                {
+                    mlVerify(ml) && (
+                    <>
+                    <div className="d-flex flex-column canvasCart" >
+                    <label htmlFor="cantidad">Cantidad</label>
+                    <div>
+                    <select value={cantidadCompra} onChange={handledCantCompra} className="btn btn-modal-additem" id="cantidad">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                    <button className="btn btn-modal-comprar" onClick={() => hookSenderItemCart({ data: { title, _id, precio }, cantidad: { cantidadCompra }  })}>
+                        Añadir <FontAwesomeIcon icon={ faShoppingCart }/></button>
+                    </div>
+                    </div>
+                    {/* <button className="btn btn-modal-comprar" onClick={comprarToggle}>
+                        Comprar <FontAwesomeIcon icon={ faShoppingCart }/>
+                    </button> */}
+                    </>
+                    )
+                }
                 </div>
                 <div className="modal-aviso">
                     {/* donde comprar */}
                     <div>
                     {/*  Si existe codigo de mercado libre */}
-                    { mlVerify(ml) && (
-                        <div>
-                            <p>Puedes adquirir nuestros productos en:</p>
-                            <a href={`https://articulo.mercadolibre.com.mx/MLM-${ml?.split("MLM")[1]}`} target="_blank" rel="noreferrer">
-                                <img src={mercadoLogo} alt={title} className="btn-ecommerce" />
-                            </a>
-                        </div>
-
-                    )}                                                
                     </div>
                     <div>
                     {/*  si es Kit y tiene lista de compatibilidad */}
@@ -266,6 +207,17 @@ const HookCardProduct = ({ data }) => {
                     )
 
                 }
+                <div className="d-flex justify-content-center">
+                { mlVerify(ml) && (
+                        <div>
+                            <p className="text-center">Puedes adquirir nuestros productos <br></br> a meses sin intereses en:</p>
+                            <a href={`https://articulo.mercadolibre.com.mx/MLM-${ml?.split("MLM")[1]}`} target="_blank" rel="noreferrer">
+                                <img src={mercadoLogo} alt={title} className="btn-ecommerce" />
+                            </a>
+                        </div>
+
+                )}   
+                </div>            
             </div>
 
         </div>

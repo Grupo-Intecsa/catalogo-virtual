@@ -151,6 +151,11 @@
     color: rgb(170, 170, 170)
   }
 
+  .modal-cc{
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 
@@ -159,13 +164,22 @@
   padding: 0.6rem;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   
 }
+
+// @media (max-width: 65rem){
+//   .modal-botonera{
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
 
 .btn-modal-contacto{
   width: 20rem;
   background-color: black;
   padding: 1rem;
+  margin-bottom: 4px;
   color: white;
   font-family: 'Space Grotesk', sans-serif;
   
@@ -175,6 +189,90 @@
   width: 20rem;
   background-color: rgb(255, 255, 255);
   border: 1px solid black;
+  padding: 1rem;
+  color: rgb(0, 0, 0);
+    
+}
+
+.btn-modal-carrito{
+  width: 10rem;
+  background-color: #FFD814;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 4px;
+  color: black;
+  font-family: 'Space Grotesk', sans-serif;
+  
+}
+
+.btn-modal-carrito:target,
+.btn-modal-carrito:hover{
+  width: 10rem;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #FFD814;
+  padding: 1rem;
+  color: rgb(0, 0, 0);
+  font-family: 'Space Grotesk', sans-serif;
+    
+}
+
+.btn-modal-comprar{
+  width: 15em;
+  background-color: #FFD814;
+  padding: 1rem;
+  margin-bottom: 4px;
+  color: black;
+  font-family: 'Space Grotesk', sans-serif;
+  
+}
+
+.btn-modal-comprar:hover{
+  width: 15em;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #FFD814;
+  padding: 1rem;
+  color: rgb(0, 0, 0);
+    
+}
+
+.btn-modal-additem{
+  width: 5rem;
+  background-color: white;
+  border: black 1px solid;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-right: 10px;
+  color: black;
+  font-family: 'Space Grotesk', sans-serif;
+  
+}
+
+.btn-modal-additem:hover{
+  width: 5rem;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(16, 115, 196);
+  padding: 1rem;
+  color: rgb(0, 0, 0);
+    
+}
+
+.btn-modal-additem{
+  width: 5rem;
+  background-color: white;
+  border: black 1px solid;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-right: 10px;
+  color: black;
+  font-family: 'Space Grotesk', sans-serif;
+  
+}
+
+.btn-modal-additem:hover{
+  width: 5rem;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(16, 115, 196);
   padding: 1rem;
   color: rgb(0, 0, 0);
     
@@ -296,4 +394,109 @@
     
   }
 
+}
+
+.iconSVG{
+  box-sizing: border-box;
+  padding: 0.36rem;
+  height: 60px;
+  width: auto;
+}
+
+@media (max-width: 65rem){
+  .iconSVG{
+    height: 40px;
+    width: auto;
+  }
+}
+
+.shoppingCart{
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 0.36rem;
+  border-radius: 360px;
+  margin: 4px;
+  color: rgb(255, 255, 255);
+  
+}
+
+.canvasCart{
+  margin-top: 10px;
+
+  label {
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: large;
+  }
+}
+
+.menu--canvas--cart{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  span{
+    font-weight: bold;
+    margin: 4px;
+    border-radius: 4px;
+    border: 1px dotted rgb(128, 128, 128);
+  }
+}
+
+.reject--canvas{
+  width: 50%
+}
+
+@media (max-width: 65rem){
+  .reject--canvas{
+    width: 100%;
+  }
+}
+
+.canvasBodyContainer{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border-left: cornflowerblue 4px solid;
+  padding: 1rem;
+  box-sizing: border-box;
+  align-items: center;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 1px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+
+  p{
+    flex-basis: 50%;
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: small;    
+  }
+
+  span{
+    flex-basis: 50%;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif; 
+    
+    
+  }
+
+}
+
+@media(max-width: 65rem){
+  .canvasBodyContainer{
+
+    width: 100%;
+
+    p{
+      font-size: small;
+    }
+
+
+  }
 }
