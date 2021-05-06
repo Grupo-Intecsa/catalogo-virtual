@@ -13,7 +13,7 @@ export default function TheCanvasCart(){
   const monyIntlRef = (precio) => {
 
     let miPrecio 
-    if(isNaN(precio)){
+    if(isNaN(precio) || precio === 0){
       return miPrecio = <span style={{ color: "red", fontWeight: "bold"}}>Por cotizar*</span>
     }else{
       miPrecio = precio
@@ -25,7 +25,7 @@ export default function TheCanvasCart(){
   const sumaCuentaCarrito = () => {
     if(Object.values(carrito).length > 0){
       const suma = Object.values(carrito)
-      .map(({ item }) => {
+      .map(( item ) => {
         const precios = []
         if(typeof item.precio === "undefined"){
           
@@ -52,7 +52,7 @@ export default function TheCanvasCart(){
   const dispatch = useTiendaDispatch()
 
   const { carrito, item } = state.context
-
+  
   useEffect(() => {
 
     const localCarrito = JSON.parse(localStorage.getItem("localCarrito"))
@@ -62,11 +62,12 @@ export default function TheCanvasCart(){
     }
   },[])
   
+
   useEffect(() => {
     if(Object.values(carrito).length > 0 ){
       handledClose()
     }
-  },[carrito])
+  },[item])
 
   useEffect(() => {
     if(state.matches("rejected")){
@@ -103,24 +104,29 @@ export default function TheCanvasCart(){
             <div className="d-flex flex-column">
                 <div className="menu--canvas--cart">
                   
-                    <button className="btn-modal-carrito"  onClick={goToCheckout} >Carrito</button>
-                  <span className="p-3 text-center">Total: <br/> {monyIntlRef(sumaCuentaCarrito())}</span>
+                  <button className="btn-modal-carrito"  onClick={goToCheckout}>Crear pedido</button>
+                  <span className="p-3 text-center">Subtotal: <br/> {monyIntlRef(sumaCuentaCarrito())}</span>
                   
                 </div>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mt-3">
                   {
                     state.matches("rejected") && (
                         <Alert
                           className="reject--canvas"
-                          message="Error"
-                          description={`Ya has agregado ${item.title} ¿quieres incluir mas piezas?`}
-                          type="error"
+                          message="¿quieres incluir mas piezas?"
+                          description={`Ya has agregado ${item.title}`}
+                          type="info"
                           showIcon
                         />)
                     }
                 </div>
+                <div className="text-center font-weight-bold">
                   {
-                    Object.values(carrito).map(({ item }) => {
+                    carrito.length === 0 && <Alert message="Tu carrito está vacío" type="info" showIcon />
+                  }
+                </div>
+                  {
+                    Object.values(carrito).map(( item ) => {
                       
                       return(
                         <div className="d-flex justify-content-center">
@@ -136,8 +142,7 @@ export default function TheCanvasCart(){
                     
                   }
                   <small className="text-center">*No tenemos piezas en existencia o el costo del producto debe ser actualizado.<br /> Nuestro personal le enviará el costo del producto y tiempos de entrega.</small>
-                  {/* <span>{JSON.stringify(carrito)}</span>
-                  <span>{JSON.stringify(state.value)}</span> */}
+
             </div> 
             </Drawer>
           </div>

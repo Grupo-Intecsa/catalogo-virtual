@@ -1,7 +1,7 @@
 .checkout--container{
   margin-top: 1rem;
   border-radius: 4px;
-  padding: 1rem;
+  padding: 1rem 0;
   width: 100%;
 
   display: grid;
@@ -17,28 +17,6 @@
   }
 }
 
-
-// .productos--check{
-//   display: grid;
-//   margin-top: 10px;
-//   grid-template-columns: (5, 1fr);
-//   width: 100%;
-  
-//   border-left: cornflowerblue 4px solid;
-//   padding: 1rem;
-//   box-sizing: border-box;
-//   align-items: center;
-//   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 1px;
-//   margin-bottom: 10px;
-//   margin-top: 10px;
-
-//   p{
-//     font-size: small;
-    
-//   }
-
-// }
-
 .check--list{
   width: 100%;
   display: flex;
@@ -48,32 +26,39 @@
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   border: 1px solid cornflowerblue;
-  border-left: cornflowerblue 4px solid;
+  border-left: cornflowerblue 5px solid;
   padding: 1rem;
   box-sizing: border-box;
   align-items: center;
   margin-bottom: 10px;
   margin-top: 10px;
 
-  p{
-    flex-basis: 50%;
-    font-family: 'Space Grotesk', sans-serif; 
-    font-size: small;  
-
-    white-space: nowrap;  
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   span{
     flex-basis: 50%;
     text-align: center;
     font-family: 'Space Grotesk', sans-serif; 
     
-    
   }
 
+}
+
+.cut--text--title{
+  flex-basis: 50%;
+  font-family: 'Space Grotesk', sans-serif; 
+  font-size: medium;  
+  color: rgb(119, 119, 119);
+  text-decoration: underline;
+
+  white-space: nowrap;  
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  cursor: pointer;
+}
+
+.cut--text--title:hover{
+  color: #2a5298;
 }
 
 .check--list-middle{
@@ -106,7 +91,7 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     
     font-size: x-large;
-    font-weight: bold;
+    
     font-family: texgyreadventorbold;
     letter-spacing: 1px;
   }
@@ -155,6 +140,8 @@
 .chek--control--del{
   margin-top: 4px;
   width: max-content;
+  font-size: medium;
+  font-weight: 100;
 }
 
 .footer--carrito{
@@ -188,4 +175,169 @@
     border: solid 1px #2a5298;
     border-right: 4px solid #2a5298;
   }
+}
+
+.cart-precio{
+  font-size: medium;
+
+}
+
+.sw--button{
+
+  margin-left: 1rem;
+  
+
+  span{
+    border: none;
+    
+  }
+}
+
+
+// stilos de invoice
+
+
+.invoice-wrapper{
+	margin: 20px auto;
+	max-width: 700px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.invoice-top{
+	background-color: #fafafa;
+	padding: 40px 60px;
+}
+/*
+Invoice-top-left refers to the client name & address, service provided
+*/
+.invoice-top-left{
+	margin-top: 60px;
+}
+.invoice-top-left h2 , .invoice-top-left h6{
+	line-height: 1.5;
+	font-family: 'Montserrat', sans-serif;
+}
+.invoice-top-left h4{
+	margin-top: 30px;
+	font-family: 'Montserrat', sans-serif;
+}
+.invoice-top-left h5{
+	line-height: 1.4;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+.client-company-name{
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+.client-address{
+	font-size: 14px;
+	margin-top: 5px;
+	color: rgba(0,0,0,0.75);
+}
+
+/*
+Invoice-top-right refers to the our name & address, logo and date
+*/
+.invoice-top-right h2 , .invoice-top-right h6{
+	text-align: right;
+	line-height: 1.5;
+	font-family: 'Montserrat', sans-serif;
+}
+.invoice-top-right h5{
+	line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-align: right;
+    margin-top: 0;
+}
+.our-company-name{
+	font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.our-address{
+	font-size: 13px;
+	margin-top: 0;
+	color: rgba(0,0,0,0.75);
+}
+
+.logo-wrapper{ 
+  overflow: auto;
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+/*
+Invoice-bottom refers to the bottom part of invoice template
+*/
+.invoice-bottom{
+	background-color: #ffffff;
+	padding: 40px 60px;
+	position: relative;
+}
+.invoice-title{
+	font-size: x-large;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	margin-bottom: 30px;
+}
+/*
+Invoice-bottom-left
+*/
+.invoice-bottom-left h5, .invoice-bottom-left h4{
+	font-family: 'Montserrat', sans-serif;
+}
+.invoice-bottom-left h4{
+	font-weight: 400;
+}
+.terms{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	margin-top: 40px;
+}
+.divider{
+	margin-top: 50px;
+    margin-bottom: 5px;
+}
+/*
+bottom-bar is colored bar located at bottom of invoice-card
+*/
+.invoice-bottom-bar{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 26px;
+	background-color: #3B5998;
+}
+
+.invoice-datos-cliente{
+  font-size: medium;
+}
+
+.invoice-button-send {
+  
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    width: 12rem;
+    padding: 0.86rem;
+    color: #ffffff;
+    border: 1px solid slategrey;
+    background-color: rgb(223, 80, 80);  
+}
+
+.invoice-button-send:hover{
+  color: rgb(223, 80, 80);
+  border: 1px solid rgb(223, 80, 80);;
+  background-color: white;  
+}
+
+.invoice-date{
+  text-align: right;
+  text-transform: uppercase;
+  font-size: small;
+  font-weight: bold;
 }

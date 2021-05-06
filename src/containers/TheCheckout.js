@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { useTiendaState } from 'context/TiendaContext'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faTimes, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-
+import React, { useEffect, useState } from 'react'
+import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
-import {
-  CSwitch
-} from '@coreui/react'
+
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+
+import { Alert, Switch } from 'antd'
+import CardCheckout from 'views/ProductosCards/CardCheckout'
 
 const FormOrdenCompra = ({ children, show }) => {
 
@@ -20,65 +20,20 @@ const FormOrdenCompra = ({ children, show }) => {
     )
 }
 
-
-
-
-const CardCheckout = ({ item }) => {
-  
-  const [ borrar, setBorrar ] = useState(false)
-  const handledBorar = () => setBorrar(!borrar)
-
-  const monyIntlRef = (precio) => {
-
-    let miPrecio 
-    if(isNaN(precio)){
-      return miPrecio = <span style={{ color: "red", fontWeight: "bold"}}>Por cotizar*</span>
-    }else{
-      miPrecio = precio
-    }
-    const number = new Intl.NumberFormat('en-MX', { style:"currency", currency: "MXN"}).format(miPrecio)
-    return number
-  }
-
-  return(
-    <div className="check--list">
-      <p>{item.title}</p>
-    <div className="check--list-middle">
-      <div>
-
-      <span>Cantidad:  
-          <select>
-              <option>{item.cantidad}</option>
-          </select>    
-      </span>
-      <span className="btn"><FontAwesomeIcon icon={faTrashAlt} size="1x" onClick={handledBorar} /></span>
-      { borrar 
-          ? <div className="chek--control--del">
-              <small className="font-weight-bold" style={{ "color": "red"}}>¿Está seguro que desea eliminar?</small>
-              <div>
-                <span className="ml-1 btn"><FontAwesomeIcon icon={faTimes} /> Si</span>
-                <span onClick={handledBorar} className="ml-1 btn"><FontAwesomeIcon icon={faCheckCircle} /> No</span>
-              </div>
-            </div>  
-          : null }
-      </div>
-      <span>{monyIntlRef(item.precio * item.cantidad)}</span>
-    </div>
-    </div>
-  )
-}
-
-
-
 const TheCheckout = () => {
 
+  useEffect(() => {
+    let onTop = document.getElementById("topCheckout")
+    onTop.scrollIntoView()
+  },[])
+
   const [ show, setShow ] = useState(false)
-  const handleCloseFrom = () => setShow(!show)
+  const handleCloseFrom = () => carrito.length > 0 ? setShow(!show) : null
 
   const monyIntlRef = (precio) => {
 
     let miPrecio 
-    if(isNaN(precio)){
+    if(isNaN(precio) || precio === 0 ){
       return miPrecio = <span style={{ color: "red", fontWeight: "bold"}}>Por cotizar*</span>
     }else{
       miPrecio = precio
@@ -90,11 +45,11 @@ const TheCheckout = () => {
   const sumaCuentaCarrito = () => {
     if(Object.values(carrito).length > 0){
       const suma = Object.values(carrito)
-      .map(({ item }) => {
+      .map(( item ) => {
         const precios = []
         if(typeof item.precio === "undefined"){
-          
           precios.push(0)
+
         } else {
           precios.push(item.precio * item.cantidad)
         }
@@ -110,21 +65,51 @@ const TheCheckout = () => {
     }
   }
 
+  const dispatch = useTiendaDispatch()
+  const handleEmptyCart = () => {
+    dispatch("EMPTY_CART")
+  }
+
+  // componente para envio de datos
+  const [ cotizar, setCotizar ] = useState(true)
+
+  const handleCotizar = (checked) => {
+    setCotizar(checked)
+  }
+
   const state = useTiendaState()
   const { carrito } = state.context
 
-  const { handleSubmit, register } = useForm()
+  const schemaValidation = yup.object().shape({
+    name: yup.string().required(),
+    address: yup.string().required(),
+    phone: yup.string().required(),
+    email: yup.string().email().required()
+  })
+
+  const { handleSubmit, register, formState: { errors } } = useForm({
+    resolver: yupResolver(schemaValidation)
+  })
+
+  //  handle submit de fomrulario
+  const history = useHistory()
   const onSubmit  = (data) => {
-    console.log(data)
+    let total = monyIntlRef(sumaCuentaCarrito())
+
+    const payload = { ...data, cotizar, carrito, total }
+    return history.push({ pathname: "/checkout/invoce", state: { payload }})
+    
   }
 
   return(
-    <div className="checkout--container">
-
+    <div className="checkout--container" id="topCheckout">
+      
       <div>
-        {
-          Object.values(carrito).length > 0 && (
-            Object.values(carrito).map(({ item }) => {
+        <h4>Materiales seleccionados</h4>
+        { carrito.length === 0 
+          ? <Alert message="Tu carrito está vacío" type="info" showIcon />
+          : Object.values(carrito).length > 0 && (
+            Object.values(carrito).map(( item ) => {
               return(
                 <CardCheckout item={item} />
               )
@@ -132,42 +117,66 @@ const TheCheckout = () => {
 
           )
         }
+        {
+          carrito.length > 0 && <span className="cut--text--title" onClick={handleEmptyCart}>Vaciar carrito</span>
+        }
       </div>
 
       <div className="check--header--title">
         <h4>Orden de Compra</h4>
         <small className="font-weight-bold">*El costo puede variar si tiene partidas pendientes por cotizar</small>
-        <span className="p-3 text-center">Total: <br/> {monyIntlRef(sumaCuentaCarrito())}</span>
+        <span className="p-3 text-center">Subtotal: <br/> {monyIntlRef(sumaCuentaCarrito())}</span>
         <div className="chek--control--area">
           <button className="btn-chek-pedido" onClick={handleCloseFrom}>Siguiente paso</button>
-          {/* { JSON.stringify(carrito, null) } */}
           {/* <button className="btn-chek-pedido">Cancelar</button> */}
         </div>
+        
           <FormOrdenCompra show={show}>
             <div className="form-oc">
-                <form onSubmit={onSubmit(handleSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                 
                 <section>
-                  <label>Nombre</label>
-                  <input></input>
+                  <label htmlFor="name">Nombre</label>
+                  <input id="name" name="name" type="text" ref={register}></input>
+                  <p>{errors.name && errors.name.message }</p>
                 </section>
 
                 <section>
-                  <label>Direccion</label>
-                  <input></input>
+                  <label htmlFor="address" >Dirección</label>
+                  <input id="address" name="address" type="text" ref={register}></input>
+                  <p>{errors.address && errors.address.message }</p>
                 </section>
 
                 <section>
-                  <label>Numero de Contacto</label>
-                  <input></input>
+                  <label htmlFor="cpostal" >CP</label>
+                  <input id="cpostal" name="cpostal" type="text" ref={register}></input>
+                  <p>{errors.postal && errors.postal.message }</p>
+                </section>
+
+                <section>
+                  <label htmlFor="phone">Número de Contacto</label>
+                  <input id="phone" name="phone" type="text" ref={register} ></input>
+                  <p>{errors.phone && errors.phone.message }</p>
+                </section>
+
+                <section>
+                  <label htmlFor="email">Email</label>
+                  <input id="email" name="email" type="email" ref={register} ></input>
+                  <p>{errors.email && errors.email.message }</p>
                 </section>
 
                 <div>
-                  <label>Cotizar envio</label>
-                  <CSwitch className={'mx-1'} variant={'3d'} color={'info'} defaultChecked />
+                  <label>Cotizar envío</label>
+                  <Switch 
+                    className="sw--button"
+                    onChange={handleCotizar}                    
+                    defaultChecked
+                      // checked={field.value}
+                    />                  
+                  {/* <CSwitch className={'mx-1'} variant={'3d'} color={'info'} defaultChecked /> */}
                 </div>
 
-                  <button className="btn-chek-pedido">Enviar Orden de Compra</button>
+                  <button className="btn-chek-pedido" type="submit">Enviar Orden de Compra</button>
 
                 </form>
             </div>

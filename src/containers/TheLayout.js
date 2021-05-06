@@ -37,8 +37,7 @@ const TheLayout = (props) => {
             <EmblaCarousel  slides={slides} />
             <Categories busqueda={props} />
           </div>
-        <div>
-          
+        <div>          
           <CatalogoContainer {...props} busqueda={busqueda} />
           {/* <EmblaCategorias /> */}
           <TheFooter/>

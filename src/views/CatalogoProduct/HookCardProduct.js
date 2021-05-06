@@ -7,7 +7,6 @@ import { faCaretLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import whataspp from '../../assets/icons/whatsapp.svg'
 import mercadoLogo from 'assets/icons/mercado-libre-logo.svg'
 
-
 import EmblaModal from '../../components/EmblaCarousel/EmblaModal'
 import ModalCapacidades from './ModalCapacidades'
 
@@ -16,6 +15,7 @@ import FormContact from 'views/FormContact'
 
 // ESTE SE PUEDE EJECUTAR CON USECONTEXT
 import { useTiendaDispatch } from 'context/TiendaContext'
+
 
 const mlVerify = ( item ) => {
 // verificamos si es un array y esta vacio
@@ -44,7 +44,7 @@ const monyIntlRef = (precio) => {
 }
 
 const HookCardProduct = ({ data }) => {
-    
+
     const { title, ml, desc, urlfoto, urldata, model, isKit, compatible, familia, _id, precio } = data
     
     const [ cotizar, setCotizar ] = useState(false)
@@ -58,9 +58,10 @@ const HookCardProduct = ({ data }) => {
     const dispatch = useTiendaDispatch()
     
     const hookSenderItemCart = ({ data, cantidad } = {}) => {
-
+        
         const payload = { ...data, cantidad: cantidad.cantidadCompra }
-        dispatch("ADD_ITEM", { payload, id: payload._id })     
+        dispatch("ADD_ITEM", { data: payload, id: payload._id })
+        
     }
     
 
@@ -85,6 +86,7 @@ const HookCardProduct = ({ data }) => {
         </div>
 
         <div className="modal--productos">
+            
 
             <div  className="modal-ca">
             {/* galeria */}
@@ -125,7 +127,7 @@ const HookCardProduct = ({ data }) => {
                     <span className="leermas TE" onClick={() => setLeermas(!leermas)}>{ leermas ? "MOSTRAR MENOS" : "MOSTRAR MÁS"}</span>
                 </div>
             </div>
-
+        
             <div  className="modal-cc">
                 {/* contacto ecomerce */}
                 <div className="modal-botonera">
@@ -133,8 +135,9 @@ const HookCardProduct = ({ data }) => {
                         Cotizar <img src={whataspp} alt="logo whatsapp" style={{ "width": "20px"}} className="ml-1"/>
                     </button>
                     <FormContact visible={cotizar} contactoToggle={contactoToggle} title={title} />
+                    
                 {
-                    mlVerify(ml) && (
+                    (isKit === false || typeof isKit === 'undefined') && (
                     <>
                     <div className="d-flex flex-column canvasCart" >
                     <label htmlFor="cantidad">Cantidad</label>
@@ -154,6 +157,7 @@ const HookCardProduct = ({ data }) => {
                     </>
                     )
                 }
+                {/* { console.log("[Es Kit]", isKit)} */}
                 </div>
                 <div className="modal-aviso">
                     {/* donde comprar */}
