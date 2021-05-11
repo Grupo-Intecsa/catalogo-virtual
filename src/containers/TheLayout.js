@@ -33,7 +33,7 @@ const TheLayout = (props) => {
       {/* <Csv2Json /> */}
       <div className="c-wrapper">
         <TheHeader busqueda={setBusqueda} />
-          <div className="c-body bg-black">
+          <div className="">
             <EmblaCarousel  slides={slides} />
             <Categories busqueda={props} />
           </div>

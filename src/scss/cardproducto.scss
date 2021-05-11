@@ -1,42 +1,67 @@
+#topHookProducto{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .center--content{
   
   display: flex;
-  // display: grid;
+    // display: grid;
   // grid-template-columns: repeat(2, 1fr);
   // width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
+
 }
+
 
 .neibor-card{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-column-gap: 1rem;
-
+  box-sizing: border-box;
+  padding: 1rem;
   width: 40rem;
 
-  padding: 1rem;
-  margin: 1rem;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  background-blend-mode: screen;
+  border-radius: 2px;
+  
+  // background-image: url("/assets/bg/wave_normal.svg");
+  // background-repeat: no-repeat;
+  // background-size: cover;  
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  
+  
 
 }
 
 .card__bg__familia{
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-image: url("/assets/bg/wave.svg");
+  background-repeat: no-repeat;
+  background-size: cover;  
 }
 
 .card__bg{
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  margin: 10px;
+  
 }
 
 .img-neibor-card{
   padding: 1rem;
   grid-column: span 1;
   
+}
+
+@media (max-width: 60rem){
+  .img-neibor-card{
+  border-right: none;
+  
+  }
 }
 
 .title-neibor-card{
@@ -144,6 +169,12 @@
   margin-right: 10px;
   border: none;
   border-radius: 7px; 
+}
+
+.btn-nebor:hover{
+  background-color: white;
+  color: #1c1e21;
+  border: 2px solid black;
 }
 
 .btn-nebor-contacto{

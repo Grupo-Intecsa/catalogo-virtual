@@ -6,6 +6,7 @@ import {
     CCardBody
 } from '@coreui/react'
 
+import { useHistory } from 'react-router-dom'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 
@@ -51,7 +52,14 @@ const CatalogoProduct = ({ match }) => {
 
     },[params.id])
 
+    const history = useHistory()
+    useEffect(() => {
+        if(state.matches("error")){
+            return history.push({ pathname: "/error404"})
+        }
+        },[state.value])
 
+    
     return(
 
     <CRow>

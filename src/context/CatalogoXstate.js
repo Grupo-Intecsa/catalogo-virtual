@@ -46,6 +46,9 @@ export const CatalogoXstate = Machine({
                     actions: assign({
                         sample: (cxt, evt) => evt.data
                     })
+                },
+                onError: {
+                    target: "error"
                 }
             }
         },
@@ -57,6 +60,9 @@ export const CatalogoXstate = Machine({
                     actions: assign({
                         queryBrand: (_, evt) => evt.data
                     })
+                },
+                onError: {
+                    target: "error"
                 }
             }
         },
@@ -68,6 +74,9 @@ export const CatalogoXstate = Machine({
                     actions: assign({
                         queryBrand: (_, evt) => evt.data
                     })
+                },
+                onError: {
+                    target: "error"
                 }
             }
         },
@@ -191,6 +200,9 @@ export const CatalogoXstate = Machine({
                     actions: assign({
                         infiniteData: (ctx, event) => event.data
                     })
+                },
+                onError: {
+                    target: "error"
                 }
             }  
         },

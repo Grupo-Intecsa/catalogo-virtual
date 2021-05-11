@@ -21,7 +21,9 @@ const Card = ({ props }) =>{
     const topView = document.getElementById('topMenuCard')
 
     return(
-    <div  className={ isKit ? "neibor-card card__bg__familia" : "neibor-card card__bg" }>
+        <div className="card__bg">
+        <div className={ isKit ? "neibor-card card__bg__familia " : "neibor-card" }>
+        
         <div>
         <div className="img-neibor-card">
             <img src={urlfoto[0].toString()}  alt={tags} className="neibor-card-img" loading="lazy"/>
@@ -61,8 +63,9 @@ const Card = ({ props }) =>{
                 </div>
             </div>
         </div>
+        </div>
+        </div>
     
-    </div>
     )
 }
 

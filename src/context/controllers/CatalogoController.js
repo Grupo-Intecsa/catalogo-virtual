@@ -174,6 +174,8 @@ export default {
         const res = await api.get(`/familia/detalle/product/${id}`)
         .then(res => res.data.message)
 
+        console.log(res)
+
         return res
     },
     getProductsByParentId: async(ctx, event) => {

@@ -50,8 +50,8 @@ const Dashboard = ({ match }) => {
     },[state.value])
     
     return(
-    <CRow id="topDashBoard">
-            <CCol>
+    <div id="topDashBoard">
+            <div>
                 {state.matches('sample') && isExact && (
                     <div className="content--no--data">
                         <h2 className="mr-3">Cargando productos...</h2>{" "}
@@ -62,7 +62,8 @@ const Dashboard = ({ match }) => {
                 ) }
                 
                 { Object.values(sample).length > 0 && (
-                <>
+                <>  
+                    
                     <div>
                         {/* {JSON.stringify(countPage)}
                         {JSON.stringify(infiniteCount)}
@@ -94,9 +95,9 @@ const Dashboard = ({ match }) => {
                 </>  
                 )}
 
-            </CCol>
+            </div>
             
-        </CRow>
+        </div>
     )
 }
 

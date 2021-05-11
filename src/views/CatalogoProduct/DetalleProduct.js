@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
@@ -19,12 +19,20 @@ const DetalleProduct = (props) => {
     const { queryBrand } = state.context
     const { slug } = match.params
 
+
+    const history = useHistory()
+
     useEffect(() => {
       send('GET_CATALOGO_BY_ID', { data: slug })
     },[slug])
 
     useEffect(() => {
-      console.log(location)
+      if(state.matches("error")){
+        return history.push({ pathname: "/error404"})
+      }
+    },[state.value])
+
+    useEffect(() => {
       if(location.state === "@send/hookcard"){
         viewTop.scrollIntoView()
       }
