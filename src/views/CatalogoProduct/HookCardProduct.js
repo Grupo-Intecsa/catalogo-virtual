@@ -69,19 +69,25 @@ const HookCardProduct = ({ data }) => {
     }
 
     const dispatch = useTiendaDispatch()
-    
+
     const hookSenderItemCart = ({ data, cantidad } = {}) => {
-        
+
         let costo = () => {
             
-            if(precio === 0 || typeof precio === 'undefined'){
+            if(precio === 0 && typeof mlPrecio !== 'undefined'){
                 if(Number.isNaN(+mlPrecio)){
                     
                     let number = mlPrecio.split(",")                
                     let suma = number[0] + number[1]
-                    return +suma
+
+                    if(Number.isNaN(+suma)){
+                        return 0
+                    }else {
+                        return +suma
+                    }
 
                 }else if(!Number.isNaN(+mlPrecio)){
+                    
                     return +mlPrecio
                 }
                 
@@ -91,7 +97,7 @@ const HookCardProduct = ({ data }) => {
             }
         }
                 
-        const payload = { ...data, cantidad: cantidad.cantidadCompra, precio: costo() }        
+        const payload = { ...data, cantidad: cantidad.cantidadCompra, precio: costo() }  
         dispatch("ADD_ITEM", { data: payload, id: payload._id })
         
     }

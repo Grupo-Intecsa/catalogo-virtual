@@ -42,7 +42,6 @@ const InvoiceCart = () => {
     fetch(`https://quiet-castle-61424.herokuapp.com/api/v1/pdf?folio=${folio}`, {
       
       headers: {  "Content-Type": "application/json" },
-      mode: "no-cors",
       method: "POST",
       body: JSON.stringify(pdfPayload)
     }).then(res => {
