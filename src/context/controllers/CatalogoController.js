@@ -174,8 +174,6 @@ export default {
         const res = await api.get(`/familia/detalle/product/${id}`)
         .then(res => res.data.message)
 
-        console.log(res)
-
         return res
     },
     getProductsByParentId: async(ctx, event) => {
@@ -210,5 +208,31 @@ export default {
         }
 
     },
+    invoiceCreate: async(ctx, event) => {
+
+        const invoiceSave = await api.post('/save-pdf', event)
+        .then(res => res.data && res.data.message && res.data.message._id)
+
+        return invoiceSave
+
+    }, 
+    getDataToInvoice: async(ctx, event) => {
+
+        const dataInvoice = await api.get(`invoice/${event.folio}`)
+            .then(res => res.data && res.data.message)
+        
+            return dataInvoice
+    },
+    getPrice: async({ ml }) => {
+
+        const mlSplit = ml?.split("MLM")[1]
+
+        const precio = await api.get(`/price?ml=${mlSplit}`)
+        .then(res => res)
+
+        if(precio.statusText === "OK"){
+            return precio.data.precio
+        }
+    }
     
 }

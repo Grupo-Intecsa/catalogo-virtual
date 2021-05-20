@@ -1,0 +1,52 @@
+.datos-cliente{
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: large;
+}
+
+.datos-productos{
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: large;
+  
+}
+
+td{
+  padding: 10px;
+}
+
+.datos-precio > span {
+  font-size: x-large;
+}
+
+#datos-invoice{
+  background-color: white;
+  box-sizing: border-box;
+  margin-top: 3rem;
+  padding: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+@media (max-width: 60rem){
+  .datos-cliente{
+    font-size: small;
+    align-items: center;
+  }
+  .datos-precio{
+    font-size: small
+  }
+  .datos-productos{
+    font-size: small
+  }
+
+  td{
+    padding: 10px;
+  }
+}

@@ -1,4 +1,5 @@
 import { useContext, createContext } from 'react'
+import CatalogoController from './controllers/CatalogoController'
 import { useMachine } from '@xstate/react'
 import { Machine, assign } from 'xstate'
 
@@ -9,6 +10,7 @@ const hydrateData = async(ctx, event) => {
     return await event.payload
 }
 
+
 export const TiendaMachine = Machine({
   id: "Tienda",
   initial: "iddle",
@@ -16,6 +18,7 @@ export const TiendaMachine = Machine({
     hidden: false,
     item: {},
     carrito: [],
+    pdfData: [],
 
   },
   states: {
@@ -75,7 +78,39 @@ export const TiendaMachine = Machine({
         localStorage.setItem("localCarrito", JSON.stringify(carrito))
       })
     },
-        
+    invoiceCreate: {
+      invoke: {
+        id: "pdfCreate",
+        src: CatalogoController.invoiceCreate,
+        onDone: {
+          target: "pdfCreate",
+          actions: assign({
+            pdfFolio: (ctx, event) =>  event.data
+          })
+        },
+        onError: {
+          target: "error"
+        }
+
+      }
+    },
+    getDataToInvoice: {
+      invoke: {
+        id: "getDataToInvoice",
+        src: CatalogoController.getDataToInvoice,
+        onDone: {
+          target: "pdfDataDone",
+          actions: assign({
+            pdfData: (ctx, event) => event.data
+          })
+        },
+        onError: {
+          target: "error"
+        }
+      }
+    },
+    pdfDataDone: {},
+    pdfCreate: {},
     success: {},
     error: {},
     rejected: {
@@ -111,7 +146,12 @@ export const TiendaMachine = Machine({
     RESET: {
       activities: ['reset']
     },
-
+    INVOICE_CREATE: {
+      target: "invoiceCreate"
+    },
+    GET_DATA_TO_INVOICE: {
+      target: "getDataToInvoice"
+    }
 
   },
   activities: {

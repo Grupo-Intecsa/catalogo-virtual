@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,6 +9,8 @@ import mercadoLogo from 'assets/icons/mercado-libre-logo.svg'
 
 import EmblaModal from '../../components/EmblaCarousel/EmblaModal'
 import ModalCapacidades from './ModalCapacidades'
+
+import CatalogoController from 'context/controllers/CatalogoController'
 
 // formulario de contacto
 import FormContact from 'views/FormContact'
@@ -46,7 +48,18 @@ const monyIntlRef = (precio) => {
 const HookCardProduct = ({ data }) => {
 
     const { title, ml, desc, urlfoto, urldata, model, isKit, compatible, familia, _id, precio } = data
+
+    // 'si no hay precio en la BD y si hay codigo de ML lo extraemos'
+    const [ mlPrecio, setMlPrecio ] = useState("Cargado...")
+    async function getData(){
+        await CatalogoController.getPrice({ ml })
+        .then(res => setMlPrecio(res))
+    }
+    useEffect(() => {
+        getData()        
+    },[ml])    
     
+
     const [ cotizar, setCotizar ] = useState(false)
     const contactoToggle = () => setCotizar(!cotizar)
 
@@ -59,11 +72,29 @@ const HookCardProduct = ({ data }) => {
     
     const hookSenderItemCart = ({ data, cantidad } = {}) => {
         
-        const payload = { ...data, cantidad: cantidad.cantidadCompra }
+        let costo = () => {
+            
+            if(precio === 0 || typeof precio === 'undefined'){
+                if(Number.isNaN(+mlPrecio)){
+                    
+                    let number = mlPrecio.split(",")                
+                    let suma = number[0] + number[1]
+                    return +suma
+
+                }else if(!Number.isNaN(+mlPrecio)){
+                    return +mlPrecio
+                }
+                
+            }else if(precio > 0 ){
+                
+                return precio
+            }
+        }
+                
+        const payload = { ...data, cantidad: cantidad.cantidadCompra, precio: costo() }        
         dispatch("ADD_ITEM", { data: payload, id: payload._id })
         
     }
-    
 
     const [ leermas, setLeermas ] = useState(false)
 
@@ -104,9 +135,15 @@ const HookCardProduct = ({ data }) => {
             
                 {/* modelo y disponibilidad */}
                     <div className="modal--dispose">
-                        { precio >  0 && 
+                        { precio >  0 &&
                             <span className="mt-2 text-black-50">
                             Precio: <p className="precioCard">{`${monyIntlRef(precio)}`}</p>
+                            </span>
+                        }
+                        {
+                            precio === 0 && mlVerify(ml) &&
+                                <span className="mt-2 text-black-50">
+                                Precio: <p className="precioCard">{ `MXN$ ${mlPrecio}` }</p>
                             </span>
                         }
                         
@@ -147,7 +184,7 @@ const HookCardProduct = ({ data }) => {
                         <option>2</option>
                         <option>3</option>
                     </select>
-                    <button className="btn btn-modal-comprar" onClick={() => hookSenderItemCart({ data: { title, _id, precio }, cantidad: { cantidadCompra }  })}>
+                    <button className="btn btn-modal-comprar" onClick={() => hookSenderItemCart({ data: { title, _id, precio, foto: urlfoto[0] }, cantidad: { cantidadCompra }  })}>
                         Añadir <FontAwesomeIcon icon={ faShoppingCart }/></button>
                     </div>
                     </div>

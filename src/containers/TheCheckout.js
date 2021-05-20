@@ -92,14 +92,34 @@ const TheCheckout = () => {
   })
 
   //  handle submit de fomrulario
+  
+  const getDate = () => {
+
+    const date = Date.now()    
+    const dateformat = new Intl.DateTimeFormat('es-MX', { dateStyle: 'full' }).format(date)
+    return dateformat
+
+  }
+
+  const [ payload, setPayload] = useState([])
+
   const history = useHistory()
   const onSubmit  = (data) => {
     let total = monyIntlRef(sumaCuentaCarrito())
+    const payload = { ...data, cotizar, carrito, total, date: getDate() }
+    setPayload(payload)
 
-    const payload = { ...data, cotizar, carrito, total }
-    return history.push({ pathname: "/checkout/invoce", state: { payload }})
-    
+    dispatch("INVOICE_CREATE", payload )    
   }
+
+  useEffect(() => {
+    if(state.matches("pdfCreate")){
+
+      const folio = state.context && state.context.pdfFolio
+      return history.push({ pathname: `/checkout/invoice/${folio}`, state: { payload }})
+      
+    }
+  },[state.value])
 
   return(
     <div className="checkout--container" id="topCheckout">

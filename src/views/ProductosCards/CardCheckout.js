@@ -1,13 +1,9 @@
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faTimes, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-
 import { useTiendaDispatch } from 'context/TiendaContext'
-
-
 
 const CardCheckout = ({ item }) => {
 
@@ -39,6 +35,10 @@ const CardCheckout = ({ item }) => {
     <div className="check--list">
       <Link to={`/detalle/${item._id}/${linkName}`} className="cut--text--title"><p>{item.title}</p></Link>
     <div className="check--list-middle">
+    <div>
+      <img src={item?.foto} alt="imagen de muestra" className="img-fluid" style={{ "height": "50px" }} />
+      <span className="cart-precio">{monyIntlRef(item.precio * item.cantidad)}</span>
+    </div>
       <div>
       {/* <div>{JSON.stringify(item._id)}</div> */}
       <span>Cantidad:  
@@ -56,8 +56,8 @@ const CardCheckout = ({ item }) => {
               </div>
             </div>  
           : null }
+      
       </div>
-      <span className="cart-precio">{monyIntlRef(item.precio * item.cantidad)}</span>
     </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { Machine, assign, actions } from 'xstate'
+import { Machine, assign } from 'xstate'
 import CatalogoController from './controllers/CatalogoController'
 
 export const CatalogoXstate = Machine({
@@ -16,7 +16,8 @@ export const CatalogoXstate = Machine({
         productsOfParent: [],
         infiniteData: {},
         infiniteCount: {},
-        countPage: 0
+        countPage: 0,
+        precio: undefined
     },
     states: {
         idle: {
@@ -240,6 +241,17 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        getPrecio: {
+            invoke: {
+                src: CatalogoController.getPrice,
+                onDone: {
+                    target: "success",
+                    actions: assign({
+                        precio: (ctx, event) => event.data
+                    })
+                }
+            }
+        },
         error: {},
         success: {
             on: {
@@ -297,6 +309,9 @@ export const CatalogoXstate = Machine({
             target: "getProductByModel",
             actions: (ctx, event) => ctx.modelUpdate = event.model,
             cond: (_, event) => event.model.length > 0
+        },
+        GET_PRICE: {
+            target: "getPrecio"
         },
         RESET: {
             target: 'idle',
