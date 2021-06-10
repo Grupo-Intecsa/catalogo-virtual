@@ -18,7 +18,7 @@ const { productsOfParent } = state.context
 
 useEffect(() => {
     send('GET_PRODUCTS_BY_PARENT_ID', { data: id })
-},[id])
+},[id, send])
 
 const productSelected = useMemo(() => {
     
@@ -30,7 +30,7 @@ const productSelected = useMemo(() => {
     }
     return select 
 
-},[selectValue])
+},[selectValue, productsOfParent, state])
 
 const handledOkButtom = () => {
     
@@ -39,7 +39,7 @@ const handledOkButtom = () => {
         return setErrorSelect({ error: "Debe seleccionar un valor para continuar" })
     }
 
-    const id = productSelected?.map(({ id,...restOfData }) => id ).join("")
+    const id = productSelected?.map(({ id, ...restOfData }) => id ).join("")
     // const title = productSelected?.map(({ title }) => title).join("")
 
     return history.replace({ 

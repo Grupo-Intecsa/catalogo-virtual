@@ -58,6 +58,12 @@ const HookCardProduct = ({ data }) => {
     useEffect(() => {
         getData()        
     },[ml])    
+
+    // para abrir nuevo elemento en nueva ventana debe estar dentro de un objecto
+    const openInNewWindow = (url) => {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if(newWindow) newWindow.opener = null
+    }
     
 
     const [ cotizar, setCotizar ] = useState(false)
@@ -128,6 +134,7 @@ const HookCardProduct = ({ data }) => {
             <div  className="modal-ca">
             {/* galeria */}
                 <div className="modal-carousel">
+                    {/* grid de fotos de productos*/}
                     <EmblaModal urlfoto={urlfoto} />
                 </div>
             
@@ -233,10 +240,11 @@ const HookCardProduct = ({ data }) => {
                     {/* Si hay pdf */}
                     {
                         Array.isArray(urldata) && urldata.length > 0 && (
-                            
-                    <a href={urldata[0]} target="_blank" rel="noreferrer" className="btn btn-modal-pdf">
-                        Ficha Técnica
-                    </a>
+                    <>
+                        <span className="btn btn-modal-pdf" onClick={() => openInNewWindow(urldata[0])}>
+                                Ficha Técnica
+                        </span>
+                    </>
                         )
                     }
                     

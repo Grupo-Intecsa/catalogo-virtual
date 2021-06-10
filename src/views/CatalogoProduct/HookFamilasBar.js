@@ -175,10 +175,10 @@ const HookFamilasBar = ({ id }) => {
 
       {
         
-        familia.map(fam => fam.familias.map(item => {
+        familia.map(fam => fam.familias.map((item, index) => {
 
         return(
-          <div className="btn familia-item embla__slide__familias">
+          <div className="btn familia-item embla__slide__familias" key={index}>
             <Link to={{ pathname: `/product/familias/${item.id}`, state: { brand: brandFilter }}}>
               
                 <div>

@@ -62,7 +62,6 @@ export default function TheCanvasCart(){
     }
   },[])
   
-
   useEffect(() => {
     if(Object.values(carrito).length > 0 ){
       handledClose()
@@ -75,8 +74,20 @@ export default function TheCanvasCart(){
     }
   },[state.value])
 
-  
-  // QUE FUINCIONE lol
+  const concatTitle = (string) => {
+    let concatTitle
+    const titleString = string.split(" ")
+    
+    if(titleString.length > 10 ){
+      concatTitle = titleString.slice(0, titleString.length / 2 ).join(" ") + "..."
+    }else {
+      concatTitle = string
+    }
+    
+    return concatTitle
+
+  }
+
   const history = useHistory()
   const goToCheckout = () => {
         history.replace({ pathname: "/cart/checkout" })
@@ -96,19 +107,19 @@ export default function TheCanvasCart(){
             </div>
             <Drawer 
               // title="pobando Carrito"
-              placement="bottom"
+              placement="right"
               onClose={handledClose}
               visible={close}
-              height={500}
+              width="80%"
+              
             >    
-            <div className="d-flex flex-column">
-                <div className="menu--canvas--cart">
-                  
-                  <button className="btn-modal-carrito"  onClick={goToCheckout}>Crear pedido</button>
-                  <span className="p-3 text-center">Subtotal: <br/> {monyIntlRef(sumaCuentaCarrito())}</span>
-                  
-                </div>
-                <div className="d-flex justify-content-center mt-3">
+              <div className="d-flex flex-column">
+                <div className="menu--canvas--cart">    
+                <span className="p-3 text-center">Subtotal: <br/> {monyIntlRef(sumaCuentaCarrito())}</span>
+              
+              </div>
+              
+                <div className="d-flex justify-content-center mt-3 w-100">
                   {
                     state.matches("rejected") && (
                         <Alert
@@ -120,33 +131,47 @@ export default function TheCanvasCart(){
                         />)
                     }
                 </div>
+              
                 <div className="text-center font-weight-bold">
                   {
                     carrito.length === 0 && <Alert message="Tu carrito está vacío" type="info" showIcon />
                   }
                 </div>
+
                   {
-                    Object.values(carrito).map(( item ) => {
+                    Object.values(carrito).map((item, index) => {
                       
                       return(
-                        <div className="d-flex justify-content-center">
+                        <div key={index + item.title} className="EmblaModald-flex justify-content-center">
                             {/* meter reduce para la suma de los datos */}
                           <div className="canvasBodyContainer">
-                            <p>{item.title}</p>
-                            <span>{item.cantidad} Pza</span>
+                            <p>{concatTitle(item.title)}</p>
                             <span>{monyIntlRef(item.precio * item.cantidad)}</span>
+
+                            <hr/>
+
+                            <div className="canvas--bottom">
+                              <img src={item.foto} alt={item.title} />  
+                              <select value={item.cantidad} className="btn btn-modal-additem" id="cantidad">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                              </select>
+                            </div>
                           </div>
                       </div>
                       )
                     })
                     
                   }
+                  <div className="d-flex justify-content-center">
+                    <button className="btn-modal-carrito"  onClick={goToCheckout}>Crear pedido</button>
+                  </div>
                   <small className="text-center">*No tenemos piezas en existencia o el costo del producto debe ser actualizado.<br /> Nuestro personal le enviará el costo del producto y tiempos de entrega.</small>
-
             </div> 
+            
             </Drawer>
-          </div>
-      
+            </div>      
     </Fragment>
   )
 }

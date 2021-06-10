@@ -9,7 +9,7 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
-import { useParams, useHistory, useLocation } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 
 const Card = React.lazy(() => import('../ProductosCards/Card'))
 const HookFamilasBar = React.lazy(() => import('./HookFamilasBar'))
@@ -30,7 +30,7 @@ const HookProduct = ({ query }) => {
 
   const [ queryData, setQueryData ] = useState(query)
 
-  const [ memoria, setMemoria ] = useState({
+  const [ memoria ] = useState({
     limit: Object.entries(queryData?.response).length,
     count: Number(Object.values(queryData.info).map((total) => total ).toString())
   })
@@ -53,13 +53,13 @@ const HookProduct = ({ query }) => {
       send("GET_FAMILA_BY_TITLE", { id: params.id, page: currentPage })
     }
 
-  },[currentPage])
+  },[currentPage, id, params.id, params.slug, send, slug])
 
   useEffect(() => {
     if(state.matches('success')){
       setQueryData(queryBrand)
     }
-  },[state.value])
+  },[state.value, queryBrand, state])
 
     
   return(

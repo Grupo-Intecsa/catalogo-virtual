@@ -1,7 +1,9 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useCallback, useState } from 'react'
 // import { useMachine } from '@xstate/react'
 // import { CatalogoMachine } from '../../context/catalogoContext'
 import { useEmblaCarousel } from 'embla-carousel/react'
+import { PrevButton, NextButton } from './EmblaCarouselButtons'
+
 
 export default function EmblaCategorias(){
 
@@ -478,23 +480,50 @@ export default function EmblaCategorias(){
         if(embla && embla.slideNodes().length !== catData.length){
             embla.reInit()
         }
-    },[embla, catData])
+    },[catData, embla])
+
+    const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+    const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+    const [ setSelectedIndex] = useState(0);
+    const [ setScrollSnaps ] = useState([]);
+    // const [_selectedIndex, setSelectedIndex] = useState(0);
+    // const [_scrollSnaps, setScrollSnaps] = useState([]);
+
+
+    const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla])
+    const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla])
+    // const _scrollTo = useCallback(() => embla && embla.scrollTo(), [embla])
+
+    const onSelect = useCallback(() => {
+        if (!embla) return;
+            setSelectedIndex(embla.selectedScrollSnap());
+            setPrevBtnEnabled(embla.canScrollPrev());
+            setNextBtnEnabled(embla.canScrollNext());
+        }, [embla, setSelectedIndex]);
+
+    useEffect(() => {
+        if (!embla) return;
+        onSelect();
+        setScrollSnaps(embla.scrollSnapList());
+        embla.on("select", onSelect);
+    }, [embla, setScrollSnaps, onSelect]);
 
 return(
 <Fragment>
 <h1 className="text-center text-black-50 mt-2">Categorías</h1>
 <div className="embla__familias" ref={emblaRef}>
     <div className="embla__container"> 
-    {catData.map(cat => {
+    {catData.map((cat, index) => {
         return(
             <>
-
-            <div className="embla__slide__categorias">
+            <div className="embla__slide__categorias" key={index}>
                 <div className="labels-items">
                     <div>
-                    <h1>{cat.title}</h1>
+                    <h1>{cat.title} la factura</h1>
                     </div>
                 </div>
+                <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+                <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
             </div>
 
             </>

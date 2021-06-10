@@ -19,12 +19,10 @@
 
 .check--list{
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background-color: white;
+  display: grid;
+  grid-template-columns: 30% 70%;
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-
+  background-color: white;
   border: 1px solid cornflowerblue;
   border-left: cornflowerblue 5px solid;
   padding: 1rem;
@@ -33,26 +31,42 @@
   margin-bottom: 10px;
   margin-top: 10px;
 
-  span{
-    flex-basis: 50%;
-    text-align: center;
-    font-family: 'Space Grotesk', sans-serif; 
-    
+}
+
+.card-list-img{
+  grid-column-start: 1;
+
+  img {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+.card-list-options{
+  grid-column-start: 2;
+  margin-left: 10px;
+  
+}
+
+.card--list--data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  select{
+    height: 40px;
+    width: 80px;
+    margin-left: 10px;
   }
 
 }
 
 .cut--text--title{
-  flex-basis: 50%;
-  font-family: 'Space Grotesk', sans-serif; 
-  font-size: medium;  
+  font-size: large;
   color: rgb(119, 119, 119);
   text-decoration: underline;
-
-  white-space: nowrap;  
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: "texgyreadventorbold";
+  
 
   cursor: pointer;
 }
@@ -178,8 +192,9 @@
 }
 
 .cart-precio{
-  font-size: medium;
+  font-size: large;
   margin-left: 10px;
+  font-family: "texgyreadventorbold";
 
 }
 

@@ -17,7 +17,6 @@
 
 }
 
-
 .neibor-card{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -492,6 +491,10 @@
   text-transform: uppercase;
   font-size: large;
   color: #1c1e21;
+}
+
+.drawer--carrito{
+  background-color: #37ecba;
 }
 
 // estilos de modal

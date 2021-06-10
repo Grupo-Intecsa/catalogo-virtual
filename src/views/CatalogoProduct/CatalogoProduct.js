@@ -10,8 +10,6 @@ import { useHistory } from 'react-router-dom'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 
-import { Spin, Space } from 'antd';
-
 const HookProduct = React.lazy(() => import('./HookProduct')) 
 
 const CatalogoProduct = ({ match }) => {
@@ -20,12 +18,6 @@ const CatalogoProduct = ({ match }) => {
     const { params } = match
     
     const [ state, send ] = useMachine(CatalogoXstate)
-
-    // useEffect(() => {
-    //     const sub = service.subscribe((state) => console.log(state))
-    //     return () => sub.unsubscribe()
-    // },[state, service])
-
     const { queryBrand } = state.context
 
     useEffect(() => {
@@ -50,27 +42,23 @@ const CatalogoProduct = ({ match }) => {
             send("GET_FAMILA_BY_TITLE", { id: params.id, slug: params.slug, page: 1 })
         }
 
-    },[params.id])
+    },[params.id, send, params.slug])
 
     const history = useHistory()
     useEffect(() => {
         if(state.matches("error")){
             return history.push({ pathname: "/error404"})
         }
-        },[state.value])
+        },[state.value, history, state])
 
     
     return(
 
     <CRow>
-
         <CCol>
         { state.matches(`${currentState}`) && (
             <div className="content--no--data">
-                <h2>Cargando productos...</h2>{" "}
-                <Space size="large">
-                    <Spin size="large" />
-                </Space>
+                <h2>Cargando productos...</h2>
             </div>
         )}
         { state.matches('success') && queryBrand.length === 0 && (

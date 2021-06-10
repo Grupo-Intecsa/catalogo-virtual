@@ -4,10 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from '../../context/CatalogoXstate'
 
-import { Spin, Space } from 'antd';
-
 import HookCardProduct from './HookCardProduct'
-
 
 const DetalleProduct = (props) => {
 
@@ -24,13 +21,13 @@ const DetalleProduct = (props) => {
 
     useEffect(() => {
       send('GET_CATALOGO_BY_ID', { data: slug })
-    },[slug])
+    },[slug, send])
 
     useEffect(() => {
       if(state.matches("error")){
         return history.push({ pathname: "/error404"})
       }
-    },[state.value])
+    },[state.value, history, state])
 
     useEffect(() => {
       if(location.state === "@send/hookcard"){
@@ -44,14 +41,14 @@ const DetalleProduct = (props) => {
 
       <div id="DetalleProduct">
         { state.matches('getCatalogoById') && (
-          <Space size="large">
-            <Spin size="large" />
-          </Space>
+          <div className="content--no--data">
+            <div>Con talan</div>
+          </div>
         )}
         { state.matches('getFamiliaById') && (
-          <Space size="large">
-            <Spin size="large" />
-          </Space>
+          <div className="content--no--data">
+            <div>Con talan</div>
+          </div>
         )}
 
         { state.matches('success') &&  <HookCardProduct data={queryBrand} />}  

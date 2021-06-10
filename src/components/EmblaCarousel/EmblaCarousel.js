@@ -18,6 +18,12 @@ const EmblaCarousel = ({ slides }) => {
     embla
   ]);
 
+  useEffect(() => {
+    if(embla && embla.slideNodes().length !== slides.length){
+      return embla.reInit()
+    }
+  },[embla, slides])
+
   const onSelect = useCallback(() => {
     if (!embla) return;
     setSelectedIndex(embla.selectedScrollSnap());
@@ -33,11 +39,6 @@ const EmblaCarousel = ({ slides }) => {
     embla.on("select", onSelect);
   }, [embla, setScrollSnaps, onSelect]);
 
-  useEffect(() => {
-    if(embla && embla.slideNodes().length !== slides.length){
-      return embla.reInit()
-    }
-  },[embla, slides])
 
   return (
     <>

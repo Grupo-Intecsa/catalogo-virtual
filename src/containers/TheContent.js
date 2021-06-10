@@ -8,19 +8,14 @@ import { CContainer, CFade } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
-  
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-)
+import GTISpinner from 'components/GTISpinner'
 
 const TheContent = () => {
   return (
     <main >
       <CContainer fluid={true}>
         
-        <Suspense fallback={loading}>
+        <Suspense fallback={GTISpinner}>
           <Switch>
             {routes.map((route, idx) => {
               return route.component && (

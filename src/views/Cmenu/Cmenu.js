@@ -8,9 +8,8 @@ const Cmenu = ({ props }) => {
             <div className="menuTop">
             {Object.values(props).slice(0, Object.values(props).length - 1 ).map((item, index) => {
                 return(    
-                <div>    
+                <div key={`${index} ${item._id}`}>    
                     <CLink 
-                        key={index}
                         onClick={() => document.body.scrollTop = 0 }
                         to={`/product/${(props.cardname).toLowerCase()}/${item._id}`} 
                         className="nolink d-flex justify-content-between menu--categorias--container">

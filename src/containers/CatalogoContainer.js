@@ -5,22 +5,21 @@ import {
 } from '@coreui/react'
 
 import { Switch, Redirect, Route } from 'react-router-dom'
-
-// rutas de la aplicacion
 import routes from '../routes'
 
-    const loading = (
-    <div className="pt-3 text-center">
-        <div className="sk-spinner sk-spinner-pulse"></div>
+const spinner = (
+    <div className="logo--intecsa--spinner">
+        <div className="bouncingLoader">Cargando</div>
     </div>
-    )
+)
+// rutas de la aplicacion
 
 const CatalogoContainer  = () => {
     
     return(
     <CContainer id="topMenuCard">        
             <CCol className="d-flex justify-content-center">
-                <Suspense fallback={loading}>
+                <Suspense fallback={spinner}>
                     <Switch>
                         {
                             routes

@@ -32,6 +32,7 @@ const TheLayout = (props) => {
       <TheSidebar/>
       {/* <Csv2Json /> */}
       <div className="c-wrapper">
+
         <TheHeader busqueda={setBusqueda} />
           <div className="">
             <EmblaCarousel  slides={slides} />
@@ -40,8 +41,10 @@ const TheLayout = (props) => {
         <div>          
           <CatalogoContainer {...props} busqueda={busqueda} />
           {/* <EmblaCategorias /> */}
-          <TheFooter/>
         </div>
+      <div id="footer">
+        <TheFooter/>
+      </div>
       </div>
     </div>
   )

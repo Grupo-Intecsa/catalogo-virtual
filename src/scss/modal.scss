@@ -195,7 +195,7 @@
 }
 
 .btn-modal-carrito{
-  width: 10rem;
+  width: 15rem;
   background-color: #FFD814;
   border: none;
   border-radius: 10px;
@@ -208,7 +208,7 @@
 
 .btn-modal-carrito:target,
 .btn-modal-carrito:hover{
-  width: 10rem;
+  width: 15rem;
   background-color: rgb(255, 255, 255);
   border: 1px solid #FFD814;
   padding: 1rem;
@@ -285,12 +285,12 @@
   padding: 1em;
   background-color: rgb(194, 3, 3);
   text-decoration: none;
-  color: white;
+  color: white !important;
   font-family: 'Space Grotesk', sans-serif; 
 }
 
 .btn-modal-pdf:hover{
-  color: rgb(194,3,3);
+  color: rgb(194,3,3) !important;
   text-decoration: none;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(194,3,3);
@@ -340,6 +340,7 @@
   justify-content: center;
   margin-top: 1rem;
   padding-left: 1rem;
+
 }
 
 .hookCardModal{
@@ -440,12 +441,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 
   span{
     font-weight: bold;
     margin: 4px;
     border-radius: 4px;
-    border: 1px dotted rgb(128, 128, 128);
+    font-size: large;
   }
 }
 
@@ -460,9 +462,10 @@
 }
 
 .canvasBodyContainer{
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   border-left: cornflowerblue 4px solid;
   padding: 1rem;
   box-sizing: border-box;
@@ -474,17 +477,39 @@
 
   p{
     flex-basis: 50%;
-    font-family: 'Space Grotesk', sans-serif; 
-    font-size: small;    
+    font-family: "texgyreadventorbold"; 
+    font-size: large;
   }
 
   span{
     flex-basis: 50%;
+    font-size: large;
     text-align: center;
     font-family: 'Space Grotesk', sans-serif; 
     
     
   }
+
+  img{
+    height: 80px;
+    border-radius: 4px;
+  }
+
+  @media( max-width: 60rem){
+    img{
+      height: 40px;
+    }
+  }
+
+}
+
+.canvas--bottom{
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 2rem;
 
 }
 
@@ -498,5 +523,10 @@
     }
 
 
+  }
+
+  .canvas--bottom{
+    padding: 0 1rem;
+    width: 100%;
   }
 }

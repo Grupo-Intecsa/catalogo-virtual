@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import { Route, HashRouter, Switch } from 'react-router-dom';
 import './scss/style.scss';
+// import logoSVG from 'assets/icons/git_logo.svg'
+
+// google analytics
+import withTracker from 'components/withTracker/withTracker';
 
 // Context
 import { CatalogoProvider } from './context/catalogoContext'
 import { TiendaProvider } from 'context/TiendaContext'
 import { UserContextProvider } from './context/userContext'
 
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-)
-
 // Containers
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 const Validate = React.lazy(() => import('./views/admin/AdminLayout'))
+
+const loading = (
+  <small>Iniciando aplicación...</small>
+)
+
+
 
 // Pages
 const Login = React.lazy(() => import('./views/Login/Login'));
@@ -37,7 +41,7 @@ class App extends Component {
               <Switch>
                   <Route exact path="/login" name="Login" render={(props) => <Login {...props}/>} />
                   <Route exact path="/admin" name="Panel de Control" render={(props) => <Validate {...props}/>} />
-                  <Route path="/" name="Home" render={(props) => <TheLayout {...props}/>} />
+                  <Route path="/" name="Home" component={withTracker(TheLayout)} />
               </Switch>
             </React.Suspense>
         </HashRouter>

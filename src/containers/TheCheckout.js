@@ -129,9 +129,9 @@ const TheCheckout = () => {
         { carrito.length === 0 
           ? <Alert message="Tu carrito está vacío" type="info" showIcon />
           : Object.values(carrito).length > 0 && (
-            Object.values(carrito).map(( item ) => {
+            Object.values(carrito).map(( item, index ) => {
               return(
-                <CardCheckout item={item} />
+                <CardCheckout item={item} key={index} />
               )
             })
 

@@ -1,8 +1,4 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
-import { 
-    CCol, 
-    CRow,
-} from '@coreui/react'
 
 
 import { useMachine } from '@xstate/react'
@@ -65,9 +61,6 @@ const Dashboard = ({ match }) => {
                 <>  
                     
                     <div>
-                        {/* {JSON.stringify(countPage)}
-                        {JSON.stringify(infiniteCount)}
-                        {JSON.stringify(state.value)} */}
                         <div>
                             <p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p>
                         </div>

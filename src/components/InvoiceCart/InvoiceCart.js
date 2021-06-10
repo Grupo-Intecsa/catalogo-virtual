@@ -39,7 +39,7 @@ const InvoiceCart = () => {
 
   const pdfCreator = () => {
 
-    fetch(`https://quiet-castle-61424.herokuapp.com/api/v1/pdf?folio=${folio}`, {
+    fetch(`${baseURL}/pdf?folio=${folio}`, {
       
       headers: {  "Content-Type": "application/json" },
       method: "POST",

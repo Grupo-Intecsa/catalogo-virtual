@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+
+#footer{
+  position: relative;
+  height: 100%;
+  clear: both;
+
+}
 
 .footer-licencia{
   padding: 0.08rem;
@@ -9,7 +15,6 @@
 }
 
 .footer-main{
-
   color: #7F91A1;
   grid-gap: 1rem;
   margin-top: 10px;

@@ -1,7 +1,4 @@
 // Here you can add other styles
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
 @import "./upload.scss";
 @import "./login.scss";
 
@@ -375,6 +372,7 @@ html{
     padding: 1rem;
     margin-top: 5rem;
     margin-bottom: 20rem;
+    height: 100vh;
     
 }
 
@@ -389,6 +387,15 @@ html{
 
 
 // efecto loading 
+.logo--intecsa--spinner{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
 .bouncingLoader > div, .bouncingLoader:before, .bouncingLoader:after {
     display: inline-block;
     width: 13px;
@@ -421,4 +428,3 @@ html{
         transform: translate3d(0, -16px, 0);
     }
 }
-
