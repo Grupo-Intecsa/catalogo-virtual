@@ -58,7 +58,7 @@ const CatalogoProduct = ({ match }) => {
         <CCol>
         { state.matches(`${currentState}`) && (
             <div className="content--no--data">
-                <h2>Cargando productos...</h2>
+                <h5>Cargando productos...</h5>
             </div>
         )}
         { state.matches('success') && queryBrand.length === 0 && (

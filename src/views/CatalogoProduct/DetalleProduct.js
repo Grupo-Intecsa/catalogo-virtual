@@ -42,12 +42,12 @@ const DetalleProduct = (props) => {
       <div id="DetalleProduct">
         { state.matches('getCatalogoById') && (
           <div className="content--no--data">
-            <div>Con talan</div>
+            <div>Cargando vista</div>
           </div>
         )}
         { state.matches('getFamiliaById') && (
           <div className="content--no--data">
-            <div>Con talan</div>
+            <div>Cargando vista</div>
           </div>
         )}
 
