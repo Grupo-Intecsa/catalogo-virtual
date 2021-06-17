@@ -6,6 +6,9 @@ import {
   TheHeader,
 } from './index'
 
+// por ahora
+import AllProductos from 'views/AllProductos/AllProductos'
+import Teste from 'views/AllProductos/Teste'
 
 // import Csv2Json from '../lab/Csv2Json'
 // import GtiBanner from '../views/gtiBanner/GtiBanner'
@@ -34,12 +37,14 @@ const TheLayout = (props) => {
       <div className="c-wrapper">
 
         <TheHeader busqueda={setBusqueda} />
-          <div className="">
+          <div className="jamito">
             <EmblaCarousel  slides={slides} />
             <Categories busqueda={props} />
           </div>
-        <div>          
-          <CatalogoContainer {...props} busqueda={busqueda} />
+        <div>  
+          <AllProductos />
+          <Teste />
+          {/* <CatalogoContainer {...props} busqueda={busqueda} /> */}
           {/* <EmblaCategorias /> */}
         </div>
       <div id="footer">

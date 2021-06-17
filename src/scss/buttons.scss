@@ -11,3 +11,72 @@
     text-decoration: none;
 
 }
+
+.ico--brand--abb{
+    background-image: url(../assets/icons/abb_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.ico--brand--onka{
+    background-image: url(../assets/icons/onka_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.ico--brand--ita{
+    background-image: url(../assets/icons/ita_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.ico--brand--csm{
+    background-image: url(../assets/icons/csm_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.butom-rounded-cate{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    background-color: rgb(252, 252, 252);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    
+}
+
+.butom-rounded-cate:hover{
+    transition: transform .5s, filter .5s ease-in-out;
+    background-color: #66a6ff;
+    width: 85px;
+}
+
+.button--control{
+
+    position: relative;
+
+    button{
+        margin: 5px;
+        width: 84px;
+        height: 84px;
+        border-radius: 100%;
+        background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+        border: none;
+    }
+
+
+}
+
+.control--carousel:hover,
+.control--carousel:focus{
+    border: none;
+    background-color: rgba(74, 120, 212, 0.87);
+}

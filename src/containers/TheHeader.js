@@ -51,7 +51,6 @@ const TheHeader = ({ busqueda }) => {
         <Fragment>
             
             <nav id="Navigation" className="c-header px-3 bg-facebook">
-
                 <section>
                   <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
                   <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
@@ -75,9 +74,9 @@ const TheHeader = ({ busqueda }) => {
                 </section>
                 
             </nav>
-              <div className="bg-facebook d-flex justify-content-center align-items-center">
+              <div id="header--buttons" className="d-flex justify-content-center align-items-center">
                 <Link to={{ pathname: "/" }} className="mr-2 d-block d-sm-none" ><span className="texto-navbar">Inicio</span></Link>
-                <button onClick={visibleToggle} title="Ponte en contacto con nosotros para una cotizacion especializada" className="mr-2 btn-noStyle"  ><span className="texto-navbar">Contacto</span></button>
+                <button onClick={visibleToggle} title="Ponte en contacto con nosotros para una cotizacion especializada" className="mr-2 btn-noStyle"><span className="texto-navbar">Contacto</span></button>
                 <FormContact visible={visible} contactoToggle={visibleToggle} placeholder={"Déjanos tus datos para poder iniciar WhatsApp"} />
 
                 <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>

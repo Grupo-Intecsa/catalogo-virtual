@@ -9,9 +9,22 @@ html{
     // -webkit-text-stroke-color: white;
 }
 
+#topDashBoard{
+    
+    margin-top: 10px;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: visible;
+    margin-bottom: 20px;
+}
+
 .jaimito{
-    // background-color: #F6F6F6;
-    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    
 
 }
 
@@ -96,9 +109,16 @@ html{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 10vh;
+    height: 68px;
 }
 
+#header--buttons{
+    height: 37px;
+    background-color: #3B5998;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
 
 #Navigation > section {
     display: flex;
@@ -312,27 +332,6 @@ html{
     height: 70px;
 }
 
-.butom-rounded-cate{
-    border-radius: 50%;
-    height: 5rem;
-    width: 5rem;
-    padding: 1rem;
-    
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-weight: bolder;
-
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.butom-rounded-cate:hover{
-    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
-    color: white;
-}
-
 .labels-items{
     display: flex;
     align-items: center;
@@ -426,5 +425,21 @@ html{
     to {
         opacity: 0.1;
         transform: translate3d(0, -16px, 0);
+    }
+}
+
+
+// hay que borrar estas lineas //
+.teste{
+
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    height: 800px;
+    padding: 8px 1rem;
+    box-sizing: border-box;
+
+    h2{
+        color: rgb(255, 255, 245);
+        font-family: 'texgyreadventorbold';
+        color: #3B5998;
     }
 }

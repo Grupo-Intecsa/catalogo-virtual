@@ -1,3 +1,5 @@
+
+// v1 -- version del dashboard 
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 
@@ -62,7 +64,8 @@ const Dashboard = ({ match }) => {
                     
                     <div>
                         <div>
-                            <p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p>
+                            {/* <p className="bg--random--products text-center">Ultimos productos <small>de {sample.count}</small></p> */}
+                            <p className="bg--random--products text-center">Ultimos productos</p>
                         </div>
                         <div className="center--content">
                             {sample?.prod.map(item => <Card key={ item._id } props={item} badge={true} />)}  
