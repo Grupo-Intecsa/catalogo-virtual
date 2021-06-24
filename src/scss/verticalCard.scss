@@ -1,36 +1,75 @@
+.VerticalSlider{
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  height: auto;
+  padding: 25px 1rem;
+  box-sizing: border-box;
+
+  h2{
+      color: rgb(255, 255, 245);
+      font-family: var(--itafont);
+      color: #3B5998;
+  }
+}
+
 .vertical--container{
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  
+}
 
+.button-trans:hover{
+  transform: scale(1.1);
 }
 
 .vertical--card{
-  width: 450px;
-  height: 600px;
-  background-image: linear-gradient(135deg, #fcfbf9 0%, #EDECE8 100%);
+  width: auto;
+  height: auto;
+  background-image: linear-gradient(135deg, #fcfbf9 0%, #ffff 100%);
   margin: 10px;
   box-sizing: border-box;
   border-radius: 8px;
   padding: 20px;
   cursor: pointer;
-
-
+  
+  
   img{
     width: 100%;
     height: 100%;
+    object-fit: scale-down;
+    object-position: top;
   }
+
 }
 
-.vertical--card:hover,
-.vertical--card:focus{
-  margin: 0 20px;
+.vertical--card--familia{
+  border-left: 10px solid rgb(0, 81, 128);
 }
+
+.active--grab{
+  cursor: grab;
+  transform: scale(1);
+}
+
+.smooth--slider{
+  scroll-behavior: smooth;
+}
+
+.vertical--card:hover{
+  // animation: pulse 2s infinite
+  box-sizing: content-box;
+  border: 2px solid steelblue;
+}
+
 
 .vertica--card--img{
   width: 300px;
   height: 300px;
-  margin-bottom: 20px;
+  padding: 50px;
+  box-sizing: border-box;
+  margin-bottom: 20px; 
+
+  
 }
 
 .vertical--card--text{
@@ -38,26 +77,157 @@
   flex-direction: column;
 
   p{
-    font-family: "texgyreadventorbold";
+    font-family: "cardFamily";
     font-size: large;
   }
 }
 
-@media(max-width:60rem){
-  .vertical--card{
+.logo--card--brand{
+  height: 40px;
+}
+
+.final--vertical--card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  max-width: 100%;
+  height: auto;
+  background-image: linear-gradient(135deg, #fcfbf9 0%, #ffff 100%);
+  margin: 10px;
+  border-radius: 8px;
+  padding: 2rem;
+  cursor: pointer;
+
+  span{
     width: 250px;
-    height: 400px;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+  }
+
+  img{
+    width: 250px;
+    height: auto;
+  }
+
+}
+
+.final--vertical--card:hover{
+  animation: pulse 2s infinite;
+  
+}
+
+
+@keyframes pulse {
+  0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+
+
+.card--skeleton--container{
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  height: 600px;
+  width: fit-content;
+  
+}
+
+.card--skeleton{
+  width: 340px;
+  height: 550px;
+  margin: 10px;
+  box-sizing: border-box;
+  padding: 1rem;
+  background-image: linear-gradient(135deg, #fcfbf9 0%, #ffff 100%);
+  border-radius: 8px;
+  
+  
+  div{
+    background-image: linear-gradient(
+      90deg,
+      rgba(#fff, 0) 0,
+      rgba(#fff, 0.2) 20%,
+      rgba(#fff, 0.5) 60%,
+      rgba(#fff, 0)
+    );
+    box-shadow: 0 10px 45px rgba(0,0,0, .1);
+    animation: shine 1s infinite;
+    content: "";
+    background-repeat: repeat-y;
+    background-size: 50px 500px;
+    background-position: 0 0;
+    animation: shine 1s infinite;
+
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+
+@media(max-width:60rem){
+  .vertical--container{
+    overflow: hidden;
+  }
+
+  .vertical--card{
+    width: auto;
+    height: auto;
+    
+    
   }
 
   .vertica--card--img{
     width: 150px;
     height: 150px;
     margin-bottom: 10px;
+    padding: 10px;
   }
 
   .vertical--card--text{
     p{
       font-size: small;
     }
+  }
+
+  .final--vertical--card{
+    span{
+      width: 150px;
+      text-align: center;
+      font-weight: bold;
+      font-size: medium;
+    }
+  
+    img{
+      width: 150px;
+      height: auto;
+    }
+  }
+
+  .card--skeleton{
+    width: 150px;
+    height: 400px;
+  }
+
+  .card--skeleton--container{
+    height: 350px;
   }
 }

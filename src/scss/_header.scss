@@ -1,0 +1,32 @@
+#carrouseNB{
+  overflow: hidden;
+  width: 1600px;
+  height: 340px;
+  margin-bottom: 20px;
+}
+
+.banner--header{
+
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);  
+  margin: 0 0 1rem 0;
+  width: 100%;
+  height: auto;
+
+}
+
+.imgfluid{
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+  height: auto;
+
+}
+
+@media (max-width:60rem){
+
+  #carrouseNB{
+      width: 100%;
+      height: 184px;
+  }
+
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 const allproductos = [
@@ -103,10 +104,12 @@ const allproductos = [
 const products = (
         allproductos.map(item => {
           return(
-            <div key={item.order} className="content--products pulse">
-                <img src={item.img} alt={item.title} />
-                <span className="text-center">{item.title}</span>
-            </div>
+            <Link key={item.order} className="content--products">
+              <div className="text-center">
+                  <img src={item.img} alt={item.title} />
+                  <span>{item.title}</span>
+              </div>
+            </Link>
           )
         })
 )
@@ -115,10 +118,10 @@ const products = (
 const AllProductos = () => {
   return(
     <div id="allproducts">
-      <div className="all--products-title mt-2">
+      <div className="all--products-title mt-4 mb-4">
           <h2 className="text-center">Cátegorias</h2>
       </div>
-      <div className="all--products--container">
+      <div className="all--products--container mb-4">
           {/* <span>Contenedor</span> */}
           { products }
       </div>

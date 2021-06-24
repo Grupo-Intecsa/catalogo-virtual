@@ -54,7 +54,7 @@
 }
 
 .butom-rounded-cate:hover{
-    transition: transform .5s, filter .5s ease-in-out;
+    // transition: transform .5s, filter .5s ease-in-out;
     background-color: #66a6ff;
     width: 85px;
 }
@@ -79,4 +79,15 @@
 .control--carousel:focus{
     border: none;
     background-color: rgba(74, 120, 212, 0.87);
+}
+
+
+@media (max-width:60rem){
+    .button--control{
+
+        button {
+            width: 44px;
+            height: 44px;
+        } 
+    }
 }

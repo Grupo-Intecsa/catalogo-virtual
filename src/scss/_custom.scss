@@ -3,10 +3,33 @@
 @import "./login.scss";
 
 html{
-    overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
     // -webkit-text-stroke-width: .05px;
     // -webkit-text-stroke-color: white;
+}
+
+body{
+    width: 100%;
+    color: black;
+
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover{
+        text-decoration: none;
+        color: inherit;
+    }
+    
+}
+
+#CatalogoContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
 }
 
 #topDashBoard{
@@ -17,15 +40,6 @@ html{
     overflow-x: hidden;
     overflow-y: visible;
     margin-bottom: 20px;
-}
-
-.jaimito{
-
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    
-
 }
 
 .productos--search{
@@ -236,27 +250,6 @@ html{
     
 }
 
-.banner--git{
-    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);  
-}
-
-.banner--git--2{
-    background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
-    
-}
-
-.banner--git--3{
-    background-image: linear-gradient( 90.5deg,  rgba(255,207,139,0.50) 1.1%, rgba(255,207,139,1) 81.3% );
-}
-
-.banner--git--red{
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-}
-
-.img--banner{
-    padding: 1em;
-    height: 15em;
-}
 
 .double-spinner {
     display: flex;
@@ -425,21 +418,5 @@ html{
     to {
         opacity: 0.1;
         transform: translate3d(0, -16px, 0);
-    }
-}
-
-
-// hay que borrar estas lineas //
-.teste{
-
-    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
-    height: 800px;
-    padding: 8px 1rem;
-    box-sizing: border-box;
-
-    h2{
-        color: rgb(255, 255, 245);
-        font-family: 'texgyreadventorbold';
-        color: #3B5998;
     }
 }

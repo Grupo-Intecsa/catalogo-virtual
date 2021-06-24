@@ -6,47 +6,27 @@ import {
   TheHeader,
 } from './index'
 
-// por ahora
-import AllProductos from 'views/AllProductos/AllProductos'
-import Teste from 'views/AllProductos/Teste'
-
-// import Csv2Json from '../lab/Csv2Json'
-// import GtiBanner from '../views/gtiBanner/GtiBanner'
-const  EmblaCarousel  = React.lazy(() => import('../components/EmblaCarousel/EmblaCarousel'))
-// const  EmblaCategorias  = React.lazy(() => import('../components/EmblaCarousel/EmblaCatergorias'))
-const  Categories = React.lazy(() => import('../views/ProductosCards/Categories'))
-
-
-const SLIDE_COUNT = 3
-const slides = Array.from(Array(SLIDE_COUNT).keys())
-
+import CarouselHeader from 'components/Slider/CarouselHeader'
+const  MarcasLabel = React.lazy(() => import('../views/ProductosCards/Categories'))
 const TheLayout = (props) => {
 
-  const [ busqueda, setBusqueda ] = useState(undefined)
-      
-  useEffect(() => {
-    if(props.match.isExact){
-      setBusqueda("")
-    }
-  })
-
   return (
-    <div className="c-app c-default-layout jaimito">
+    <div>
       <TheSidebar/>
       {/* <Csv2Json /> */}
-      <div className="c-wrapper">
-
-        <TheHeader busqueda={setBusqueda} />
-          <div className="jamito">
-            <EmblaCarousel  slides={slides} />
-            <Categories busqueda={props} />
-          </div>
-        <div>  
-          <AllProductos />
-          <Teste />
-          {/* <CatalogoContainer {...props} busqueda={busqueda} /> */}
-          {/* <EmblaCategorias /> */}
+      <div>
+        <TheHeader  />
+      <div>
+        <div className="d-flex justify-content-center">
+          <CarouselHeader />
         </div>
+            <MarcasLabel busqueda={props} />
+        </div>
+        <div id="CatalogoContainer">
+          <CatalogoContainer {...props}/>
+        </div>
+        
+
       <div id="footer">
         <TheFooter/>
       </div>

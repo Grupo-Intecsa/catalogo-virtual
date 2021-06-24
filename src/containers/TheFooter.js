@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react'
 import { useState } from 'react'
 
-import logo from '../assets/icons/git_logo.svg'
-import contacto from '../assets/social/contact.svg'
-import mapa from '../assets/social/maps.svg'
+import logo from 'assets/icons/git_logo.svg'
+import contacto from 'assets/social/contact.svg'
+import mapa from 'assets/social/maps.svg'
 
-import face from '../assets/social/facebook.svg'
-import insta from '../assets/social/insta.svg'
-import youtube from '../assets/social/youtube.svg'
-import linkedin from '../assets/social/linkedin.svg'
-import hora from '../assets/social/horarios.svg'
+import face from 'assets/social/facebook.svg'
+import insta from 'assets/social/insta.svg'
+import youtube from 'assets/social/youtube.svg'
+import linkedin from 'assets/social/linkedin.svg'
+import hora from 'assets/social/horarios.svg'
 
 
 const TheFooter = () => {
@@ -65,7 +65,7 @@ const TheFooter = () => {
               </div>
 
             </div>
-
+            
           </div>
           
           <div className="footer-b">
