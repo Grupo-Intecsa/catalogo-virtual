@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { CButton, CImg } from '@coreui/react'
+import { CButton } from '@coreui/react'
 import { Link, Redirect, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import TheCanvasCart from './TheCanvasCart'
 
 import logo from '../assets/icons/path2.webp'
@@ -52,24 +52,26 @@ const TheHeader = ({ busqueda }) => {
             
             <nav id="Navigation" className="c-header px-3 bg-facebook">
                 <section>
-                  <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
-                  <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} />
+                <Link to="/" onClick={() => document.body.scrollTop = 0}>
+                    <img src={logo} className="iconSVG d-none d-sm-block" alt="logo Empresa grupo intecsa" />
+                </Link>
+                {/* <FontAwesomeIcon icon={faBars} size="2x" onClick={toggleSidebarMobile} className="d-lg-none m-1 div--button" />
+                  <FontAwesomeIcon icon={faBars} size="2x" className="d-md-down-none m-1 div--button" onClick={toggleSidebar} /> */}
                 </section>
 
                 <section>
 
                 <div className="input-form-header">
                 <form className="form--header" onSubmit={handleSubmit} >
-                    <input type="text" placeholder="Buscar productos, marcas y más"  value={queryText} onChange={(e) => setQueryText(e.target.value)} />
+                    <input type="text" placeholder="Buscar productos, marcas y más"  value={queryText} onChange={(e) => setQueryText(e.target.value)}>
+                      </input>
+                    
                     <CButton type="submit" className="btn btn-search"><FontAwesomeIcon icon={faSearch}/></CButton>
                   </form>
                 </div>
                 </section>
                 
                 <section>
-                  <Link to="/" onClick={() => document.body.scrollTop = 0}>
-                    <img src={logo} className="iconSVG d-none d-sm-block" alt="logo Empresa grupo intecsa" />
-                  </Link>
                   <TheCanvasCart />
                 </section>
                 

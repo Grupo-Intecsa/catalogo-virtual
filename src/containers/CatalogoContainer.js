@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 
 import { Switch, Redirect, Route } from 'react-router-dom'
+import { useEffect } from 'react/cjs/react.development'
 import routes from '../routes'
 
 const spinner = (

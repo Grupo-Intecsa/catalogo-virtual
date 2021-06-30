@@ -13,6 +13,10 @@ const EmblaModal = ({ urlfoto }) => {
   return (
     <div className="modal--img--slide">
 
+      <div className="modal--big--img">
+        <img src={foto} alt="imagen zoom del producto"/>
+      </div>
+
       <div className="modal--slide">
         {urlfoto.map((img, index) => {
           return(
@@ -21,10 +25,6 @@ const EmblaModal = ({ urlfoto }) => {
             </div>
           )
         })}
-      </div>
-
-      <div className="modal--big--img">
-        <img src={foto} alt="imagen zoom del producto"/>
       </div>
 
     </div>

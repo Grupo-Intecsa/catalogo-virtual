@@ -18,13 +18,10 @@ const logoMap = [
 ]
 
 const logoSelector = (id) => {
-
   const logo = logoMap.find(item => item.id === id )
-
   return(
     logo ? <img src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px" }} /> : "No brand"
   ) 
-
 }
 
 const linkName = (title) => title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()

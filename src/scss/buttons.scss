@@ -1,3 +1,12 @@
+.btn-noStyle,
+.btn-noStyle::after,
+.btn-noStyle:hover,
+.btn-noStyle:target{
+    border: none;
+    background: none;
+    margin: 0;
+}
+
 .link-categories{
     color: black;
     font-size: medium;
@@ -91,3 +100,117 @@
         } 
     }
 }
+
+.handleiconAcordion{
+width: 100%;
+border: none;
+background: white;
+padding: 10px;
+}
+
+.handleiconAcordion:hover{
+    
+h4{
+    color: var(--black)
+}
+}
+
+.ico-bg-white{
+background-color: white;
+}
+
+.ico-bg-whastapp{
+background-image: url("../assets/icons/whatsapp.svg");
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+width: 40px;
+height: 40px;
+animation: pulse_esmeralda 2s infinite
+}
+
+.ico-bg-truck{
+background-image: url("../assets/icons/truck.svg");
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+box-sizing: border-box;
+width: 30px;
+padding: 1rem;
+}
+
+.ico-bg-gasto{
+background-image: url("../assets/icons/usd-circle.svg");
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+box-sizing: border-box;
+width: 30px;
+padding: 1rem;
+}
+
+.ico--share{
+    background-image: url("../assets/icons/share-alt.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    box-sizing: border-box;
+    width: 20px;
+    padding: 1rem;
+}
+
+.ico--bg--red{
+    background-color: #e74c3c ;
+    height: 80px;
+    width: 80px;
+    
+}
+
+.ico--adobe{
+    background-image: url("../assets/icons/adobe.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+}
+
+
+@keyframes pulse_esmeralda {
+0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 #2ecc71;
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px #1abc9c;
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+
+
+@keyframes pulse {
+0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+

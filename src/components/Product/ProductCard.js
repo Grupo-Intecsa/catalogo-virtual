@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 
+import ProducHeader from './ProductoHeader'
+import ProductoMiddle from './ProductoMiddle'
 
 const ProductCard = () => {
 
@@ -14,12 +16,17 @@ const ProductCard = () => {
   
   useEffect(() => {
     send('GET_CATALOGO_BY_ID', { data: params?.slug })
-    console.log(params)
     
   },[params, send])
 
-  console.log(state.matches("success"), state)
+  useEffect(() => {
+    const top = document.getElementById("topMenuCard")
+    top.scrollIntoView()
+  })
+
+
   const { queryBrand } = state.context
+  console.log(queryBrand)
 
   return(
     <div>
@@ -38,10 +45,22 @@ const ProductCard = () => {
         >
 
       </Helmet>
-    <h1>Para nulificar</h1>
-    <div>
-      <span>{state.matches('success') && <div>{queryBrand?.title}</div>}</span>
-    </div>
+    <div className="product--card--container" id="topCard">
+        <section className="section--product--main">
+          {
+            Object.values(queryBrand).length > 0 && <ProducHeader data={queryBrand} />
+          }
+          
+        </section>
+
+        <section className="section--product--entrada">
+            <ProductoMiddle data={queryBrand} />
+        </section>
+{/* 
+        <section className="section--product--entrada">
+        </section> */}
+          
+      </div>
   </div>
   )
 

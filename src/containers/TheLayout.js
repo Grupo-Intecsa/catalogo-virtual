@@ -12,8 +12,8 @@ const TheLayout = (props) => {
 
   return (
     <div>
-      <TheSidebar/>
-      {/* <Csv2Json /> */}
+      {/* <TheSidebar/>
+      <Csv2Json /> */}
       <div>
         <TheHeader  />
       <div>

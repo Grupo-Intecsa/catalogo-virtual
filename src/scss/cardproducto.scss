@@ -1,3 +1,5 @@
+// old styles
+
 #topHookProducto{
   display: flex;
   flex-direction: column;
@@ -130,25 +132,7 @@
   
 }
 
-.texto-navbar{ 
-  color: rgb(255, 255, 255);
-  font-size: x-large;
-  font-weight: bold;
-  margin-right: 10px;
-  
-}
 
-.texto-navbar:hover{
-  background-color: rgba(255, 255, 255, 0.205);
-  border-radius: 30px;
-  padding: 1rem;
-}
-
-@media (max-width: 50rem){
-  .texto-navbar{
-    font-size: small;
-  }
-}
 
 .border_bootom{
   border: none;
@@ -220,7 +204,7 @@
   p{
 
     padding-bottom: 1rem;
-    font-family: 'Roboto', sans-serif;
+
     text-align: center;
     font-size: large;
   }
@@ -323,6 +307,8 @@
   }
 }
 
+//  final
+
 // FOMULARIO DE CONTACTO COTIZACION WHATSAPP
 
 .form--contacto{
@@ -336,7 +322,6 @@
     box-sizing: border-box;
     border: 0;
     padding-left: 10px;
-    font-family: 'Roboto', sans-serif;
     font-size: large;
     color: #1c1e21;
 
@@ -349,7 +334,6 @@
     margin-bottom: 10px;
     font-size: large;
     padding-left: 0.8rem;
-    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     // border: none;
     border: 1px solid #3a3a3a;
@@ -363,7 +347,6 @@
   input:active,
   input:placeholder-shown{
     font-size: large;
-    font-family: 'Roboto', sans-serif;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
     border: 1px solid #a1c4fd;
     
@@ -376,7 +359,6 @@
     margin-bottom: 10px;
     font-size: large;
     padding: 0.8rem;
-    font-family: 'Roboto', sans-serif;
     border-bottom: 0.3rem solid transparent;
     // border: none;
     border: 1px solid #3a3a3a;
@@ -392,7 +374,6 @@
     margin-bottom: 10px;
     font-size: large;
     padding-left: 0.8rem;
-    font-family: 'Roboto', sans-serif;
     border-bottom: 0.3rem solid transparent;
     // border: none;
     border: 1px solid #3a3a3a;
@@ -407,7 +388,6 @@
   select:focus,
   select:active{
     font-size: large;
-    font-family: 'Roboto', sans-serif;
     border: 1px solid #a1c4fd;
     
   }
@@ -504,10 +484,371 @@
   }
 }
 
-
-
 .drawer--carrito{
   background-color: #37ecba;
 }
 
 // estilos de modal
+
+.texto-navbar{ 
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  font-weight: bold;
+  margin-right: 10px;
+  
+}
+
+.texto-navbar:hover{
+  background-color: rgba(255, 255, 255, 0.205);
+  border-radius: 30px;
+  padding: 1rem;
+}
+
+@media (max-width: 50rem){
+  .texto-navbar{
+    font-size: small;
+  }
+}
+
+// stilos de carrito
+
+.btn-modal-comprar{
+  width: 100%;
+  height: 100%;
+  background-color: #FFD814;
+  padding: 1rem;
+  // margin-bottom: 4px;
+  color: black;
+  font-family: var(--normalFont);
+
+}
+
+.btn-modal-comprar:hover{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #FFD814;
+  padding: 1rem;
+  color: rgb(0, 0, 0);
+    
+}
+
+// tablas
+.table--container{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 100%;
+  box-shadow: 0 0 20px var(--shadowCard);
+
+}
+
+.table--container{
+  font-family: var(--normalFont);
+  font-size: larger;
+}
+
+.table--container th {
+  width: 100px;
+  padding: 0 1rem;
+}
+
+// nuevos stilos del las tarjeta de productos
+
+.product--card--container{
+  scroll-snap-type: y mandatory;
+}
+
+.product--card--container * {
+  scroll-snap-align: start;
+}
+
+.section--product--main{
+  margin-top: 10px;
+  min-height: fit-content;
+  background-color: white;
+}
+
+.product--foto{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.product--foto section {
+  flex-basis: 50%;
+  padding: 1rem 2rem;
+}
+
+.product--foto span {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.title--product{
+  width: 100%;
+  padding-top: 1rem;
+
+  span{
+    font-family: var(--normalFont);
+    color: white;
+    text-align: left;
+    font-size: x-large;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+}
+
+.medidas--container{
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  height: fit-content;
+
+
+  p{
+    color: #34495e;
+    font-size: large;
+    font-family: var(--normalFont);
+  }
+}
+
+.medidas--items{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+.medidas--items * {
+  flex-basis: 10%;
+  margin: 5px;
+  padding: 4px;
+}
+
+.button--capacidad{
+    flex-basis: 50%;
+    box-shadow: var(--shadowCard);
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 4px;
+}
+
+.button--capacidad--selected{
+    box-shadow: var(--shadowCard);
+    background-color: var(--black);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 4px;
+    color: white;
+}
+
+.selected--item--capacidad{
+  background-color: var(--black);
+  color: white;
+}
+
+.description--product{
+  color: white;
+  font-size: 1rem;
+  min-height: 150px;
+}
+
+.precio--container{
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.precio--container * {
+  margin: 0 10px;
+}
+
+.control--btn--products{
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 4px;
+        
+  input{
+    font-size: larger;
+    border: none;
+    text-align: center;
+  }
+}
+
+.btn--add--products{
+  display: flex;
+  flex-direction: column;
+    
+  button{
+    border: none;
+    margin: 2px;
+    padding: 0;    
+  }
+
+  button > img{
+    width: 20px;
+    max-height: 15px;
+  }
+}
+
+.product--instrucciones{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  
+  h4{
+    color: white;
+    font-size: medium;
+  }
+
+  span{
+    display: flex;
+    align-items: center;
+    
+  }
+
+  span *{
+    margin: 0 10px;
+  }
+
+  p{
+    text-align: left;
+    padding-top: 0.8rem;
+    padding-left: 2rem;
+  }
+}
+
+.cotizalo--ahora{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+
+  p{
+    font-family: var(--itafont);
+    font-weight: bold;
+    font-size: larger;
+    width: fit-content;
+    text-align: center;
+  }
+
+  ico{
+    padding: 1rem;
+  }
+
+}
+
+.product--datos--venta{
+  background-color: var(--blue-bg);
+}
+
+// .section--product--media{
+//   background-color: rgb(210, 255, 127);
+//   height: 50vh;
+// }
+
+.section--product--entrada{
+  background-color:#ecf0f1;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.features--product{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  border: 1px solid #ecf0f1;
+  border-bottom: 1px solid var(--disable);
+
+  button{
+    border: none;
+    margin: 0 10px;
+    height: 50px;
+    width: 100%;
+    font-size: larger;
+    font-family: var(--normalFont);
+    box-sizing: border-box;
+  }
+
+  button:hover{
+    border-bottom: 2px solid var(--blue-bg);
+  }
+  
+}
+
+.border--selected{
+  background: rgb(41,128,185);
+  background: linear-gradient(0deg, rgba(41,128,185,1) 0%, rgba(236,240,241,1) 4%);
+  color: var(--selected);
+}
+
+.border--disable{
+  border-bottom: 1px solid var(--disable);
+  color: var(--disable);
+}
+
+.middle--containar{
+  background-color: white;
+  height: 100%;
+  padding: 16px 16px;
+  margin-top: 10px;
+
+  h1{
+    color: var(--black);
+    font-family: var(--normalFont);
+  }
+
+  ul{
+    padding-left: 2rem;
+    font-size: large;
+  }
+
+  h3{
+    font-size: x-large;
+    font-family: var(--normalFont);
+  }
+
+}
+
+@media (max-width: 60rem){
+  .product--foto{
+    flex-direction: column;
+  }
+
+  .product--datos--venta{
+    padding: 16px 0;
+  }
+
+  .product--foto section{
+    padding: 16px 4px;
+    width: 100%;
+  }
+
+  .section--product--entrada{
+    padding: 16px;
+  }
+
+  .middle--containar{
+    ul{
+      font-size: small;
+      padding-left: 10px;
+    }
+  }
+
+}

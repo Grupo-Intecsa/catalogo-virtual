@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-
 #Login{
 
   display: flex;
@@ -26,7 +23,6 @@
   box-sizing: border-box;
   padding: 3rem 0.86rem;
   align-content: center;
-  font-family: 'Roboto', sans-serif;
 
   color: rgb(75, 75, 75);
   width: 100%;
@@ -75,7 +71,7 @@
     width: 100%;
     border-radius: 4px;
     font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
+
     padding: 0 0.86rem;
     margin-bottom: 10px;
     border: 1px solid rgba(70, 70, 70, 0.562);

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, useRef } from 'react'
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
@@ -21,6 +21,7 @@ const VerticalCard = ({ data }) => {
     let slider = document.getElementById("sliderPromo")
 
     slider.onmousedown = function(e){
+      console.log("muevete!!!")
       setIsDown(true)
       slider.classList.add("active--grab")
       setStartX(e.pageX - slider.offsetLeft)
@@ -59,8 +60,8 @@ const VerticalCard = ({ data }) => {
         data.map(item => {
           
           return(
-          <Link to={`/product/${item._id}/name/${linkName(item.title)}`} className={ item.isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
-          <div key={item._id}>
+          <Link  key={item._id} to={`/product/${item._id}/name/${linkName(item.title)}`} className={ item.isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
+          <div>
 
               <div className="vertica--card--img">
                 <img src={item.urlfoto[0]} alt={item.title} />
@@ -101,11 +102,13 @@ const SliderLastProd = () => {
 
   const buttonRight = function(){
     let ref = document.getElementById("sliderPromo")
+    console.log(ref)
     return ref.scrollLeft +=200
   }
 
   const buttonLeft = function(){
     let ref = document.getElementById("sliderPromo")   
+    console.log(ref)
     return ref.scrollLeft -=200
   }
 
