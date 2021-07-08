@@ -22,9 +22,9 @@ const OCpage = ({ data }) => {
               <th>Precio</th>
             </tr>
               {
-                carrito.map(item => {
+                carrito.map((item, index) => {
                   return(
-                  <tr>
+                  <tr key={index}>
                     <td>{item.cantidad}</td>
                     <td>{item.title}</td>
                     <td>{ item.precio === 0 ? "<p>*Por cotizar</p>" : item.precio }</td>

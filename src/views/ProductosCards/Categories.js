@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { 
-    CCol,
     CRow,
     CContainer,
 
@@ -9,34 +8,10 @@ import {
 
 import { Link } from 'react-router-dom'
 
-
-// componentes
-// import Cmenu from '../Cmenu/Cmenu'
-
-// Context
-// import { useCatalogoState, useCatalogoDispatch } from '../../context/catalogoContext'
-
-
-const Categories = (props) => {
-
-    // const { location } = props.busqueda
-
-    // const busquedaText = useMemo(() => {
-    //     let nameSearch = location.pathname.split("/")
-    //     return nameSearch.slice(nameSearch.length - 2, nameSearch.length)
-    // },[location])
-
-    // const dispatch = useCatalogoDispatch()
-    // const state = useCatalogoState()
-
-    // const { labels, brands } = state.context
-
-    // useEffect(() => {
-    //     dispatch("GET_MENU")
-    // },[dispatch])
+const Categories = () => {
 
     return(
-        <CContainer className="categorias">
+        <CContainer className="categorias mt-3">
 
             <CRow className="d-flex justify-content-around">            
             {/* menu para celular */}
@@ -64,19 +39,6 @@ const Categories = (props) => {
 
                 
             </CRow>
-        
-            {/* <CRow className="d-flex flex-column d-sm-down-none"> */}
-        
-                <CCol>
-                {/* menu de categorias */}
-                {/* <Cmenu props={{...brands, cardname: "Marcas" }} /> */}
-
-                {/* Labels */}
-                {/* <Cmenu props={{...labels, cardname: "Categorias" }} /> */}
-
-                </CCol>
-            {/* </CRow> */}
-            
         </CContainer>
     )
 }

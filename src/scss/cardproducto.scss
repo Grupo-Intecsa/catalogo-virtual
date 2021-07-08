@@ -645,6 +645,7 @@
     box-shadow: var(--shadowCard);
     background-color: var(--black);
     border: none;
+    width: 100%;
     border-radius: 4px;
     padding: 10px 20px;
     margin: 4px;
@@ -748,7 +749,7 @@
     text-align: center;
   }
 
-  ico{
+  span{
     padding: 1rem;
   }
 
@@ -756,6 +757,7 @@
 
 .product--datos--venta{
   background-color: var(--blue-bg);
+  box-sizing: border-box;  
 }
 
 // .section--product--media{
@@ -767,6 +769,7 @@
   background-color:#ecf0f1;
   padding: 2rem;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 .features--product{
@@ -805,7 +808,7 @@
 
 .middle--containar{
   background-color: white;
-  height: 100%;
+  min-height: 400px;
   padding: 16px 16px;
   margin-top: 10px;
 

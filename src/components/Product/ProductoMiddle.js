@@ -1,10 +1,10 @@
+import Item from 'antd/lib/list/Item'
 import React, { useState } from 'react'
+import utils from 'utils/utils'
 
 const ProductoMiddle = ({ data }) => {
 
-  //  TODO traer el diccionario para las marcas 
-
-  const { familia, model } = data
+  const { familia, model, urldata, capacidad } = data
 
   const [ feature, setFeature ] = useState(true)
   const [ download, setDownload ] = useState(false)
@@ -46,7 +46,7 @@ const ProductoMiddle = ({ data }) => {
         <h1>Características</h1>
         <div>
           <table className="table--container">
-            
+          <tbody>
             <tr>
               <th>Familia</th>
               <td>{familia}</td>
@@ -55,6 +55,13 @@ const ProductoMiddle = ({ data }) => {
               <th>Modelo</th>
               <td>{model}</td>
             </tr>
+            <tr>
+              <th>Capacidad</th>
+              <td>
+                { utils.capacidadSet(capacidad) }
+              </td>
+            </tr>
+          </tbody>
           </table>
         </div>
         <div>
@@ -75,7 +82,12 @@ const ProductoMiddle = ({ data }) => {
             
             <tr>
               <th style={{ width: "200px" }}>Ficha Técnica</th>
-              <td><a target="_blank"  href="google.com"><span className="ico--adobe"></span></a></td>
+              <td>{
+                  Array.isArray(urldata) && Object.values(urldata).length > 0 ? (
+                    <a href={urldata[0]} rel="external"><span className="ico--adobe"></span></a>
+                  )
+                  : (<span>No hay datos disponibles</span>)
+                }</td>
             </tr>
           </table>
       </section>

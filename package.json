@@ -73,6 +73,12 @@
   "devDependencies": {
     "auto-changelog": "~2.2.1",
     "autoprefixer": "^9.8.6",
+    "eslint": "^7.30.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
     "postcss": "^7.0.35",
     "react-scripts": "^4.0.1"
   },
@@ -83,7 +89,8 @@
     "test:cov": "npm test -- --coverage --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand",
     "eject": "react-scripts eject",
-    "changelog": "auto-changelog --starting-version 3.0.0 --commit-limit false --hide-credit"
+    "changelog": "auto-changelog --starting-version 3.0.0 --commit-limit false --hide-credit",
+    "eslint": "eslint --fix"
   },
   "bugs": {
     "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"

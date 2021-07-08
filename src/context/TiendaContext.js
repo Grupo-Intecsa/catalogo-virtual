@@ -26,7 +26,6 @@ export const TiendaMachine = Machine({
     addCarritoItems: {
       entry: (ctx) => {
         const { carrito, item } = ctx
-        
         localStorage.setItem("localCarrito", JSON.stringify(carrito.concat(item)))
         carrito.push(item)    
       },

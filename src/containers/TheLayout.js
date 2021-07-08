@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 import {
   CatalogoContainer,
-  TheSidebar,
+  // TheSidebar,
   TheFooter,
   TheHeader,
 } from './index'
 
 import CarouselHeader from 'components/Slider/CarouselHeader'
 const  MarcasLabel = React.lazy(() => import('../views/ProductosCards/Categories'))
+
 const TheLayout = (props) => {
+
+  const location = useLocation()
+  const { pathname } = location
 
   return (
     <div>
-      {/* <TheSidebar/>
-      <Csv2Json /> */}
       <div>
         <TheHeader  />
       <div>
         <div className="d-flex justify-content-center">
-          <CarouselHeader />
+          { pathname === "/dashboard" && <CarouselHeader /> }
         </div>
             <MarcasLabel busqueda={props} />
         </div>

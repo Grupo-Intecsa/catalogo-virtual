@@ -20,7 +20,7 @@
 }
 
 .all--products--container{
-  width: 100%;
+  width: 70%;
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -60,6 +60,10 @@
 }
 
 @media (max-width:60rem){
+  .all--products--container{
+    width: 100%;
+  }
+
   .content--products{
     width: 150px;
     height: fit-content;

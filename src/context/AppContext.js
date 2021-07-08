@@ -1,37 +1,38 @@
-import { createContext, useState, useEffect, useContext } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import CatalogoController from './controllers/CatalogoController'
 
 import logoABB from 'assets/icons/abb_ico.png'
-
+import logoITA from 'assets/icons/ita_ico.png'
 
 export const AppContext = createContext()
-export const AppDispatch = createContext()
-
-
 
 const logoMap = [
   {
-    id: "6034cb26e2d7b850a03fd393",
-    logo: logoABB
+    id: "60dcce9fb22f37097c58161c",
+    logo: logoITA
   },
+  {
+    id: "60dcceaab22f37097c58161e",
+    logo: logoABB
+  }
   
 ]
 
 const logoSelector = (id) => {
   const logo = logoMap.find(item => item.id === id )
   return(
-    logo ? <img src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px" }} /> : "No brand"
+    logo ? <img src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px" }} /> : <small style={{ color: 'white'}}>Logo no disponible</small>
   ) 
 }
 
 const linkName = (title) => title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
 
-
-const MlPrice = ({ ml }) => {
+const GetPriceIdMl = ({ ml }) => {
 
   const [ loading, setLoading ] = useState(false)
+  const [ mlPrecio, setMlPrecio ] = useState(undefined)
+  const [ precioOnNumber, setPrecioOnNumber ] = useState(0)
   
-  const [mlPrecio, setMlPrecio] = useState(undefined)
   async function getData(){
     await CatalogoController.getPrice({ ml })
     .then(res => setMlPrecio(res))
@@ -40,13 +41,22 @@ const MlPrice = ({ ml }) => {
   
   useEffect(() => {
     getData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[ml])
-  
-  
-  return(
-    loading ? <span>{`MXN$ ${mlPrecio}`}</span> : <span>Cargando...</span>
-  )
+
+  useEffect(() => { 
+    if(ml === null){
+      setMlPrecio(0)
+
+    }else if( loading && Number.isNaN(+mlPrecio)){
+      let number = mlPrecio.split(",")                
+      let suma = number[0] + number[1]
+      Number.isNaN(+suma) ? 0 : setPrecioOnNumber(+suma)
+    }
+
+  },[loading, mlPrecio])
+
+    
+  return { loading, mlPrecio: precioOnNumber, precioText: mlPrecio }
 }
 
   // verifica el estado de ML
@@ -71,16 +81,36 @@ const MlPrice = ({ ml }) => {
     }
   }
 
+  const contactRequired = () => {
+    const urlFrom = "https://forms.monday.com/forms/embed/608067760034e1ac1f86e10392668e8b?r=use1"
+    const urlWhatsapp = "https://api.whatsapp.com/send/?phone=5215546371510&text=Me%20gustaria%20tener%20informaci%C3%B3n"
+
+    return { form: urlFrom, whatsapp: urlWhatsapp }
+
+  }
+
   const monyIntlRef = (precio) => {
     const number = new Intl.NumberFormat('en-MX', { style:"currency", currency: "MXN"}).format(precio)
     return number
-}
-
-const AppContextProvider = (props) => {
+  }
+  
+  const AppContextProvider = (props) => {
+  
+  const [ migas, setMigas ] = useState([])
+  const [ famBarItemSelected, setFamBarItemSelected ] = useState([])
 
   return(
     <AppContext.Provider value={{
-      mlVerify, monyIntlRef, MlPrice, logoSelector, linkName
+        mlVerify, 
+        contactRequired,
+        monyIntlRef, 
+        GetPriceIdMl, 
+        logoSelector, 
+        linkName, 
+        famBarItemSelected, 
+        setFamBarItemSelected,
+        migas, 
+        setMigas,
     }}>
       { props.children }
     </AppContext.Provider>
@@ -88,23 +118,4 @@ const AppContextProvider = (props) => {
 
 }
 
-const dataContext = {
-  mlVerify, monyIntlRef, MlPrice, logoSelector, linkName 
-}
-
-export const HookReactContext = ({ children }) => {
-  const [ state, dispatch ] = useState(dataContext)
-
-  return(
-    <AppContext.Provider value={state}>
-      <AppDispatch.Provider value={dispatch}>
-          { children }
-      </AppDispatch.Provider>
-    </AppContext.Provider>
-  )
-}
-
 export default AppContextProvider
-
-export const useAppContextState = () => useContext(AppContext)
-export const useAppContextDispatch = () => useContext(AppDispatch)

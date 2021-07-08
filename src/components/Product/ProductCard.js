@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
+
+import utils from 'utils/utils'
+import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 
 import ProducHeader from './ProductoHeader'
 import ProductoMiddle from './ProductoMiddle'
@@ -10,8 +13,6 @@ import ProductoMiddle from './ProductoMiddle'
 const ProductCard = () => {
 
   const [ state, send ] = useMachine(CatalogoXstate)
-
-  const { description } = []
   const params = useParams()
   
   useEffect(() => {
@@ -19,34 +20,34 @@ const ProductCard = () => {
     
   },[params, send])
 
+  const topRef = useRef()
   useEffect(() => {
-    const top = document.getElementById("topMenuCard")
-    top.scrollIntoView()
+    utils.scrollTotop(topRef)
   })
 
-
   const { queryBrand } = state.context
-  console.log(queryBrand)
-
+  
   return(
-    <div>
+    <div ref={topRef}>
       <Helmet
-          title={params.title}
+          title={queryBrand?.title}
           htmlAttributes={{ lang: "es" }}
           meta={
             [
               {
                 name: "description",
-                content: description
+                content: queryBrand.desc
 
               }
             ]
           }
         >
-
       </Helmet>
     <div className="product--card--container" id="topCard">
         <section className="section--product--main">
+          {
+            state.matches("getCatalogoById") && <SkeletonCardProduct />
+          }
           {
             Object.values(queryBrand).length > 0 && <ProducHeader data={queryBrand} />
           }
@@ -54,11 +55,14 @@ const ProductCard = () => {
         </section>
 
         <section className="section--product--entrada">
-            <ProductoMiddle data={queryBrand} />
+          {
+            state.matches("success") && <ProductoMiddle data={queryBrand} />
+          }
         </section>
-{/* 
-        <section className="section--product--entrada">
-        </section> */}
+        {/* 
+          <section className="section--product--entrada">
+          </section> 
+        */}
           
       </div>
   </div>

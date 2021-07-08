@@ -7,6 +7,77 @@
     margin: 0;
 }
 
+.btn--reset--cap{
+    box-shadow: var(--shadowCard);
+    background-color: var(--esmeralda);
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 4px;
+    color: white;
+}
+
+.migasdepan{
+    display: flex;
+    color: var(--black);
+    font-family: var(--normalFont);
+        
+    * {
+        margin: 0 2px;
+    }
+
+}
+
+.btn--migas{
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    border: solid 1px #bdc3c7;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    padding: 4px;
+    font-family: var(--normalFont);
+}
+
+.btn--migas:hover{
+    background-color: var(--blue-bg);
+    color: white;
+}
+
+.btn--migas--selected{
+    width: 180px;
+    background-color: var(--blue-bg);
+    color: white;
+}
+
+.home--btn--migas{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/icons/home.svg);
+    border: solid 1px #bdc3c7;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 4px 0 0 35px;
+    font-family: var(--normalFont);
+}
+
+.home--btn--migas:hover{
+    background-color: var(--blue-bg);
+    color: white;
+}
+
+
+.checkbox{
+    height: 25px;
+    width: 25px;
+    background-color: rgb(134, 28, 28); 
+}
+
 .link-categories{
     color: black;
     font-size: medium;
@@ -92,6 +163,24 @@
 
 
 @media (max-width:60rem){
+
+    .migasdepan{
+        width: 100%;
+        margin-left: 10px;
+        *{
+            margin: 1px;
+            font-size: xx-small;
+        }
+    }
+
+    .btn--migas,
+    .btn--migas--selected{
+        width: 70px;
+    }
+    .btn--migas--selected{
+        width: 90px;
+    }
+
     .button--control{
 
         button {
@@ -121,6 +210,7 @@ background-color: white;
 
 .ico-bg-whastapp{
 background-image: url("../assets/icons/whatsapp.svg");
+cursor: pointer;
 background-repeat: no-repeat;
 background-position: center;
 border-radius: 100%;
@@ -159,12 +249,6 @@ padding: 1rem;
     padding: 1rem;
 }
 
-.ico--bg--red{
-    background-color: #e74c3c ;
-    height: 80px;
-    width: 80px;
-    
-}
 
 .ico--adobe{
     background-image: url("../assets/icons/adobe.svg");
@@ -174,6 +258,15 @@ padding: 1rem;
     box-sizing: border-box;
     width: 100%;
     padding: 1rem;
+}
+
+.ico--llamanos{
+    content: url("../assets/icons/whatsapp.svg");
+    border-radius: 900px;
+    background-color: var(--white-bg);
+    padding: 0.45rem;
+    cursor: pointer;
+    animation: pulse_esmeralda 2s infinite
 }
 
 

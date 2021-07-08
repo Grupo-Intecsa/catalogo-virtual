@@ -8,7 +8,7 @@ const CarouselHeader = () => {
     <div id="carrouseNB">
       <Carousel autoplay>
         {
-          Object.values(mediaCarousel).map(item => {
+          Object.values(mediaCarousel).map((item) => {
             return item
           })
         }

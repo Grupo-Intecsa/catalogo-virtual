@@ -17,7 +17,8 @@ export const CatalogoXstate = Machine({
         infiniteData: {},
         infiniteCount: {},
         countPage: 0,
-        precio: undefined
+        precio: undefined,
+        categoriaSelection: []
     },
     states: {
         idle: {
@@ -241,6 +242,17 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        getProductsByLabelId:{
+            invoke: {
+                src: CatalogoController.getProductsByLabelId,
+                onDone: {
+                    target: "success",
+                    actions: assign({
+                        categoriaSelection: (ctx, event) => event.data
+                    })
+                }
+            }
+        },
         getPrecio: {
             invoke: {
                 src: CatalogoController.getPrice,
@@ -309,6 +321,9 @@ export const CatalogoXstate = Machine({
             target: "getProductByModel",
             actions: (ctx, event) => ctx.modelUpdate = event.model,
             cond: (_, event) => event.model.length > 0
+        },
+        GET_PRODUCTS_BY_LABEL_ID:{
+            target: "getProductsByLabelId"
         },
         GET_PRICE: {
             target: "getPrecio"

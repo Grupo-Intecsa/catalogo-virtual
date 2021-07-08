@@ -58,7 +58,7 @@ const Step2 = (props) => {
                         />
                         <small>*Dato Requerido</small>
                         {errors.title?.message &&
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             Campo Requerido
                         </div>
                         }
@@ -111,7 +111,7 @@ const Step2 = (props) => {
                 </select>
                 <small className="mt-2">*Dato Requerido</small>
                 {errors.brand?.message &&
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             Campo Requerido
                         </div>
                 }
@@ -126,7 +126,7 @@ const Step2 = (props) => {
                 </select>
                 <small className="mt-2">*Dato Requerido</small>
                 {errors.label?.message &&
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             Campo Requerido
                         </div>
                         }
@@ -143,7 +143,7 @@ const Step2 = (props) => {
                 />
                 <small className="mt-2">*Dato Requerido</small>
                 {errors.desc?.message &&
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             Campo Requerido
                         </div>
                         }

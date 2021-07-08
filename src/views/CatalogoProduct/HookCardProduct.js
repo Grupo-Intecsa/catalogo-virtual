@@ -223,8 +223,8 @@ const HookCardProduct = ({ data }) => {
                                 <div className="ventana__familia">
                                     
                                     <lo>
-                                    {compatible?.map(item => 
-                                        <li>{item}</li>
+                                    {compatible?.map((item, index) => 
+                                        <li key={index}>{item}</li>
                                     )}
                                     </lo>
                                 </div>

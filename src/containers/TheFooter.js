@@ -43,7 +43,7 @@ const TheFooter = () => {
                   <img src={face} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-redes" />
               </a>
 
-              <a href="https://www.instagram.com/itamxoficial/?hl=es-la"
+              <a href="https://www.instagram.com/grupointecsamx/?hl=es-la"
                 target="_blank"
                 rel="noreferrer follow"
                 aria-label="Sígenos en instagram"
@@ -51,7 +51,7 @@ const TheFooter = () => {
                   <img src={insta} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-redes" />
               </a>
 
-              <a href="https://www.youtube.com/channel/UCyjWF1Qa_ehQVYOHX_RF84w/null"
+              <a href="https://www.youtube.com/channel/UCLglnunszAKCtMYLaNDBpUw"
                   target="_blank"
                   rel="noreferrer follow"
                   aria-label="Cómo llegar"
@@ -59,7 +59,7 @@ const TheFooter = () => {
                 <img src={youtube} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-redes" />
               </a>
 
-                  <img src={linkedin} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-redes" />
+                  {/* <img src={linkedin} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-redes" /> */}
                   
               </div>
               </div>

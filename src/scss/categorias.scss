@@ -1,0 +1,295 @@
+.categorias--container{
+  background-color:#dfe6e9;
+  color: var(--black);
+  min-height: 100vh;
+  padding: 1rem;
+  margin: 10px;
+  border-radius: 10px;
+  font-family: var(--normalFont);
+
+  h1{
+    margin-top: 10px;
+    color: var(--black);
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+
+.familias-grid-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+  background-color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 12px;
+
+  label * {
+    margin: 10px;
+  }
+
+  span{
+    width: 100%;
+  }
+
+  label:after{
+    background-color: var(--blue-bg);
+    height: 10px;
+  }
+
+}
+
+.input--style{
+  background-color: royalblue;
+}
+
+.familias--card{
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: #dfe6e9;
+
+  span{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 4px;
+    background-color: var(--blue-bg);
+    color: white;
+    width: 200px;
+    height: 220px;
+    border-radius: 4px;
+    box-shadow: var(--shadowCard);
+    text-align: center;
+  }
+
+  img{
+    border-radius: 4px 4px 0 0;
+    background-color: white;
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+}
+
+
+.btn--link--familia span:hover{
+  transform: translate(0, -10px);
+  background-color: #3498db;
+
+}
+
+// familias
+.familias--container{
+  box-sizing: border-box;
+  padding: 1rem;
+  top: 20px;
+  display: flex;
+  flex-direction: row;
+
+  h1{
+    text-align: center;
+    font-weight: bold;
+    
+  }
+}
+
+.familias--bar{
+  flex-basis: 200px;
+  height: fit-content;
+  border: var(--blue-bg) 2px solid;
+  border-radius: 4px;
+  
+  p{
+    background-color: var(--blue-bg);
+    color: #ffff;
+    box-sizing: border-box;
+    padding: 8px;
+    font-size: large;    
+    letter-spacing: 1px;
+  }
+
+}
+
+.familias--body{
+  flex-basis: auto;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  background-color: var(--white-bg);
+  padding: 0.8rem;
+  width: 100%;
+  height: 100%;
+}
+
+.slimCard{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  min-height: 568px;
+  width: 284px;
+  margin: 8px;
+  box-shadow: var(--shadowCard);
+
+  section img {
+    width: 100%;
+    height: 284px;
+    object-fit: cover;
+    object-position: top;
+    margin-bottom: 2px;    
+  }
+
+}
+
+.slimCard:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  transform: translate(-4px, -10px);
+}
+
+.slim-a{
+  align-items: center;
+  background-color: white;
+  border-radius: 0 0 10 10px;
+  border-bottom: 2px solid var(--blue-bg);
+}
+
+.slim-b{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 100%;
+
+  p{
+    color: var(--black);
+    font-weight: bold;
+    font-size: large;
+    text-transform: uppercase;
+    padding: 0 10px;
+    font-family: var(--normalFont);
+    animation: normal 1s loading;
+  }
+
+}
+
+.slim-c{
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: var(--normalFont);
+  box-sizing: border-box;
+
+  div{
+    display: flex;
+    margin: 4px 0;
+    padding: 4px;
+    height: fit-content;
+  }
+
+  div * {
+    margin: 0 4px;
+    padding: 0;
+  }
+
+  div{
+    background-color: var(--esmeralda);
+    color: white;
+    text-align: center;
+  }
+
+}
+
+.btn--slimCard{
+  margin: 0;
+  border: none;
+  padding: 8px;
+  background-color: var(--blue-bg);
+  border-radius: 4px;
+  font-weight: bold;
+  color: #dfe6e9;
+
+}
+
+// medias querys
+
+@media (max-width: 60rem){
+
+  .familias--bar{
+    display: none;
+  }
+
+  .familias--card{
+    width: 100%;    
+    
+    span{
+      width: 150px;
+      min-height: 200px;
+    }
+
+    img{
+      width: 150px;
+    }
+  }
+
+  .familias--container{
+    padding: 1px;
+  }
+
+  .familias--body{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  @keyframes loading{
+    0%   { opacity: 0; }
+    70%  { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes shine {
+    to {
+      background-position: 100% 0;
+    }
+  }
+
+  .slimCard{
+    flex-basis: 45%;
+    border: 2px;
+  }
+
+  .slim-a,
+  .slim-b,
+  .slim-c{
+    padding: 0;
+    margin: 10px 0;
+    width: 100%;
+
+    div{
+      flex-direction: column;
+    }
+
+    p{
+      font-size: small;
+    }
+
+  }
+  
+
+  .categorias--container{
+    padding: 0;
+
+    h1{
+      font-size: x-large;
+    }
+  }
+
+}
+

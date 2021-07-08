@@ -52,33 +52,36 @@ const VerticalCard = ({ data }) => {
     grabSlider()
   })
 
-  const { mlVerify, MlPrice, logoSelector, linkName } = useContext(AppContext)
+  const { mlVerify, GetPriceIdMl, logoSelector, linkName } = useContext(AppContext)
 
   return(
     <div className="vertical--container" id="sliderPromo">
       { 
         data.map(item => {
+
+          const { _id, title, isKit, urlfoto, brand, ml, model } = item
+          const { precioText, loading } = GetPriceIdMl({ ml })
           
           return(
-          <Link  key={item._id} to={`/product/${item._id}/name/${linkName(item.title)}`} className={ item.isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
+          <Link  key={_id} to={`/product/${_id}/name/${linkName(title)}`} className={ isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
           <div>
 
               <div className="vertica--card--img">
-                <img src={item.urlfoto[0]} alt={item.title} />
+                <img src={urlfoto[0]} alt={title} />
               </div>
 
               <div className="vertical--card--text">
-                <span className="mb-2">{item.brand.map(item => logoSelector(item.brand_id))}</span>
-                <span className="font-weight-bold">Modelo: {item.model}</span>
+                <span className="mb-2">{brand.map(item => logoSelector(item.brand_id))}</span>
+                <span className="font-weight-bold">Modelo: {model}</span>
 
               <div className="precioCard">
-                  <span className="precioCard">{ mlVerify(item.ml) ? <MlPrice ml={item.ml} /> : null }</span>
+                { loading ? <span className="precioCard">{ mlVerify(ml) ? `MNX $ ${precioText}` : null }</span> : <span>Cargando...</span> }
               </div>
           </div>              
               
-              <p>{item.title}</p>              
+              <p>{title}</p>              
               <div className="text-center">
-                { item.isKit ? <span className="precioCard">Varias Medidas</span> : null }
+                { isKit ? <span className="precioCard">Varias Medidas</span> : null }
               </div>
 
             </div>
@@ -114,8 +117,6 @@ const SliderLastProd = () => {
 
   useEffect(() => {
       send('SAMPLE')
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const { sample } = state.context

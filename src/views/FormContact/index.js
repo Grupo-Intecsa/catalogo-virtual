@@ -131,7 +131,7 @@ const FormContact = ({ visible, contactoToggle, title, placeholder }) => {
             <p>¿Tienes un proyecto?, adjunta una lista o datos de tu proyecto</p>
             <input type="file" id="document" name="document" ref={register} hidden onChange={handleFileUpload} />
             <label htmlFor="document"><span><FontAwesomeIcon icon={faPaperclip} size="2x" /></span></label>
-            { fileUpload && fileUpload.map(file => <UploadForm file={file} setUrlValid={setUrlValid} className="mb-2" />)}
+            { fileUpload && fileUpload.map((file, index) => <UploadForm key={index} file={file} setUrlValid={setUrlValid} className="mb-2" />)}
             
           <div className="form--submit mt-1">
 

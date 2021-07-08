@@ -1,21 +1,17 @@
 import React, { Suspense } from 'react'
 
 import { Switch, Redirect, Route } from 'react-router-dom'
-import { useEffect } from 'react/cjs/react.development'
+import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
+
 import routes from '../routes'
 
-const spinner = (
-    <div className="logo--intecsa--spinner">
-        <div className="bouncingLoader">Cargando</div>
-    </div>
-)
 // rutas de la aplicacion
 
 const CatalogoContainer  = () => {
     
     return(
     <div id="topMenuCard">        
-        <Suspense fallback={spinner}>
+        <Suspense fallback={<SkeletonCardProduct />}>
             <Switch>
                 {
                 routes

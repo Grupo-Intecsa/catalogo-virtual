@@ -61,7 +61,8 @@ export const CatalogoMachine = Machine({
             target: "brands"
         },
         GET_MENU: {
-            target: ['.brands', '.labels']
+            target: [ '.labels' ]
+            // target: ['.brands', '.labels']
         }
     }
 

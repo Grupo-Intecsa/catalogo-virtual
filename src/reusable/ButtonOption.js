@@ -1,10 +1,20 @@
-import React, { useState, useRef } from 'react'
+import { useContext, useRef } from 'react'
+import { AppContext } from 'context/AppContext'
 
-const ButtonOption = ({ children, onClick }) => {
+
+const ButtonOption = ({ children, isSelected }) => {
 
   const element = useRef()
-  
-  const handleButton = () => {    
+  const { setFamBarItemSelected } =useContext(AppContext)
+
+  const handleButton = (e) => {  
+
+    const slectedOption = (event) => {
+      const array = event.target.value.split(" ")
+      setFamBarItemSelected({ cap: array[0], unidad: array[1] })
+    }
+    slectedOption(e)
+
     const activeButtons = document.getElementsByClassName("button--capacidad--selected")
     if(activeButtons.length > 0){
       activeButtons.forEach(div => div.classList.remove("button--capacidad--selected"))
@@ -18,7 +28,12 @@ const ButtonOption = ({ children, onClick }) => {
 
   return (
     <div>
-    <input id={children} type="button" ref={element} value={children} className="button--capacidad" onClick={handleButton}/>
+      <input 
+        id={children} 
+        type="button" 
+        ref={element} 
+        value={children} className={isSelected ? "button--capacidad--selected" : "button--capacidad"} 
+        onClick={handleButton}/>
     </div>
   )
 }
