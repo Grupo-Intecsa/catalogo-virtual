@@ -20,7 +20,7 @@ const TheLayout = (props) => {
       <div>
         <TheHeader  />
       <div>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center" style={{ position: "relative", zIndex: "-1"}}>
           { pathname === "/dashboard" && <CarouselHeader /> }
         </div>
             <MarcasLabel busqueda={props} />

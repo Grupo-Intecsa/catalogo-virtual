@@ -18,7 +18,7 @@ const ProductCard = () => {
   useEffect(() => {
     send('GET_CATALOGO_BY_ID', { data: params?.slug })
     
-  },[params, send])
+  },[params])
 
   const topRef = useRef()
   useEffect(() => {

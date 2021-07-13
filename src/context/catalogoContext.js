@@ -16,6 +16,7 @@ export const CatalogoMachine = Machine({
     context: {
         labels: [],
         brands: [],
+        allproductos: [],
     },
     states: {
         init: {},
@@ -49,6 +50,20 @@ export const CatalogoMachine = Machine({
                 }
             }
         },
+        getAllProducts:{
+            invoke:{
+                src: CatalogoController.allProductos,
+                onDone: {
+                    target: "success",
+                    actions: assign({
+                        allproductos: (ctx, evt) =>  evt.data
+                    })
+                },
+                onError: {
+                    target: "error"
+                }
+            }
+        },
         success: {},
         error: {}
 
@@ -60,10 +75,13 @@ export const CatalogoMachine = Machine({
         GET_BRANDS: {
             target: "brands"
         },
+        GET_ALL_PRODUCTS: {
+            target: "getAllProducts"
+        },
         GET_MENU: {
             target: [ '.labels' ]
             // target: ['.brands', '.labels']
-        }
+        },
     }
 
 })

@@ -159,10 +159,15 @@ export default {
 
   },
   scrollTotop: (target) => {
-    window.scrollTo({
-      top: target.current.offsetTop,
-      behavior: "smooth"
-    })
+
+    if(!target){
+      return undefined
+    }else {
+      window.scrollTo({
+        top: target?.current.offsetTop,
+        behavior: "smooth"
+      })
+    }
   },
   orderArray: (a, b) => {
     if(a < b){
@@ -180,6 +185,6 @@ export default {
     })
 
     return valor
-  },
+  }
   
 }

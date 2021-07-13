@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -48,7 +48,7 @@ const ProducHeader = ({ data }) => {
 
   const handleWhatsapp = () => {
     window.open(whatsapp, '_blank')
-  }
+  }  
   
   return(
     <div className="product--foto">

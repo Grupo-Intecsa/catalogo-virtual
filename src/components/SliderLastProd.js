@@ -1,5 +1,5 @@
 
-import React, { useEffect, useContext, useState, useRef } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
@@ -9,7 +9,6 @@ import { CatalogoXstate } from 'context/CatalogoXstate'
 import { AppContext } from 'context/AppContext'
 import SkeletonVerticalCard from 'components/skeletons/SkelentonVerticalCard'
 import _masProductos from 'assets/bg/masproductos.png'
-
 
 const VerticalCard = ({ data }) => {
 

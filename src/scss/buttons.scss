@@ -239,6 +239,20 @@ width: 30px;
 padding: 1rem;
 }
 
+.ico-bg-close{
+border: none;
+background-image: url("../assets/icons/times-square.svg");
+background-repeat: no-repeat;
+background-position: right;
+box-sizing: border-box;
+width: 100%;
+height: 30px;
+padding: 1rem;
+margin-left: auto;
+margin-right: 0;
+
+}
+
 .ico--share{
     background-image: url("../assets/icons/share-alt.svg");
     background-repeat: no-repeat;

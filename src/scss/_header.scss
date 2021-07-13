@@ -13,6 +13,46 @@
 
 }
 
+#Navigation{
+  position: sticky;
+  padding: 0 0.75rem 0 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 4.25rem;
+  font-family: var(--itafont);
+}
+
+#header--buttons{
+  height: 37px;
+  background-color: #3B5998;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+
+.iconSVG{
+  width: 40px;
+  height: 40px;
+}
+
+
+
+.logo--input{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 70%;
+}
+
+.whats--cart{
+  display: flex;
+  height: 40px;
+}
+
 .imgfluid{
   object-fit: scale-down;
   object-position: top;
@@ -20,7 +60,86 @@
   height: 100%;
 }
 
+.engine--shearch{
+  padding: 0.35rem;
+  width: 100%;
+  input{
+    background-color: #fff;
+    border: var(--selected);
+    color: var(--selected);
+    width: 50%;
+    padding: 0.65rem;
+    border-radius: 8px;
+  
+  }
+}
+
+.hits--results{
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid var(--black);
+  width: 39.19rem;
+  color: var(--black);
+  z-index: 3;
+  border-radius: 4px;
+
+  ul{
+    margin: 4px 0;
+    padding: 4px;
+  }
+
+  ul li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px 0;
+    list-style-type: none;
+    padding: 0.25rem;
+    border: 1px solid var(--blue-bg);
+
+    &:hover{
+      background-color: var(--black);
+      color: var(--white-bg);
+    }
+  }
+
+
+
+  ul li p{
+    width: 50%;
+
+  }
+
+  ul li img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+}
+
 @media (max-width:60rem){
+  .engine--shearch{
+    input{
+      width: 100%;
+    }
+  }
+  .hits--results{
+    width: 11.5rem;
+    height: 200px;
+    overflow-y: scroll;
+
+    ul li p{
+      font-size: small;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 80px;
+      height: 80px;
+
+    }
+  }
 
   #carrouseNB{
       width: 100%;
@@ -28,3 +147,16 @@
   }
 
 }
+
+
+// @media (min-width: 750px){
+//   .form--header{
+//       width: 500px;
+//   }
+// }
+
+// @media (min-width: 950px){
+//   .form--header{
+//       width: 700px;
+//   }
+// }
