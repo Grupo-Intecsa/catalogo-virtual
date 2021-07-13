@@ -9,7 +9,7 @@ import { useMachine } from '@xstate/react'
 import utils from 'utils/utils'
 import MenuBreadCrumb from 'components/MenuBreadCrumb'
 import FamiliasCard from 'components/Categorias/FamiliasCard'
-import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
+// import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 
 const Categories = () => {
 
