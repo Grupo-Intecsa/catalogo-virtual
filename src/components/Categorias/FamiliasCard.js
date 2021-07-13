@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import utils from 'utils/utils'
+// import utils from 'utils/utils'
 
 const FamiliasCard = ({ payload, slug }) =>{
 
@@ -15,11 +15,11 @@ const FamiliasCard = ({ payload, slug }) =>{
       <section className="familias--card">   
         {
           familias.map((item, index) => {
-            let imgProduct = utils.getFoto(item, payload)
+            // let imgProduct = utils.getFoto(item, payload)
             return(
             <Link key={index} className="btn--link--familia" to={`/familia/categories/${slug}/familia/${item}`}>
               <span>
-                <img src={imgProduct}></img>
+                {/* <img src={imgProduct}></img> */}
                 <p>{ item }</p>
               </span>
             </Link>
