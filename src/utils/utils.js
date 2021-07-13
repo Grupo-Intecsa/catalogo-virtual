@@ -140,7 +140,8 @@ export default {
 
   },
   getFoto: ( slug, payload ) => {
-    return payload.filter(item => item.familia === slug )[0]?.urlfoto[0]
+    let imgProduct = payload.filter(item => item.familia === slug )[0]?.urlfoto[0].toString()
+    return imgProduct
   },
   getSelection: ({ familiaName, payload, selection }) => {
     const arraySelection = _.values(selection)[0]
