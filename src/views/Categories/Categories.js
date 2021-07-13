@@ -9,7 +9,7 @@ import { useMachine } from '@xstate/react'
 import utils from 'utils/utils'
 import MenuBreadCrumb from 'components/MenuBreadCrumb'
 import FamiliasCard from 'components/Categorias/FamiliasCard'
-// import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
+import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 
 const Categories = () => {
 
@@ -53,14 +53,14 @@ const Categories = () => {
       <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb /></span>
 
       <section>
-        {/* {
+        {
           state.matches("getProductsByLabelId") && <SkeletonCardProduct />
-        } */}
+        }
         {
           state.matches("success") && categoriaSelection.length === 0 ? <div>Aún no hay elementos en esta cátegoria</div> : null 
         }
         {
-          state.matches("success") && <div><FamiliasCard payload={categoriaSelection} slug={params?.slug} /></div>
+          // state.matches("success") && <div><FamiliasCard payload={categoriaSelection} slug={params?.slug} /></div>
         }
       </section>
     </div>
