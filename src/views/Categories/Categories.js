@@ -1,14 +1,14 @@
 
 import React, { useEffect, useMemo, useRef } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-// import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 import { CatalogoXstate } from 'context/CatalogoXstate'
 import { useMachine } from '@xstate/react'
 
 import utils from 'utils/utils'
 import MenuBreadCrumb from 'components/MenuBreadCrumb'
-// import FamiliasCard from 'components/Categorias/FamiliasCard'
+import FamiliasCard from 'components/Categorias/FamiliasCard'
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 
 const Categories = () => {
@@ -33,11 +33,11 @@ const Categories = () => {
     utils.scrollTotop(topRef)
   })
 
-  // const metadescription = state.matches("success") && categoriaSelection.map(item => item.title)
+  const metadescription = state.matches("success") && categoriaSelection.map(item => item.title)
 
   return(
     <div className="categorias--container" ref={topRef}>
-      {/* <Helmet
+      <Helmet
           meta={[
             {
               name: "description",
@@ -47,21 +47,21 @@ const Categories = () => {
         >
         <title>{ categoTitle || titleStorage }</title>
         <link rel="canonical" href="http://itamx.com/categories" />
-      </Helmet> */}
+      </Helmet>
 
       <h1>{ categoTitle || titleStorage }</h1>
       <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb /></span>
 
       <section>
         {
-          state.matches("success") && <SkeletonCardProduct />
+          state.matches("getProductsByLabelId") && <SkeletonCardProduct />
         }
         {
           state.matches("success") && categoriaSelection.length === 0 ? <div>Aún no hay elementos en esta cátegoria</div> : null 
         }
-        {/* {
+        {
           state.matches("success") && <div><FamiliasCard payload={categoriaSelection} slug={params?.slug} /></div>
-        } */}
+        }
       </section>
     </div>
   )
