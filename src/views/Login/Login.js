@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Redirect } from 'react-router'
 import { UserState, UserDispatch } from 'context/userContext'

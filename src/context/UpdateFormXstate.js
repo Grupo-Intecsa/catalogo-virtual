@@ -24,14 +24,14 @@ const findByModel = async(ctx, event) => {
 
 const getSelectorData = async() => {
 
-    const p1 = new Promise((resolve, _) => {
+    const p1 = new Promise((resolve) => {
         resolve(
             api.get('/labels')
             .then(res => res.data.message)
         )
     })
 
-    const p2 = new Promise((resolve, _) => {
+    const p2 = new Promise((resolve) => {
         resolve(
             api.get('/brands')
             .then(res => res.data.message)
@@ -146,7 +146,7 @@ export const MachineProductForm = createMachine(
             entry: assign({
                 step1: false,
                 step2: true,
-                productData: (ctx, event) => {
+                productData: (ctx) => {
                     const { productData } = ctx
                     return { ...productData }
                 }

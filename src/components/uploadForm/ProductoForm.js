@@ -25,7 +25,7 @@ const UploadForm =  (props) => {
     //     return () => sub.unsubscribe()
     // },[state])
 
-    const { init, step1, step2, step3, step4, final, productData, labelsAndBrands } = state.context
+    const { init, step1, step2, step3, step4, final, labelsAndBrands } = state.context
     // No se podran abrir las secciones si no estan termiandas 
     
     return(

@@ -11,7 +11,6 @@ import { CatalogoProvider } from './context/catalogoContext'
 import { TiendaProvider } from 'context/TiendaContext'
 import { UserContextProvider } from './context/userContext'
 import AppContextProvider from 'context/AppContext';
-import utils from 'utils/utils';
 
 // Containers
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
