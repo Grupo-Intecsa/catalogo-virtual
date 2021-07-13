@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-// import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 
@@ -29,7 +29,7 @@ const ProductCard = () => {
   
   return(
     <div ref={topRef}>
-      {/* <Helmet
+      <Helmet
           title={queryBrand?.title}
           htmlAttributes={{ lang: "es" }}
           meta={
@@ -42,7 +42,7 @@ const ProductCard = () => {
             ]
           }
         >
-      </Helmet> */}
+      </Helmet>
     <div className="product--card--container" id="topCard">
         <section className="section--product--main">
           {

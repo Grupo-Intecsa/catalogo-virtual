@@ -4,7 +4,7 @@ import { useCatalogoDispatch, useCatalogoState } from "context/catalogoContext"
 import { Link } from 'react-router-dom'
 import SkeletonCardProduct from './skeletons/SkeletonCardProduct'
 
-// import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 const Categorias = ({ payload }) => {
 
@@ -33,13 +33,12 @@ const AllProductos = () => {
   },[])
 
   const { labels } = state.context
-  
-  // const descriptionMeta = labels.length > 0 && labels.map(item => item.title)
+  const descriptionMeta = labels.length > 0 && labels.map(item => item.title)
   
   return(
     <div id="allproducts">
 
-        {/* <Helmet 
+        <Helmet 
           meta={[
             {
               name: "description",
@@ -48,7 +47,7 @@ const AllProductos = () => {
           ]}
         >
 
-        </Helmet> */}
+        </Helmet>
 
 
       <div className="all--products-title mt-4 mb-4">
