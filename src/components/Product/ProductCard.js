@@ -36,7 +36,7 @@ const ProductCard = () => {
             [
               {
                 name: "description",
-                content: queryBrand.desc
+                content: queryBrand?.desc
 
               }
             ]
