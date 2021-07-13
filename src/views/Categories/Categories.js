@@ -53,9 +53,9 @@ const Categories = () => {
       <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb /></span>
 
       <section>
-        {
+        {/* {
           state.matches("getProductsByLabelId") && <SkeletonCardProduct />
-        }
+        } */}
         {
           state.matches("success") && categoriaSelection.length === 0 ? <div>Aún no hay elementos en esta cátegoria</div> : null 
         }
