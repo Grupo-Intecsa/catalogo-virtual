@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import {
   Redirect,
   Route,
@@ -30,7 +30,6 @@ const TheContent = () => {
             })}
             <Redirect from="/" to="/dashboard" />
           </Switch>
-        </Suspense>
       </CContainer>
     </main>
   )
