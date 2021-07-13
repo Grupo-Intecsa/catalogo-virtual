@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 
+import { Helmet } from 'react-helmet'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
@@ -56,6 +57,19 @@ const ProducHeader = ({ data }) => {
   
   return(
     <div className="product--foto">
+      <Helmet
+        meta={
+          [
+            {
+              name: "og:image",
+              content: `${urlfoto[0]}`
+              
+            }
+          ]
+        }
+      >
+
+      </Helmet>
       <section style={{ padding: "2rem"}}>
 
         <MenuBreadCrumb />
