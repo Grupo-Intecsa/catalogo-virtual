@@ -10,6 +10,10 @@ import { Drawer, Badge, Alert } from 'antd'
 
 export default function TheCanvasCart(){
 
+  const handleAddCard = (e) => {
+      console.log(e)
+  }
+
   const monyIntlRef = (precio) => {
 
     let miPrecio 
@@ -152,7 +156,7 @@ export default function TheCanvasCart(){
 
                             <div className="canvas--bottom">
                               <img src={item.foto} alt={item.title} />  
-                              <select value={item.cantidad} className="btn btn-modal-additem" id="cantidad">
+                              <select value={item.cantidad} className="btn btn-modal-additem" id="cantidad" onChange={(e) => handleAddCard(e)}>
                                   <option>1</option>
                                   <option>2</option>
                                   <option>3</option>

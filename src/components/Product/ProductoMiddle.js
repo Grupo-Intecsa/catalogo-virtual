@@ -78,7 +78,7 @@ const ProductoMiddle = ({ data }) => {
       <section className="middle--containar" style={ download ? null : disableStyle }>
         <h1>Descargas</h1>
         <table className="table--container">
-            
+          <tbody>
             <tr>
               <th style={{ width: "200px" }}>Ficha Técnica</th>
               <td>{
@@ -88,6 +88,7 @@ const ProductoMiddle = ({ data }) => {
                   : (<span>No hay datos disponibles</span>)
                 }</td>
             </tr>
+          </tbody>
           </table>
       </section>
 

@@ -21,7 +21,7 @@ const logoMap = [
 const logoSelector = (id) => {
   const logo = logoMap.find(item => item.id === id )
   return(
-    logo ? <img src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px" }} /> : <small style={{ color: 'white'}}>Logo no disponible</small>
+    logo ? <img key={id} src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px" }} /> : <small style={{ color: 'white'}}>Logo no disponible</small>
   ) 
 }
 
@@ -36,11 +36,18 @@ const GetPriceIdMl = ({ ml }) => {
   async function getData(){
     await CatalogoController.getPrice({ ml })
     .then(res => setMlPrecio(res))
+    .catch(() => null )
     .finally(() => setLoading(true))
   }
   
   useEffect(() => {
-    getData()
+    if(ml){
+      getData()
+
+    }else if(!ml){
+      setMlPrecio(null)
+      setLoading(true)
+    }
   },[ml])
 
   useEffect(() => { 
@@ -53,9 +60,7 @@ const GetPriceIdMl = ({ ml }) => {
       Number.isNaN(+suma) ? 0 : setPrecioOnNumber(+suma)
     }
 
-  },[loading, mlPrecio])
-
-    
+  },[loading, mlPrecio])    
   return { loading, mlPrecio: precioOnNumber, precioText: mlPrecio }
 }
 

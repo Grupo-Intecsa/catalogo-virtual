@@ -29,7 +29,7 @@ const CardCheckout = ({ item }) => {
     return number
   }
 
-  const linkName = item.title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
+  const linkName = item.title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-")
 
 
   return(

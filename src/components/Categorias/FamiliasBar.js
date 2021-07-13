@@ -31,14 +31,14 @@ const FamiliasBar = ({ payload, slug }) => {
 
   return(
     <div className="familias-grid-container">
-      <seccion>
+      <section>
         <button className="btn--reset--cap" onClick={handleResetAll}>Mostar todos</button>
         {
           capacidades.capacidad.map((item, index) => 
               <ButtonOption key={index}>{ `${item} ${capacidades.unidad}` }</ButtonOption>    
             )
         }
-      </seccion>
+      </section>
     </div>
   )
 }

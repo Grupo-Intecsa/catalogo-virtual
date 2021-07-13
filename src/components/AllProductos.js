@@ -9,11 +9,11 @@ import { Helmet } from 'react-helmet'
 const Categorias = ({ payload }) => {
 
   return (
-    payload.map(item => {
+    payload.map((item) => {
       return(
         <Link to={{ pathname: `/categories/${item._id}`, state: { title: item.title }}} key={item._id} className="content--products">
           <div className="text-center">
-              <img src={item.img} alt={item.title} />
+              <img src={item.img} alt={item.title} loading="eager" />
               <span>{item.title}</span>
           </div>
         </Link>
@@ -56,9 +56,8 @@ const AllProductos = () => {
       </div>
     <div className="d-flex justify-content-center">
     <div className="all--products--container mb-4">
-          {/* <span>Contenedor</span> */}
           { labels.length === 0 && <SkeletonCardProduct />}
-          { labels.length > 0 && <Categorias payload={ labels }/> }
+          { state.matches("success") > 0 && <Categorias payload={ labels }/> }
     </div>
     </div>
     </div>
