@@ -4,7 +4,7 @@ import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 
 
-const UpdateProductos = ({ userId }) => {
+const UpdateProductos = () => {
   
   // const [ visible, setVisible ] = useState(false)
   const [ state, send ] = useMachine(CatalogoXstate)
