@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 
 
 const EmblaModal = ({ urlfoto }) => {
 
-  const [ foto, setFoto ] = useState(urlfoto[0])
+  const [ foto, setFoto ] = useState([])
+  
+  useEffect(() => {
+    setFoto(urlfoto[0])
+  },[urlfoto])
 
   const handledFoto = ({ currentImg = null } = {}) => {
       setFoto(currentImg)
   }
 
-
   return (
     <div className="modal--img--slide">
+
+      <div className="modal--big--img">
+        <img src={foto} alt="imagen zoom del producto"/>
+      </div>
 
       <div className="modal--slide">
         {urlfoto.map((img, index) => {
@@ -21,10 +28,6 @@ const EmblaModal = ({ urlfoto }) => {
             </div>
           )
         })}
-      </div>
-
-      <div className="modal--big--img">
-        <img src={foto} alt="imagen zoom del producto"/>
       </div>
 
     </div>

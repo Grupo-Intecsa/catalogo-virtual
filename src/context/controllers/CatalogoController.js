@@ -1,10 +1,10 @@
-/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 import decode from 'jwt-decode'
+import utils from 'utils/utils'
 
 const api = axios.create({
-    baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
-    // baseURL: 'http://localhost:3000/api/v1'
+    // baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
+    baseURL: 'http://localhost:3000/api/v1'
 })
 
 export default {
@@ -54,7 +54,7 @@ export default {
         }
         return response
     },
-    infiniteScroll: async(ctx, event) => {
+    infiniteScroll: async(ctx) => {
         const { countPage, infiniteData, infiniteCount } = ctx
 
         const page = countPage
@@ -116,10 +116,11 @@ export default {
             return response
 
     },
-    getByText: async(_, evt) => {
+    getByText: async(ctx, evt) => {
+        
         const { id, page } = evt
         
-        // let response = await api.get(`/catalog/search/?text=${id}`)
+        ctx.pendingSearch = true
         let response = await api.get(`/catalog/search?text=${id}&limit=5&offset=${ ( 5 * page ) - 5 }`)
             .then( res => res.data.message  )
 
@@ -158,7 +159,7 @@ export default {
         
         return res
     },
-    getCatalogoById: async(ctx, evt) => { 
+    getCatalogoById: async(ctx) => { 
 
         const { id } = ctx
 
@@ -167,7 +168,7 @@ export default {
         
         return res
     },
-    getFamiliaById: async(ctx, evt) => { 
+    getFamiliaById: async(ctx) => { 
 
         const { id } = ctx
 
@@ -191,7 +192,7 @@ export default {
 
         if(res.status === 200) return res
     },
-    getProductByModel: async(ctx, event) => {
+    getProductByModel: async(ctx) => {
 
         const res = await api.get(`/catalog/product/${ctx.modelUpdate}`)
         .then(res => res.data.message)
@@ -222,6 +223,17 @@ export default {
             .then(res => res.data && res.data.message)
         
             return dataInvoice
+    },
+    getProductsByLabelId: async(ctx, event) => {
+            
+        const { id } = event
+        console.log(id)
+
+        const response = await api.get(`labels/${id}`)
+        .then(res => res.data && res.data.message)
+        
+        return response
+        
     },
     getPrice: async({ ml }) => {
 

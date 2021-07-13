@@ -1,6 +1,6 @@
 .modal--productos{
   width: 100%;
-
+  overflow: hidden;
   background-color: rgb(255, 255, 255);
   border-radius: 0 0 20px 20px;
   display: grid;
@@ -79,7 +79,7 @@
   h2{
     
     padding: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--normalFont);
     font-size: x-large;
     width: 90%;
     justify-content: right;
@@ -181,7 +181,7 @@
   padding: 1rem;
   margin-bottom: 4px;
   color: white;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--normalFont);
   
 }
 
@@ -202,7 +202,7 @@
   padding: 1rem;
   margin-bottom: 4px;
   color: black;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--normalFont);
   
 }
 
@@ -213,26 +213,7 @@
   border: 1px solid #FFD814;
   padding: 1rem;
   color: rgb(0, 0, 0);
-  font-family: 'Space Grotesk', sans-serif;
-    
-}
-
-.btn-modal-comprar{
-  width: 15em;
-  background-color: #FFD814;
-  padding: 1rem;
-  margin-bottom: 4px;
-  color: black;
-  font-family: 'Space Grotesk', sans-serif;
-  
-}
-
-.btn-modal-comprar:hover{
-  width: 15em;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #FFD814;
-  padding: 1rem;
-  color: rgb(0, 0, 0);
+  font-family: var(--normalFont);
     
 }
 
@@ -244,7 +225,7 @@
   padding: 1rem;
   margin-right: 10px;
   color: black;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--normalFont);
   
 }
 
@@ -265,7 +246,7 @@
   padding: 1rem;
   margin-right: 10px;
   color: black;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--normalFont);
   
 }
 
@@ -286,7 +267,7 @@
   background-color: rgb(194, 3, 3);
   text-decoration: none;
   color: white !important;
-  font-family: 'Space Grotesk', sans-serif; 
+  font-family: var(--normalFont); 
 }
 
 .btn-modal-pdf:hover{
@@ -305,7 +286,7 @@
   background-color: #39f;
   text-decoration: none;
   color: white;
-  font-family: 'Space Grotesk', sans-serif; 
+  font-family: var(--normalFont); 
 }
 
 .btn-modal-capacidad:hover{
@@ -323,7 +304,7 @@
   padding-top: 1rem;
 
   p{
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--normalFont);
     font-weight: 800;
     font-size: medium;
   }
@@ -363,7 +344,7 @@
     font-size: large;
     border: none;
     padding: 0 1rem 0 1rem;
-    font-family: 'Roboto', sans-serif;
+
 
   }
 
@@ -376,7 +357,6 @@
 
 .titulos__modal__hook{
   
-  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -386,7 +366,7 @@
     border-radius: 10px;
     font-size: medium;
     margin-bottom: 10px;
-    font-family: 'Roboto', sans-serif;
+
   }
 
   span{
@@ -395,20 +375,6 @@
     
   }
 
-}
-
-.iconSVG{
-  box-sizing: border-box;
-  padding: 0.36rem;
-  height: 60px;
-  width: auto;
-}
-
-@media (max-width: 65rem){
-  .iconSVG{
-    height: 40px;
-    width: auto;
-  }
 }
 
 .shoppingCart{
@@ -432,7 +398,7 @@
   margin-top: 10px;
 
   label {
-    font-family: 'Space Grotesk', sans-serif; 
+    font-family: var(--normalFont); 
     font-size: large;
   }
 }
@@ -477,7 +443,7 @@
 
   p{
     flex-basis: 50%;
-    font-family: "texgyreadventorbold"; 
+    font-family: var(--itafont); 
     font-size: large;
   }
 
@@ -485,7 +451,7 @@
     flex-basis: 50%;
     font-size: large;
     text-align: center;
-    font-family: 'Space Grotesk', sans-serif; 
+    font-family: var(--normalFont); 
     
     
   }

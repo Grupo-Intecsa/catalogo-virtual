@@ -10,6 +10,10 @@ export const CatalogoXstate = Machine({
         all_products: [],
         sample: [],
         queryBrand: [],
+        // para los resultados de la busqueda
+        hitSearch: [],
+        pendingSearch: false,
+        // 
         modelUpdate: undefined,
         update: undefined,
         familia: [],
@@ -17,7 +21,8 @@ export const CatalogoXstate = Machine({
         infiniteData: {},
         infiniteCount: {},
         countPage: 0,
-        precio: undefined
+        precio: undefined,
+        categoriaSelection: []
     },
     states: {
         idle: {
@@ -81,14 +86,17 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
-        getByText:{
+        getByText:{  
             invoke: {
                 src: CatalogoController.getByText,
                 onDone: {
                     target: 'success',
                     actions: assign({
-                        queryBrand: (_, evt) => evt.data
-                    })
+                        hitSearch: (_, evt) => {
+                            return evt.data
+                        }
+                    }),
+
                 },
                 onError: {
                     target: 'error',
@@ -230,13 +238,24 @@ export const CatalogoXstate = Machine({
                 onDone: {
                     target: "idle",
                     actions: assign({
-                        update: (ctx, event) => ctx.update = true
+                        update: (ctx) => ctx.update = true
                     })
                 },
                 onError: {
                     target: "error",
                     actions: assign({
                         error: (ctx, event) => event.data
+                    })
+                }
+            }
+        },
+        getProductsByLabelId:{
+            invoke: {
+                src: CatalogoController.getProductsByLabelId,
+                onDone: {
+                    target: "success",
+                    actions: assign({
+                        categoriaSelection: (ctx, event) => event.data
                     })
                 }
             }
@@ -264,8 +283,7 @@ export const CatalogoXstate = Machine({
                     ]
 
                 },
-                UPDATE: 'updateByModel',
-                
+                UPDATE: 'updateByModel',                
             }
         },
         reject: {},
@@ -287,21 +305,15 @@ export const CatalogoXstate = Machine({
         },
         GET_FAMILA_BY_ID: "getFamiliaByBrandId",
         GET_FAMILA_BY_TITLE: "getFamiliaByTitleId",
-        GET_TEXT_QUERY: [
-            {
-                target: 'getByText',
-                cond: (_, event ) => {
-                    
-                    return event.id.split("").length > 2
-                }
-            },
-            {
-                target: 'reject'
-            }
-        ],
+        GET_TEXT_QUERY: {
+            target: "getByText",
+        },
         GET_CATALOGO_BY_ID: {
             target: "getCatalogoById",
             actions: (ctx, event) => ctx.id = event.data
+        },
+        EMPTY: {
+            actions: (ctx) => ctx.hitSearch = []
         },
         GET_PRODUCTS_BY_PARENT_ID: "getProductsByParentId",
         SEND_TO_MONDAY: "sendToMonday",
@@ -309,6 +321,9 @@ export const CatalogoXstate = Machine({
             target: "getProductByModel",
             actions: (ctx, event) => ctx.modelUpdate = event.model,
             cond: (_, event) => event.model.length > 0
+        },
+        GET_PRODUCTS_BY_LABEL_ID:{
+            target: "getProductsByLabelId"
         },
         GET_PRICE: {
             target: "getPrecio"
@@ -327,3 +342,14 @@ export const CatalogoXstate = Machine({
 
     }
 })
+
+// {
+//     target: 'getByText',
+//     cond: (_, event ) => {
+        
+//         return event.id.split("").length > 2
+//     }
+// },
+// {
+//     target: 'reject'
+// },

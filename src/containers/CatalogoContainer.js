@@ -1,48 +1,38 @@
 import React, { Suspense } from 'react'
-import { 
-    CCol,
-    CContainer, 
-} from '@coreui/react'
 
 import { Switch, Redirect, Route } from 'react-router-dom'
+import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
+
 import routes from '../routes'
 
-const spinner = (
-    <div className="logo--intecsa--spinner">
-        <div className="bouncingLoader">Cargando</div>
-    </div>
-)
 // rutas de la aplicacion
 
 const CatalogoContainer  = () => {
     
     return(
-    <CContainer id="topMenuCard">        
-            <CCol className="d-flex justify-content-center">
-                <Suspense fallback={spinner}>
-                    <Switch>
-                        {
-                            routes
-                            .map((route, index) => {
-                                return route.componente && (
-                                        <Route 
-                                        key={index}
-                                            path={route.path}
-                                            exact={route.exact}
-                                            name={route.name}
-                                            render={(props) => (
-                                                <route.componente { ...props }/>
-                                                )}
-                                                />
-                                    )
-                                })
-                            }
-                        <Redirect from="/" to="/dashboard" />
-                    </Switch>
-                </Suspense>
-            </CCol>
-        
-    </CContainer>
+    <div id="topMenuCard">        
+        <Suspense fallback={<SkeletonCardProduct />}>
+            <Switch>
+                {
+                routes
+                    .map((route, index) => {
+                        return route.componente && (
+                                <Route 
+                                key={index}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    name={route.name}
+                                    render={(props) => (
+                                    <route.componente { ...props }/>
+                                        )}
+                                    />
+                            )
+                        })
+                    }
+                <Redirect from="/" to="/dashboard" />
+            </Switch>
+        </Suspense>
+    </div>
         
     )
 }

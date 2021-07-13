@@ -19,15 +19,14 @@ const Final = (props) => {
           title="Producto guardado con éxito"
           subTitle="El producto id fue añadido a la base de datos"
           extra={[
-            <div>
-      
-            <Button type="primary" key="console" onClick={() => history.push("/")}>
-              Dashboard
-            </Button>
-            
-            <Button key="buy" onClick={handledReset}>
-              Agregar Otro
-            </Button>
+            <div key="2315">
+              <Button type="primary" key="console" onClick={() => history.push("/")}>
+                Dashboard
+              </Button>
+              
+              <Button key="buy" onClick={handledReset}>
+                Agregar Otro
+              </Button>
             </div>
           ]}
         />,

@@ -1,47 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 import {
   CatalogoContainer,
-  TheSidebar,
+  // TheSidebar,
   TheFooter,
   TheHeader,
 } from './index'
 
-
-// import Csv2Json from '../lab/Csv2Json'
-// import GtiBanner from '../views/gtiBanner/GtiBanner'
-const  EmblaCarousel  = React.lazy(() => import('../components/EmblaCarousel/EmblaCarousel'))
-// const  EmblaCategorias  = React.lazy(() => import('../components/EmblaCarousel/EmblaCatergorias'))
-const  Categories = React.lazy(() => import('../views/ProductosCards/Categories'))
-
-
-const SLIDE_COUNT = 3
-const slides = Array.from(Array(SLIDE_COUNT).keys())
+import CarouselHeader from 'components/Slider/CarouselHeader'
+const  MarcasLabel = React.lazy(() => import('../views/ProductosCards/Categories'))
 
 const TheLayout = (props) => {
 
-  const [ busqueda, setBusqueda ] = useState(undefined)
-      
-  useEffect(() => {
-    if(props.match.isExact){
-      setBusqueda("")
-    }
-  })
+  const location = useLocation()
+  const { pathname } = location
 
   return (
-    <div className="c-app c-default-layout jaimito">
-      <TheSidebar/>
-      {/* <Csv2Json /> */}
-      <div className="c-wrapper">
-
-        <TheHeader busqueda={setBusqueda} />
-          <div className="">
-            <EmblaCarousel  slides={slides} />
-            <Categories busqueda={props} />
-          </div>
-        <div>          
-          <CatalogoContainer {...props} busqueda={busqueda} />
-          {/* <EmblaCategorias /> */}
+    <div>
+      <div>
+        <TheHeader  />
+      <div>
+        <div className="d-flex justify-content-center" style={{ position: "relative", zIndex: "-1"}}>
+          { pathname === "/dashboard" && <CarouselHeader /> }
         </div>
+            <MarcasLabel busqueda={props} />
+        </div>
+        <div id="CatalogoContainer">
+          <CatalogoContainer {...props}/>
+        </div>
+        
+
       <div id="footer">
         <TheFooter/>
       </div>

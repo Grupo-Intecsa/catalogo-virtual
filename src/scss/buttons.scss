@@ -1,3 +1,83 @@
+.btn-noStyle,
+.btn-noStyle::after,
+.btn-noStyle:hover,
+.btn-noStyle:target{
+    border: none;
+    background: none;
+    margin: 0;
+}
+
+.btn--reset--cap{
+    box-shadow: var(--shadowCard);
+    background-color: var(--esmeralda);
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 4px;
+    color: white;
+}
+
+.migasdepan{
+    display: flex;
+    color: var(--black);
+    font-family: var(--normalFont);
+        
+    * {
+        margin: 0 2px;
+    }
+
+}
+
+.btn--migas{
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    border: solid 1px #bdc3c7;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    padding: 4px;
+    font-family: var(--normalFont);
+}
+
+.btn--migas:hover{
+    background-color: var(--blue-bg);
+    color: white;
+}
+
+.btn--migas--selected{
+    width: 180px;
+    background-color: var(--blue-bg);
+    color: white;
+}
+
+.home--btn--migas{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/icons/home.svg);
+    border: solid 1px #bdc3c7;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 4px 0 0 35px;
+    font-family: var(--normalFont);
+}
+
+.home--btn--migas:hover{
+    background-color: var(--blue-bg);
+    color: white;
+}
+
+
+.checkbox{
+    height: 25px;
+    width: 25px;
+    background-color: rgb(134, 28, 28); 
+}
+
 .link-categories{
     color: black;
     font-size: medium;
@@ -11,3 +91,233 @@
     text-decoration: none;
 
 }
+
+.ico--brand--abb{
+    background-image: url(../assets/icons/abb_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.ico--brand--onka{
+    background-image: url(../assets/icons/onka_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.ico--brand--ita{
+    background-image: url(../assets/icons/ita_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.ico--brand--csm{
+    background-image: url(../assets/icons/csm_ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    
+}
+
+.butom-rounded-cate{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    background-color: rgb(252, 252, 252);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    
+}
+
+.butom-rounded-cate:hover{
+    // transition: transform .5s, filter .5s ease-in-out;
+    background-color: #66a6ff;
+    width: 85px;
+}
+
+.button--control{
+
+    position: relative;
+
+    button{
+        margin: 5px;
+        width: 84px;
+        height: 84px;
+        border-radius: 100%;
+        background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+        border: none;
+    }
+
+
+}
+
+.control--carousel:hover,
+.control--carousel:focus{
+    border: none;
+    background-color: rgba(74, 120, 212, 0.87);
+}
+
+
+@media (max-width:60rem){
+
+    .migasdepan{
+        width: 100%;
+        margin-left: 10px;
+        *{
+            margin: 1px;
+            font-size: xx-small;
+        }
+    }
+
+    .btn--migas,
+    .btn--migas--selected{
+        width: 70px;
+    }
+    .btn--migas--selected{
+        width: 90px;
+    }
+
+    .button--control{
+
+        button {
+            width: 44px;
+            height: 44px;
+        } 
+    }
+}
+
+.handleiconAcordion{
+width: 100%;
+border: none;
+background: white;
+padding: 10px;
+}
+
+.handleiconAcordion:hover{
+    
+h4{
+    color: var(--black)
+}
+}
+
+.ico-bg-white{
+background-color: white;
+}
+
+.ico-bg-whastapp{
+background-image: url("../assets/icons/whatsapp.svg");
+cursor: pointer;
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+width: 40px;
+height: 40px;
+animation: pulse_esmeralda 2s infinite
+}
+
+.ico-bg-truck{
+background-image: url("../assets/icons/truck.svg");
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+box-sizing: border-box;
+width: 30px;
+padding: 1rem;
+}
+
+.ico-bg-gasto{
+background-image: url("../assets/icons/usd-circle.svg");
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+box-sizing: border-box;
+width: 30px;
+padding: 1rem;
+}
+
+.ico-bg-close{
+border: none;
+background-image: url("../assets/icons/times-square.svg");
+background-repeat: no-repeat;
+background-position: right;
+box-sizing: border-box;
+width: 100%;
+height: 30px;
+padding: 1rem;
+margin-left: auto;
+margin-right: 0;
+
+}
+
+.ico--share{
+    background-image: url("../assets/icons/share-alt.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    box-sizing: border-box;
+    width: 20px;
+    padding: 1rem;
+}
+
+
+.ico--adobe{
+    background-image: url("../assets/icons/adobe.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+}
+
+.ico--llamanos{
+    content: url("../assets/icons/whatsapp.svg");
+    border-radius: 900px;
+    background-color: var(--white-bg);
+    padding: 0.45rem;
+    cursor: pointer;
+    animation: pulse_esmeralda 2s infinite
+}
+
+
+@keyframes pulse_esmeralda {
+0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 #2ecc71;
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px #1abc9c;
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+
+
+@keyframes pulse {
+0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 
 const AdminToggle = forwardRef(({ children }, ref) => {

@@ -1,1 +1,36 @@
 // Variable overrides
+:root{
+  --itafont: 'texgyreadventorbold';
+  --normalFont: "Poppins";
+  --shadowCard: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;;
+  --black: #34495e;
+  --selected: #2c3e50;
+  --disable: #bdc3c7;
+  --esmeralda: #1abc9c;
+  --blue-bg: #2980b9;
+  --white-bg: #ecf0f1;
+  --red-bg: #e74c3c;
+
+}
+
+.text-overflow{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.title{
+
+  color: #bdc3c7; 
+  margin-top: 1rem;
+  text-align: center;
+  font-family: var(--normalFont);
+  font-size: xx-large;
+    
+}
+
+@media (max-width: 60rem){
+  .title{
+    font-size: large;
+  }
+}

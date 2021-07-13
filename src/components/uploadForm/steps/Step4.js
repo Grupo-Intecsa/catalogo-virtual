@@ -111,7 +111,7 @@ const Step4 = (props) => {
                 <input id="pdf-input" multiple={true} type="file" onChange={handledInput} hidden aria-hidden="true" name="urlfoto" ref={register} />
                 <div className="form-control-file">
                     
-                        {file && file.map(file => <ProgressBar file={ file } setFile={ setFile } setUrlDone={setUrlDone} />)}                        
+                        {file && file.map((file, index) => <ProgressBar key={index} file={ file } setFile={ setFile } setUrlDone={setUrlDone} />)}                        
                     </div>
                 </fieldset>
                 </fieldset>
