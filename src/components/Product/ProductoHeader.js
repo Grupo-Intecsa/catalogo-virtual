@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -27,6 +26,10 @@ const ProducHeader = ({ data }) => {
   const setRemove = () => cantidad > 1 && setCantidad(cantidad => cantidad - 1 )
 
   const { loading, mlPrecio, precioText } = GetPriceIdMl({ ml })
+
+  const handleAddProductos = (e) => {
+    console.log(e.target.value)
+  }
     
   const dispatch = useTiendaDispatch()
   const setItemInCart = () => {
@@ -39,6 +42,7 @@ const ProducHeader = ({ data }) => {
     }
     dispatch("ADD_ITEM", { data: payload })
   }
+
 
   const { form, whatsapp } = contactRequired()
 
@@ -97,11 +101,11 @@ const ProducHeader = ({ data }) => {
                 { loading ? <span style={{ fontWeight: "bold"}}>MXN$ {precioText}</span> : <span>Cargando...</span> }
               </div>)
               : (
-              <Link className="cotizalo--ahora">
+              <button className="cotizalo--ahora">
                 <div className="cotizalo--ahora" onClick={handleFormLik}>
                   <p>¡Comunicate con un expero y cotiza!</p>
                 </div>
-              </Link>
+              </button>
               )
               }
               <div>
@@ -118,7 +122,7 @@ const ProducHeader = ({ data }) => {
 
         <section>
           <div className="control--btn--products">  
-            <input value={`CANTIDAD: ${cantidad}`}/>
+            <input value={`CANTIDAD: ${cantidad}`} onChange={(e) => handleAddProductos(e)}/>
 
           <div className="btn--add--products">
             <button onClick={setAdd}><img src={up}/></button>

@@ -56,13 +56,13 @@ const VerticalCard = ({ data }) => {
   return(
     <div className="vertical--container" id="sliderPromo">
       { 
-        data.map(item => {
+        data.map((item, index) => {
 
           const { _id, title, isKit, urlfoto, brand, ml, model } = item
           const { precioText, loading } = GetPriceIdMl({ ml })
           
           return(
-          <Link  key={_id} to={`/product/${_id}/name/${linkName(title)}`} className={ isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
+          <Link  key={index + _id } to={`/product/${_id}/name/${linkName(title)}`} className={ isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
           <div>
 
               <div className="vertica--card--img">

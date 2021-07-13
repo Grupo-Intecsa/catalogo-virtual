@@ -89,7 +89,7 @@ const MenuBreadCrumb = () => {
       Array.isArray(migas) && migas.map((tab, index) => {
         return(
           <div className="d-flex" key={index}>
-          <Link
+          <a
             ref={linkRef}
             onClick={() => handleBack(index)}
           >
@@ -97,7 +97,7 @@ const MenuBreadCrumb = () => {
               className={ index === migas.length - 1 ? "btn--migas btn--migas--selected" : "btn--migas" }>
               <p className="truncate">{ nameSeccion(tab) }{" "}</p>
             </div> 
-          </Link>
+          </a>
           </div>
         )
       })}
