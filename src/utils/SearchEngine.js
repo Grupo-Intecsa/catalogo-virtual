@@ -67,7 +67,7 @@ const SearchEngine = () => {
                                 >
                                         <li>
                                             <p>{ prod.title }</p>
-                                            <img src={ prod.urlfoto[0] } alt={prod.title} />
+                                            <img src={ prod.urlfoto[0].toString() } alt={prod.title} />
                                         </li>
                                 </Link>
                                 )

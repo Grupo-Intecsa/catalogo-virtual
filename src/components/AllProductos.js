@@ -33,7 +33,6 @@ const AllProductos = () => {
   },[])
 
   const { labels } = state.context
-  
   const descriptionMeta = labels.length > 0 && labels.map(item => item.title)
   
   return(

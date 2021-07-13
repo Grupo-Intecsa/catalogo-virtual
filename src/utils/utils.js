@@ -140,7 +140,8 @@ export default {
 
   },
   getFoto: ( slug, payload ) => {
-    return payload.filter(item => item.familia === slug )[0]?.urlfoto[0]
+    let imgProduct = payload.filter(item => item.familia === slug )[0]?.urlfoto[0].toString()
+    return imgProduct
   },
   getSelection: ({ familiaName, payload, selection }) => {
     const arraySelection = _.values(selection)[0]
@@ -159,15 +160,15 @@ export default {
 
   },
   scrollTotop: (target) => {
-    console.log(target)
-    // if(!target){
-    //   return undefined
-    // }else {
-    //   window.scrollTo({
-    //     top: target?.current.offsetTop,
-    //     behavior: "smooth"
-    //   })
-    // }
+    
+    if(!target){
+      return undefined
+    }else {
+      window.scrollTo({
+        top: target?.current.offsetTop,
+        behavior: "smooth"
+      })
+    }
   },
   orderArray: (a, b) => {
     if(a < b){

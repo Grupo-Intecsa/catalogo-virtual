@@ -15,10 +15,11 @@ const FamiliasCard = ({ payload, slug }) =>{
       <section className="familias--card">   
         {
           familias.map((item, index) => {
+            let imgProduct = utils.getFoto(item, payload)
             return(
             <Link key={index} className="btn--link--familia" to={`/familia/categories/${slug}/familia/${item}`}>
               <span>
-                <img src={ utils.getFoto(item, payload) }></img>
+                <img src={imgProduct}></img>
                 <p>{ item }</p>
               </span>
             </Link>

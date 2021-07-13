@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import {
   Redirect,
   Route,
@@ -8,14 +8,11 @@ import { CContainer, CFade } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
-import GTISpinner from 'components/GTISpinner'
 
 const TheContent = () => {
   return (
     <main >
       <CContainer fluid={true}>
-        
-        <Suspense fallback={GTISpinner}>
           <Switch>
             {routes.map((route, idx) => {
               return route.component && (
@@ -28,12 +25,11 @@ const TheContent = () => {
                     <CFade>
                       <route.component {...props} />
                     </CFade>
-                  )} />
+                  )}/>
               )
             })}
             <Redirect from="/" to="/dashboard" />
           </Switch>
-        </Suspense>
       </CContainer>
     </main>
   )
