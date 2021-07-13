@@ -1,6 +1,6 @@
 import { useEffect, useRef, useContext, useMemo  } from 'react'
 import { useParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 
 import { CatalogoXstate } from 'context/CatalogoXstate'
 import { useMachine } from '@xstate/react'
@@ -57,16 +57,16 @@ const Familias = () => {
   },[famBarItemSelected, utils, categoriaSelection, params])
 
 
-  const description = useMemo(() => {
-    const dataDesc = state.matches("success") && categoriaSelection.map(item => item.title)
-    return dataDesc
-  },[state])
+  // const description = useMemo(() => {
+  //   const dataDesc = state.matches("success") && categoriaSelection.map(item => item.title)
+  //   return dataDesc
+  // },[state])
 
   return(
     <div ref={topRef}>
 
 
-      <Helmet 
+      {/* <Helmet 
           meta={[
             {
               name: 'description',
@@ -75,7 +75,7 @@ const Familias = () => {
           ]}
         >
         <title>{ params?.item }</title>
-      </Helmet>
+      </Helmet> */}
       
       <h1 className="title">{params?.item}</h1>
       {/* TODO MIGAS DE PAN */}

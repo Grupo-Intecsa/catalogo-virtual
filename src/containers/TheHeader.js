@@ -31,7 +31,7 @@ const TheHeader = () => {
 
                 {/* carrito y whatsapp */}
                 <section className="whats--cart">
-                  <span onClick={handleWhatsapp} className="ico--llamanos">55-24097656</span>
+                  <span onClick={handleWhatsapp} className="ico--llamanos"></span>
                   <TheCanvasCart />
                 </section>              
             </nav>

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useMemo, useRef } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 
 import { CatalogoXstate } from 'context/CatalogoXstate'
 import { useMachine } from '@xstate/react'
@@ -33,11 +33,11 @@ const Categories = () => {
     utils.scrollTotop(topRef)
   })
 
-  const metadescription = state.matches("success") && categoriaSelection.map(item => item.title)
+  // const metadescription = state.matches("success") && categoriaSelection.map(item => item.title)
 
   return(
     <div className="categorias--container" ref={topRef}>
-      <Helmet
+      {/* <Helmet
           meta={[
             {
               name: "description",
@@ -47,7 +47,7 @@ const Categories = () => {
         >
         <title>{ categoTitle || titleStorage }</title>
         <link rel="canonical" href="http://itamx.com/categories" />
-      </Helmet>
+      </Helmet> */}
 
       <h1>{ categoTitle || titleStorage }</h1>
       <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb /></span>
