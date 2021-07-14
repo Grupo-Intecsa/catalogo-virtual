@@ -39,6 +39,7 @@
     background-repeat: no-repeat;
     padding: 4px;
     font-family: var(--normalFont);
+    background-color: var(--white-bg);
 }
 
 .btn--migas:hover{
@@ -210,17 +211,6 @@ background-color: white;
 
 .ico-bg-whastapp{
 background-image: url("../assets/icons/whatsapp.svg");
-cursor: pointer;
-background-repeat: no-repeat;
-background-position: center;
-border-radius: 100%;
-width: 40px;
-height: 40px;
-animation: pulse_esmeralda 2s infinite
-}
-
-.ico-bg-whastapp{
-background-image: url("../assets/icons/bars.svg");
 cursor: pointer;
 background-repeat: no-repeat;
 background-position: center;
