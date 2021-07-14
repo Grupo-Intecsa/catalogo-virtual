@@ -4,6 +4,7 @@ import TheCanvasCart from './TheCanvasCart'
 import SearchEngine from 'utils/SearchEngine'
 
 import logo from '../assets/icons/path2.webp'
+// import menu from '../assets/icons/bars.svg'
 import { AppContext } from 'context/AppContext'
 
 const TheHeader = () => {
@@ -21,27 +22,65 @@ const TheHeader = () => {
   return (
         <Fragment>
             
-            <nav id="Navigation" className="bg-facebook">
+            <nav id="Navigation">
                 <section className="logo--input">
                   <Link to="/" onClick={() => document.body.scrollTop = 0}>
                       <img src={logo} className="iconSVG" alt="logo Empresa grupo intecsa"/>
                   </Link>
-                  <SearchEngine />
                 </section>
 
+                <section className="menu--header">
+                  <a onClick={handleFormLik} 
+                    title="Ponte en contacto con nosotros para una cotizacion especializada">
+                    <span>Contacto</span>
+                  </a>
+
+                  <a 
+                    href="http://grupointecsa.com" 
+                    title="Quires saber mas de nostros y nuesto trabjo" 
+                    rel="noreferrer" 
+                    target="_blank">
+                      <span>¿Quiénes somos?</span>
+                  </a>
+
+                  <a href="/#" 
+                    title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." 
+                    rel="nofollow">
+                      <span>Categorías</span>
+                  </a>
+              </section>
+
                 {/* carrito y whatsapp */}
-                <section className="whats--cart">
-                  <span onClick={handleWhatsapp} className="ico--llamanos"></span>
+                  <SearchEngine />
+                  <section className="whats--cart">
+                  <span onClick={handleWhatsapp} className="ico--llamanos--front">+52 55 5570-1197</span>
                   <TheCanvasCart />
+                  <span className="icon--bars"></span>
                 </section>              
             </nav>
+
+
+              <section className="menu--sm--header">
+                  <a onClick={handleFormLik} 
+                    title="Ponte en contacto con nosotros para una cotizacion especializada">
+                    <span>Contacto</span>
+                  </a>
+
+                  <a 
+                    href="http://grupointecsa.com" 
+                    title="Quires saber mas de nostros y nuesto trabjo" 
+                    rel="noreferrer" 
+                    target="_blank">
+                      <span>¿Quiénes somos?</span>
+                  </a>
+
+                  <a href="/#" 
+                    title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." 
+                    rel="nofollow">
+                      <span>Categorías</span>
+                  </a>
+              </section>
               
-              <div id="header--buttons" className="d-flex justify-content-center align-items-center">
-                <Link to={{ pathname: "/" }} className="mr-2 d-block d-sm-none" ><span className="texto-navbar">Inicio</span></Link>
-                <a onClick={handleFormLik} title="Ponte en contacto con nosotros para una cotizacion especializada" className="mr-2 btn-noStyle"><span className="texto-navbar">Contacto</span></a>
-                <a href="http://grupointecsa.com" title="Quires saber mas de nostros y nuesto trabjo" rel="noreferrer" target="_blank" className="mr-2" ><span className="texto-navbar">¿Quiénes somos?</span></a>
-                <a href="/#" title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." rel="nofollow" className="mr-2" ><span className="texto-navbar">Categorías</span></a>
-              </div>
         </Fragment>
   )
 }

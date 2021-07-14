@@ -141,7 +141,7 @@
 
 .button--control{
 
-    position: relative;
+    // position: relative;
 
     button{
         margin: 5px;
@@ -219,6 +219,17 @@ height: 40px;
 animation: pulse_esmeralda 2s infinite
 }
 
+.ico-bg-whastapp{
+background-image: url("../assets/icons/bars.svg");
+cursor: pointer;
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+width: 40px;
+height: 40px;
+animation: pulse_esmeralda 2s infinite
+}
+
 .ico-bg-truck{
 background-image: url("../assets/icons/truck.svg");
 background-repeat: no-repeat;
@@ -250,7 +261,6 @@ height: 30px;
 padding: 1rem;
 margin-left: auto;
 margin-right: 0;
-
 }
 
 .ico--share{
@@ -276,11 +286,19 @@ margin-right: 0;
 
 .ico--llamanos{
     content: url("../assets/icons/whatsapp.svg");
-    border-radius: 900px;
+    border-radius: 400px;
     background-color: var(--white-bg);
     padding: 0.45rem;
     cursor: pointer;
     animation: pulse_esmeralda 2s infinite
+}
+
+.ico--llamanos--front{
+    content: url("../assets/icons/whatsapp.svg");
+    border-radius: 400px;
+    background-color: var(--white-bg);
+    padding: 0.45rem;
+    cursor: pointer;
 }
 
 

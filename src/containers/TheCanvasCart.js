@@ -104,7 +104,7 @@ export default function TheCanvasCart(){
           <div className="align-content-center">
             <div className="shoppingCart" onClick={() => handledClose()}>
             <Badge count={Number(Object.values(carrito).length)} offset={[10, 10]}>
-              <FontAwesomeIcon icon={faShoppingCart} color="white" size="2x" />
+              <FontAwesomeIcon icon={faShoppingCart} color="white" size="2x"  style={{ cursor: "pointer" }}/>
               
             </Badge>
               
