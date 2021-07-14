@@ -44,6 +44,11 @@ const SearchEngine = () => {
 
     },[resultsRef])
 
+    
+    useEffect(() => {
+    
+    })
+
 
     return(
         <div className="engine--shearch">
@@ -54,6 +59,7 @@ const SearchEngine = () => {
                 onChange={onChangeHanldeSearch} 
                 id="search" 
                 ref={resultsRef} />
+            <label id="btn--input" htmlFor="search"></label>
             {
                 state.matches("success") && hitSearch.length > 0 ? (    
                     <div className="hits--results" id="hits--results" hidden={open}>
