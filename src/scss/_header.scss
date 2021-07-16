@@ -1,13 +1,13 @@
 // estilos de slider
 
-#carrouseNB{
+#carrouseNB {
   overflow: hidden;
   width: 100%;
   height: 300px;
   margin-bottom: 20px;
 }
 
-.imgfluid{
+.imgfluid {
   object-fit: scale-down;
   object-position: top;
   width: 100%;
@@ -16,7 +16,7 @@
 
 // estilos de barra de navegacion
 
-#Navigation{
+#Navigation {
   padding: 0.25rem 2rem;
   display: flex;
   width: 100%;
@@ -26,27 +26,27 @@
   background-color: var(--azul-ita);
   align-items: center;
 
-  img{
+  img {
     width: 4rem;
-    height: 4rem;  
+    height: 4rem;
     padding: 0.25rem;
   }
 }
 
-.logo--input{
+.logo--input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
 }
 
-.whats--cart{
+.whats--cart {
   display: flex;
   height: 40px;
   padding-right: 1rem;
 }
 
-.menu--header{
+.menu--header {
   flex-basis: 100%;
   display: flex;
   height: 40px;
@@ -56,11 +56,11 @@
   color: var(--white-bg);
   box-shadow: var(--shadowCard);
 
-  a{
+  a {
     margin: 14px;
     position: relative;
-    
-    &:before{
+
+    &:before {
       content: "";
       display: block;
       position: absolute;
@@ -73,7 +73,7 @@
       transition: opacity 200ms ease-in-out;
     }
 
-    &:hover:before{
+    &:hover:before {
       color: var(--blue-bg);
       opacity: 1;
     }
@@ -81,7 +81,7 @@
 
 }
 
-.menu--sm--header{
+.menu--sm--header {
   display: none;
   justify-content: center;
   align-items: center;
@@ -89,7 +89,7 @@
   font-family: var(--normalFont);
   box-shadow: var(--shadowCard);
 
-  a{
+  a {
     margin: 1px 10px;
     font-weight: 600;
   }
@@ -98,11 +98,11 @@
 
 // Estilos de buscador
 
-.engine--shearch{
+.engine--shearch {
   padding: 0.35rem;
   flex-basis: 40%;
 
-  input{
+  input {
     background: var(--white-bg);
     border: none;
     background-image: url("../assets/icons/search.svg");
@@ -111,20 +111,20 @@
     background-size: 2rem;
     box-sizing: border-box;
     width: 22em;
-    padding:  0.65rem 0 0.65rem 2.75rem;
+    padding: 0.65rem 0 0.65rem 2.75rem;
     margin: 0 8px;
     border-radius: 2px;
     transition: width 200ms ease-out;
 
-    &:focus{
+    &:focus {
       box-shadow: var(--shadowCard);
       outline-style: none;
     }
-  
+
   }
 }
 
-.hits--results{
+.hits--results {
   position: absolute;
   background-color: #fff;
   border: 1px solid var(--black);
@@ -133,12 +133,12 @@
   z-index: 3;
   border-radius: 4px;
 
-  ul{
+  ul {
     margin: 4px 0;
     padding: 4px;
   }
 
-  ul li{
+  ul li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -148,7 +148,7 @@
     padding: 0.25rem;
     border: 1px solid var(--blue-bg);
 
-    &:hover{
+    &:hover {
       background-color: var(--black);
       color: var(--white-bg);
     }
@@ -156,12 +156,12 @@
 
 
 
-  ul li p{
+  ul li p {
     width: 50%;
 
   }
 
-  ul li img{
+  ul li img {
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -169,36 +169,107 @@
   }
 }
 
-@media (max-width:60rem){
 
-  #Navigation{
+// notify button
+.ntf--popup{
+  p{
+    cursor: pointer; 
+
+    &:hover{
+      width: 100%;
+      padding: 0 0.68rem;
+      color: var(--black);
+    }
+  }
+}
+
+.notify--cart {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--esmeralda);
+  box-shadow: var(--shadowCard);
+  color: #fff;
+  position: absolute;
+  top: 20rem;
+  right: 1%;
+  width: 20rem;
+  min-height: 8.75rem;
+  padding: 1.25rem;
+  margin: 10px;
+  text-align: center;
+  animation: opacity 300ms ease-in-out;
+  z-index: 100;
+
+  *{
+    margin: 10px;
+  }
+}
+
+.ntf--foto{
+  width: 15rem;
+  height: 15rem;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ntf--title{
+  white-space: nowrap;
+  overflow: hidden;
+  width: 15rem;
+  text-overflow: ellipsis;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.ntf--exist{
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: var(--esmeralda);
+  color: var(--white-bg);
+  font-size: 1.25rem;
+}
+
+// los media querys
+@media (max-width:60rem) {
+
+  #Navigation {
     padding: 2px;
   }
 
-  .menu--header{
+  .menu--header {
     display: none;
   }
 
-  .menu--sm--header{
+  .menu--sm--header {
     display: flex;
   }
 
-  .engine--shearch{
-    input{
+  .engine--shearch {
+    input {
       width: 10rem;
-    
-      &::placeholder{
+
+      &::placeholder {
         font-size: smaller;
       }
 
     }
   }
-  .hits--results{
+
+  .hits--results {
     width: 11.5rem;
     height: 200px;
     overflow-y: scroll;
 
-    ul li p{
+    ul li p {
       font-size: small;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -208,9 +279,9 @@
     }
   }
 
-  #carrouseNB{
-      width: 100%;
-      height: 184px;
+  #carrouseNB {
+    width: 100%;
+    height: 184px;
   }
 
 }

@@ -10,7 +10,6 @@ const hydrateData = async(ctx, event) => {
     return await event.payload
 }
 
-
 export const TiendaMachine = Machine({
   id: "Tienda",
   initial: "iddle",
@@ -19,8 +18,10 @@ export const TiendaMachine = Machine({
     item: {},
     carrito: [],
     pdfData: [],
+    openNotify: true 
 
   },
+
   states: {
     iddle: {},
     addCarritoItems: {
@@ -29,8 +30,15 @@ export const TiendaMachine = Machine({
         localStorage.setItem("localCarrito", JSON.stringify(carrito.concat(item)))
         carrito.push(item)    
       },
-      activities: ['reset']
-      
+      after:{
+        2000: { target: 'closeNotify'}
+      }      
+    },
+    closeNotify: {
+      entry: ( ctx ) => {
+        ctx.openNotify = true
+      }
+
     },
     hydrateData: {
       invoke: {
@@ -48,27 +56,22 @@ export const TiendaMachine = Machine({
     },
     removeCarritoItems: {
       entry: (ctx, event) => {
-        
         const { carrito } = ctx
-        const { id } = event
+        let indexVal = carrito.findIndex(({ _id }) => _id === event.id )
+        carrito.splice(indexVal, 1)
+        localStorage.setItem("localCarrito", JSON.stringify(carrito))
 
-        const getIndex = (id) => {
-          let valueIndex
-          
-          carrito.map((item, index) => {
-            if( item._id === id ){
-              valueIndex = index
-            }
-            return valueIndex
-          })
-          carrito.splice(valueIndex, 1)
-          localStorage.setItem("localCarrito", JSON.stringify(carrito))
-        }
-
-        getIndex(id)
-        
       }
 
+    },
+    changeCantidad: {
+      entry: (ctx, event ) => {
+
+        const { carrito } = ctx
+        const productIndexId = carrito.findIndex(({ _id }) => _id === event.id  )
+        carrito[productIndexId].cantidad = event.cantidad
+        localStorage.setItem("localCarrito", JSON.stringify(carrito))
+      }
     },
     emptyCart: {
       entry: (ctx => {
@@ -113,28 +116,39 @@ export const TiendaMachine = Machine({
     success: {},
     error: {},
     rejected: {
-      onEntry: 'reset'
+      after:{
+        3000: { target: "iddle"}
+      }
     }
 
   },
   on: {
     ADD_ITEM: [
-
     {
       target: "addCarritoItems",
       actions: (ctx, event) => {
         ctx.item = event.data
-        
+        ctx.openNotify = false
+
+        window.scrollTo({
+          top: event.ref?.current.offsetTop,
+          behavior: "smooth"
+        })
+
+
       },
       cond: (ctx, event) => {
-        ctx.item = event.data
-        return Object.values(ctx.carrito).map(( item ) => item._id).includes(event.id) === false
+        let carritoObjects = Object.values(ctx.carrito).map(( item ) => item._id)
+        return !carritoObjects.includes(event.data._id)
       },
     },
       { target: 'rejected'}
     ],
     REMOVE_ITEM: {
       target: "removeCarritoItems"
+    },
+    CHANGE_CANTIDAD: {
+      target: "changeCantidad"
     },
     HYDRATE: {
       target: "hydrateData"
@@ -152,20 +166,8 @@ export const TiendaMachine = Machine({
       target: "getDataToInvoice"
     }
 
-  },
-  activities: {
-
-      reset: () => {
-        
-        const interval = setInterval(() => console.log("demanda"), 1000);
-        return () => clearInterval(interval)
-      }
-    
-  }
-  
+  }  
 })
-
-
 
 export const TiendaProvider = ({ children }) => {
   const [ state, dispatch ] = useMachine(TiendaMachine)

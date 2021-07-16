@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 
 import { Helmet } from 'react-helmet'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +13,7 @@ import ShareButton from 'reusable/ShareButton'
 import EmblaModal from 'components/EmblaCarousel/EmblaModal'
 import MenuBreadCrumb from 'components/MenuBreadCrumb'
 
-import { useTiendaDispatch } from 'context/TiendaContext'
+import { useTiendaDispatch, useTiendaState } from 'context/TiendaContext'
 
 
 const ProducHeader = ({ data }) => {
@@ -26,24 +26,30 @@ const ProducHeader = ({ data }) => {
   const setAdd = () => cantidad < 5 && setCantidad(cantidad => cantidad + 1 )
   const setRemove = () => cantidad > 1 && setCantidad(cantidad => cantidad - 1 )
 
-  const { loading, mlPrecio, precioText } = GetPriceIdMl({ ml })
+  const { loading, mlError, mlPrecio } = GetPriceIdMl({ ml })
 
+  // para cambiar la cantidad de productos en el canasto
   const handleAddProductos = (e) => {
     console.log(e.target.value)
   }
-    
+
+  const state = useTiendaState()
+  const { carrito } = state.context
+  console.log(carrito)
+      
   const dispatch = useTiendaDispatch()
+  const notifyRef = useRef(document.getElementById("notify")) 
   const setItemInCart = () => {
     let payload = {
       title,
       _id, 
-      precio: mlPrecio,
+      precio: mlPrecio * cantidad,
       foto: urlfoto[0],
       cantidad
     }
-    dispatch("ADD_ITEM", { data: payload })
-  }
 
+    dispatch("ADD_ITEM", { data: payload, ref: notifyRef })
+  }
 
   const { form, whatsapp } = contactRequired()
 
@@ -84,6 +90,8 @@ const ProducHeader = ({ data }) => {
           <div>{ logoSelector(brandId.toString()) }</div>
         </section>
 
+        { state.matches("rejected") && <span className="ntf--exist">Este producto ya está en tu carrito</span>}
+
         <section className="description--product">
           <p>{desc}</p>
         </section>
@@ -109,10 +117,10 @@ const ProducHeader = ({ data }) => {
 
         <section>
             <div className="precio--container">
-              { mlVerify(ml) ? (
+              { mlVerify(ml) && !mlError ? (
               <div>
                 <span>Precio</span>
-                { loading ? <span style={{ fontWeight: "bold"}}>MXN$ {precioText}</span> : <span>Cargando...</span> }
+                { loading ? <span style={{ fontWeight: "bold"}}>MXN$ {mlPrecio * cantidad }</span> : <span>Cargando...</span> }
               </div>)
               : (
               <button className="cotizalo--ahora">
@@ -123,7 +131,7 @@ const ProducHeader = ({ data }) => {
               )
               }
               <div>
-              { mlVerify(ml) && (
+              { mlVerify(ml) && !mlError && (
                 <div>
                     <a href={`https://articulo.mercadolibre.com.mx/MLM-${ml?.split("MLM")[1]}`} target="_blank" rel="noreferrer">
                         <img src={mercadoLogo} alt={title} className="btn-ecommerce" />
@@ -141,17 +149,16 @@ const ProducHeader = ({ data }) => {
           <div className="btn--add--products">
             <button onClick={setAdd}><img src={up}/></button>
             <button onClick={setRemove}><img src={down}/></button>
-          </div>              
+          </div>
                 
           <button 
             className="btn btn-modal-comprar" 
             onClick={() => setItemInCart()}
-            disabled={ mlVerify(ml) ? false : true }>
+            disabled={ mlVerify(ml) && !mlError && loading ? false : true }>
               Añadir <FontAwesomeIcon icon={ faShoppingCart }/>
           </button>
           </div>  
         </section>
-
         <section className="product--instrucciones">
           <span>
             <span onClick={handleWhatsapp}><i className="ico-bg-whastapp ico-bg-white"/><h4>PRODUCTOS PERSONALIZADOS</h4></span>

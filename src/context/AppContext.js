@@ -1,5 +1,6 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useCallback } from 'react'
 import CatalogoController from './controllers/CatalogoController'
+import utils from 'utils/utils'
 
 import logoABB from 'assets/icons/abb_ico.png'
 import logoITA from 'assets/icons/ita_ico.png'
@@ -27,16 +28,28 @@ const logoSelector = (id) => {
 
 const linkName = (title) => title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
 
+// precio de mercado libre
 const GetPriceIdMl = ({ ml }) => {
-
   const [ loading, setLoading ] = useState(false)
   const [ mlPrecio, setMlPrecio ] = useState(undefined)
-  const [ precioOnNumber, setPrecioOnNumber ] = useState(0)
-  
+  const [ error, setError ] = useState(false)
+    
   async function getData(){
     await CatalogoController.getPrice({ ml })
-    .then(res => setMlPrecio(res))
-    .catch(() => null )
+    .then(res => {
+      let numberRes = +res
+      //  si la respuesta es un string por la coma
+      if(Number.isNaN(numberRes)){
+        let number = res.split(",").reverse()
+        let suma = number.reduce((total, val) => val + total )
+        return setMlPrecio(suma)
+
+      }else if(!Number.isNaN(numberRes)){
+        return setMlPrecio(numberRes)
+      }
+
+    })
+    .catch((err) => err && setError(true) )
     .finally(() => setLoading(true))
   }
   
@@ -50,18 +63,7 @@ const GetPriceIdMl = ({ ml }) => {
     }
   },[ml])
 
-  useEffect(() => { 
-    if(ml === null){
-      setMlPrecio(0)
-
-    }else if( loading && Number.isNaN(+mlPrecio)){
-      let number = mlPrecio.split(",")                
-      let suma = number[0] + number[1]
-      Number.isNaN(+suma) ? 0 : setPrecioOnNumber(+suma)
-    }
-
-  },[loading, mlPrecio])    
-  return { loading, mlPrecio: precioOnNumber, precioText: mlPrecio }
+  return { loading, mlPrecio: mlPrecio, mlError: error }
 }
 
   // verifica el estado de ML
@@ -98,11 +100,28 @@ const GetPriceIdMl = ({ ml }) => {
     const number = new Intl.NumberFormat('en-MX', { style:"currency", currency: "MXN"}).format(precio)
     return number
   }
+
+
   
   const AppContextProvider = (props) => {
-  
-  const [ migas, setMigas ] = useState([])
-  const [ famBarItemSelected, setFamBarItemSelected ] = useState([])
+    
+    const [ migas, setMigas ] = useState([])
+    const [ famBarItemSelected, setFamBarItemSelected ] = useState([])
+
+    const resetNotify = useCallback(() => {
+        setTimeout(() => {
+          setOpenNotify(true)
+        }, 4000);
+    })
+
+      // evento de nortificacion
+      const [ openNotify, setOpenNotify ] = useState(true)
+      const handleNotifyCart = ({ ref } = {}) => {
+        resetNotify()
+        setOpenNotify(false)
+        return utils.scrollTotop(ref)
+      }
+    
 
   return(
     <AppContext.Provider value={{
@@ -116,6 +135,8 @@ const GetPriceIdMl = ({ ml }) => {
         setFamBarItemSelected,
         migas, 
         setMigas,
+        handleNotifyCart,
+        openNotify
     }}>
       { props.children }
     </AppContext.Provider>
