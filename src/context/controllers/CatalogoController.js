@@ -226,8 +226,6 @@ export default {
     getProductsByLabelId: async(ctx, event) => {
             
         const { id } = event
-        console.log(id)
-
         const response = await api.get(`labels/${id}`)
         .then(res => res.data && res.data.message)
         

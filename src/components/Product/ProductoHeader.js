@@ -18,7 +18,7 @@ import { useTiendaDispatch, useTiendaState } from 'context/TiendaContext'
 
 const ProducHeader = ({ data }) => {
 
-  const { logoSelector, GetPriceIdMl, mlVerify, contactRequired } = useContext(AppContext)
+  const { logoSelector, GetPriceIdMl, mlVerify, contactRequired, monyIntlRef } = useContext(AppContext)
   const { urlfoto, brand, title, desc, ml, _id } = data
   const brandId = brand.map(item => item.brand_id)
 
@@ -33,17 +33,15 @@ const ProducHeader = ({ data }) => {
     console.log(e.target.value)
   }
 
-  const state = useTiendaState()
-  const { carrito } = state.context
-  console.log(carrito)
-      
+  const state = useTiendaState()      
   const dispatch = useTiendaDispatch()
+  
   const notifyRef = useRef(document.getElementById("notify")) 
   const setItemInCart = () => {
     let payload = {
       title,
       _id, 
-      precio: mlPrecio * cantidad,
+      precio: mlPrecio,
       foto: urlfoto[0],
       cantidad
     }
@@ -120,7 +118,7 @@ const ProducHeader = ({ data }) => {
               { mlVerify(ml) && !mlError ? (
               <div>
                 <span>Precio</span>
-                { loading ? <span style={{ fontWeight: "bold"}}>MXN$ {mlPrecio * cantidad }</span> : <span>Cargando...</span> }
+                { loading ? <span style={{ fontWeight: "bold"}}>{monyIntlRef(mlPrecio * cantidad)}</span> : <span>Cargando...</span> }
               </div>)
               : (
               <button className="cotizalo--ahora">

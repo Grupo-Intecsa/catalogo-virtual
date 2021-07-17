@@ -20,7 +20,6 @@ const VerticalCard = ({ data }) => {
     let slider = document.getElementById("sliderPromo")
 
     slider.onmousedown = function(e){
-      console.log("muevete!!!")
       setIsDown(true)
       slider.classList.add("active--grab")
       setStartX(e.pageX - slider.offsetLeft)
@@ -51,7 +50,7 @@ const VerticalCard = ({ data }) => {
     grabSlider()
   })
 
-  const { mlVerify, GetPriceIdMl, logoSelector, linkName } = useContext(AppContext)
+  const { mlVerify, GetPriceIdMl, logoSelector, linkName, monyIntlRef } = useContext(AppContext)
 
   return(
     <div className="vertical--container" id="sliderPromo">
@@ -59,7 +58,7 @@ const VerticalCard = ({ data }) => {
         data.map((item, index) => {
 
           const { _id, title, isKit, urlfoto, brand, ml, model } = item
-          const { precioText, loading } = GetPriceIdMl({ ml })
+          const { mlPrecio, loading } = GetPriceIdMl({ ml })
           
           return(
           <Link  key={index + _id } to={`/product/${_id}/name/${linkName(title)}`} className={ isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
@@ -74,7 +73,7 @@ const VerticalCard = ({ data }) => {
                 <span className="font-weight-bold">Modelo: {model}</span>
 
               <div className="precioCard">
-                { loading ? <span className="precioCard">{ mlVerify(ml) ? `MNX $ ${precioText}` : null }</span> : <span>Cargando...</span> }
+                { loading ? <span className="precioCard">{ mlVerify(ml) ? monyIntlRef(mlPrecio) : null }</span> : <span>Cargando...</span> }
               </div>
           </div>              
               
@@ -104,13 +103,11 @@ const SliderLastProd = () => {
 
   const buttonRight = function(){
     let ref = document.getElementById("sliderPromo")
-    console.log(ref)
     return ref.scrollLeft +=200
   }
 
   const buttonLeft = function(){
     let ref = document.getElementById("sliderPromo")   
-    console.log(ref)
     return ref.scrollLeft -=200
   }
 

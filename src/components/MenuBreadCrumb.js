@@ -46,8 +46,6 @@ const MenuBreadCrumb = () => {
       }
       
     }else if( migas.length - 1 === index ){
-      // para el final de boton
-      console.log("no hay error")
       return null 
     }
     

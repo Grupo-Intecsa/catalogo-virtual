@@ -334,7 +334,6 @@ export const CatalogoXstate = Machine({
                 ctx.modelUpdate = ""
                 ctx.update = undefined
                 ctx.infiniteCount.message = {}
-                console.log('el ula ula')
             }
         }
         

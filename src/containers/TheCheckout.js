@@ -32,7 +32,6 @@ const TheCheckout = () => {
   .map(({ precio, cantidad }) => precio * cantidad)
   .reduce((acc, val) => +acc + +val, 0)
   
-
    // menu contextual de articulo
   const Content = ({ prod }) =>{
     const { _id, title } = prod
@@ -60,7 +59,7 @@ const TheCheckout = () => {
       { carrito.length > 0 && <span onClick={() => handleEmptyCart()}>Vaciar Carrito</span>}
         { carrito.length > 0 &&
           carrito.map((prod, index) => {
-            const precio = monyIntlRef(prod.precio * prod.cantidad)
+            const precio = monyIntlRef(prod.precio * prod.cantidad )
 
             return(
             <Popover 
