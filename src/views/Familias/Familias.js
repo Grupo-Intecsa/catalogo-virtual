@@ -12,13 +12,12 @@ import SlimCard from 'components/Product/SlimCard'
 import FamiliasBar from 'components/Categorias/FamiliasBar'
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 
-const Familias = () => {
-  
+const Familias = ({ match }) => {
   const topRef = useRef()
 
   useEffect(() => {
-    utils.scrollTotop(topRef)
-  },[])
+    if(match.isExact) utils.scrollTotop(topRef)
+  })
 
   const [ state, send ] = useMachine(CatalogoXstate)
   const params = useParams()

@@ -59,14 +59,10 @@ const FormContact = ({ visible, contactoToggle, title, placeholder }) => {
         if (typeof urlValid !== 'undefined') {
           send('SEND_TO_MONDAY', { data: { ...data, urlValid } })
         }
-        // send('SEND_TO_MONDAY', { data: { ...data, urlValid } })
       
       }else if(typeof fileUpload === 'undefined' && typeof urlValid === 'undefined' ){
         send('SEND_TO_MONDAY', { data })
       }
-      // send('SEND_TO_MONDAY', { data })
-      console.log(data.document)
-
     }
 
   

@@ -226,8 +226,6 @@ export default {
     getProductsByLabelId: async(ctx, event) => {
             
         const { id } = event
-        console.log(id)
-
         const response = await api.get(`labels/${id}`)
         .then(res => res.data && res.data.message)
         
@@ -244,6 +242,16 @@ export default {
         if(precio.statusText === "OK"){
             return precio.data.precio
         }
+    },
+    getProducsByBrandId: async(ctx, { brand_id }) => {
+
+        const query = await api
+        .get(`/products/brand/${brand_id}`)
+        .then(res => res.data.message )
+        .catch(() => new Error("error"))
+
+        return query
+        
     }
     
 }

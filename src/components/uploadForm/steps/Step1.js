@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react'
 import { useForm } from 'react-hook-form'
-import { withRouter, useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 import { CAlert } from '@coreui/react'
 
 const Step1 = (props) => {
-
-		const history = useHistory()
-
-		console.log(history)
 
     const { send, state } = props
     const { register, handleSubmit } = useForm()

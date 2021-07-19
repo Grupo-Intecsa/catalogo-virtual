@@ -36,8 +36,6 @@ const SearchEngine = () => {
 
     useEffect(() => {
         let value = resultsRef.current?.value
-        console.log( value.length )
-
         if(value && value.length === 0){
             handleClose()
         }
