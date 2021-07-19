@@ -32,8 +32,10 @@ const SearchEngine = () => {
             setOpen(false)
         }
     },1000)
-    
 
+
+    
+    // cerrar cuando no hay texto
     useEffect(() => {
         let value = resultsRef.current?.value
         if(value && value.length === 0){
@@ -42,11 +44,15 @@ const SearchEngine = () => {
 
     },[resultsRef])
 
-    
+    // cerrar cuando se quita el mouse del div
     useEffect(() => {
-    
+        const hitsResults = document.getElementById("hits--results")
+        hitsResults && hitsResults.addEventListener("mouseleave", function(){
+             setTimeout(() => {
+                handleClose()
+             }, 500); 
+        })
     })
-
 
     return(
         <div className="engine--shearch">
@@ -61,13 +67,12 @@ const SearchEngine = () => {
             {
                 state.matches("success") && hitSearch.length > 0 ? (    
                     <div className="hits--results" id="hits--results" hidden={open}>
-                    <button className="ico-bg-close" onClick={() => handleClose()}></button>
                         <ul>
                             { hitSearch.map((prod, index) => {
                                 return(
                                 <Link  
                                     key={index} 
-                                    to={`/product/${prod._id}/name/${linkName(prod.title)}`} 
+                                    to={`/product/${prod._id}/name/${linkName(prod.title)}`}
                                 >
                                         <li>
                                             <p>{ prod.title }</p>
@@ -76,6 +81,7 @@ const SearchEngine = () => {
                                 </Link>
                                 )
                             })}
+                            <Link to="/">`Ver los ${30} resultados`</Link>
                         </ul>
 
                     </div>

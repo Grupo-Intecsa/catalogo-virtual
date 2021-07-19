@@ -12,16 +12,23 @@ const BrandComponent = React.lazy(() =>  import('views/BrandComponent'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', componente: Dashboard },
-  { path: '/product/:slug/name/:title', exact: false, name: 'Productos', componente: ProductoCard },  
-  { path: '/categories/:slug', exact: false, name: 'Categorias', componente: Categories },  
   
   // componente desglose de familias (categorias y brand menu)
   { path: '/familia/categories/:slug/familia/:item', exact: true, name: 'Familias', componente: Familias },  
   { path: '/products/brand/label/:slug/familia/:item', exact: true, name: 'Familias por Marca', componente: Familias },  
 
+  // filtro de categorias
+  { path: '/categories/:slug', exact: false, name: 'Categorias', componente: Categories },  
+  { path: '/products/brand/:id', exact: true, name: "Todos los productos por marca", componente: BrandComponent },
+  
+  // carrito
   { path: '/cart/checkout', exact: false, name: "Crear Pedido", componente: TheCheckout },
   { path: '/checkout/invoice/:folio', exact: true, name: "Complete Invoice", componente: InvoiceCart },
-  { path: '/products/brand/:id', exact: true, name: "Todos los productos por marca", componente: BrandComponent },
+  
+  // tarjeta de carrito
+  { path: '/product/:slug/name/:title', exact: false, name: 'Productos', componente: ProductoCard },  
+
+
   { path: '/error404', exact: true, name: "Error 404", componente: Page404 } 
 
 ];
