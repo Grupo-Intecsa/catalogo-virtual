@@ -116,6 +116,7 @@ export default {
 
     },
     getByText: async(ctx, evt) => {
+        //TODO regresar todos los resultados y gestionarlos con GraphQL
         
         const { id, page } = evt
         
@@ -143,8 +144,6 @@ export default {
         if(response.status === 200){
             localStorage.setItem('tokenUserSite', response.data.login.token)
         }
-        // TODO guardar el token en el localhost
-
         return response
 
     },
