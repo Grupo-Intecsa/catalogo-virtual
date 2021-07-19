@@ -16,6 +16,7 @@ import AppContextProvider from 'context/AppContext';
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 const Validate = React.lazy(() => import('./components/admin/AdminLayout'))
 
+
 const loading = (
   <small>Iniciando aplicación...</small>
 )

@@ -35,7 +35,7 @@ const ProducHeader = ({ data }) => {
 
   const state = useTiendaState()      
   const dispatch = useTiendaDispatch()
-  
+
   const notifyRef = useRef(document.getElementById("notify")) 
   const setItemInCart = () => {
     let payload = {
@@ -143,7 +143,6 @@ const ProducHeader = ({ data }) => {
         <section>
           <div className="control--btn--products">  
             <input value={`CANTIDAD: ${cantidad}`} onChange={(e) => handleAddProductos(e)}/>
-
           <div className="btn--add--products">
             <button onClick={setAdd}><img src={up}/></button>
             <button onClick={setRemove}><img src={down}/></button>

@@ -2,8 +2,8 @@ import axios from 'axios'
 import decode from 'jwt-decode'
 
 const api = axios.create({
-    baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
-    // baseURL: 'http://localhost:3000/api/v1'
+    // baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
+    baseURL: 'http://localhost:3000/api/v1'
 })
 
 export default {
@@ -242,6 +242,16 @@ export default {
         if(precio.statusText === "OK"){
             return precio.data.precio
         }
+    },
+    getProducsByBrandId: async(ctx, { brand_id }) => {
+
+        const query = await api
+        .get(`/products/brand/${brand_id}`)
+        .then(res => res.data.message )
+        .catch(() => new Error("error"))
+
+        return query
+        
     }
     
 }

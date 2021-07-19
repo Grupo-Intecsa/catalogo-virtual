@@ -25,14 +25,7 @@ export const CatalogoXstate = Machine({
         categoriaSelection: []
     },
     states: {
-        idle: {
-            'entry': {
-                actions: [
-                    () => console.log('perro de la z')
-                ]
-            }
-            
-        },        
+        idle: {},        
         all_products: {
             invoke: {
                 src: CatalogoController.allProductos,
@@ -173,6 +166,21 @@ export const CatalogoXstate = Machine({
                 }
             }
         },
+        getProducsByBrandId: {
+            invoke: {
+                src: CatalogoController.getProducsByBrandId,
+                onDone: {
+                    target: "success",
+                    actions: assign({
+                        queryBrand: (_, event) => event.data
+                    })
+                },
+                onError: {
+                    target: "error"
+                }
+            }
+
+        },
         getProductsByParentId: {
             invoke: {
                 src: CatalogoController.getProductsByParentId,
@@ -303,6 +311,7 @@ export const CatalogoXstate = Machine({
             target: 'getBrandById',
             actions: (ctx, event) => ctx.id = event.id
         },
+        GET_PRODUCTS_BY_BRAND_ID: "getProducsByBrandId",
         GET_FAMILA_BY_ID: "getFamiliaByBrandId",
         GET_FAMILA_BY_TITLE: "getFamiliaByTitleId",
         GET_TEXT_QUERY: {
