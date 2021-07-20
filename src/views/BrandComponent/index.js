@@ -35,8 +35,8 @@ const BrandComponent = ({  match }) => {
     
     const handleSearch = ({ name }) => {
         if(name.length === 0) setSearchArray([])
-        return queryBrand.forEach(({ familia, img }) => {
-            if(familia === name) return setSearchArray({ familia, img })
+        return queryBrand.forEach(({ familia, img, label }) => {
+            if(familia === name) return setSearchArray({ familia, img, label })
         })
     }
 
@@ -81,10 +81,12 @@ const BrandComponent = ({  match }) => {
                 })
             )}
             { Object.values(searchArray).length > 0 && (
+            <Link to={`/products/brand/label/${searchArray["label"]}/familia/${searchArray["familia"]}`} >
                 <div key={searchArray["familia"]} className="brand--menu--card">
                     <img src={searchArray["img"]} alt={searchArray["familia"]}/>
                     <p>{searchArray["familia"]}</p>
                 </div>
+            </Link>
             )}
             {
                 state.matches("success") && queryBrand.length === 0 && <span>Aún no tenemos productos disponibles</span>
