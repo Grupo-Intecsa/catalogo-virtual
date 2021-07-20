@@ -7,6 +7,16 @@
   margin-bottom: 20px;
 }
 
+#blackDrop{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.034);
+  z-index: 990;
+}
+
 .imgfluid {
   object-fit: scale-down;
   object-position: top;
@@ -113,8 +123,9 @@
     width: 22em;
     padding: 0.65rem 0 0.65rem 2.75rem;
     margin: 0 8px;
-    border-radius: 2px;
+    border-radius: 999px;
     transition: width 200ms ease-out;
+    z-index: 991;
 
     &:focus {
       box-shadow: var(--shadowCard);
@@ -128,10 +139,10 @@
   margin-top: 2px;
   position: absolute;
   background-color: #fff;
-  border: 1px solid var(--black);
+  box-shadow: var(--shadowCard);
   width: 22rem;
   color: var(--black);
-  z-index: 3;
+  z-index: 1000;
   border-radius: 4px;
 
   ul {
@@ -147,7 +158,7 @@
     margin: 4px 0;
     list-style-type: none;
     padding: 0.25rem;
-    border: 1px solid var(--blue-bg);
+    border-bottom: 1px solid var(--blue-bg);
 
     &:hover {
       background-color: var(--black);
@@ -266,8 +277,8 @@
   }
 
   .hits--results {
-    width: 11.5rem;
-    height: 200px;
+    width: 70%;
+    height: 70vh;
     overflow-y: scroll;
 
     ul li p {

@@ -17,12 +17,13 @@ const SearchEngine = () => {
     const resultsRef = useRef()
     let { hitSearch } = state.context
 
+    
     const handleClose = () => {
         send("EMPTY")
         setOpen(true)
         return document.getElementById("search").value = ""
     }
-        
+    
     const onChangeHanldeSearch = debounce((e) => {
         if(e.target.value === ""){
             handleClose()
@@ -31,10 +32,8 @@ const SearchEngine = () => {
             send("GET_TEXT_QUERY", { id: e.target.value, page: 1 })
             setOpen(false)
         }
-    },1000)
+    },300)
 
-
-    
     // cerrar cuando no hay texto
     useEffect(() => {
         let value = resultsRef.current?.value
@@ -45,17 +44,25 @@ const SearchEngine = () => {
     },[resultsRef])
 
     // cerrar cuando se quita el mouse del div
+    const balckDropMenu = useRef()
     useEffect(() => {
-        const hitsResults = document.getElementById("hits--results")
-        hitsResults && hitsResults.addEventListener("mouseleave", function(){
-             setTimeout(() => {
-                handleClose()
-             }, 500); 
+        balckDropMenu.current && balckDropMenu.current.addEventListener("click", function(){
+            handleClose()
         })
     })
 
+    // abrir ultima busqueda
+    useEffect(() => {
+        let input = document.getElementById("search")
+        input.addEventListener("click", function(){
+            if(hitSearch.length > 0) setOpen(false)
+        })
+    })
+
+
     return(
         <div className="engine--shearch">
+        <div id="modal--backDrop">   
             <input 
                 type="search" 
                 autoComplete="off"
@@ -64,15 +71,18 @@ const SearchEngine = () => {
                 id="search" 
                 ref={resultsRef} />
             <label id="btn--input" htmlFor="search"></label>
+            <div id="blackDrop" ref={balckDropMenu} hidden={open}></div>
             {
-                state.matches("success") && hitSearch.length > 0 ? (    
-                    <div className="hits--results" id="hits--results" hidden={open}>
+                state.matches("success") && hitSearch.length > 0 ? (
+                    <div className="hits--results" id="hits--results" hidden={open}> 
+                    {/* <button className="ico-bg-close" onClick={() => handleClose()}></button> */}
                         <ul>
                             { hitSearch.map((prod, index) => {
                                 return(
                                 <Link  
                                     key={index} 
                                     to={`/product/${prod._id}/name/${linkName(prod.title)}`}
+                                    onClick={() => setOpen(true)}
                                 >
                                         <li>
                                             <p>{ prod.title }</p>
@@ -83,17 +93,16 @@ const SearchEngine = () => {
                             })}
                             <Link to="/">`Ver los ${30} resultados`</Link>
                         </ul>
-
-                    </div>
-                    
+                        </div>                    
                 )
                 : state.matches("success") && hitSearch.length === 0 && (
                     <div className="hits--results" hidden={open}>
-                        <button className="ico-bg-close" onClick={() => handleClose()}></button>
-                        <ul id="error--hits">¡Vaya, no se han encontrado resultados!</ul>
+                    {/* <button className="ico-bg-close" onClick={() => handleClose()}></button> */}
+                        <ul id="error--hits">Ultimas Busquedas</ul>
                     </div>
                 )
             }
+        </div>
         </div>
 
     )

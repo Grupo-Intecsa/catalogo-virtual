@@ -97,6 +97,7 @@
     background-image: url(../assets/icons/abb_ico.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     width: 80px;
     
 }
@@ -105,6 +106,7 @@
     background-image: url(../assets/icons/onka_ico.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     width: 80px;
     
 }
@@ -113,6 +115,7 @@
     background-image: url(../assets/icons/ita_ico.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     width: 80px;
     
 }
@@ -121,24 +124,25 @@
     background-image: url(../assets/icons/csm_ico.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     width: 80px;
     
 }
 
 .butom-rounded-cate{
     border-radius: 50%;
-    height: 80px;
-    width: 80px;
+    height: 5rem;
+    width: 5rem;
     background-color: rgb(252, 252, 252);
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     
+    &:hover{
+        transform: translate(4px, -8px);
+        border: 1px solid var(--blue-bg);
+    }
+    
 }
 
-.butom-rounded-cate:hover{
-    // transition: transform .5s, filter .5s ease-in-out;
-    background-color: #66a6ff;
-    width: 85px;
-}
 
 .button--control{
 
@@ -165,8 +169,14 @@
 
 @media (max-width:60rem){
 
+    .butom-rounded-cate{
+        height: 3.75rem;
+        width: 3.75rem;        
+    }
+
     .migasdepan{
         width: 100%;
+        height: 31px;
         margin-left: 10px;
         *{
             margin: 1px;
