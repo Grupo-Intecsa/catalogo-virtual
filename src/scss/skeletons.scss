@@ -67,51 +67,7 @@
   }
 }
 
-
 @media(max-width:60rem){
-
-  .skeleton--card--product{
-    flex-direction: column;
-  }
-
-  .vertical--container{
-    overflow: scroll;
-  }
-
-  .vertical--card{
-    width: auto;
-    height: auto;
-    
-    
-  }
-
-  .vertica--card--img{
-    width: 150px;
-    height: 150px;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-
-  .vertical--card--text{
-    p{
-      font-size: small;
-    }
-  }
-
-  .final--vertical--card{
-    span{
-      width: 150px;
-      text-align: center;
-      font-weight: bold;
-      font-size: medium;
-    }
-  
-    img{
-      width: 150px;
-      height: auto;
-    }
-  }
-
   .card--skeleton{
     width: 150px;
     height: 400px;

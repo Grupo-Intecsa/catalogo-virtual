@@ -68,7 +68,7 @@ const Familias = ({ match }) => {
       <Helmet 
           meta={[
             {
-              name: 'description',
+              name: 'keywords',
               content: description.toString()
             }
           ]}
@@ -77,7 +77,6 @@ const Familias = ({ match }) => {
       </Helmet>
       
       <h1 className="title">{params?.item}</h1>
-      {/* TODO MIGAS DE PAN */}
       <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb /></span>
 
       <div className="familias--container">

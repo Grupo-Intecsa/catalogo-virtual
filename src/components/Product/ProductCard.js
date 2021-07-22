@@ -42,6 +42,23 @@ const ProductCard = () => {
             ]
           }
         >
+          <script type="application/ld+json">
+              {
+                `
+                {
+                  "@context": "http://schema.org/",
+                  "@type": "Product",
+                  "image": ${JSON.stringify(queryBrand.urlfoto)},
+                  "name": "${queryBrand.title}",
+                  "description": "${queryBrand.desc}",
+                  "brand": {
+                    "@type": "Brand",
+                    "name": "ABB"
+                  },
+                `
+              }
+          </script>
+          <meta property="og:image" content={JSON.stringify(queryBrand.urlfoto)} />
       </Helmet>
     <div className="product--card--container" id="topCard">
         <section className="section--product--main">

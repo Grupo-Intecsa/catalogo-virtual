@@ -51,38 +51,39 @@ const VerticalCard = ({ data }) => {
   })
 
   const { mlVerify, GetPriceIdMl, logoSelector, linkName, monyIntlRef } = useContext(AppContext)
-
   return(
     <div className="vertical--container" id="sliderPromo">
       { 
         data.map((item, index) => {
 
-          const { _id, title, isKit, urlfoto, brand, ml, model } = item
+          const { _id, title, urlfoto, brand, ml, model } = item
           const { mlPrecio, loading } = GetPriceIdMl({ ml })
           
           return(
-          <Link  key={index + _id } to={`/product/${_id}/name/${linkName(title)}`} className={ isKit ? "vertical--card vertical--card--familia" : "vertical--card"}>
-          <div>
+            <Link 
+              key={index}
+              to={`/product/${_id}/name/${linkName(title)}`} 
+            >
+              <div className="vertical--card">
+                {/* precio */}
+                <section className="vc__precio">
+                  <div className="mb-2">{brand.map(item => logoSelector(item.brand_id))}</div>
+                  { loading ? <span className="precioCard">{ mlVerify(ml) ? monyIntlRef(mlPrecio) : null }</span> : <span>Cargando...</span> }
+                </section>
+                {/* imagen */}
+                <section className="vc__imagen">
+                  <img src={urlfoto[0]} alt={title} />
+                </section>
+                {/*  modelo */}
+                <section className="vc__modelo">
+                  {`Modelo: ${model}`}
+                </section>
+                {/*description*/}
+                <section className="vc__description">
+                  <p>{ title }</p>
+                </section>
 
-              <div className="vertica--card--img">
-                <img src={urlfoto[0]} alt={title} />
               </div>
-
-              <div className="vertical--card--text">
-                <span className="mb-2">{brand.map(item => logoSelector(item.brand_id))}</span>
-                <span className="font-weight-bold">Modelo: {model}</span>
-
-              <div className="precioCard">
-                { loading ? <span className="precioCard">{ mlVerify(ml) ? monyIntlRef(mlPrecio) : null }</span> : <span>Cargando...</span> }
-              </div>
-          </div>              
-              
-              <p>{title}</p>              
-              <div className="text-center">
-                { isKit ? <span className="precioCard">Varias Medidas</span> : null }
-              </div>
-
-            </div>
             </Link>
           )
         })
@@ -103,12 +104,12 @@ const SliderLastProd = () => {
 
   const buttonRight = function(){
     let ref = document.getElementById("sliderPromo")
-    return ref.scrollLeft +=200
+    return ref.scrollLeft +=280
   }
 
   const buttonLeft = function(){
     let ref = document.getElementById("sliderPromo")   
-    return ref.scrollLeft -=200
+    return ref.scrollLeft -=280
   }
 
   useEffect(() => {
@@ -130,8 +131,8 @@ const SliderLastProd = () => {
         </div>
       </div>
       <div className="button--control" hidden={ !state.matches("success") }>
-        <button id="leftArrow" className="control--carousel button-trans" onClick={buttonLeft}><FontAwesomeIcon icon={faArrowLeft} /></button>
-        <button id="rightArrow" className="control--carousel button-trans" onClick={buttonRight}><FontAwesomeIcon icon={faArrowRight} /></button>
+        <button id="leftArrow" className="control--carousel" onClick={buttonLeft}><FontAwesomeIcon icon={faArrowLeft} /></button>
+        <button id="rightArrow" className="control--carousel" onClick={buttonRight}><FontAwesomeIcon icon={faArrowRight} /></button>
       </div>
     </div>
   )

@@ -41,12 +41,12 @@ const AllProductos = () => {
         <Helmet 
           meta={[
             {
-              name: "description",
+              name: "keywords",
               content: descriptionMeta.toString()
             }
           ]}
         >
-
+          <title>Gupo Intecsa, Venta de productos e Ingeneria para el sector eléctrico</title>
         </Helmet>
 
 

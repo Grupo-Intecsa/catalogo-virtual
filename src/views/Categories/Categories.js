@@ -40,7 +40,7 @@ const Categories = () => {
       <Helmet
           meta={[
             {
-              name: "description",
+              name: "keywords",
               content: metadescription.toString()
             }
           ]}

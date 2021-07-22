@@ -10,14 +10,13 @@ import { Link } from 'react-router-dom'
 const SearchEngine = () => {
 
     const { linkName } = useContext(AppContext)
-
     const [ state, send ] = useMachine(CatalogoXstate)
+    const [ keywordSearch, setKeywordSearch ] = useState(undefined)
     const [ open, setOpen ] = useState(true)
     
     const resultsRef = useRef()
     let { hitSearch } = state.context
 
-    
     const handleClose = () => {
         send("EMPTY")
         setOpen(true)
@@ -29,6 +28,7 @@ const SearchEngine = () => {
             handleClose()
 
         }else if(e.target.value.length >= 3 ){
+            setKeywordSearch(e.target.value)
             send("GET_TEXT_QUERY", { id: e.target.value, page: 1 })
             setOpen(false)
         }
@@ -53,12 +53,16 @@ const SearchEngine = () => {
 
     // abrir ultima busqueda
     useEffect(() => {
+        let mounted = true
+
         let input = document.getElementById("search")
         input.addEventListener("click", function(){
-            if(hitSearch.length > 0) setOpen(false)
+            if(hitSearch.length > 0 && mounted ) setOpen(false)
         })
+        return function cleanUp(){
+            mounted = false
+        }
     })
-
 
     return(
         <div className="engine--shearch">
@@ -66,7 +70,7 @@ const SearchEngine = () => {
             <input 
                 type="search" 
                 autoComplete="off"
-                placeholder="Busca tu producto" 
+                placeholder="Buscar..." 
                 onChange={onChangeHanldeSearch} 
                 id="search" 
                 ref={resultsRef} />
@@ -77,21 +81,24 @@ const SearchEngine = () => {
                     <div className="hits--results" id="hits--results" hidden={open}> 
                     {/* <button className="ico-bg-close" onClick={() => handleClose()}></button> */}
                         <ul>
-                            { hitSearch.map((prod, index) => {
+                            { hitSearch.slice(0, hitSearch.length - 1).map((prod, index) => {
                                 return(
+                                <li key={index}>
                                 <Link  
-                                    key={index} 
                                     to={`/product/${prod._id}/name/${linkName(prod.title)}`}
                                     onClick={() => setOpen(true)}
                                 >
-                                        <li>
-                                            <p>{ prod.title }</p>
-                                            <img src={ prod.urlfoto[0].toString() } alt={prod.title} />
-                                        </li>
+                                        <p>{ prod.title }</p>
+                                        <img src={ prod.urlfoto[0].toString() } alt={prod.title} />
                                 </Link>
+                                </li>
                                 )
                             })}
-                            <Link to="/">`Ver los ${30} resultados`</Link>
+                            <li>
+                            <Link to={`/search/${keywordSearch}/`}>                                
+                                {`Ve los ${(hitSearch.slice(hitSearch.length - 1)[0].title)} resultados  tu busqueda`}
+                            </Link>
+                            </li>
                         </ul>
                         </div>                    
                 )
@@ -102,7 +109,7 @@ const SearchEngine = () => {
                     </div>
                 )
             }
-        </div>
+            </div>
         </div>
 
     )
