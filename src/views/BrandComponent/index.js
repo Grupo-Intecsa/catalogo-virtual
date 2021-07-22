@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { Helmet } from 'react-helmet'
+
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 
@@ -8,9 +10,6 @@ import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 import utils from 'utils/utils'
 
 const BrandComponent = ({  match }) => {
-
-    //:check TODO hacer un endpoit donde haga un join con labels de todos los productos que sean de la marca
-    // 
 
     const { params } = match 
     const [ state, send ] = useMachine(CatalogoXstate)
@@ -25,8 +24,7 @@ const BrandComponent = ({  match }) => {
     },[])
 
     
-    const { queryBrand } = state.context
-    
+    const { queryBrand } = state.context    
     const [ searchArray, setSearchArray ] = useState([])
 
     useEffect(() => {
@@ -42,10 +40,21 @@ const BrandComponent = ({  match }) => {
 
     return (
         <>
+        <Helmet
+        meta={[
+            {
+                name: "keywords",
+                content: queryBrand.map(({familia}) => JSON.stringify(familia))
+            }
+        ]}
+         >
+            
+        </Helmet>
+
         {/* menu input search */}
         <div className="brand--menu--container" ref={containerRef}>
         <section>
-            <h2>Productos de la Marca ABB</h2>
+            <h2>{`Productos de la Marca ${params.slug.toUpperCase()}`}</h2>
             <input 
                 placeholder="Busca dentro de está sección" 
                 list="familiaList"
@@ -68,8 +77,6 @@ const BrandComponent = ({  match }) => {
             }
             { state.matches("success") && searchArray.length === 0 && (
                 queryBrand.map(({familia, img, label}, index) => {
-                    // familia => nombre string
-                    // label => id de mongo
                     return(
                         <Link key={index} to={`/products/brand/label/${label}/familia/${familia}`} >
                         <div className="brand--menu--card">

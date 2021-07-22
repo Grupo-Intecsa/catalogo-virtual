@@ -8,6 +8,7 @@ const TheCheckout = React.lazy(() => import('containers/TheCheckout'))
 const InvoiceCart = React.lazy(() => import('components/InvoiceCart/InvoiceCart'))
 const Page404 = React.lazy(() => import('views/pages/page404/Page404'))
 const BrandComponent = React.lazy(() =>  import('views/BrandComponent'))
+const SearchView = React.lazy(() => import('views/SearchView'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -18,8 +19,10 @@ const routes = [
   { path: '/products/brand/label/:slug/familia/:item', exact: true, name: 'Familias por Marca', componente: Familias },  
 
   // filtro de categorias
+  // Slug texto plano
   { path: '/categories/:slug', exact: false, name: 'Categorias', componente: Categories },  
-  { path: '/products/brand/:id', exact: true, name: "Todos los productos por marca", componente: BrandComponent },
+  { path: '/products/brand/:id/:slug', exact: true, name: "Todos los productos por marca", componente: BrandComponent },
+  { path: '/search/:slug', exact: true, name: "Tu busqueda", componente: SearchView },
   
   // carrito
   { path: '/cart/checkout', exact: false, name: "Crear Pedido", componente: TheCheckout },

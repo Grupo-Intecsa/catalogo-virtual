@@ -16,24 +16,20 @@ const TheLayout = (props) => {
   const { pathname } = location
 
   return (
-    <div>
-      <div>
-        <TheHeader  />
-      <div>
-        <div className="d-flex justify-content-center" style={{ position: "relative", zIndex: "-1"}}>
-          { pathname === "/dashboard" && <CarouselHeader /> }
-        </div>
-            <MarcasLabel busqueda={props} />
-        </div>
-        <div id="CatalogoContainer">
-          <CatalogoContainer {...props}/>
-        </div>
-        
+    <div className="container--layout">
+      <nav>
+        <TheHeader />
+        { pathname === "/dashboard" && <CarouselHeader /> }
+        <MarcasLabel busqueda={props} />
+      </nav>
 
-      <div id="footer">
+      <section id="CatalogoContainer">
+        <CatalogoContainer {...props}/>
+      </section>
+
+      <section id="footer">
         <TheFooter/>
-      </div>
-      </div>
+      </section>
     </div>
   )
 }

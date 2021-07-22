@@ -122,7 +122,7 @@ export default {
         
         ctx.pendingSearch = true
         let response = await api.get(`/catalog/search?text=${id}&limit=5&offset=${ ( 5 * page ) - 5 }`)
-            .then( res => res.data.message  )
+            .then( res => res.data.message )
 
             if(response.status === 404 ) throw new Error('No hay informacion para tu busqueda')
 

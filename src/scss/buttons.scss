@@ -154,7 +154,7 @@
         height: 84px;
         border-radius: 100%;
         background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-        border: none;
+        border: none transparent;
     }
 
 
@@ -162,8 +162,8 @@
 
 .control--carousel:hover,
 .control--carousel:focus{
-    border: none;
     background-color: rgba(74, 120, 212, 0.87);
+    transform: translate(1px, -1px);
 }
 
 
@@ -271,6 +271,7 @@ margin-right: 0;
     box-sizing: border-box;
     width: 20px;
     padding: 1rem;
+    color:white;
 }
 
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 
-const ButtonMultipleOption = ({ children, current }) => {
+const ButtonMultipleOption = ({ children }) => {
 
   const [ selected, setSelected ] = useState(false)
   const handleCapacidad = () => setSelected(!selected)

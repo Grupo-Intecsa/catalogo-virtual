@@ -184,4 +184,14 @@ body{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    &__height{
+
+        width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: fit-content;
+        height: 40px;
+    
+    }
 }

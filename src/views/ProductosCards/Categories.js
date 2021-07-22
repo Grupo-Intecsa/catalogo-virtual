@@ -15,26 +15,26 @@ const Categories = () => {
 
             <CRow className="d-flex justify-content-around">            
             {/* menu para celular */}
-
-                <Link to={"/products/brand/60dcceaab22f37097c58161e"}>
+            {/* to={"/products/brand/60dcceaab22f37097c58161e"} */}
+                <Link to={"/products/brand/60dcceaab22f37097c58161e/abb"}>
                     <div className="btn butom-rounded-cate ico--brand--abb">
                     </div>
                 </Link>
 
                 {/* TODO FALTA  */}
-                <Link to={"/products/brand/603eef9df2aaf100158dc3a6"}>
+                <Link to={"/products/brand/603eef9df2aaf100158dc3a6/csm"}>
                     <div className="btn butom-rounded-cate ico--brand--csm">
                     </div>
                 </Link>
 
                 {/* TODO FALTA  */}
-                <Link to={"/products/brand/6049d29c3fbec93ddc4cb2e0"}>
+                <Link to={"/products/brand/6049d29c3fbec93ddc4cb2e0/onka"}>
                     <div className="btn butom-rounded-cate ico--brand--onka">
                         {/* <span>Onka</span> */}
                     </div>
                 </Link>
 
-                <Link to={"/products/brand/60dcce9fb22f37097c58161c"}>
+                <Link to={"/products/brand/60dcce9fb22f37097c58161c/ita"}>
                     <div className="btn butom-rounded-cate ico--brand--ita">
                     </div>
                 </Link>
