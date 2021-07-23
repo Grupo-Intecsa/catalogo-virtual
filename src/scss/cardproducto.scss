@@ -467,23 +467,6 @@
   justify-content: center;
 }
 
-.precioCard{
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  font-family: var(--itafont);
-  font-size: large;
-  color: #272727;
-  
-}
-
-@media (max-width: 60rem){
-  .precioCard{
-    font-size: medium;
-    text-align: center;
-  }
-}
-
 .drawer--carrito{
   background-color: #37ecba;
 }

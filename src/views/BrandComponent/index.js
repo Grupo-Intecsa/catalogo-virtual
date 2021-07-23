@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet'
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 
+import CardBrandComponent from './CardBrandComponent'
+
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 import utils from 'utils/utils'
 
@@ -33,8 +35,11 @@ const BrandComponent = ({  match }) => {
     
     const handleSearch = ({ name }) => {
         if(name.length === 0) setSearchArray([])
-        return queryBrand.forEach(({ familia, img, label }) => {
-            if(familia === name) return setSearchArray({ familia, img, label })
+
+        return Object.entries(queryBrand).map(([key, val]) => {
+            val.payload.map(({familia, img, label}) => {
+                if(familia === name) return setSearchArray({ familia, img, label, key })
+            })
         })
     }
 
@@ -53,7 +58,7 @@ const BrandComponent = ({  match }) => {
 
         {/* menu input search */}
         <div className="brand--menu--container" ref={containerRef}>
-        <section>
+        <div>
             <h2>{`Productos de la Marca ${params.slug.toUpperCase()}`}</h2>
             <input 
                 placeholder="Busca dentro de está sección" 
@@ -62,31 +67,25 @@ const BrandComponent = ({  match }) => {
                 onChange={(e) =>  handleSearch({ name: e.target.value })}
             />
             <datalist id="familiaList">
-            { Object.values(queryBrand).map(({familia}, index) => {
-                return (
-                    <option key={index}>
-                        { familia }
-                    </option>
-                )
+            { Object.entries(queryBrand).map(([key, val]) => {
+               return val.payload.map(({ familia }) => {
+                    return (
+                        <option key={key + familia }>
+                            { familia }
+                        </option>   
+                    )
+                })
             })}
             </datalist>
-        </section>
+        </div>
         <hr />
             {
                 state.matches("getProducsByBrandId") && <SkeletonCardProduct />
             }
             { state.matches("success") && searchArray.length === 0 && (
-                queryBrand.map(({familia, img, label}, index) => {
-                    return(
-                        <Link key={index} to={`/products/brand/label/${label}/familia/${familia}`} >
-                        <div className="brand--menu--card">
-                            <img src={img} alt={familia}/>
-                            <p>{familia}</p>
-                        </div>
-                        </Link>
-                    )
-                })
+                Object.entries(queryBrand).map(([key, val]) => <CardBrandComponent key={key} val={val} /> )
             )}
+            {/* este es en la parte del buscador */}
             { Object.values(searchArray).length > 0 && (
             <Link to={`/products/brand/label/${searchArray["label"]}/familia/${searchArray["familia"]}`} >
                 <div key={searchArray["familia"]} className="brand--menu--card">

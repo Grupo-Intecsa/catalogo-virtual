@@ -68,7 +68,7 @@ const VerticalCard = ({ data }) => {
                 {/* precio */}
                 <section className="vc__precio">
                   <div className="mb-2">{brand.map(item => logoSelector(item.brand_id))}</div>
-                  { loading ? <span className="precioCard">{ mlVerify(ml) ? monyIntlRef(mlPrecio) : null }</span> : <span>Cargando...</span> }
+                  { loading ? <span>{ mlVerify(ml) ? monyIntlRef(mlPrecio) : null }</span> : <span>Cargando...</span> }
                 </section>
                 {/* imagen */}
                 <section className="vc__imagen">
