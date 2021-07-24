@@ -13,7 +13,7 @@ export default function CardBrandComponent({ val }){
         </section>
         <section hidden={open}>
             {
-                val.payload.map(({ familia, img, label}, index) => {
+                val.payload.map(({ familia, img, label }, index) => {
                     return(
                     <Link key={index} to={`/products/brand/label/${label}/familia/${familia}`} >
                         <div className="brand--menu--card">

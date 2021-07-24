@@ -6,11 +6,9 @@ import utils from 'utils/utils'
 import { AppContext } from 'context/AppContext'
 
 const SlimCard = ({ data }) => {
-
+  
   const { logoSelector } = useContext(AppContext)
-
   const params = useParams()
-
   const { title, brand, model, capacidad, urlfoto, _id } = data 
 
   return(
