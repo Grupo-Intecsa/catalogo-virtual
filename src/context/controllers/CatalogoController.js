@@ -118,10 +118,10 @@ export default {
     getByText: async(ctx, evt) => {
         //TODO regresar todos los resultados y gestionarlos con GraphQL
         
-        const { id, page } = evt
-        
+        const { id, page, limit } = evt
+       
         ctx.pendingSearch = true
-        let response = await api.get(`/catalog/search?text=${id}&limit=5&offset=${ ( 5 * page ) - 5 }`)
+        let response = await api.get(`/catalog/search?text=${id}&limit=${limit}&offset=${ ( 5 * page ) - 5 }`)
             .then( res => res.data.message )
 
             if(response.status === 404 ) throw new Error('No hay informacion para tu busqueda')

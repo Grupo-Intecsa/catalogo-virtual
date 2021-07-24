@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from  "react"
 
+import { useLocation } from 'react-router-dom'
+
 import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 import { AppContext } from 'context/AppContext'
@@ -29,7 +31,7 @@ const SearchEngine = () => {
 
         }else if(e.target.value.length >= 3 ){
             setKeywordSearch(e.target.value)
-            send("GET_TEXT_QUERY", { id: e.target.value, page: 1 })
+            send("GET_TEXT_QUERY", { id: e.target.value, page: 1, limit: 5 })
             setOpen(false)
         }
     },300)
@@ -63,6 +65,12 @@ const SearchEngine = () => {
             mounted = false
         }
     })
+
+    const { pathname } = useLocation()
+    // cerrar cuando cambia los params
+    useEffect(() => {
+        setOpen(true)
+    },[pathname])
 
     return(
         <div className="engine--shearch">
