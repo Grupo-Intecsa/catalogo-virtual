@@ -49,33 +49,46 @@
 }
 
 .onTopButton{
-    width: 80px;
-    height: 80px;
-    background: url("../assets/icons/angle-up.svg");
-    border: transparent;
-    border-radius: 100%;
-    background-color: var(--blue-bg);
-    position: fixed;
-    bottom: 4px;
-    right: 4px;
-    z-index: 990;
-
-    &:hover{
+    
+    &__hidden{
+        visibility: hidden;
+    }
+    
+    &__show{
+        visibility: visible;
+        width: 80px;
+        height: 80px;
+        background: url("../assets/icons/angle-up.svg");
+        border: transparent;
+        border-radius: 100%;
+        background-color: var(--blue-bg);
+        position: fixed;
+        bottom: 4px;
+        right: 4px;
+        z-index: 990;
+    }
+    
+    &__show:hover{
         background-color: var(--esmeralda);
     }
+
 }
 
 .moreDataButton{
-    width: 100vh;
-    height: 100%;
-    margin: 10px;
-    padding: 0.25rem;
-    border-radius: 90px;
-    border: transparent;
-    background-color: var(--blue-bg);
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem;
+    color: var(--black);
+    font-family: var(--normalFont);
+    font-weight: bold;
+    font-size: x-large;
+    cursor: pointer;
+    border: 1px solid var(--esmeralda);
+    border-radius: 40px;
 
     &:hover{
+        color: white;
         background-color: var(--esmeralda);
     }
 
@@ -83,8 +96,10 @@
 
 @media (max-width: 60rem){
     .onTopButton{
-        width: 40px;
-        height: 40px;
+        &__show{
+            width: 40px;
+            height: 40px;
+        }
     }
 }
 

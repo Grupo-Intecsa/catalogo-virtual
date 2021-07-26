@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, memo } from 'react'
 import { Link, useParams } from "react-router-dom"
 
 
@@ -42,4 +42,4 @@ const SlimCard = ({ data }) => {
 }
 
 
-export default SlimCard
+export default memo(SlimCard)

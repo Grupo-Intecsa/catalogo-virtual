@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useContext } from  "react"
 import { useLocation } from 'react-router-dom'
 
 import { useMachine } from '@xstate/react'
-import { CatalogoXstate } from 'context/CatalogoXstate'
+import { SearchContext } from 'context/SearchContext'
 import { AppContext } from 'context/AppContext'
 
 import debounce from 'just-debounce-it'
@@ -12,12 +12,12 @@ import { Link } from 'react-router-dom'
 const SearchEngine = () => {
 
     const { linkName } = useContext(AppContext)
-    const [ state, send ] = useMachine(CatalogoXstate)
+    const [ state, send ] = useMachine(SearchContext)
     const [ keywordSearch, setKeywordSearch ] = useState(undefined)
     const [ open, setOpen ] = useState(true)
     
     const resultsRef = useRef()
-    let { hitSearch } = state.context
+    let { hitSearch, pagesOf } = state.context
 
     const handleClose = () => {
         send("EMPTY")
@@ -31,7 +31,7 @@ const SearchEngine = () => {
 
         }else if(e.target.value.length >= 3 ){
             setKeywordSearch(e.target.value)
-            send("GET_TEXT_QUERY", { id: e.target.value, page: 1, limit: 5 })
+            send("GET_TEXT_QUERY", { id: e.target.value, page: 0, limit: 5 })
             setOpen(false)
         }
     },300)
@@ -104,7 +104,7 @@ const SearchEngine = () => {
                             })}
                             <li>
                             <Link to={`/search/${keywordSearch}/`}>                                
-                                {`Ve los ${(hitSearch.slice(hitSearch.length - 1)[0].title)} resultados  tu busqueda`}
+                                {`Ve los ${pagesOf} resultados  tu busqueda`}
                             </Link>
                             </li>
                         </ul>
