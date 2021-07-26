@@ -11,6 +11,7 @@ import MenuBreadCrumb from 'components/MenuBreadCrumb'
 import SlimCard from 'components/Product/SlimCard'
 import FamiliasBar from 'components/Categorias/FamiliasBar'
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
+import TopButton from 'reusable/TopButton'
 
 const Familias = ({ match }) => {
   const topRef = useRef()
@@ -96,6 +97,7 @@ const Familias = ({ match }) => {
             }))
           }
         </section>
+        <TopButton divRef={topRef} />
         </div>
     </div>
   )

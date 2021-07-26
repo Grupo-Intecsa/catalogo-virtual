@@ -1,7 +1,7 @@
 import axios from 'axios'
 import decode from 'jwt-decode'
 
-const api = axios.create({
+export const api = axios.create({
     baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
     // baseURL: 'http://localhost:3000/api/v1'
 })
@@ -121,7 +121,7 @@ export default {
         const { id, page, limit } = evt
        
         ctx.pendingSearch = true
-        let response = await api.get(`/catalog/search?text=${id}&limit=${limit}&offset=${ ( 5 * page ) - 5 }`)
+        let response = await api.get(`/catalog/search?text=${id}&limit=${limit}&offset=${page}`)
             .then( res => res.data.message )
 
             if(response.status === 404 ) throw new Error('No hay informacion para tu busqueda')

@@ -9,7 +9,9 @@ import { CatalogoXstate } from 'context/CatalogoXstate'
 import CardBrandComponent from './CardBrandComponent'
 
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
+import TopButton from 'reusable/TopButton'
 import utils from 'utils/utils'
+
 
 const BrandComponent = ({  match }) => {
 
@@ -24,7 +26,6 @@ const BrandComponent = ({  match }) => {
     useEffect(() => {
         utils.scrollTotop(containerRef)
     },[])
-
     
     const { queryBrand } = state.context    
     const [ searchArray, setSearchArray ] = useState([])
@@ -97,6 +98,7 @@ const BrandComponent = ({  match }) => {
             {
                 state.matches("success") && queryBrand.length === 0 && <span>Aún no tenemos productos disponibles</span>
             }
+            <TopButton divRef={containerRef} />
         </div>
         </>
     )
