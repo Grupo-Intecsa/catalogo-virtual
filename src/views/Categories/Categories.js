@@ -50,7 +50,7 @@ const Categories = () => {
       </Helmet>
 
       <h1>{ categoTitle || titleStorage }</h1>
-      <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb /></span>
+      <span style={{ width: "100%", display:"flex", justifyContent: "center" }}><MenuBreadCrumb/></span>
       <section>
         {
           state.matches("getProductsByLabelId") && <SkeletonCardProduct />

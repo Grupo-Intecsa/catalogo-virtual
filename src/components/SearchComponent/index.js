@@ -6,72 +6,88 @@ import { SearchContext } from 'context/SearchContext'
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 
 import SlimCard from 'components/Product/SlimCard'
+import FilterProducts from 'utils/FilterProducts'
 import TopButton from 'reusable/TopButton'
+import utils from 'utils/utils'
+
+import { Pagination } from 'antd';
 // debe tener un filto de familias
 
 const SearchComponent = () => {
 
-    const [ page, setPage ] = useState(0)
     const [ state, send ] = useMachine(SearchContext)
-    const { hitSearch, pagesOf } = state.context
-
+    const { hitSearch } = state.context
     const { slug } = useParams()
-    const [ keywordSearch, setKeywordSerach ] = useState(slug)
-
+    
     useEffect(() => {
-        send("GET_TEXT_QUERY", { id: slug, page, limit: 10 })
-        setPage(10)
+        send("GET_TEXT_QUERY", { id: slug })
         cleanUp()
-
         return ()  => cleanUp()
 
-    },[slug, keywordSearch, send])
-    
+    },[slug, send])
+        
+    const [ pagInicio, setPagInicio ] = useState(0)
+    const [ pagFinal, setPagFinal ] = useState(12)
+
+    const handlePaginator = (page, size) => {
+        setPagInicio( size * ( page - 1 ) )
+        setPagFinal( size * page )
+    }
+
     // funcion para borrar
-    const butonCargaTextRef = useRef()
     const cleanUp = () => {
-        setPage(0)
-        if(butonCargaTextRef.current){
-            let text = butonCargaTextRef.current
-            text.innerHTML = "Cargar más datos"
-        }
+        setPagInicio(0)
+        setPagFinal(12)
     }
 
-    const handleSearch = (e) => {
-        // total del productos en el array 
-        const arrayTotalProducts = hitSearch.length
-        // controlamos la busqueda
-        setKeywordSerach(e.target.value || slug )
-        // data search siempre va a tener multiplos de 10
-        if( pagesOf > arrayTotalProducts ){
-            setPage(page => page + 10 )
-            send("MORE_DATA", { id: keywordSearch || slug , skip: page, limit: 10 })
+    useEffect(() => {
+        utils.scrollTotop(divTopRef)
+    },[slug, pagInicio])
 
-        }else if(pagesOf <= arrayTotalProducts ){
-            butonCargaTextRef.current.innerHTML = "No hay más productos"
-        }
-    }
+    const hitSearchControl = hitSearch.length
+    useEffect(() => {
+        setPagInicio(0)
+        setPagFinal(12)
+    },[hitSearchControl])
 
-
+        
     const divTopRef = useRef()    
     return (
-        <div className="search__hedaer__container" ref={divTopRef}>
-            <h1 className="title">Estos son los resultados de tu busqueda { slug }</h1>               
+        <div className="search__header__container" ref={divTopRef}>
+            <h1 className="title">Estos son los resultados de tu busqueda: { slug }</h1>  
 
-            <section className="searchResults">
-                {/*  aqui van todo los porductos de la busqueda */}
-                {
-                    state.matches("getByText") || state.matches("moreData") && <SkeletonCardProduct />
-                }
-                {
-                    hitSearch.length > 0 && hitSearch.map((prod, index) => <SlimCard key={index} data={prod} />)
-                }
-            </section>
-            <section>
-                <TopButton divRef={divTopRef} />
-                <span className="moreDataButton" ref={butonCargaTextRef} onClick={handleSearch}>Cargar más datos</span>
-            </section>
+
+        <div className="search__header">
+            
+            <section className="search__filter">
+                <FilterProducts payload={state.context} send={send} state={state} />
+            </section>             
+
+            <div>
+                <section className="searchResults">
+
+                    {/*  aqui van todo los porductos de la busqueda */}
+                    {
+                        state.matches("getTextQuery") || state.matches("moreData") && <SkeletonCardProduct />
+                    }
+                    {
+                        hitSearch.length > 0 && hitSearch.slice(pagInicio, pagFinal).map((prod, index) => <SlimCard key={index} data={prod} />)
+                    }
+                </section>
+                <section className="search__footer">
+                    <TopButton divRef={divTopRef} />
+                    <Pagination 
+                    defaultCurrent={1} 
+                    total={hitSearch.length} 
+                    pageSize={12}
+                    onChange={(page, size) => handlePaginator(page, size)} 
+                />
+                </section>
+            </div>
+
         </div>
+        </div>
+    
     )
 }
 

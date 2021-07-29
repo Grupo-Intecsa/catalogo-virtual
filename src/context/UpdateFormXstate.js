@@ -1,12 +1,5 @@
 import { createMachine, assign } from 'xstate'
-
-import axios from 'axios'
-
-const api = axios.create({
-    baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
-})
-
-// necesitamos buscar los valores de las catergorias, de las marcas y del inventario de Erick 
+import { api } from 'context/controllers/CatalogoController'
 
 const findByModel = async(ctx, event) => {   
 
