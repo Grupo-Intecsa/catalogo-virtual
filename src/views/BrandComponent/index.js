@@ -7,6 +7,7 @@ import { useMachine } from '@xstate/react'
 import { CatalogoXstate } from 'context/CatalogoXstate'
 
 import CardBrandComponent from './CardBrandComponent'
+import BuscadorMini from 'reusable/BuscadorMini'
 
 import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 import TopButton from 'reusable/TopButton'
@@ -61,23 +62,14 @@ const BrandComponent = ({  match }) => {
         <div className="brand--menu--container" ref={containerRef}>
         <div>
             <h2>{`Productos de la Marca ${params.slug.toUpperCase()}`}</h2>
-            <input 
-                placeholder="Busca dentro de está sección" 
-                list="familiaList"
-                type="search"
-                onChange={(e) =>  handleSearch({ name: e.target.value })}
-            />
-            <datalist id="familiaList">
-            { Object.entries(queryBrand).map(([key, val]) => {
-               return val.payload.map(({ familia }) => {
-                    return (
-                        <option key={key + familia }>
-                            { familia }
-                        </option>   
-                    )
-                })
-            })}
-            </datalist>
+            <BuscadorMini dataSet={queryBrand} >
+                <input 
+                    placeholder="Busca dentro de está sección" 
+                    list="familiaList"
+                    type="search"
+                    onChange={(e) =>  handleSearch({ name: e.target.value })}
+                />
+            </BuscadorMini>
         </div>
         <hr />
             {

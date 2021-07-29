@@ -31,11 +31,12 @@ const SearchEngine = () => {
 
         }else if(e.target.value.length >= 3 ){
             setKeywordSearch(e.target.value)
+            console.log("hola")
             send("GET_TEXT_QUERY", { id: e.target.value, page: 0, limit: 5 })
             setOpen(false)
         }
     },300)
-
+    
     // cerrar cuando no hay texto
     useEffect(() => {
         let value = resultsRef.current?.value
@@ -83,13 +84,14 @@ const SearchEngine = () => {
                 id="search" 
                 ref={resultsRef} />
             <label id="btn--input" htmlFor="search"></label>
+            
             <div id="blackDrop" ref={balckDropMenu} hidden={open}></div>
             {
                 state.matches("success") && hitSearch.length > 0 ? (
                     <div className="hits--results" id="hits--results" hidden={open}> 
                     {/* <button className="ico-bg-close" onClick={() => handleClose()}></button> */}
                         <ul>
-                            { hitSearch.slice(0, hitSearch.length - 1).map((prod, index) => {
+                            { hitSearch.slice(0, 5).map((prod, index) => {
                                 return(
                                 <li key={index}>
                                 <Link  
@@ -103,9 +105,12 @@ const SearchEngine = () => {
                                 )
                             })}
                             <li>
-                            <Link to={`/search/${keywordSearch}/`}>                                
-                                {`Ve los ${pagesOf} resultados  tu busqueda`}
-                            </Link>
+                            {   
+                                hitSearch.length > 1 && 
+                                <Link to={`/search/${keywordSearch}/`}>                                
+                                    {`Ve los ${pagesOf} resultados  tu busqueda`}
+                                </Link>
+                            }
                             </li>
                         </ul>
                         </div>                    

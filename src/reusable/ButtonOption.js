@@ -32,7 +32,8 @@ const ButtonOption = ({ children, isSelected }) => {
         id={children} 
         type="button" 
         ref={element} 
-        value={children} className={isSelected ? "button--capacidad--selected" : "button--capacidad"} 
+        value={children} 
+        className={isSelected ? "button--capacidad--selected" : "button--capacidad"} 
         onClick={handleButton}/>
     </div>
   )
