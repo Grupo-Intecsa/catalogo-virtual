@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
-
 import { Badge } from 'antd'
-import icoCart from 'assets/icons/cart.svg'
 
 const TheCanvasCart = () => {
   const dispatch = useTiendaDispatch()
@@ -48,7 +46,7 @@ const TheCanvasCart = () => {
     <>
     <Link to="/cart/checkout">
       <Badge count={Number(Object.values(carrito).length)} offset={[10, 10]}>
-          <img src={icoCart} alt="entra al carrito" style={{ cursor: "pointer", width: "2.5rem", height: "2.5rem" }} />
+          <span className="ico--carito"></span>
       </Badge>
     </Link>
     <NotifyCart />

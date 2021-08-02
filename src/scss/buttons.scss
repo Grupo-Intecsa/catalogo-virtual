@@ -219,6 +219,19 @@ h4{
 background-color: white;
 }
 
+.ico--carito{
+    content: url("../assets/icons/cart.svg");    
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0.25rem;
+    cursor: pointer;
+
+    &:hover{
+        border: 1px solid transparent;
+    }
+    
+}
+
 .ico-bg-whastapp{
 background-image: url("../assets/icons/whatsapp.svg");
 cursor: pointer;
@@ -300,6 +313,10 @@ margin-right: 0;
     background-color: var(--white-bg);
     padding: 0.45rem;
     cursor: pointer;
+
+    &:hover{
+        border: 1px solid transparent;
+    }
 }
 
 
