@@ -46,7 +46,7 @@ const AllProductos = () => {
             }
           ]}
         >
-          <title>Gupo Intecsa, Venta de productos e Ingeneria para el sector eléctrico</title>
+          <title>Grupo Intecsa, Venta de productos e Ingeneria para el sector eléctrico</title>
         </Helmet>
 
 

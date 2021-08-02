@@ -111,33 +111,42 @@
   padding: 0.35rem;
   flex-basis: 40%;
 
-  input {
+  > div {
+    display: flex;
+    align-items: center;
     background: var(--white-bg);
+    border-radius: 4px;
+    width: fit-content;
+    
+    input{
     border: none;
-    background-image: url("../assets/icons/search.svg");
-    background-repeat: no-repeat;
-    background-position: calc(90% + 10px);
-    background-size: 2rem;
     border-left: 10px;
     box-sizing: border-box;
-    width: 22em;
+    width: 20rem;
     font-size: 1rem;
     padding: 0.65rem 2.75rem 0.65rem 0.65rem;
-    margin: 0 8px;
-    border-radius: 4px;
+    margin: 0 0 0 8px;  
     z-index: 991;
     
     &:focus {
       box-shadow: var(--shadowCard);
       border: 4px solid var(--esmeralda);
       outline-style: none;
-    }
+
+    }}
+
+    &::after{
+      content: url("../assets/icons/search.svg");
+      width: 2rem;
+      height: 2rem;
+  }    
 
   }
+
 }
 
 .hits--results{
-  margin-top: 2px;
+  top: 60px;
   position: absolute;
   background-color: #fff;
   box-shadow: var(--shadowCard);
@@ -264,6 +273,7 @@
 
   #Navigation {
     padding: 2px;
+    justify-content: space-between;
     img{
       margin-left: 10px;
     }
@@ -278,8 +288,8 @@
   }
 
   .engine--shearch {
-    input {
-      width: 10rem;
+    div input {
+      width: 8rem;
       background-position: calc(85% + 10px);
 
       &::placeholder {
