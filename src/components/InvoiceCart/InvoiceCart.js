@@ -1,101 +1,44 @@
-import { Fragment, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { saveAs } from 'file-saver'
-import { Alert } from 'antd';
-
 import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
-import OCpage from './OCpage'
-
-
-// import OCpage from './OCpage'
-const baseURL = 'https://quiet-castle-61424.herokuapp.com/api/v1'
-
+import DataPersonalForm from './forms/DataPersonalForm'
+import DireccionEnvio from './forms/DireccionEnvio'
 
 const InvoiceCart = () => {
 
-  const [ pdfPayload, setPdfPayload ] = useState([])
-  
-  const dispatch = useTiendaDispatch()
   const state = useTiendaState()
-  const { pdfData } = state.context
+  const dispatch = useTiendaDispatch()
+  console.log({ state, dispatch })
 
-  const params = useParams()
-  const { folio } = params
-
-  
-  useEffect(() => {
-    dispatch("GET_DATA_TO_INVOICE", { folio })    
-  },[])
-
-  useEffect(() => {  
-      
-      if(state.matches("pdfDataDone")){
-        setPdfPayload(pdfData)
-      }
-    
-
-  },[state.value])
-
-
-  const pdfCreator = () => {
-
-    fetch(`${baseURL}/pdf?folio=${folio}`, {
-      
-      headers: {  "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify(pdfPayload)
-    }).then(res => {
-      return res
-        .arrayBuffer()
-        .then(res => {
-          const blob = new Blob([res], { type: "applicacion/pdf"})
-          saveAs(blob, `ITAMX_${folio}.pdf`)
-          dispatch("EMPTY_CART")
-          
-        })
-        .catch(error => console.log(error))
-    })
-  }
-
-  // console.log(typeof payload, params)
-  // TODO: usar OCPAGE para crear vista previa de los datos del documento tipo amazon, no tiene que ser la vista PDF o si? XD
-  // TODO añadir al modelo cotizacion 
-  
   return(
-    
-    <div className="mt-3">
+    <>
+    <div style={{ margin: "50px" }}>
+        <h1 className="title">Datos de envio y pago</h1>
+    </div>
+    <div className="invoice__container">    
+      <div className="invoice__body">
+      <section>
+        <DataPersonalForm />      
+      </section>
+      
 
-      <div className="d-flex justify-content-center mt-3 flex-column text-center">
-        { 
-          state.matches("pdfDataDone") && (
-            <Fragment>
-              
-            <div>
-              <button onClick={pdfCreator} className="invoice-button-send">Descargar PDF</button>
-            </div>
+      <section>
+        <DireccionEnvio />
+      </section>
 
-            <div> 
-              <OCpage data={pdfData} />
-            </div>
+      <section>
+      <fieldset>
+        <legend>Tipo de Pago</legend>
+      </fieldset>
 
-            </Fragment>
-            )
-        }
+      <fieldset>
+        <legend>Tipo de envío</legend>
+      </fieldset>
+
+    </section>      
       </div>
-      {
-        state.matches("emptyCart") && (
-        
-        <Alert
-          message="¡Gracias por su preferencia!"
-          description="Pronto un asesor se pondrá en contacto con usted"
-          type="info"
-          showIcon
-        />)
-        
-      }
-      <div className="footer--carrito"></div>
+  
 
     </div>
+    </>
   )
 }
 

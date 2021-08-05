@@ -213,6 +213,12 @@
   }
 }
 
+.ntf--popup p:hover {
+  background-color: var(--selected);
+  color: white;
+  width: 100%;
+}
+
 .notify--cart {
   display: flex;
   flex-direction: column;
