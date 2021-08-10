@@ -34,6 +34,7 @@ const AllProductos = () => {
 
   const { labels } = state.context
   const descriptionMeta = labels.length > 0 && labels.map(item => item.title)
+  console.log(labels)
   
   return(
     <div id="allproducts">

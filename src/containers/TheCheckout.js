@@ -5,8 +5,10 @@ import { AppContext } from 'context/AppContext'
 import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
 import { Popover, InputNumber } from 'antd';
 
-const TheCheckout = () => {
-  
+const TheCheckout = ({ history }) => {
+
+  console.log(history)
+
   const { monyIntlRef } = useContext(AppContext)
   const state = useTiendaState()
   const { carrito } = state.context
@@ -41,6 +43,8 @@ const TheCheckout = () => {
         <Link to={`/product/${_id}/name/${title}`}><p>Ver</p></Link>
         <p onClick={() => handleRemoveItem(_id)}>Borrar</p>
         <InputNumber
+          type="number"
+          className="ntf__control__input"
           color="back"
           min={1}
           max={5}
@@ -68,9 +72,9 @@ const TheCheckout = () => {
               trigger="click"
               placement="rightBottom"
               >
-              <div>
+              <div className="item__carrito__body">
                 <img className="foto" src={prod.foto}></img>
-                <p className="title">{ prod.title }</p>
+                <p className="name_prod">{ prod.title }</p>
                 <p className="catidad">{`Cantidad: ${ prod.cantidad }`}</p>
                 <p className="precio">{ precio }</p>
               </div>
@@ -92,7 +96,7 @@ const TheCheckout = () => {
             <p>Subtotal</p>
             <p>{ monyIntlRef(subtotal) }</p>
           </span>
-          <button>Generar orden de compra</button>
+          <button onClick={() =>  history.push({ pathname: `/checkout/invoice/:folio` })}>Generar orden de compra</button>
       </section>
 
     </div>
