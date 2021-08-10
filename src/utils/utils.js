@@ -86,6 +86,13 @@ export const allproductos = [
     id:"60dcd3beaacd1954ac8308aa",
     img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fpe-btn.png?alt=media&token=e5bb7983-332c-4f1b-91a5-376760698f85',
   },
+  {
+    order: 14,
+    title: "Gabineteria",
+    id:"611220d08b59a91964fbeb87",
+    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fgabineteria.png?alt=media&token=720694e5-2d68-44a5-8c68-44cb970afb95',
+    
+  }
   // {
   //   order: 14,
   //   title: "Process Instrumentation",
