@@ -39,9 +39,27 @@ const LoginButton = () => {
     }
   }
 
+  const stopPropagation = (ev) => {
+    console.log(ev.stopPropagation(), ev)
+
+  }
+
   useEffect(() => {
-    toogleMenu()
-  }, [currentUser])
+    const button = document.querySelector('#buttonLogin')
+
+    window.addEventListener('click', (e) => {
+      if (!button.contains(e.target)){
+        console.log('e')
+        refSubMenu.current.classList.remove("open__submenu")
+        stopPropagation(e)
+      }
+    })
+
+    return function cleanUp(){
+      document.addEventListener('click', stopPropagation, false)
+    }
+
+  })
 
   return (
     <>
@@ -49,6 +67,7 @@ const LoginButton = () => {
          <ul>
            <li onClick={toogleMenu}>
                <img 
+                  id="buttonLogin"
                   src={currentUser ? currentUser?.photoURL : loginUser } 
                   alt="inicio de sesion de usario para ver pedidos" 
                   title="Usa tu cuenta Google para hacer tu pedido"
