@@ -40,7 +40,9 @@ const LoginButton = () => {
   }
 
   useEffect(() => {
-    toogleMenu()
+    if (currentUser){
+      toogleMenu()
+    }
   }, [currentUser])
 
   return (
