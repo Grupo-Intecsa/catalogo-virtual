@@ -39,7 +39,7 @@
 
 .logo--input {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 
   img {
@@ -50,11 +50,13 @@
   }
 }
 
-.whats--cart {
+.tools__header__menu{
   display: flex;
-  height: 40px;
-  padding-right: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
 
 .menu--header {
   flex-basis: 100%;
@@ -110,6 +112,7 @@
 .engine--shearch {
   padding: 0.35rem;
   flex-basis: 40%;
+  position: relative;
 
   > div {
     display: flex;
@@ -274,6 +277,76 @@
   font-size: 1.25rem;
 }
 
+
+
+.menu__login {
+  margin: 8px;
+
+  li{
+    position: relative;
+  }
+
+  span{
+    cursor: pointer;
+    margin: 0;
+    width: 10px;
+    background-color: violet;
+  }
+  
+  li,
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  img{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+}
+
+.submenu__login{
+  position: absolute;
+  z-index: 1000;
+  float: left;
+  right: -10px;
+  display: none;  
+
+  li{
+    padding: 0.25rem;
+    width: 120px;
+    float: left;
+    background-color: var(--selected);
+    color: #FFFF;
+    z-index: 200;
+    border-bottom: 1px solid transparent;
+  }
+
+  button{
+    width: 100%;
+    border: none;
+    background: transparent;
+
+  }
+
+  li:hover{
+    background: var(--white-bg);
+    color: #000000;
+  }
+}
+
+.open__submenu{
+  display: block;
+}
+
+
 // los media querys
 @media (max-width:60rem) {
 
@@ -295,7 +368,7 @@
 
   .engine--shearch {
     div input {
-      width: 8rem;
+      width: 7rem;
       background-position: calc(85% + 10px);
 
       &::placeholder {

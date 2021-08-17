@@ -1,19 +1,16 @@
-import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
+import { useTiendaDispatch } from 'context/TiendaContext'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 // componente principal de envio
-
+//TODO crear modelo para guardar los datos del invoice 
 const DireccionEnvio = () => {
 
-
-  const state = useTiendaState()
   const dispatch = useTiendaDispatch()
-  console.log({ state, dispatch })
-
-
+  
   const  { register, handleSubmit, formState: { errors }} = useForm()
+
   const onSubmitDirectionData = (data) => {
-    console.log(data)
+    dispatch('FORM_STEPS', { data })
   }
 
   const [cheked, setCheked] = useState(true)
@@ -23,22 +20,7 @@ const DireccionEnvio = () => {
 
   return(
     <form onSubmit={handleSubmit(onSubmitDirectionData)} className="formulario__carrito__data">
-       <div className="checkbox__input">
-        <label>
-          La dirección de Envio es la mima dirección que facturación
-        </label>
-        <input
-        type="checkbox"
-        id="sameAddress"
-        checked={cheked}
-        onClick={() => toogleSameDirectory()}
-        { ...register("sameAddress")}
-        >
-        </input>
-    </div>
     <fieldset>
-      <legend>Direccion y Facturación</legend>
-      
       <div>
       <label htmlFor="razonsocial">
             Razón Social
@@ -87,7 +69,7 @@ const DireccionEnvio = () => {
         <label htmlFor="colonia">
             Colonia
         </label>
-            <input 
+            <input
               aria-invalid={errors.colonia ? "true" : "false" }
               required={errors.colonia}
               placeholder={errors.colonia && "Obligatorio"}
@@ -173,7 +155,19 @@ const DireccionEnvio = () => {
               />
         </div>
     </fieldset>
-
+    <div className="checkbox__input">
+        <label>
+          La dirección de Envio es la mima dirección que facturación
+        </label>
+        <input
+        type="checkbox"
+        id="sameAddress"
+        checked={cheked}
+        onClick={() => toogleSameDirectory()}
+        { ...register("sameAddress")}
+        >
+        </input>
+    </div>
     {
       !cheked && (
       <fieldset id="direccion_factura">

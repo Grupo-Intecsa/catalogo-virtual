@@ -116,11 +116,76 @@
 .invoice__container{
   background-color: var(--white-bg);
   display: flex;
-  
   justify-content: space-around;
 }
 
+.google__credentials{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  flex-direction: column;
+  background-color: white;
+  color: var(--black);
+  padding: 1.25rem;
+  height: 200px;
+  border-radius: 8px 8px 0 0;
+}
+
+.data__google__user{
+  margin-top: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+
+  p:nth-child(2n +1){
+    background-color: white;
+    padding: 0.25rem;
+    margin: 4px;
+    font-weight: bold;
+  }
+
+  
+  p{
+    margin: 0;
+    margin-left: 8px;
+  }
+
+  img{
+    border-radius: 100%;
+
+  }
+
+}
+
+.menu__secction__datos__form{
+
+  p{
+    margin: 0;
+  }
+  span{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    color: white;
+    background-color: var(--selected);
+  }
+
+  span::after{
+
+    content: url('../assets/icons/angle-double-down.svg');
+    height: 30px;
+    width: 30px;
+  }
+}
+
 .invoice__body{
+  min-height: 40vh;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column; 
   width: fit-content;
@@ -132,8 +197,7 @@
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  border-radius: 8px;
-  margin: 2rem 0rem;
+  border-radius: 0 0 8px 8px;
   padding: 1.65rem;
   align-items: center;
 
@@ -165,7 +229,6 @@
       display: flex;
       align-items: center;
       padding: 0.25rem;
-      margin: 1rem 0;
     }
     
     div:nth-child(2n){
@@ -180,13 +243,12 @@
     }
 
     input{
-      width: 500px;
+      width: 100%;
       box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     }
 
     label,
     input{
-      font-size: large;
       padding: 0.5rem 1rem;
       border: none;
     }
@@ -202,7 +264,11 @@
 
   }
 
+}
 
+.formulario__carito__pago{
+  width: 600px;
+  margin-top: 10px;
 }
 
 .checkbox__input{
@@ -224,10 +290,40 @@
 
 }
 
+.carrito--items{
+  flex-basis: 100%;
+  margin: 0;
+  
+  > div{
+    display: flex;
+    border-bottom: 1px solid var(--disable);
+    margin-bottom: 28px;
+  }
+
+  > p{
+    white-space: normal;
+  }
+
+}
 
 // media Querys
 
 @media (max-width:60rem){
+
+  .formulario__carrito__data{
+    width: 360px;
+
+    fieldset{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .checkbox__input{
+    label{
+      font-size: small;
+    }
+  }
   
   .Chekout--container{
     flex-direction: column-reverse;
@@ -250,19 +346,5 @@
     }
   }
 
-  .carrito--items{
-    flex-basis: 100%;
-    margin: 0;
-    
-    > div{
-      display: flex;
-      border-bottom: 1px solid var(--disable);
-      margin-bottom: 28px;
-    }
 
-    > p{
-      white-space: normal;
-    }
-
-  }
 

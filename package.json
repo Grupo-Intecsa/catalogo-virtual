@@ -46,6 +46,7 @@
     "env": "0.0.2",
     "enzyme": "^3.11.0",
     "file-saver": "^2.0.5",
+    "firebase": "^8.9.1",
     "framer-motion": "^4.0.3",
     "i": "^0.3.6",
     "intersection-observer": "^0.12.0",
