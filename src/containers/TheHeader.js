@@ -7,16 +7,16 @@ import logo from '../assets/icons/path2.webp'
 // import menu from '../assets/icons/bars.svg'
 import { AppContext } from 'context/AppContext'
 
+// login button
+import LoginButton from 'components/LoginButton'
+
+
 const TheHeader = () => {
   const { contactRequired } = useContext(AppContext)
-  const { form, whatsapp } = contactRequired()
+  const { form } = contactRequired()
 
   const handleFormLik = () => {
     window.open(form, '_blank')
-  }
-
-  const handleWhatsapp = () => {
-    window.open(whatsapp, '_blank')
   }
 
   return (
@@ -51,12 +51,11 @@ const TheHeader = () => {
               </section>
 
                 {/* carrito y whatsapp */}
+                <section className="tools__header__menu">
                   <SearchEngine />
-                  <section className="whats--cart">
-                  <span onClick={handleWhatsapp} className="ico--llamanos--front">+52 55 5570-1197</span>
+                  <LoginButton />
                   <TheCanvasCart />
-                  <span className="icon--bars"></span>
-                </section>              
+                </section>
             </nav>
 
 
@@ -68,7 +67,7 @@ const TheHeader = () => {
 
                   <a 
                     href="http://grupointecsa.com" 
-                    title="Quires saber mas de nostros y nuesto trabjo" 
+                    title="Quires saber mas de nostros y nuestro trabjo" 
                     rel="noreferrer" 
                     target="_blank">
                       <span>¿Quiénes somos?</span>

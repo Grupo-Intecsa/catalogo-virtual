@@ -31,7 +31,6 @@ const SearchEngine = () => {
 
         }else if(e.target.value.length >= 3 ){
             setKeywordSearch(e.target.value)
-            console.log("hola")
             send("GET_TEXT_QUERY", { id: e.target.value, page: 0, limit: 5 })
             setOpen(false)
         }
@@ -83,7 +82,7 @@ const SearchEngine = () => {
                 onChange={onChangeHanldeSearch} 
                 id="search" 
                 ref={resultsRef} />
-            <label id="btn--input" htmlFor="search"></label>
+            {/* <label id="btn--input" htmlFor="search"></label> */}
             
             <div id="blackDrop" ref={balckDropMenu} hidden={open}></div>
             {
@@ -117,7 +116,6 @@ const SearchEngine = () => {
                 )
                 : state.matches("success") && hitSearch.length === 0 && (
                     <div className="hits--results" hidden={open}>
-                    {/* <button className="ico-bg-close" onClick={() => handleClose()}></button> */}
                         <ul id="error--hits">Ultimas Busquedas</ul>
                     </div>
                 )

@@ -96,7 +96,7 @@ const TheCheckout = ({ history }) => {
             <p>Subtotal</p>
             <p>{ monyIntlRef(subtotal) }</p>
           </span>
-          <button onClick={() =>  history.push({ pathname: `/checkout/invoice/:folio` })}>Generar orden de compra</button>
+          <button onClick={() =>  history.push({ pathname: `/checkout/invoice` })}>Generar orden de compra</button>
       </section>
 
     </div>

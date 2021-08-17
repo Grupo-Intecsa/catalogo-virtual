@@ -10,6 +10,7 @@ const hydrateData = async(ctx, event) => {
     return await event.payload
 }
 
+
 export const TiendaMachine = Machine({
   id: "Tienda",
   initial: "iddle",
@@ -18,7 +19,9 @@ export const TiendaMachine = Machine({
     item: {},
     carrito: [],
     pdfData: [],
-    openNotify: true 
+    openNotify: true,
+    dataContent: [],
+    step: null
 
   },
 
@@ -119,6 +122,18 @@ export const TiendaMachine = Machine({
       after:{
         3000: { target: "iddle"}
       }
+    },
+    formSteps: {
+      entry: assign({
+        dataContent: (ctx, event) => event.data
+      }),
+      on:{
+        ADD_PAYMENT: 'addPayment'
+      }
+
+    },
+    addPayment: {
+
     }
 
   },
@@ -164,6 +179,9 @@ export const TiendaMachine = Machine({
     },
     GET_DATA_TO_INVOICE: {
       target: "getDataToInvoice"
+    },
+    FORM_STEPS: {
+      target: "formSteps",
     }
 
   }  

@@ -1,15 +1,40 @@
+// import { useCallback } from 'react'
+import { withRouter } from 'react-router-dom'
+import GoogleAuth from './GoogleAuth'
+
 import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
 import { useForm } from 'react-hook-form'
 
+import app, { firebaseApp } from 'utils/base'
+import { useCallback } from 'react'
 
-const DataPersonalForm = () => {
+
+const DataPersonalForm = ({ history }) => {
 
   const state = useTiendaState()
   const dispatch = useTiendaDispatch()
-  console.log({ state, dispatch })
+
+  console.log({ state, dispatch, history })
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const submitPersonaData = (data) => {
+
+  const signUpGoogle = useCallback(async () => {
+    const provider = new firebaseApp.auth.GoogleAuthProvider
+
+    try {
+      await app
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          console.log(result)
+        })
+        
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
+  const submitPersonaData = async (data) => {
     console.log(data)
   }
   
@@ -54,7 +79,8 @@ const DataPersonalForm = () => {
       </fieldset>
       <div>
           <button type="submit">Nueva Cuenta</button>
-          <button type="button">Ingrese su Cuenta</button>
+          <button onClick={signUpGoogle} type="button">SignUp</button>
+          <GoogleAuth />
       </div>
       <span>
       Recuerde su contraseña para su próximo pedido
@@ -63,4 +89,4 @@ const DataPersonalForm = () => {
   )
 }
 
-export default DataPersonalForm
+export default withRouter(DataPersonalForm)

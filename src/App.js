@@ -10,6 +10,7 @@ import { CatalogoProvider } from './context/catalogoContext'
 import { TiendaProvider } from 'context/TiendaContext'
 import { UserContextProvider } from './context/userContext'
 import AppContextProvider from 'context/AppContext';
+import { AuthProvider } from 'context/AuthContext'
 
 // Containers
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
@@ -24,8 +25,8 @@ class App extends Component {
 
   render() {
     return (
-      
       <UserContextProvider>
+        <AuthProvider>
         <TiendaProvider>
         <CatalogoProvider>
         <AppContextProvider>
@@ -42,6 +43,7 @@ class App extends Component {
         </AppContextProvider>
         </CatalogoProvider>
         </TiendaProvider>
+      </AuthProvider>
       </UserContextProvider>
       
     );

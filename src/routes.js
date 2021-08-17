@@ -26,7 +26,7 @@ const routes = [
   
   // carrito
   { path: '/cart/checkout', exact: false, name: "Crear Pedido", componente: TheCheckout },
-  { path: '/checkout/invoice/:folio', exact: true, name: "Complete Invoice", componente: InvoiceCart },
+  { path: '/checkout/invoice/', exact: true, name: "Complete Invoice", componente: InvoiceCart },
   
   // tarjeta de carrito
   { path: '/product/:slug/name/:title', exact: false, name: 'Productos', componente: ProductoCard },  

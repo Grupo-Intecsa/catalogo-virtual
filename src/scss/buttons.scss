@@ -233,9 +233,9 @@ background-color: white;
 
 .ico--carito{
     content: url("../assets/icons/cart.svg");    
-    width: 2.25rem;
-    height: 2.25rem;
-    margin: 0.25rem;
+    width: 35px;
+    height: 35px;
+    margin-top: 8px;
     cursor: pointer;
 
     &:hover{
@@ -330,6 +330,62 @@ margin-right: 0;
         border: 1px solid transparent;
     }
 }
+
+.google__ico{
+    font-family: var(--normalFont);
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem;
+    border: none;
+    background-color: white;
+    color: var(--black);
+    border-radius: 8px;
+    box-shadow: var(--shadowCard); 
+    box-sizing: border-box;
+    
+    &::before{
+        content: "Inicia Sesión con Google";
+        margin-right: 10px;
+    }
+
+    &::after{
+        background-image: url('../assets/icons/google.svg');
+        background-size: 2rem 2rem;
+        background-repeat: no-repeat;
+        display: flex;
+        padding: 1rem;
+        content: "";
+        width: 2rem;
+        height: 50%;
+    }
+
+    &:hover{
+        background-color: var(--disable);
+    }
+
+}
+
+.cerrar__sesion{
+    font-family: var(--normalFont);
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem;
+    border: none;
+    background-color: var(--blue-bg);
+    color: var(--selected);
+    color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadowCard); 
+    box-sizing: border-box;
+    
+    &::before{
+        content: "Cerrar Sesión";
+        margin-right: 10px;
+    }
+
+}
+
+
 
 
 @keyframes pulse_esmeralda {
