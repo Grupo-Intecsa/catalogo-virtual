@@ -1,10 +1,12 @@
-import { useCallback, useContext, useEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { AuthContext } from 'context/AuthContext'
 
 import app, { firebaseApp } from 'utils/base'
 import loginUser from 'assets/icons/user.svg'
 
 const LoginButton = () => {
+
+  const [toggle, setToggle] = useState(false)
 
   const { currentUser } = useContext(AuthContext)
   const signOut = () => {
@@ -31,6 +33,7 @@ const LoginButton = () => {
   }, [])
 
   const refSubMenu = useRef()
+
   const toogleMenu = () => {
     if (refSubMenu.current.classList.contains("open__submenu")){
       refSubMenu.current.classList.remove("open__submenu")
@@ -39,33 +42,36 @@ const LoginButton = () => {
     }
   }
 
-  const stopPropagation = (ev) => {
-    console.log(ev.stopPropagation(), ev)
-
-  }
-
   useEffect(() => {
-    const button = document.querySelector('#buttonLogin')
-
-    window.addEventListener('click', (e) => {
-      if (!button.contains(e.target)){
-        console.log('e')
-        refSubMenu.current.classList.remove("open__submenu")
-        stopPropagation(e)
-      }
+    const buttonLogin = document.querySelector("#buttonLogin")
+    buttonLogin.addEventListener('click', () => {
+      toogleMenu()
+      setToggle(true)
     })
 
-    return function cleanUp(){
-      document.addEventListener('click', stopPropagation, false)
+    if (toggle === true){
+      window.addEventListener('click', function(e){
+        if(!buttonLogin.contains(e.target) && refSubMenu.current.classList.contains("open__submenu")){
+          toogleMenu()
+          setToggle(false)
+        }else {
+          window.removeEventListener('click', toogleMenu)
+        }
+      })    
     }
 
-  })
+    return () => {
+      setToggle(false)
+      buttonLogin.removeEventListener('click', toogleMenu)
+    }
+
+  }, [toggle])
 
   return (
     <>
       <nav className="menu__login">
          <ul>
-           <li onClick={toogleMenu}>
+           <li>
                <img 
                   id="buttonLogin"
                   src={currentUser ? currentUser?.photoURL : loginUser } 
