@@ -55,7 +55,7 @@ const LoginButton = () => {
           toogleMenu()
           setToggle(false)
         }else {
-          window.removeEventListener('click', this)
+          window.removeEventListener('click', toogleMenu)
         }
       })    
     }
