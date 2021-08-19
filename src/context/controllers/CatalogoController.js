@@ -1,8 +1,8 @@
 import axios from 'axios'
 import decode from 'jwt-decode'
 
-// export const baseURL = 'https://quiet-castle-61424.herokuapp.com/api/v1'
-export const baseURL = 'http://localhost:3000/api/v1'
+export const baseURL = 'https://quiet-castle-61424.herokuapp.com/api/v1'
+// export const baseURL = 'http://localhost:3000/api/v1'
 
 export const api = axios.create({
     baseURL
