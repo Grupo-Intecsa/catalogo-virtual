@@ -10,7 +10,6 @@ const hydrateData = async(ctx, event) => {
     return await event.payload
 }
 
-
 export const TiendaMachine = Machine({
   id: "Tienda",
   initial: "iddle",
@@ -115,7 +114,17 @@ export const TiendaMachine = Machine({
       }
     },
     pdfDataDone: {},
-    pdfCreate: {},
+    pdfCreate: {
+      after: {
+        300: {
+          actions: (ctx) => {            
+            const { carrito } = ctx
+            carrito.splice(0, carrito.length)
+            localStorage.setItem("localCarrito", JSON.stringify(carrito))
+          }
+        }
+      }
+    },
     success: {},
     error: {},
     rejected: {

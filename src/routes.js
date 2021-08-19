@@ -6,6 +6,7 @@ const Categories = React.lazy(() => import("views/Categories/Categories"))
 const Familias = React.lazy(() =>  import('views/Familias/Familias'))
 const TheCheckout = React.lazy(() => import('containers/TheCheckout'))
 const InvoiceCart = React.lazy(() => import('components/InvoiceCart/InvoiceCart'))
+const Pedidos = React.lazy(() => import('views/Pedidos'))
 const Page404 = React.lazy(() => import('views/pages/page404/Page404'))
 const BrandComponent = React.lazy(() =>  import('views/BrandComponent'))
 const SearchView = React.lazy(() => import('views/SearchView'))
@@ -27,6 +28,7 @@ const routes = [
   // carrito
   { path: '/cart/checkout', exact: false, name: "Crear Pedido", componente: TheCheckout },
   { path: '/checkout/invoice/', exact: true, name: "Complete Invoice", componente: InvoiceCart },
+  { path: '/pedido/user/', exact: true, name: "Pedidos", componente: Pedidos },
   
   // tarjeta de carrito
   { path: '/product/:slug/name/:title', exact: false, name: 'Productos', componente: ProductoCard },  

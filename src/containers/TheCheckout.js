@@ -7,8 +7,6 @@ import { Popover, InputNumber } from 'antd';
 
 const TheCheckout = ({ history }) => {
 
-  console.log(history)
-
   const { monyIntlRef } = useContext(AppContext)
   const state = useTiendaState()
   const { carrito } = state.context
