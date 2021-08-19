@@ -41,8 +41,8 @@ const DireccionEnvio = () => {
         </label>
             <input 
               aria-invalid={errors.rfc ? "true" : "false" }
-              required={errors.razonsocial}
-              placeholder={errors.razonsocial && "Ingresa un RFC valido"}
+              required={errors.rfc}
+              placeholder={errors.rfc && "Ingresa un RFC valido"}
               id="rfc"
               type="text" 
               { ...register("rfc", { 
@@ -52,86 +52,86 @@ const DireccionEnvio = () => {
       </div>
 
       <div>
-        <label htmlFor="direccion">
+        <label htmlFor="direccionRfc">
             Dirección
         </label>
             <input 
-              aria-invalid={errors.direccion ? "true" : "false" }
-              required={errors.direccion}
-              placeholder={errors.direccion && "Obligatorio"}
-              id="direccion"
+              aria-invalid={errors.direccionRfc ? "true" : "false" }
+              required={errors.direccionRfc}
+              placeholder={errors.direccionRfc && "Obligatorio"}
+              id="direccionRfc"
               type="text" 
-              { ...register("direccion", { required: true })}
+              { ...register("direccionRfc", { required: true })}
               />
         </div>
 
         <div>
-        <label htmlFor="colonia">
+        <label htmlFor="coloniaRfc">
             Colonia
         </label>
             <input
-              aria-invalid={errors.colonia ? "true" : "false" }
-              required={errors.colonia}
-              placeholder={errors.colonia && "Obligatorio"}
-              id="colonia"
+              aria-invalid={errors.coloniaRfc ? "true" : "false" }
+              required={errors.coloniaRfc}
+              placeholder={errors.coloniaRfc && "Obligatorio"}
+              id="coloniaRfc"
               type="text" 
-              { ...register("colonia", { required: true })}
+              { ...register("coloniaRfc", { required: true })}
               />
         </div>
 
         <div>
-        <label htmlFor="codigopostal">
+        <label htmlFor="codigopostalRcf">
             Código Postal
         </label>
             <input 
-              aria-invalid={errors.codigopostal ? "true" : "false" }
-              required={errors.codigopostal}
-              placeholder={errors.codigopostal && "Obligatorio"}
-              id="codigopostal"
+              aria-invalid={errors.codigopostalRcf ? "true" : "false" }
+              required={errors.codigopostalRcf}
+              placeholder={errors.codigopostalRcf && "Obligatorio"}
+              id="codigopostalRcf"
               type="text" 
-              { ...register("codigopostal", { required: true })}
+              { ...register("codigopostalRcf", { required: true })}
               />
           </div>
 
         <div>  
-        <label htmlFor="ciudad">
+        <label htmlFor="ciudadRfc">
             Ciudad
         </label>
             <input 
-              aria-invalid={errors.ciudad ? "true" : "false" }
-              required={errors.ciudad}
-              placeholder={errors.ciudad && "Obligatorio"}
-              id="ciudad"
+              aria-invalid={errors.ciudadRfc ? "true" : "false" }
+              required={errors.ciudadRfc}
+              placeholder={errors.ciudadRfc && "Obligatorio"}
+              id="ciudadRfc"
               type="text" 
-              { ...register("ciudad", { required: true })}
+              { ...register("ciudadRfc", { required: true })}
               />
         </div>
 
         <div>
-        <label htmlFor="estado">
+        <label htmlFor="estadoRfc">
             Estado
         </label>
             <input 
-              aria-invalid={errors.estado ? "true" : "false" }
-              required={errors.estado}
-              placeholder={errors.estado && "Obligatorio"}
-              id="estado"
+              aria-invalid={errors.estadoRfc ? "true" : "false" }
+              required={errors.estadoRfc}
+              placeholder={errors.estadoRfc && "Obligatorio"}
+              id="estadoRfc"
               type="text" 
-              { ...register("estado", { required: true })}
+              { ...register("estadoRfc", { required: true })}
               />
         </div>
 
         <div>
-        <label htmlFor="provinciaedo">
-            Provincia o Estado
+        <label htmlFor="alcaldiaRfc">
+            Provincia o Alcaldia
         </label>
             <input 
-              aria-invalid={errors.estado ? "true" : "false" }
-              required={errors.estado}
-              placeholder={errors.estado && "Obligatorio"}
-              id="provinciaedo"
+              aria-invalid={errors.alcaldiaRfc ? "true" : "false" }
+              required={errors.alcaldiaRfc}
+              placeholder={errors.alcaldiaRfc && "Obligatorio"}
+              id="alcaldiaRfc"
               type="text" 
-              { ...register("provinciaedo", { required: true })}
+              { ...register("alcaldiaRfc", { required: true })}
               />
         </div>
 
@@ -171,90 +171,90 @@ const DireccionEnvio = () => {
     {
       !cheked && (
       <fieldset id="direccion_factura">
-        <legend>Dirección de Facturación</legend>
+        <legend>Dirección de Envio</legend>
       
       <div>
-        <label htmlFor="direccion_factura">
+        <label htmlFor="direccionEnvio">
             Dirección
         </label>
         <input 
-              aria-invalid={errors.direccion_factura ? "true" : "false" }
-              required={errors.direccion_factura}
-              placeholder={errors.direccion_factura && "Obligatorio"}
-              id="direccion_factura"
+              aria-invalid={errors.direccionEnvio ? "true" : "false" }
+              required={errors.direccionEnvio}
+              placeholder={errors.direccionEnvio && "Obligatorio"}
+              id="direccionEnvio"
               type="text" 
-              { ...register("direccion_factura", { required: false })}
+              { ...register("direccionEnvio", { required: false })}
               />
       </div>
 
       <div>
-        <label htmlFor="colonia_factura">
+        <label htmlFor="coliniaEnvio">
             Colonia
         </label>
             
             <input 
-              aria-invalid={errors.colonia_factura ? "true" : "false" }
-              required={errors.colonia_factura}
-              placeholder={errors.colonia_factura && "Obligatorio"}
-              id="colonia_factura"
+              aria-invalid={errors.coliniaEnvio ? "true" : "false" }
+              required={errors.coliniaEnvio}
+              placeholder={errors.coliniaEnvio && "Obligatorio"}
+              id="coliniaEnvio"
               type="text" 
-              { ...register("colonia_factura", { required: false })}
+              { ...register("coliniaEnvio", { required: false })}
               />
       </div>
 
       <div>
-        <label htmlFor="codigopostal__factura">
+        <label htmlFor="postalEnvio">
             Código Postal
         </label>
             <input 
-              aria-invalid={errors.codigopostal__factura ? "true" : "false" }
-              required={errors.codigopostal__factura}
-              placeholder={errors.codigopostal__factura && "Obligatorio"}
-              id="codigopostal__factura"
+              aria-invalid={errors.postalEnvio ? "true" : "false" }
+              required={errors.postalEnvio}
+              placeholder={errors.postalEnvio && "Obligatorio"}
+              id="postalEnvio"
               type="text" 
-              { ...register("codigopostal__factura", { required: false })}
+              { ...register("postalEnvio", { required: false })}
               />
       </div>
 
       <div>
-        <label htmlFor="ciudad__factura">
+        <label htmlFor="ciudadEnvio">
             Ciudad
         </label>
             <input 
-              aria-invalid={errors.ciudad__factura ? "true" : "false" }
-              required={errors.ciudad__factura}
-              placeholder={errors.ciudad__factura && "Obligatorio"}
-              id="ciudad__factura"
+              aria-invalid={errors.ciudadEnvio ? "true" : "false" }
+              required={errors.ciudadEnvio}
+              placeholder={errors.ciudadEnvio && "Obligatorio"}
+              id="ciudadEnvio"
               type="text" 
-              { ...register("ciudad__factura", { required: false })}
+              { ...register("ciudadEnvio", { required: false })}
               />
       </div>
 
       <div>
-        <label htmlFor="estado__facturacion">
+        <label htmlFor="estadoEnvio">
             Estado
         </label>
             <input 
-              aria-invalid={errors.estado__facturacion ? "true" : "false" }
-              required={errors.estado__facturacion}
-              placeholder={errors.estado__facturacion && "Obligatorio"}
-              id="estado__facturacion"
+              aria-invalid={errors.estadoEnvio ? "true" : "false" }
+              required={errors.estadoEnvio}
+              placeholder={errors.estadoEnvio && "Obligatorio"}
+              id="estadoEnvio"
               type="text" 
-              { ...register("estado__facturacion", { required: false })}
+              { ...register("estadoEnvio", { required: false })}
               />
       </div>
 
       <div>
-        <label htmlFor="provinciaedo__facturacion">
-            Provincia o Estado
+        <label htmlFor="alcaldiaEnvio">
+            Provincia o Alcaldia
         </label>  
             <input 
-              aria-invalid={errors.provinciaedo__facturacion ? "true" : "false" }
-              required={errors.provinciaedo__facturacion}
-              placeholder={errors.provinciaedo__facturacion && "Obligatorio"}
-              id="provinciaedo__facturacion"
+              aria-invalid={errors.alcaldiaEnvio ? "true" : "false" }
+              required={errors.alcaldiaEnvio}
+              placeholder={errors.alcaldiaEnvio && "Obligatorio"}
+              id="alcaldiaEnvio"
               type="text" 
-              { ...register("provinciaedo__facturacion", { required: false })}
+              { ...register("alcaldiaEnvio", { required: false })}
               />
       </div>
       </fieldset>

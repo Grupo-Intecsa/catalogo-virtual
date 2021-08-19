@@ -8,12 +8,7 @@ const Login = () => {
 
   const { state } = UserState()
   const dispatch = UserDispatch()
-
-  // useEffect(() => {
-  //   const sub = service.subscribe((state) => console.log(state) )
-  //   return () => sub.unsubscribe()
-  // },[state]) 
-
+  
   const { register, handleSubmit } = useForm()
 
   const onLoginSubmit = (data) => {

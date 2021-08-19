@@ -172,7 +172,7 @@ export default {
       return undefined
     }else {
       window.scrollTo({
-        top: target?.current.offsetTop,
+        top: target?.current?.offsetTop,
         behavior: "smooth"
       })
     }

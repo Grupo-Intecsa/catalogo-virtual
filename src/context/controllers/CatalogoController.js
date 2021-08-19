@@ -1,9 +1,11 @@
 import axios from 'axios'
 import decode from 'jwt-decode'
 
+export const baseURL = 'https://quiet-castle-61424.herokuapp.com/api/v1'
+// export const baseURL = 'http://localhost:3000/api/v1'
+
 export const api = axios.create({
-    baseURL: 'https://quiet-castle-61424.herokuapp.com/api/v1'
-    // baseURL: 'http://localhost:3000/api/v1'
+    baseURL
 })
 
 export default {
@@ -209,11 +211,10 @@ export default {
     },
     invoiceCreate: async(ctx, event) => {
 
-        const invoiceSave = await api.post('/save-pdf', event)
-        .then(res => res.data && res.data.message && res.data.message._id)
+        const invoiceSave = await api.post('/save-pdf', { data: event.data })
+        .then(res => res.data && res.data.message)
 
         return invoiceSave
-
     }, 
     getDataToInvoice: async(ctx, event) => {
 
@@ -251,6 +252,15 @@ export default {
 
         return query
         
+    },
+    getPedidos: async (email) => {
+
+        const query = await api
+            .get(`/pedidos?email=${email}`)
+            .then(res => res.data.message)
+            .catch(err => console.log(err))
+
+        return query
     }
     
 }

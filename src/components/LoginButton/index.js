@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { AuthContext } from 'context/AuthContext'
 
 import app, { firebaseApp } from 'utils/base'
@@ -31,6 +32,9 @@ const LoginButton = () => {
         console.log(error)
       }
   }, [])
+
+  const history = useHistory()
+  const goPedidos = () => history.push('/pedido/user')
 
   const refSubMenu = useRef()
 
@@ -98,7 +102,7 @@ const LoginButton = () => {
                  </div>
               </li>
                <li>
-                 <button>
+                 <button onClick={goPedidos}>
                    Mis pedidos
                  </button>
               </li>

@@ -2,20 +2,44 @@ import { useContext, useRef } from 'react'
 import { AuthContext } from 'context/AuthContext'
 import { useTiendaState, useTiendaDispatch } from 'context/TiendaContext'
 
-import MetodoPago from './forms/MetodoPago'
+// import MetodoPago from './forms/MetodoPago'
 import DireccionEnvio from './forms/DireccionEnvio'
 import GoogleAuth from './forms/GoogleAuth'
 
-const InvoiceCart = () => {
+// error handled 
+import HandledRedirectForm from './forms/HandledRedirectFrom'
+
+
+const InvoiceCart = ({ history }) => {
 
   const { currentUser } = useContext(AuthContext)
 
   // refs
   const topPagoRef = useRef()
-
   const state = useTiendaState()
   const dispatch = useTiendaDispatch()
-  console.log({ state, dispatch, currentUser })
+
+  console.log({ state, dispatch, currentUser, history })
+  const { carrito, dataContent } = state.context
+
+  const handleInvoice = () => {
+
+    const total = Object.values(carrito)
+    .map(({ cantidad, precio }) => cantidad * precio)
+    .reduce((acc, current) => acc + current)
+
+    const payload = {
+      uuidUser: currentUser.uid,
+      date: new Date(),
+      total, 
+      carrito,
+      ...dataContent,
+        name: currentUser.displayName,
+        email: currentUser.email
+    }
+     dispatch('INVOICE_CREATE', { data: payload })
+
+  }
 
   return(
     <>
@@ -62,17 +86,26 @@ const InvoiceCart = () => {
         </span>
         { currentUser && !state.matches('formSteps') && <DireccionEnvio /> }
       </section>
-
       <section className="menu__secction__datos__form">
         <span>
-            <p>Metodo de Pago</p>
+            {/* <p>Metodo de Pago</p> */}
+            <p>Orden de compra</p>
         </span>
-        { state.matches('formSteps') && <MetodoPago topPagoRef={topPagoRef} /> }
+
+        { state.matches('formSteps') && (
+          <div className="forma__pago">
+          <p>En este momento estamos trabajando para que puedas hacer tu pago seguro por mercado Pago y Paypal</p>
+          <p>Por el momento puedes generar tu <b>Orden de compra</b> y nos pondremos en contacto usted</p>
+          <hr />
+          <button onClick={handleInvoice}>Enviar Orden de Compra</button>
+          </div>
+        
+        )}
       </section>
 
       </div>
   
-
+      <HandledRedirectForm />
     </div>
     </>
   )

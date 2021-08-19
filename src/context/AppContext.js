@@ -97,10 +97,14 @@ const GetPriceIdMl = ({ ml }) => {
   }
 
   const monyIntlRef = (precio) => {
-    const number = new Intl.NumberFormat('en-MX', { style:"currency", currency: "MXN"}).format(precio)
+    const number = new Intl.NumberFormat('es-MX', { style:"currency", currency: "MXN"}).format(precio)
     return number
   }
 
+  const dateIntlRef = (date) => {
+    const styleDate = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium' }).format(new Date(date))
+    return styleDate
+  }
 
   
   const AppContextProvider = (props) => {
@@ -136,7 +140,8 @@ const GetPriceIdMl = ({ ml }) => {
         migas, 
         setMigas,
         handleNotifyCart,
-        openNotify
+        openNotify,
+        dateIntlRef
     }}>
       { props.children }
     </AppContext.Provider>
