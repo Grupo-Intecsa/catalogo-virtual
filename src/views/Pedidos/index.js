@@ -106,7 +106,7 @@ const Pedidos = () => {
                         <span>
                           {/* <button>Comprar de nuevo</button> */}
                           <HamburgerButton>
-                            <h3 onClick={() => pdfCreator({ data: item })}>Descargar</h3>
+                            <span onClick={() => pdfCreator({ data: item })}>Descargar</span>
                           </HamburgerButton>
                             <button onClick={() => pdfCreator({ data: item })}>Descargar Orden de Compra</button>
                           {/* <button>Requerir Factura</button> */}
