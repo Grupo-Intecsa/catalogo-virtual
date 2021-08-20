@@ -8,13 +8,14 @@ import { AppContext } from "context/AppContext"
 import utils from 'utils/utils'
 import { saveAs } from 'file-saver'
 
+import HamburgerButton from 'reusable/HamburgerButton'
+
 const Pedidos = () => {
 
   // Estados interno
   const [ pedidosData, setPedidosData ] = useState([])
   const [ loading, setLoading ] = useState(false)
-
-
+  
   // contexto
   const { currentUser } = useContext(AuthContext)
   const { monyIntlRef, dateIntlRef } = useContext(AppContext)
@@ -61,7 +62,6 @@ const Pedidos = () => {
     })
   }
 
-
   return (
     <>
     <div className="pedidos__container">
@@ -104,9 +104,12 @@ const Pedidos = () => {
                           })
                         }
                         <span>
-                          <button>Comprar de nuevo</button>
-                          <button onClick={() => pdfCreator({ data: item })}>Descargar Orden de Compra</button>
-                          <button>Requerir Factura</button>
+                          {/* <button>Comprar de nuevo</button> */}
+                          <HamburgerButton>
+                            <h3 onClick={() => pdfCreator({ data: item })}>Descargar</h3>
+                          </HamburgerButton>
+                            <button onClick={() => pdfCreator({ data: item })}>Descargar Orden de Compra</button>
+                          {/* <button>Requerir Factura</button> */}
                         </span>
                       </tbody>
                     </table>
