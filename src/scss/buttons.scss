@@ -246,9 +246,10 @@
         background-color: var(--white-bg);
         z-index: 1000;
 
-        h3{
+        span{
             background-color: var(--esmeralda);
             color: white;
+            width: 100%;
 
             &:hover{
                 opacity: 0.65;
