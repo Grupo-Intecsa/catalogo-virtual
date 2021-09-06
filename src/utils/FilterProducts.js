@@ -46,7 +46,6 @@ const FilterProducts = ({ payload, send } = {}) => {
         send("FILTER", { option })
     },[])
 
-
     return (
         <div className="filtros__App">
             <section>

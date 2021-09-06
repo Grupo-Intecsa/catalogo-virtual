@@ -10,11 +10,12 @@ const ButtonOption = ({ children, isSelected }) => {
   const handleButton = (e) => {  
 
     const slectedOption = (event) => {
+
       const array = event.target.value.split(" ")
       setFamBarItemSelected({ cap: array[0], unidad: array[1] })
     }
     slectedOption(e)
-
+    
     const activeButtons = document.getElementsByClassName("button--capacidad--selected")
     if(activeButtons.length > 0){
       activeButtons.forEach(div => div.classList.remove("button--capacidad--selected"))

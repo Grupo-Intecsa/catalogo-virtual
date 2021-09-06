@@ -5,20 +5,32 @@ import ButtonOption from "reusable/ButtonOption"
 import utils from 'utils/utils'
 
 const FamiliasBar = ({ payload, slug }) => {
+
   const { setFamBarItemSelected } = useContext(AppContext)
 
   const familia = payload.filter(item => item.familia === slug )
   
     let capacidades = useMemo(() => {
 
-      let valores = familia.map(({ capacidad }) => capacidad )
-      const capacidad = valores
-      .reduce(( array, item ) => array.includes(item.amps) ? array : [ ...array, item.amps ], [])
-      .sort(utils.orderArray)
       
-      let unidad = Object.keys(valores[0]).map(item => item)[0]
+      let valores = familia.map(({ capacidad }) => capacidad )
+      if (valores[0].mm) {
 
-      return { capacidad, unidad }
+        const capacidad = valores
+        .reduce(( array, item ) => array.includes(item.mm) ? array : [ ...array, item.mm ], [])
+        .sort(utils.orderArray)
+      
+        let unidad = Object.keys(valores[0]).map(item => item)[0]
+        return { capacidad, unidad }
+
+      }else if (valores[0].amps) {
+        const capacidad = valores
+        .reduce(( array, item ) => array.includes(item.amps) ? array : [ ...array, item.amps ], [])
+        .sort(utils.orderArray)
+  
+        let unidad = Object.keys(valores[0]).map(item => item)[0]
+        return { capacidad, unidad }
+      }
 
     },[])
 

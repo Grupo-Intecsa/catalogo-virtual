@@ -151,12 +151,18 @@ export default {
     return imgProduct
   },
   getSelection: ({ familiaName, payload, selection }) => {
-    const arraySelection = _.values(selection)[0]
 
-    if(Object.values(selection).length > 0 ){    
+    const arraySelection = _.values(selection)[0]
+    if(Object.values(selection).length > 0 && isNaN(arraySelection) === false ){    
       const nextSelection = payload
         .filter(item => item.familia === familiaName)
         .filter(({ capacidad }) => Object.values(capacidad)[0] === +arraySelection)
+        return nextSelection
+
+    }else if(Object.values(selection).length > 0 && isNaN(arraySelection) === true ) {
+      const nextSelection = payload
+        .filter(item => item.familia === familiaName)
+        .filter(({ capacidad }) => Object.values(capacidad)[0] === arraySelection)
         return nextSelection
 
     }else if(selection.length === 0 ){
@@ -187,6 +193,7 @@ export default {
     return 0
   },
   capacidadSet: ( capacidad ) => {
+    
     let valor = Object.keys(capacidad).map((key, index) => {
         let val = Object.values(capacidad)[index]
         return `${val} ${key}`
