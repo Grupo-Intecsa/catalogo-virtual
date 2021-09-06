@@ -22,7 +22,7 @@
   width: 100%;
   height: 500px;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
   padding: 12px;
@@ -103,8 +103,7 @@
 
 .familias--bar{
   flex-basis: 200px;
-  height: fit-content;
-  border: var(--blue-bg) 2px solid;
+  height: 100%;
   border-radius: 4px;
   
   p{
