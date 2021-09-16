@@ -4,6 +4,7 @@ import utils from 'utils/utils'
 
 import logoABB from 'assets/icons/abb_ico.png'
 import logoITA from 'assets/icons/ita_ico.png'
+import logoCSM from 'assets/icons/csm_ico.png'
 
 export const AppContext = createContext()
 
@@ -15,6 +16,10 @@ const logoMap = [
   {
     id: "60dcceaab22f37097c58161e",
     logo: logoABB
+  },
+  {
+    id: "6143b3c4fb10c4b5ed4faadb",
+    logo: logoCSM
   }
   
 ]

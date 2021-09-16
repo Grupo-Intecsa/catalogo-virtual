@@ -81,7 +81,13 @@ export const allproductos = [
     "id": "6143a3affb10c4b5ed4faac5",
     "img": "https://cdn.productimages.abb.com/9IBA171939_720x540.jpg",
     "title": "Contactores"
+  },
+  {
+    "title":"Canalizacion y Soporteria",
+    "img":"https://cdn.productimages.abb.com/2CDC221009V0017_720x540.jpg",
+    "id": "6143b4fffb10c4b5ed4faade"
   }
+  
   
 ]
 
