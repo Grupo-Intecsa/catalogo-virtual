@@ -159,6 +159,13 @@
   border-bottom: 2px solid var(--blue-bg);
 }
 
+.logo__selector__mini{
+  height: auto;
+  width: 50px;
+  padding: 0.23rem;    
+  border-radius: 100px;
+}
+
 .slim-b{
   display: flex;
   flex-direction: column;

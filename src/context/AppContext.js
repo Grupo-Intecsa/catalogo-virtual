@@ -27,7 +27,7 @@ const logoMap = [
 const logoSelector = (id) => {
   const logo = logoMap.find(item => item.id === id )
   return(
-    logo ? <img key={id} src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px" }} /> : <small style={{ color: 'white'}}>Logo no disponible</small>
+    logo ? <img key={id} src={logo.logo} alt="logo de empresa" style={{ height: "auto", width: "50px"}} className="logo__selector__mini" /> : <small style={{ color: 'white'}}>Logo no disponible</small>
   ) 
 }
 

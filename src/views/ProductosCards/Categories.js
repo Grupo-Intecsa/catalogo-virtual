@@ -22,7 +22,7 @@ const Categories = () => {
                 </Link>
 
                 {/* TODO FALTA  */}
-                <Link to={"/products/brand/603eef9df2aaf100158dc3a6/csm"}>
+                <Link to={"/products/brand/6143b3c4fb10c4b5ed4faadb/csm"}>
                     <div className="btn butom-rounded-cate ico--brand--csm">
                     </div>
                 </Link>
