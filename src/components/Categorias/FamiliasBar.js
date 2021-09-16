@@ -18,8 +18,6 @@ const FamiliasBar = ({ payload, slug }) => {
 
       if (valores[0].mm) {
 
-        console.log("el capitan")
-
         const capacidad = valores
         .reduce(( array, item ) => array.includes(item.mm) ? array : [ ...array, item.mm ], [])
         .sort(utils.orderArray)
