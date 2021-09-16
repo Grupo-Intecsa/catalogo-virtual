@@ -3,121 +3,85 @@ import _ from 'lodash'
 
 export const allproductos = [
   {
-    order: 1,
-    title: "Desconectadores",
-    id: "60dcd26ab22f37097c581620",
-    img: "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fcktpro-btn.png?alt=media&token=26557e53-8704-4f88-bd42-f4e4f2add802",
+    "id": "60dcd26ab22f37097c581620",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fotm.png?alt=media&token=2c15cced-7e42-4274-98a2-08ea25704027",
+    "title": "Desconectadores"
   },
   {
-    order: 2,
-    title: "Seccionador",
-    id: "60dcd276b22f37097c581622",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fturnkey-btn.png?alt=media&token=588a645a-c5a3-49e8-9739-b352a971dadc',
+    "id": "60dcd276b22f37097c581622",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fseccionador.png?alt=media&token=8938c725-c6e9-4881-b0e6-47a2c273f0d5",
+    "title": "Seccionador"
   },
   {
-    order: 3,
-    title: "Interruptor Seccionador",
-    id: "60dcd283b22f37097c581624",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fem-btn.png?alt=media&token=751b7ed5-b4e9-45c1-ae8a-2137923fcc6b',
+    "id": "60dcd283b22f37097c581624",
+    "img": "https://cdn.productimages.abb.com/9IBA191974_720x540.jpg",
+    "title": "Interruptor Seccionador"
   },
   {
-    order: 4,
-    title: "Accesorio de Interruptores",
-    id: "60dcd2a5b22f37097c581626",
-    img: "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fea-btn.png?alt=media&token=588b3238-84e6-4758-be80-de8b237eb48a",
+    "id": "60dcd2a5b22f37097c581626",
+    "img": "https://cdn.productimages.abb.com/9IBA192193_720x540.jpg",
+    "title": "Accesorio de Interruptores"
   },
   {
-    order: 5,
-    title: "Interruptores Caja Moldeada",
-    id: "60dcd2c2b22f37097c581628",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fhvac-btn.png?alt=media&token=e29b186c-4682-4508-95b6-6d88f4334e57',
+    "id": "60dcd2c2b22f37097c581628",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fcktpro-btn.png?alt=media&token=26557e53-8704-4f88-bd42-f4e4f2add802",
+    "title": "Interruptores Caja Moldeada"
   },
   {
-    order: 6,
-    title: "Gabineteria",
-    id: "60dcd2d2b22f37097c58162a",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fea-btn.png?alt=media&token=588b3238-84e6-4758-be80-de8b237eb48a',
+    "id": "60dcd2dfb22f37097c58162c",
+    "img": "https://cdn.productimages.abb.com/9IBA191980_720x540.jpg",
+    "title": "Interruptores y Accesorios"
   },
   {
-    order: 7,
-    title: "Interruptores y Accesorios",
-    id: "60dcd2dfb22f37097c58162c",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Felmechic-btn.png?alt=media&token=85ebbadb-ef86-429a-9a3b-49ba6cd125b3',
+    "id": "60dcd302b22f37097c58162e",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fdiferenciales.png?alt=media&token=0f13f3cd-9207-4c04-b783-e0d83d81f08d",
+    "title": "Diferenciales"
   },
   {
-    order: 8,
-    title: "Diferenciales",
-    id: "60dcd302b22f37097c58162e",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fintwc-btn.png?alt=media&token=214d4e2b-02e0-4230-9dae-923aa611c0a0',
+    "id": "60dcd375aacd1954ac8308a0",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Ffusibles.png?alt=media&token=e21dae5f-899c-4298-9a11-8371a52d4af8",
+    "title": "Fusibles"
   },
   {
-    order: 8,
-    title: "Fusibles",
-    id: "60dcd375aacd1954ac8308a0",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Foptoelec-btn.png?alt=media&token=91c36fbc-f4aa-4244-abcd-05cd8a67e055',
+    "id": "60dcd37faacd1954ac8308a2",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Frieldin.png?alt=media&token=9ff315f0-a9d5-434a-b5ce-f44eda0b4956",
+    "title": "Interruptores riel din"
   },
   {
-    order: 9,
-    title: "Interruptores riel din",
-    id:"60dcd37faacd1954ac8308a2",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Flighting-btn.png?alt=media&token=540cca63-b2f0-42e1-b8ac-9bc4d28b5334',
+    "id": "60dcd390aacd1954ac8308a4",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fint_gab.png?alt=media&token=7d64d7ac-6d41-4fa7-b5cf-adc9bb3b30a0",
+    "title": "Seccionador en Gabinete"
   },
   {
-    order: 10,
-    title: "Seccionador en Gabinete",
-    id:"60dcd390aacd1954ac8308a4",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fmotrdriv-btn.png?alt=media&token=719ba7a4-6084-4d3e-8634-2a627bd00532',
+    "id": "60dcd3a1aacd1954ac8308a6",
+    "img": "",
+    "title": "Contactores"
   },
   {
-    order: 11,
-    title: "Contactores",
-    id:"60dcd3a1aacd1954ac8308a6",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fnetcom-btn.png?alt=media&token=7daa8df7-2222-438c-b0a7-abdb84530536',
+    "id": "60dcd3afaacd1954ac8308a8",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fint_gab.png?alt=media&token=7d64d7ac-6d41-4fa7-b5cf-adc9bb3b30a0",
+    "title": "Interruptor en Gabinete"
   },
   {
-    order: 12,
-    title: "Interruptor en Gabinete",
-    id:"60dcd3afaacd1954ac8308a8",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fpassive-btn.png?alt=media&token=9ded337b-a91c-412d-8af5-a33042f01d67',
+    "id": "60dcd3beaacd1954ac8308aa",
+    "img": "",
+    "title": "Desconectador en Gabinete"
   },
   {
-    order: 13,
-    title: "Desconectador en Gabinete",
-    id:"60dcd3beaacd1954ac8308aa",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fpe-btn.png?alt=media&token=e5bb7983-332c-4f1b-91a5-376760698f85',
+    "id": "60dd4a9e3982fa4464dbac27",
+    "img": "",
+    "title": "Arrancador en Gabinete"
   },
   {
-    order: 14,
-    title: "Gabineteria",
-    id:"611220d08b59a91964fbeb87",
-    img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fgabineteria.png?alt=media&token=720694e5-2d68-44a5-8c68-44cb970afb95',
-    
+    "id": "611220d08b59a91964fbeb87",
+    "img": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fgabineteria.png?alt=media&token=720694e5-2d68-44a5-8c68-44cb970afb95",
+    "title": "Gabineteria"
+  },
+  {
+    "id": "6143a3affb10c4b5ed4faac5",
+    "img": "https://cdn.productimages.abb.com/9IBA171939_720x540.jpg",
+    "title": "Contactores"
   }
-  // {
-  //   order: 14,
-  //   title: "Process Instrumentation",
-  //   img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Finst-btn.png?alt=media&token=6b795f3c-38d7-4407-a149-0eddc7385ef0',
-  // },
-  // {
-  //   order: 15,
-  //   title: "Safety & Signaling",
-  //   img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fsafesig-btn.png?alt=media&token=e21b3494-7ea2-4eaf-a663-fdeee46abcda',
-  // },
-  // {
-  //   order: 16,
-  //   title: "Semiconductors",
-  //   img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fsemicond-btn.png?alt=media&token=8c38ff7f-f7c4-4492-bcb7-546404936bb3',
-  // },
-  // {
-  //   order: 17,
-  //   title: "Test & Measurement",
-  //   img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Ftm-btn.png?alt=media&token=492b35ff-6a09-4208-bbf7-5c53001072c5',
-  // },
-  // {
-  //   order: 18,
-  //   title: "Tools Hardware & Supplies",
-  //   img: 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/testAllproductos%2Fthse-btn.png?alt=media&token=2645ba62-418f-416b-beae-449ebff47bff',
-  // },
   
 ]
 
