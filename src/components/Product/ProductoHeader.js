@@ -22,6 +22,8 @@ const ProducHeader = ({ data }) => {
   const { urlfoto, brand, title, desc, ml, _id, inglesTitle, inglesDesc } = data
   const brandId = brand.map(item => item.brand_id)
 
+  console.log({ brandId })
+
   const [ cantidad, setCantidad ] = useState(1)
   const setAdd = () => cantidad < 5 && setCantidad(cantidad => cantidad + 1 )
   const setRemove = () => cantidad > 1 && setCantidad(cantidad => cantidad - 1 )

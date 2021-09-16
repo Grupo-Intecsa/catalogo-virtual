@@ -13,7 +13,12 @@ const FamiliasBar = ({ payload, slug }) => {
     let capacidades = useMemo(() => {
       
       let valores = familia.map(({ capacidad }) => capacidad )
+
+      console.log(valores[0])
+
       if (valores[0].mm) {
+
+        console.log("el capitan")
 
         const capacidad = valores
         .reduce(( array, item ) => array.includes(item.mm) ? array : [ ...array, item.mm ], [])
@@ -45,6 +50,15 @@ const FamiliasBar = ({ payload, slug }) => {
   
         let unidad = Object.keys(valores[0]).map(item => item)[0]
         return { capacidad, unidad }
+        
+      }else if (valores[0].cm) {
+        const capacidad = valores
+        .reduce(( array, item ) => array.includes(item.cm) ? array : [ ...array, item.cm ], [])
+        .sort(utils.orderArray)
+  
+        let unidad = Object.keys(valores[0]).map(item => item)[0]
+        return { capacidad, unidad }
+
       }
 
     },[])
