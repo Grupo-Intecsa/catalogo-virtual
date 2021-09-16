@@ -31,6 +31,8 @@ const BrandComponent = ({  match }) => {
     const { queryBrand } = state.context    
     const [ searchArray, setSearchArray ] = useState([])
 
+    console.log({ queryBrand })
+
     useEffect(() => {
         setSearchArray([])
     },[params])

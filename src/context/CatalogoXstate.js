@@ -1,7 +1,7 @@
-import { Machine, assign } from 'xstate'
+import { createMachine, assign } from 'xstate'
 import CatalogoController from './controllers/CatalogoController'
 
-export const CatalogoXstate = Machine({
+export const CatalogoXstate = createMachine({
     id: "catalgo",
     initial: "idle",
     context: {
