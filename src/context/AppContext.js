@@ -33,26 +33,43 @@ const logoSelector = (id) => {
 
 const linkName = (title) => title.replace(/[^a-zA-Z 0-9]+/g,'').trim().split(" ").join("-").toLowerCase()
 
+
 // precio de mercado libre
 const GetPriceIdMl = ({ ml }) => {
+  
   const [ loading, setLoading ] = useState(false)
   const [ mlPrecio, setMlPrecio ] = useState(undefined)
   const [ error, setError ] = useState(false)
-    
+  const dolarHoy = 21
+      
   async function getData(){
     await CatalogoController.getPrice({ ml })
-    .then(res => {
+    .then(res => {      
       let numberRes = +res
-      //  si la respuesta es un string por la coma
-      if(Number.isNaN(numberRes)){
+      console.log(res)
+
+      if (res.startsWith("S")) {
+        const dolarPrice = res
+          .split("S")
+          .slice(1)
+          .toString()
+
+        let number = dolarPrice.split(",").reverse()
+        let suma = number.reduce((total, val) => val + total )
+
+        console.log({dolarHoy, suma}, dolarHoy * suma)
+        return setMlPrecio(dolarHoy * suma)
+
+      }else if(Number.isNaN(numberRes)){
+
         let number = res.split(",").reverse()
         let suma = number.reduce((total, val) => val + total )
         return setMlPrecio(suma)
 
       }else if(!Number.isNaN(numberRes)){
+
         return setMlPrecio(numberRes)
       }
-
     })
     .catch((err) => err && setError(true) )
     .finally(() => setLoading(true))
