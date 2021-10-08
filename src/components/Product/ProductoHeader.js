@@ -140,7 +140,7 @@ const ProducHeader = ({ data }) => {
               : (
               <button className="cotizalo--ahora">
                 <div className="cotizalo--ahora" onClick={handleFormLik}>
-                  <p>¡Comunicate con un expero y cotiza!</p>
+                  <p>¡Comunicate con un experto y cotiza!</p>
                 </div>
               </button>
               )
