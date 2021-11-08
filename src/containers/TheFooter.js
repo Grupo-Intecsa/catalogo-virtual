@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
-import { useState } from 'react'
-
+import React, { Fragment, useContext, useState } from 'react'
+import { AppContext } from 'context/AppContext'
 import logo from 'assets/icons/git_logo.svg'
 import contacto from 'assets/social/contact.svg'
 import mapa from 'assets/social/maps.svg'
@@ -15,6 +14,7 @@ import hora from 'assets/social/horarios.svg'
 const TheFooter = () => {
 
   const [ isMap, setIsMap ] = useState(false)
+  const { lenguage } = useContext(AppContext)
 
   const toggole = () => setIsMap(!isMap)
   
@@ -32,7 +32,7 @@ const TheFooter = () => {
             <div className="footer_section d-flex justify-content-center justify-content-md-start">
               <div className="links-redes-content">
               <div>
-                <h5>Síguenos en:</h5>
+                { lenguage === 'es' ? <h5>Síguenos en:</h5> : <h5>Follow us on:</h5> }
               </div>
               <div className="col-12">
               <a href="https://www.facebook.com/Grupo-Intecsa-Mx-Oficial-213945636173987/"
@@ -71,7 +71,7 @@ const TheFooter = () => {
           <div className="footer-b">
             
           <div className="title--footer">
-          <span>Información de Contacto</span>
+          { lenguage === 'es' ? <span>Información de Contacto</span> : <span>Contact Information</span> }
           </div>
           <div className="footer_secction">
                 <img src={contacto} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-imges" />
@@ -81,7 +81,7 @@ const TheFooter = () => {
                   <h5>contacto@grupointecsa.com</h5>
                   </a>
                     <div className="d-flex flex-column">
-                      <p>¿Tienes dudas? ¡Llámanos y te apoyamos!</p>
+                    { lenguage === 'es' ? <p>¿Tienes dudas? ¡Llámanos y te apoyamos!</p> : <p>Do you have any questions? Call us and we will help you!</p> }
                       <a href="tel:525555701197">
                       <h2 className="text-white"> +52 55 5570-1197</h2>
                       </a>
@@ -93,8 +93,8 @@ const TheFooter = () => {
               {/* dudas */}
               <img src={hora} alt="Logo Grupo Intecsa ingenieria eléctrica" className="footer-imges" />
               <div className="col-sm-12 col-md-6">
-              <h5>Nuestros horarios</h5>
-              <p>Lunes / Jueves 09:00 - 15:00</p>
+              { lenguage === 'es' ? <h5>Nuestros horarios</h5> : <h5>Our schedules</h5> }
+              { lenguage === 'es' ? <p>Lunes / Jueves 09:00 - 15:00</p> : <p>Monday / Thursday 09:00 - 15:00</p> }              
               </div>
           </div>
 
@@ -108,7 +108,7 @@ const TheFooter = () => {
               <img src={mapa} alt="Logo Grupo Intecsa ingenieria eléctrica" className="btn footer-imges" onClick={() => toggole()}/>
               </a>
                 <div className="col-sm-12 col-md-6">
-                <h5>Dirección</h5>
+                { lenguage === 'es' ? <h5>Dirección</h5> : <h5>Address</h5> }
                 <p className="col-12 col-sm-8">Raúl Zárate #11 Machuca Cuevítas, 01220 Ciudad de México, CDMX</p>
                 </div>
             </div>      

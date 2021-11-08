@@ -480,6 +480,21 @@
   margin-bottom: 5rem;
 }
 
+.switch__lenguage{  
+  padding: 2px;
+  border-radius: 4px;
+  margin: 3px;
+  height: 44px;
+  border: none;
+  outline: none;
+}
+
+@media (max-width: 60rem){
+  .switch__lenguage{
+    display: none;
+  }
+}
+
 
 // media Querys
 

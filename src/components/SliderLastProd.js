@@ -50,7 +50,7 @@ const VerticalCard = ({ data }) => {
     grabSlider()
   })
 
-  const { mlVerify, GetPriceIdMl, logoSelector, linkName, monyIntlRef } = useContext(AppContext)
+  const { mlVerify, GetPriceIdMl, logoSelector, linkName, monyIntlRef, lenguage } = useContext(AppContext)
   return(
     <div className="vertical--container" id="sliderPromo">
       { 
@@ -90,7 +90,9 @@ const VerticalCard = ({ data }) => {
       }
       <div className="final--vertical--card">
 
-          <span>¡Entra y descubre más productos!</span>
+          {
+            lenguage === 'es' ? <span>¡Entra y descubre más productos!</span> : <span>Enter and discover more products!</span>
+          }
           <img src={_masProductos} alt="promoABB" loading="lazy" />
 
       </div>
@@ -99,7 +101,7 @@ const VerticalCard = ({ data }) => {
 }
 
 const SliderLastProd = () => {
-
+  const { lenguage } = useContext(AppContext)
   const [ state, send ] = useMachine(CatalogoXstate)
 
   const buttonRight = function(){
@@ -121,7 +123,9 @@ const SliderLastProd = () => {
 
   return(
     <div className="VerticalSlider">
-      <h2 className="text-center">Ultimos Productos</h2>
+      {
+        lenguage === "es" ? <h2 className="text-center">Ultimos Productos</h2> : <h2 className="text-center">Last Products</h2>
+      }
       <div>
         <div className={state.matches("sample") ? "card--skeleton--container" : null}>
           {state.matches("sample") && [1,2,3,4,5].map(item => <SkeletonVerticalCard key={item} />) }

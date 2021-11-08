@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
+import { AppContext } from 'context/AppContext'
 import { useCatalogoDispatch, useCatalogoState } from "context/catalogoContext"
 
 import { Link } from 'react-router-dom'
@@ -25,6 +26,7 @@ const Categorias = ({ payload }) => {
 
 const AllProductos = () => {
   
+  const { lenguage } = useContext(AppContext)  
   const dispatch = useCatalogoDispatch()
   const state = useCatalogoState()
 
@@ -51,7 +53,9 @@ const AllProductos = () => {
 
 
       <div className="all--products-title mt-4 mb-4">
-          <h2 className="text-center">Categorias</h2>
+          <h2 className="text-center">
+            { lenguage === 'es' ? 'Todos los productos' : 'All products' }
+          </h2>
       </div>
     <div className="d-flex justify-content-center">
     <div className="all--products--container mb-4">
