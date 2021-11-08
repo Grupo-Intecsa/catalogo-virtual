@@ -2,6 +2,7 @@ import React, { Fragment, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import TheCanvasCart from './TheCanvasCart'
 import SearchEngine from 'utils/SearchEngine'
+import DropMenuLeng from './DropMenuLeng'
 
 import logo from '../assets/icons/path2.webp'
 // import menu from '../assets/icons/bars.svg'
@@ -12,12 +13,14 @@ import LoginButton from 'components/LoginButton'
 
 
 const TheHeader = () => {
-  const { contactRequired } = useContext(AppContext)
+  const { contactRequired, lenguage } = useContext(AppContext)
   const { form } = contactRequired()
 
   const handleFormLik = () => {
     window.open(form, '_blank')
   }
+
+  
 
   return (
         <Fragment>
@@ -32,7 +35,9 @@ const TheHeader = () => {
                 <section className="menu--header">
                   <a onClick={handleFormLik} 
                     title="Ponte en contacto con nosotros para una cotizacion especializada">
-                    <span>Contacto</span>
+                    {
+                      lenguage === 'es' ? <span>Contacto</span> : <span>Contact</span>
+                    }
                   </a>
 
                   <a 
@@ -40,18 +45,20 @@ const TheHeader = () => {
                     title="Quires saber mas de nostros y nuesto trabjo" 
                     rel="noreferrer" 
                     target="_blank">
-                      <span>¿Quiénes somos?</span>
+                      {
+                        lenguage === 'es' ? <span>Nosotros</span> : <span>About us</span>
+                      }
                   </a>
-
-                  <a href="/#" 
+                  {/* <a href="/#" 
                     title="¿Quieres una cotización?, contamos con la capacidad técnica y humana para desarrollar cualquier tipo de trabajo eléctrico." 
                     rel="nofollow">
                       <span>Categorías</span>
-                  </a>
+                  </a> */}
               </section>
-
+                  
                 {/* carrito y whatsapp */}
                 <section className="tools__header__menu">
+                  <DropMenuLeng />
                   <SearchEngine />
                   <LoginButton />
                   <TheCanvasCart />

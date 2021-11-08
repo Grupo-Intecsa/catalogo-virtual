@@ -37,7 +37,6 @@ const LoginButton = () => {
   const goPedidos = () => history.push('/pedido/user')
 
   const refSubMenu = useRef()
-
   const toogleMenu = () => {
     if (refSubMenu.current.classList.contains("open__submenu")){
       refSubMenu.current.classList.remove("open__submenu")

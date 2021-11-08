@@ -134,6 +134,18 @@ const GetPriceIdMl = ({ ml }) => {
     const [ migas, setMigas ] = useState([])
     const [ famBarItemSelected, setFamBarItemSelected ] = useState([])
 
+    const [lenguage, setLenuage] = useState("es")
+    // usa = ingles
+    // es = español
+    const changeLenguage = (leng) => {      
+      setLenuage(leng)
+      localStorage.setItem("lenguage", leng)
+    }
+
+    useEffect(() => {
+      setLenuage(localStorage.getItem("lenguage"))
+    }, [lenguage])	
+
     const resetNotify = useCallback(() => {
         setTimeout(() => {
           setOpenNotify(true)
@@ -163,7 +175,9 @@ const GetPriceIdMl = ({ ml }) => {
         setMigas,
         handleNotifyCart,
         openNotify,
-        dateIntlRef
+        dateIntlRef,
+        lenguage,
+        changeLenguage
     }}>
       { props.children }
     </AppContext.Provider>

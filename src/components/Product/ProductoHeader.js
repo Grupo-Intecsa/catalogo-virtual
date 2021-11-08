@@ -18,7 +18,7 @@ import { useTiendaDispatch, useTiendaState } from 'context/TiendaContext'
 
 const ProducHeader = ({ data }) => {
 
-  const { logoSelector, GetPriceIdMl, mlVerify, contactRequired, monyIntlRef } = useContext(AppContext)
+  const { logoSelector, GetPriceIdMl, mlVerify, contactRequired, monyIntlRef, lenguage } = useContext(AppContext)
   const { urlfoto, brand, title, desc, ml, _id, inglesTitle, inglesDesc } = data
   const brandId = brand.map(item => item.brand_id)
 
@@ -49,6 +49,7 @@ const ProducHeader = ({ data }) => {
     dispatch("ADD_ITEM", { data: payload, ref: notifyRef })
   }
 
+
   const { form, whatsapp } = contactRequired()
 
   const handleFormLik = () => {
@@ -58,11 +59,6 @@ const ProducHeader = ({ data }) => {
   const handleWhatsapp = () => {
     window.open(whatsapp, '_blank')
   }  
-
-  const [swLenguage, setLenguage] = useState(false)
-  const swToggle = () => {
-    setLenguage(!swLenguage)
-  }
   
   return(
     <div className="product--foto">
@@ -89,26 +85,14 @@ const ProducHeader = ({ data }) => {
         
         <section className="title--product">
           <ShareButton slug={_id} title={title}  /> 
-
-          <nav className="swtich__lenguage">
-            <span className="flag__mex" />
-            <input 
-                onChange={(e) => swToggle(e)}
-                type="checkbox"
-                id="switch" 
-              />
-            <label htmlFor="switch">toogle</label>
-            <span className="flag__usa" />
-          </nav>
-
-          <span>{swLenguage ? inglesTitle : title }</span>
+          <span>{ lenguage === 'en' ? inglesTitle : title }</span>
           <div>{ logoSelector(brandId.toString()) }</div>
         </section>
 
         { state.matches("rejected") && <span className="ntf--exist">Este producto ya está en tu carrito</span>}
 
         <section className="description--product">
-          <p>{swLenguage ? inglesDesc : desc }</p>
+          <p>{ lenguage === 'en' ? inglesDesc : desc }</p>
         </section>
 {/* 
 // Accordion con las capacidades
