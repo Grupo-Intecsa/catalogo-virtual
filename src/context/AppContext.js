@@ -143,8 +143,10 @@ const GetPriceIdMl = ({ ml }) => {
     }
 
     useEffect(() => {
+      if (localStorage.getItem("lenguage")) {
       setLenuage(localStorage.getItem("lenguage"))
-    }, [lenguage])	
+      }
+    },[])	
 
     const resetNotify = useCallback(() => {
         setTimeout(() => {
