@@ -1,7 +1,8 @@
 import axios from 'axios'
 import decode from 'jwt-decode'
 
-export const baseURL = process.env.API_URL
+export const baseURL = process.env.REACT_APP_API_URL
+console.log(baseURL)
 // export const baseURL = 'https://test-pupeteer.herokuapp.com/api/v1'
 // export const baseURL = 'http://localhost:3000/api/v1'
 
