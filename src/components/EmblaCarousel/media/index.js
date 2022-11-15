@@ -1,5 +1,6 @@
 import csmBig from 'assets/bg/csm_big.jpg'
 import csmSamll from 'assets/bg/csm_small.jpg'
+import newCat from 'assets/bg/new_cat.png'
 
 import registroBIG from 'assets/bg/gabineterojo_big.jpg'
 import registroSAMALL from 'assets/bg/gabineterojo_small.jpg'
@@ -27,9 +28,20 @@ const registro = (
   
 )
 
+const newcat = (
+
+  <a href="#" className="banner--header">
+    <picture>
+      <source srcSet={newCat} media="(min-width: 60rem)"/>
+      <img className="imgfluid" loading="lazy" src={newCat} alt="descubre nuestros nuevos catálogos"/>      
+    </picture>
+  </a>
+  
+)
+
 
 export const mediaCarousel = {
-  1: mpago,
-  2: registro
-  
+  1: newcat,
+  2: mpago,
+  3: registro,
 }

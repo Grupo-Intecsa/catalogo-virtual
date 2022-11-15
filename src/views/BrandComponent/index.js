@@ -13,10 +13,20 @@ import SkeletonCardProduct from 'components/skeletons/SkeletonCardProduct'
 import TopButton from 'reusable/TopButton'
 import utils from 'utils/utils'
 
+import downloadButton from 'assets/icons/download.png'
+
+
+const catalogoAnchores = {
+    "onka": 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/ONKA%20CATALOGO.pdf?alt=media&token=06136a91-b618-4b41-b802-e9f7340c818b',
+    "abb": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/cat_abb.pdf?alt=media&token=6be8bef9-12b9-4fa3-b5e5-879caaffca86",
+    "csm": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/catalogo_canalizacion.pdf?alt=media&token=e87a4f5b-170e-446e-9e27-23c1ec4b7073"
+}
+
 
 const BrandComponent = ({  match }) => {
 
     const { params } = match 
+    console.log("🚀 ~ file: index.js ~ line 29 ~ BrandComponent ~ params", params)
     const [ state, send ] = useMachine(CatalogoXstate)
     
     useEffect(() => {
@@ -47,6 +57,11 @@ const BrandComponent = ({  match }) => {
         })
     }
 
+    const handlderDownloadCat = () => {
+        const url = catalogoAnchores[params.slug]
+        window.open(url, '_blank')
+    }
+
     return (
         <>
         <Helmet
@@ -73,6 +88,14 @@ const BrandComponent = ({  match }) => {
                 />
             </BuscadorMini>
         </div>
+       {params.slug !== 'ita' && (
+            <div className="catalogo-divider">
+                <div role="button" onClick={() => handlderDownloadCat()}>
+                    <img src={downloadButton} alt="download" />
+                    <a>Descarga nuestro catálogo</a>
+                </div>
+            </div>
+        )}
         <hr />
             {
                 state.matches("getProducsByBrandId") && <SkeletonCardProduct />

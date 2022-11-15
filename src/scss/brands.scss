@@ -143,3 +143,47 @@
     }
 
 }
+
+.catalogo-divider{
+    display: flex;
+    // justify-content: center;
+    
+    div {
+        display: flex;
+        align-items: center;
+        margin: 30px auto;
+        background-color: #f2f2f2;    
+        height: auto;
+        border: 2px solid #3588e8;
+        border-radius: 4px;
+        width: 385px;
+        padding: 8px;
+        cursor: pointer;
+
+        button{
+            border: none;
+            outline: none;
+        }
+
+        img {
+            height: 30px;
+        }
+    
+        a {            
+            font-weight: bold;
+            font-size: x-large;            
+        }
+    
+        p {
+            color: #848b97;
+        }
+    }
+
+    & div:hover {
+        background-color: #e8f1fe;
+    }
+    
+
+}
+
+
