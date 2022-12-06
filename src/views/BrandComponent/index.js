@@ -19,7 +19,7 @@ import downloadButton from 'assets/icons/download.png'
 const catalogoAnchores = {
     "onka": 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/ONKA%20CATALOGO.pdf?alt=media&token=06136a91-b618-4b41-b802-e9f7340c818b',
     "abb": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/cat_abb.pdf?alt=media&token=6be8bef9-12b9-4fa3-b5e5-879caaffca86",
-    "csm": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/catalogo_canalizacion.pdf?alt=media&token=e87a4f5b-170e-446e-9e27-23c1ec4b7073"
+    "csm": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/catalogos%2FCATALOGO_CSM_20221201.pdf?alt=media&token=aecc738d-dd77-4134-9626-4618b9252c96"
 }
 
 
