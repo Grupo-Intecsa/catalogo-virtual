@@ -15,13 +15,16 @@ import utils from 'utils/utils'
 
 import downloadButton from 'assets/icons/download.png'
 
-
-const catalogoAnchores = {
-    "onka": 'https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/ONKA%20CATALOGO.pdf?alt=media&token=06136a91-b618-4b41-b802-e9f7340c818b',
-    "abb": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/cat_abb.pdf?alt=media&token=6be8bef9-12b9-4fa3-b5e5-879caaffca86",
-    "csm": "https://firebasestorage.googleapis.com/v0/b/itacatalgo.appspot.com/o/catalogos%2FCATALOGO_CSM_20221201.pdf?alt=media&token=aecc738d-dd77-4134-9626-4618b9252c96"
-}
-
+const api = 'https://graphql-api-production.up.railway.app/api'
+const GetAllCatalogs = `
+query GetAllCatalogos {
+    getAllCatalogos {
+      _id
+      name
+      url
+    }
+  }
+`
 
 const BrandComponent = ({  match }) => {
 
@@ -46,6 +49,46 @@ const BrandComponent = ({  match }) => {
     useEffect(() => {
         setSearchArray([])
     },[params])
+
+    
+    const [catalogoAnchores, setCatalogoAnchores] = useState([])
+    console.log("🚀 ~ file: index.js:55 ~ BrandComponent ~ catalogoAnchores", catalogoAnchores)
+    const getAllCatatalogos = async () => {
+        try {
+            const slug = {
+                "abb-catalogo": "abb",
+                "onka-catalogo": "onka",
+                "canalizacion-catalogo": "csm"
+            }
+            const data = await fetch(api, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: GetAllCatalogs })
+            })
+            .then(res => res.json())
+            .then(res => {
+                return res.data.getAllCatalogos.map((cat) => {
+                    return { [slug[cat.name]]: cat.url }
+                })
+            })
+            .then(res => {
+                return res.reduce((acc, curr) => {
+                    return { ...acc, ...curr }
+                }, {})
+            })
+            console.log("🚀 ~ file: index.js:61 ~ getAllCatatalogos ~ data", data)
+            setCatalogoAnchores({...data})
+        } catch (error) {
+            console.log("🚀 ~ file: index.js:61 ~ getAllCatatalogos ~ error", error)
+        }
+        // setCatalogoAnchores(getAllCatatalogos)        
+    }
+
+    useEffect(() => {
+        getAllCatatalogos()
+    }, [])
     
     const handleSearch = ({ name }) => {
         if(name.length === 0) setSearchArray([])
